@@ -1,0 +1,132 @@
+{
+    "name": "Bitbucket",
+    "description": "Collaborate on code with inline comments and pull requests. Manage and share your Git repositories to build and ship software, as a team.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/19810-bitbucket.jpg",
+    "tags": [
+        "code",
+        "developers",
+        "have api",
+        "have swagger",
+        "imports",
+        "profile",
+        "relative data",
+        "service api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/bitbucket\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Bitbucket",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/19810-bitbucket.jpg",
+            "humanURL": "http:\/\/developer.atlassian.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/bitbucket-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/bitbucket.json"
+                }
+            ]
+        },
+        {
+            "name": "Bitbucket API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/19810-bitbucket.jpg",
+            "humanURL": "http:\/\/developer.atlassian.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/bitbucket-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/bitbucket-api.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/bitbucket"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developer.atlassian.com\/cloud\/bitbucket\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/confluence.atlassian.com\/bitbucket\/bitbucket-cloud-documentation-221448814.html?_ga=2.77295890.629375793.1519179030-1077111323.1516485126"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-00-36-33.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-00-36-42.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-00-36-49.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-00-37-05.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-08-46-53.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-08-49-01.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-08-50-00.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19810-2019-09-04-08-50-09.json"
+        },
+        {
+            "type": "Status",
+            "url": "https:\/\/status.bitbucket.org\/?_ga=2.76365714.629375793.1519179030-1077111323.1516485126"
+        },
+        {
+            "type": "Support",
+            "url": "https:\/\/support.atlassian.com\/bitbucket-cloud\/"
+        },
+        {
+            "type": "Terms of Service",
+            "url": "https:\/\/www.atlassian.com\/legal\/customer-agreement?_ga=2.76365714.629375793.1519179030-1077111323.1516485126"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/bitbucket"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/bitbucket.org"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/bitbucket.org\/"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/developer.atlassian.com"
+        }
+    ]
+}
