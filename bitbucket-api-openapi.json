@@ -1,0 +1,2510 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2.0",
+        "title": "Bitbucket API",
+        "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.",
+        "termsOfService": "https:\/\/www.atlassian.com\/end-user-agreement"
+    },
+    "servers": [
+        "http:\/\/api.dev.bitbucket.org:8000\/2.0",
+        "http:\/\/app18.ash-private.bitbucket.org\/2.0"
+    ],
+    "paths": {
+        "\/repositories\/{username}\/{repo_slug}\/refs\/branches\/{name}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/teams\/{username}\/following": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the list of accounts this team is following.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The team's username"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/commit\/{sha}\/comments\/{comment_id}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specified commit comment.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/hooks": {
+            "post": {
+                "summary": "",
+                "description": "Creates a new webhook on the specified repository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "If the webhook was registered successfully.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/webhook_subscription"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a paginated list of webhooks installed on this repository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/attachments\/{path}": {
+            "delete": {
+                "summary": "",
+                "description": "Deletes an attachment.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "401": {
+                        "description": "If the issue tracker is private and the request was not authenticated.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the contents of the specified file attachment.\n\nNote that this endpoint does not return a JSON response, but instead\nreturns a redirect pointing to the actual file that in turn will return\nthe raw contents.\n\nThe redirect URL contains a one-time token that has a limited lifetime.\nAs a result, the link should not be persisted, stored, or shared.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "401": {
+                        "description": "If the issue tracker is private and the request was not authenticated.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/versions\/{version_id}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specified issue tracker version object.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "version_id",
+                        "in": "path",
+                        "description": "The version's id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/vote": {
+            "put": {
+                "summary": "",
+                "description": "Vote for this issue.\n\nTo cast your vote, do an empty PUT. The 204 status code indicates that\nthe operation was successful.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "issue_id",
+                        "in": "path",
+                        "description": "The issue's id"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "If the issue tracker is private and the request was not authenticated.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "",
+                "description": "Retract your vote.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "issue_id",
+                        "in": "path",
+                        "description": "The issue's id"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Check whether the authenticated user has voted for this issue.\nA 204 status code indicates that the user has voted, while a 404\nimplies they haven't.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "issue_id",
+                        "in": "path",
+                        "description": "The issue's id"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "If the issue tracker is private and the request was not authenticated.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/milestones": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the milestones that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/components": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the components that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/account\/{username}\/addons\/{encoded_context_id}\/refresh": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/addon\/linkers\/{linker_key}\/values": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/refs\/branches": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/hook_events\/{subject_type}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a paginated list of all valid webhook events for the\nspecified entity.\n\nThis is public data that does not require any scopes or authentication.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "subject_type",
+                        "in": "path",
+                        "description": "A resource or subject type."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/users\/{username}\/followers": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the list of accounts that are following this team.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The team's username"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/default-reviewers": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the repository's default reviewers.\n\nThese are the users that are automatically added as reviewers on every\nnew pull request that is created.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/downloads\/{filename}": {
+            "delete": {
+                "summary": "",
+                "description": "Deletes the specified download artifact from the repository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Return a redirect to the contents of a download artifact.\n\nThis endpoint returns the actual file contents and not the artifact's\nmetadata.\n\n    $ curl -s -L https:\/\/api.bitbucket.org\/2.0\/repositories\/evzijst\/git-tests\/downloads\/hello.txt\n    Hello World",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/commit\/{node}\/statuses\/build\/{key}": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/watchers": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a paginated list of all the watchers on the specified\nrepository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/snippets\/{username}\/{encoded_id}\/commits": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the changes (commits) made on this snippet.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/users\/{username}\/repositories": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "All repositories owned by a user\/team. This includes private\nrepositories, but filtered down to the ones that the calling user has\naccess to.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/pullrequests\/activity": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the pull request's activity log. This includes comments that\nwere made by the reviewers, updates and approvals.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/snippets\/{username}\/{encoded_id}\/comments\/{comment_id}": {
+            "put": {
+                "summary": "",
+                "description": "Updates a comment.\n\nComments can only be updated by their author.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "",
+                "description": "Deletes a snippet comment.\n\nComments can only be removed by their author.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "Indicates that the deletion was successful",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specific snippet comment.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/diff\/{spec}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/branch-restrictions": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/comments\/{comment_id}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specified issue comment object.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/hooks\/{uid}": {
+            "put": {
+                "summary": "",
+                "description": "Updates the specified webhook subscription.\n\nThe following properties can be mutated:\n\n* `description`\n* `url`\n* `active`\n* `events`",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "The installed webhook's id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "",
+                "description": "Deletes the specified webhook subscription.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "The installed webhook's id"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Indicates that the deletion was successful",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the webhook installed on the specified repository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "The installed webhook's id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/users\/{username}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Gets the public information associated with a user account.\n\nIf the user's profile is private, `location`, `website` and\n`created_on` elements are omitted.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The team's username"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/snippets\/{username}\/{encoded_id}": {
+            "put": {
+                "summary": "",
+                "description": "Used to update a snippet. Use this to add and delete files and to\nchange a snippet's title.\n\nTo update a snippet, one can either PUT a full snapshot, or only the\nparts that need to be changed.\n\nThe contract for PUT on this API is that properties missing from the\nrequest remain untouched so that snippets can be efficiently\nmanipulated with differential payloads.\n\nTo delete a property (e.g. the title, or a file), include its name in\nthe request, but omit its value (use `null`).\n\nAs in Git, explici",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "encoded_id",
+                        "in": "path",
+                        "description": "The snippet's id."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "",
+                "description": "Deletes a snippet and returns an empty response.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "encoded_id",
+                        "in": "path",
+                        "description": "The snippet's id."
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "If the issue tracker is private and the request was not authenticated.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Retrieves a single snippet.\n\nSnippets support multiple content types:\n\n* application\/json\n* multipart\/related\n* multipart\/form-data\n\n\napplication\/json\n----------------\n\nThe default content type of the response is `application\/json`.\nSince JSON is always `utf-8`, it cannot reliably contain file contents\nfor files that are not text. Therefore, JSON snippet documents only\ncontain the filename and links to the file contents.\n\nThis means that in order to retrieve all parts of a snippet, N+1\nrequests ",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "encoded_id",
+                        "in": "path",
+                        "description": "The snippet's id."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/addon\/linkers": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/comments\/{comment_id}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a specific pull request comment.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/components\/{component_id}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specified issue tracker component object.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "component_id",
+                        "in": "path",
+                        "description": "The component's id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/addon": {
+            "put": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "delete": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/users\/{username}\/following": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the list of accounts this user is following.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The team's username"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}": {
+            "delete": {
+                "summary": "",
+                "description": "Deletes the specified issue. This requires write access to the\nrepository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the specified issue.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/teams\/{username}\/repositories": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "All repositories owned by a user\/team. This includes private\nrepositories, but filtered down to the ones that the calling user has\naccess to.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/downloads": {
+            "post": {
+                "summary": "",
+                "description": "Upload new download artifacts.\n\nTo upload files, perform a `multipart\/form-data` POST containing one\nor more `files` fields:\n\n    $ echo Hello World > hello.txt\n    $ curl -s -u evzijst -X POST https:\/\/api.bitbucket.org\/2.0\/repositories\/evzijst\/git-tests\/downloads -F files=@hello.txt\n\nWhen a file is uploaded with the same name as an existing artifact,\nthen the existing file will be replaced.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a list of download links associated with the repository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/refs": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/hook_events": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the webhook resource or subject types on which webhooks can\nbe registered.\n\nEach resource\/subject type contains an `event` link that returns the\npaginated list of specific events each individual subject type can\nemit.\n\nThis endpoint is publicly accessible and does not require\nauthentication or scopes.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/teams\/{username}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Gets the public information associated with a team.\n\nIf the team's profile is private, `location`, `website` and\n`created_on` elements are omitted.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The team's username"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/user\/emails\/{email}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns details about a specific one of the authenticated user's\nemail addresses.\n\nDetails describe whether the address has been confirmed by the user and\nwhether it is the user's primary address or not.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/approve": {
+            "post": {
+                "summary": "",
+                "description": "Approve the specified pull request as the authenticated user.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "delete": {
+                "summary": "",
+                "description": "Redact the authenticated user's approval of the specified pull\nrequest.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/patch\/{spec}": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "Unexpected error.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/snippets\/{username}\/{encoded_id}\/{node_id}\/diff": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns the diff of the specified commit against its first parent.\n\nNote that this resource is different in functionality from the `patch`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo\/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical t",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "When used, only one the diff of the specified file will be returned."
+                    },
+                    {
+                        "name": "encoded_id",
+                        "in": "path",
+                        "description": "The snippet's id."
+                    },
+                    {
+                        "name": "spec",
+                        "in": "path",
+                        "description": "A revspec expression. This can simply be a commit SHA1, a ref name, or a compare expression like `staging..production`."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/forks": {
+            "parameters": {
+                "summary": "",
+                "description": "",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "get": {
+                "summary": "",
+                "description": "Returns a paginated list of all the forks of the specified\nrepository.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A paginated list of user objects.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/paginated_users"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/repositories\/{username}\/{repo_slug}\/issues": {
+            "post": {
+                "summary": "",
+                "description": "Creates a new issue.\n\nThis call requires authentication. Private repositories or private\nissue trackers require the caller to authenticate with an account that\nhas appropriate authorisation.\n\nThe authenticated user is used for the issue's `reporter` field.",
+                "operationId": "",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "paginated_repositories": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "subject_types": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "repository": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "team": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "user": {
+                "type": "object"
+            },
+            "repository": {
+                "type": "object"
+            },
+            "team": {
+                "type": "object"
+            },
+            "paginated_hook_events": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "base_commit": {
+                "type": "object"
+            },
+            "error": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "participant": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "user": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "approved": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "paginated_versions": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "paginated_users": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "snippet": {
+                "type": "object",
+                "properties": {
+                    "scm": {
+                        "description": "The DVCS used to store the snippet.",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "user": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "creator": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "created_on": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "updated_on": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "is_private": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "hook_event": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "description": "The category this event belongs to.",
+                        "type": "string"
+                    },
+                    "event": {
+                        "description": "The event identifier.",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "More detailed description of the webhook event type.",
+                        "type": "string"
+                    },
+                    "label": {
+                        "description": "Summary of the webhook event type.",
+                        "type": "string"
+                    }
+                }
+            },
+            "version": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "issue": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "kind": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "repository": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "user": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "reporter": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "component": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "votes": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "priority": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "assignee": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "version": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "edited_on": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "created_on": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "milestone": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "updated_on": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "webhook_subscription": {
+                "type": "object",
+                "properties": {
+                    "subject_type": {
+                        "description": "A resource or subject type.",
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "description": "The webhook's id",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The URL events get delivered to.",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "More detailed description of the webhook event type.",
+                        "type": "string"
+                    },
+                    "active": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "events": {
+                        "description": "The events this webhook is subscribed to.",
+                        "type": "array"
+                    },
+                    "base_object": {
+                        "description": "Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.",
+                        "type": "object"
+                    },
+                    "subject": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "snippet_commit": {
+                "type": "object"
+            },
+            "object": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "component": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "paginated_issues": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "milestone": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "paginated_issue_attachments": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "paginated_webhook_subscriptions": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "snippet_comment": {
+                "type": "object",
+                "properties": {
+                    "snippet": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "paginated_milestones": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "paginated_components": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "account": {
+                "type": "object"
+            },
+            "issue_attachment": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    }
+                }
+            },
+            "paginated_snippet_commit": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "pullrequest": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "links": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "paginated_teams": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "paginated_snippet_comments": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "commit": {
+                "type": "object"
+            },
+            "paginated_snippets": {
+                "type": "object",
+                "properties": {
+                    "next": {
+                        "description": "Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    },
+                    "values": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "pagelen": {
+                        "description": "Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.",
+                        "type": "integer"
+                    },
+                    "size": {
+                        "description": "Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.",
+                        "type": "integer"
+                    },
+                    "page": {
+                        "description": "Page number of the current results. This is an optional element that is not provided in all responses.",
+                        "type": "integer"
+                    },
+                    "previous": {
+                        "description": "Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.",
+                        "type": "string"
+                    }
+                }
+            },
+            "page": {
+                "type": "object"
+            },
+            "values": {
+                "type": "array"
+            },
+            "base_object": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "links": {
+                "type": "object"
+            },
+            "content": {
+                "type": "object"
+            },
+            "events": {
+                "type": "array"
+            }
+        }
+    }
+}
