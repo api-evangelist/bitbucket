@@ -1,5 +1,5 @@
 {
-    "id": "848d55650d1dee176e5dbd08a7d481de",
+    "id": "e9a7750264324197508729b4c00e154d",
     "name": "Bitbucket API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "dd1547d00debbd7b53ab4bd977f95768",
+            "id": "8ce4e23ea78edb13123ce923f20c879d",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs\/branches\/{name}",
             "description": "",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "2c95ef0a2a8f9dfa987a8545f71ecbe7",
+            "id": "d82f412eadf9ba6c2f55a231c4b149d3",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs\/branches\/{name}",
             "description": "",
@@ -52,11 +52,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a32bc0a73ad789fa165245772d10a1a3",
+            "id": "2566240edf778dbe23257dd403c18e30",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}\/following",
             "description": "",
@@ -75,11 +75,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "3188c86c6aa543441151f1fd843cc19d",
+            "id": "12e33d6fc4bdfa634959849aeb852d15",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}\/following",
             "description": "Returns the list of accounts this team is following.",
@@ -106,11 +106,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "865b38ea176a63244e64c5e9d1e3b7b3",
+            "id": "9dec6ff907f50af7c5a500bba5a4ad6e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/commit\/{sha}\/comments\/{comment_id}",
             "description": "",
@@ -129,11 +129,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a376fb6e7fc0f0e3e3226fd470a86198",
+            "id": "64483a233d636b554918bca986c36ab1",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/commit\/{sha}\/comments\/{comment_id}",
             "description": "Returns the specified commit comment.",
@@ -152,11 +152,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "54901a853c6da704af27c590981dcb72",
+            "id": "0d9231a3cfcb2bc62922aa5d190906e0",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks",
             "description": "Creates a new webhook on the specified repository.",
@@ -175,11 +175,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "fb55cd1f48a77a571d23c36ae338e784",
+            "id": "26d3a13aaffa70c3dbcc3fe7cfa342bb",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks",
             "description": "",
@@ -198,11 +198,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "e3b0dfc5ee7636f14798fe7b7aa2d909",
+            "id": "7595218b452d64df4a101b6aa280bc71",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks",
             "description": "Returns a paginated list of webhooks installed on this repository.",
@@ -221,11 +221,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "420fde943305560e49785d5777e7cc7f",
+            "id": "1d8c678c759a0f738444a995c08bf52a",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/attachments\/{path}",
             "description": "Deletes an attachment.",
@@ -244,11 +244,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "3e0efba038577b2c6b45e0aca28b9e7f",
+            "id": "cdd3b1dd578722e34246f04fd532de78",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/attachments\/{path}",
             "description": "",
@@ -267,11 +267,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "08f0aa1e040d29c65ae4326270e0c4d7",
+            "id": "a7293c158de9974f9be28150260426ab",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/attachments\/{path}",
             "description": "Returns the contents of the specified file attachment.\n\nNote that this endpoint does not return a JSON response, but instead\nreturns a redirect pointing to the actual file that in turn will return\nthe raw contents.\n\nThe redirect URL contains a one-time token that has a limited lifetime.\nAs a result, the link should not be persisted, stored, or shared.",
@@ -290,11 +290,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "fc698a150def35828b10c636bdaff903",
+            "id": "aaf158b26e1597fd97ad7eff2d50d0bd",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/versions\/{version_id}",
             "description": "",
@@ -313,11 +313,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "ae72b0d447de96b5a2406141029b06ed",
+            "id": "17049679c403348226f3c42403e51456",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/versions\/{version_id}",
             "description": "Returns the specified issue tracker version object.",
@@ -344,11 +344,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "2344c4cb1d97150555ae922795424327",
+            "id": "cf2a49e9956527f1f5c95891e56d6444",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/vote",
             "description": "Vote for this issue.\n\nTo cast your vote, do an empty PUT. The 204 status code indicates that\nthe operation was successful.",
@@ -375,11 +375,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "6fa8f7025dfc5aaecc723ece4e5e6a31",
+            "id": "962489046d95f9d83e5c8ebd6e23dd54",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/vote",
             "description": "Retract your vote.",
@@ -406,11 +406,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "0cd9af6c323f67f60a7e0bfc6602e80e",
+            "id": "d135b586df4b3baae720546cc3d4c09f",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/vote",
             "description": "",
@@ -429,11 +429,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "87d542352988020627478259a339d7ef",
+            "id": "73717f9a6475d324726b39c186f263c5",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/vote",
             "description": "Check whether the authenticated user has voted for this issue.\nA 204 status code indicates that the user has voted, while a 404\nimplies they haven't.",
@@ -460,11 +460,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "c9905d9a3a351060bacaf3ec3d49c5d5",
+            "id": "f893c6366f637e589ed2cb36ee8ddd09",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/milestones",
             "description": "",
@@ -483,11 +483,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "039e2c5b007d1a890e2c6597c904b263",
+            "id": "62b8c731945234d12e8e48b13449f8c0",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/milestones",
             "description": "Returns the milestones that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled.",
@@ -506,11 +506,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a14aea93f455307d62b277b1a909476b",
+            "id": "0bc02c326635cbc39adb37e86c2c610c",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/components",
             "description": "",
@@ -529,11 +529,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "4d24b948df87fe8568ba10fa88b492f8",
+            "id": "9de8e0074e5c1867d11a85a38e56cc5f",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/components",
             "description": "Returns the components that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled.",
@@ -552,11 +552,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "869ba68b700b24b38c7167d70c048323",
+            "id": "3c83af15d6daee49104fd98760328cd6",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/account\/{username}\/addons\/{encoded_context_id}\/refresh",
             "description": "",
@@ -575,11 +575,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "9a442ca5c6b6419c9fe688c11e7a21ff",
+            "id": "42795babaea192db5c7748cba3153915",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/account\/{username}\/addons\/{encoded_context_id}\/refresh",
             "description": "",
@@ -598,11 +598,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a20093119a75f876ee41adf1f6da7879",
+            "id": "a65e747bffc69c9732c46347269b2496",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers\/{linker_key}\/values",
             "description": "",
@@ -621,11 +621,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "312fea007f716d60e44a5ea0742c7f4a",
+            "id": "bf35969b01975a3c05592c7ee1c1a902",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers\/{linker_key}\/values",
             "description": "",
@@ -644,11 +644,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "86f7e9fb3fd31eae15117b72520ba3f6",
+            "id": "dd293187d360c9e1b4407758bcb5a0e9",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers\/{linker_key}\/values",
             "description": "",
@@ -667,11 +667,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "7a874ea849395b0212b7ec245aa42c10",
+            "id": "4776db54d3e6266dd3911a487302ef62",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers\/{linker_key}\/values",
             "description": "",
@@ -690,11 +690,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "71cda5b0c42d01e38791675b38bdfbfe",
+            "id": "53f20984fe4a2f1e40f3ed01dc97bb0e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers\/{linker_key}\/values",
             "description": "",
@@ -713,11 +713,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "0f4dbce355fefd367a23c9fbe26bfb59",
+            "id": "029bbdc768da19b7d196998e984daafe",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs\/branches",
             "description": "",
@@ -736,11 +736,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "c17bf63259cec9b60978463bc8d98b74",
+            "id": "29b1975f8dc592057d0532d9f105d246",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs\/branches",
             "description": "",
@@ -759,11 +759,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "d77538d68633d22554f670481f6e3221",
+            "id": "8f4f78e1bf8b7d2560added455e624e9",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/hook_events\/{subject_type}",
             "description": "",
@@ -782,11 +782,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "7f4d095594ca098ad3a298070c834696",
+            "id": "bf898b64b708280151b7ba570d3559c8",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/hook_events\/{subject_type}",
             "description": "Returns a paginated list of all valid webhook events for the\nspecified entity.\n\nThis is public data that does not require any scopes or authentication.",
@@ -813,11 +813,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "43e9401f9519c3a3e3cb0803723ad730",
+            "id": "28485d7fb31830104de3d1342e80b509",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/followers",
             "description": "",
@@ -836,11 +836,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "3a64f2324a4e1ba422a2e626e6544d5e",
+            "id": "50450e8ba13a8a3c3de2a5a15aa6720e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/followers",
             "description": "Returns the list of accounts that are following this team.",
@@ -867,11 +867,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "c56aeea2d7c5cd3e1089ee0fe389106a",
+            "id": "ac18cdebfd4ff75870fd122db637f7f6",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/default-reviewers",
             "description": "",
@@ -890,11 +890,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "5608fa9669524270015f662c42ed2fb1",
+            "id": "0a7e30a7919b3fd2df18f9f4b50a8509",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/default-reviewers",
             "description": "Returns the repository's default reviewers.\n\nThese are the users that are automatically added as reviewers on every\nnew pull request that is created.",
@@ -913,11 +913,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "de89d0a0f247fc58d32186e86803f7e2",
+            "id": "e7a7dca6073143c4ab29be1452a9a1c2",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads\/{filename}",
             "description": "Deletes the specified download artifact from the repository.",
@@ -936,11 +936,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "084e2358c9cfdf8f66044baadef9bb69",
+            "id": "4cab79f6ca0a3570ecef1d792966ef86",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads\/{filename}",
             "description": "",
@@ -959,11 +959,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "b65a603b58e4871f14f8e8e36332daf0",
+            "id": "699395623a59787f3d9ca72966972101",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads\/{filename}",
             "description": "Return a redirect to the contents of a download artifact.\n\nThis endpoint returns the actual file contents and not the artifact's\nmetadata.\n\n    $ curl -s -L https:\/\/api.bitbucket.org\/2.0\/repositories\/evzijst\/git-tests\/downloads\/hello.txt\n    Hello World",
@@ -982,11 +982,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "04284065943a2fd09a0304b4fac0b5f3",
+            "id": "9c45997d38ac80d7934a324f63546340",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/commit\/{node}\/statuses\/build\/{key}",
             "description": "",
@@ -1005,11 +1005,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a1c784f2debe9eecfc4480f41a1d97dd",
+            "id": "b8daf571e6f249de07d43d8ddaf6172a",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/commit\/{node}\/statuses\/build\/{key}",
             "description": "",
@@ -1028,11 +1028,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "95b1218b27073a203c58ad3f6f0d7d9b",
+            "id": "44003d191ec0c3604ae163948e2e77d1",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/commit\/{node}\/statuses\/build\/{key}",
             "description": "",
@@ -1051,11 +1051,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "8acfee0d583a9bf86a86850e804809ce",
+            "id": "9f5b3baf0b76d6b27644987dc2528221",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/watchers",
             "description": "",
@@ -1074,11 +1074,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "80356c4390d81467958d885ec6c7e3d0",
+            "id": "551c51ed11fa4f01134eba0823f3f42e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/watchers",
             "description": "Returns a paginated list of all the watchers on the specified\nrepository.",
@@ -1097,11 +1097,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "e075dac1114d6a75624c97c2b31f79da",
+            "id": "060b273ed178d3208beada1dfda1e27d",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/commits",
             "description": "",
@@ -1120,11 +1120,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "261ef3f321f00d17cb0a91f3e0ff31ac",
+            "id": "ec9d90353f5f71d55724c14e53507565",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/commits",
             "description": "Returns the changes (commits) made on this snippet.",
@@ -1143,11 +1143,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "8bfffeb534ccd0f59296fdcbb75ed516",
+            "id": "d5f28f2a7f86545823ca5576a68590be",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/repositories",
             "description": "",
@@ -1166,11 +1166,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "421abae9f278c0e08d735327abda8879",
+            "id": "d0bc65def7f7fec51787a9e178dd37e2",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/repositories",
             "description": "All repositories owned by a user\/team. This includes private\nrepositories, but filtered down to the ones that the calling user has\naccess to.",
@@ -1189,11 +1189,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "064a679848ef4e34c0220819c0d085b8",
+            "id": "775b0934b824f101a1f0a096a584e314",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/activity",
             "description": "",
@@ -1212,11 +1212,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "655324fe92064c4c7352b4691c78eb4a",
+            "id": "b15799d38d6fa078a1b457027d8cf5d2",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/activity",
             "description": "Returns the pull request's activity log. This includes comments that\nwere made by the reviewers, updates and approvals.",
@@ -1235,11 +1235,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "449767d2e992a7e03769fa8031f58d60",
+            "id": "d2a29e1d7e6d8300b251229d8bdf5b0f",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/comments\/{comment_id}",
             "description": "Updates a comment.\n\nComments can only be updated by their author.",
@@ -1258,11 +1258,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "d0f4463603540440234e34505ca498c3",
+            "id": "f0480b66bb8005854344192a3cfa8bf1",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/comments\/{comment_id}",
             "description": "Deletes a snippet comment.\n\nComments can only be removed by their author.",
@@ -1281,11 +1281,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "8f00a825f9e75d0c69950de092d0a127",
+            "id": "0c8842453cfd08e06ce7ff19c0af78eb",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/comments\/{comment_id}",
             "description": "",
@@ -1304,11 +1304,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "77fd813af254c23e95cfc413d57f23cb",
+            "id": "038c886b4af23d1b850d67615733caa6",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/comments\/{comment_id}",
             "description": "Returns the specific snippet comment.",
@@ -1327,11 +1327,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "35e97c9ae200899cf8401af2f4e0b12e",
+            "id": "abac85658f539bcefe9183c2e560890d",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/diff\/{spec}",
             "description": "",
@@ -1350,11 +1350,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "128acaad18808ee38035a6d653ab0c5f",
+            "id": "d9c2112098795ed44dde4bbd35890a48",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/diff\/{spec}",
             "description": "",
@@ -1373,11 +1373,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "6b280eeca00c3884e09cf55460b84477",
+            "id": "07695157d466e1944c4a552c3378c255",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/branch-restrictions",
             "description": "",
@@ -1396,11 +1396,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "1117a3023ba885d058816ec98a689788",
+            "id": "149f7badf16ad0f8ab3d36361a1c7a69",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/branch-restrictions",
             "description": "",
@@ -1419,11 +1419,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a6c0233782d68d9705ff859979a2e673",
+            "id": "67d2c362d6ef65ff70715ee3ee1740ad",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/branch-restrictions",
             "description": "",
@@ -1442,11 +1442,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "68c5f30fd3dab34ba57c5719ecce818e",
+            "id": "6f5c330eb50bf6c987509588893232fe",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/comments\/{comment_id}",
             "description": "",
@@ -1465,11 +1465,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "54867d9ac2c36c7f7d75dfd6fd940f0e",
+            "id": "e1dc90e3b9155f319fceffd7852f6dd3",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}\/comments\/{comment_id}",
             "description": "Returns the specified issue comment object.",
@@ -1488,11 +1488,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "9547435107a9824544eb451f2fc7ebfb",
+            "id": "8cd8094ed60a99fbf36a28cf97ce9aff",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks\/{uid}",
             "description": "Updates the specified webhook subscription.\n\nThe following properties can be mutated:\n\n* `description`\n* `url`\n* `active`\n* `events`",
@@ -1519,11 +1519,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "03c8bc68b65df5d9ad614ff4aae8d38c",
+            "id": "4aac038de993f9022dc77dd65ff25d33",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks\/{uid}",
             "description": "Deletes the specified webhook subscription.",
@@ -1550,11 +1550,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "52373a827141a4437865ffbe6ac8926a",
+            "id": "6529729551d0b09c6e29d864c54b34aa",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks\/{uid}",
             "description": "",
@@ -1573,11 +1573,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "f210aaeb8a464d690499123f993c4f2d",
+            "id": "dfa772c3b221a066faa3dcd9659f6afd",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/hooks\/{uid}",
             "description": "Returns the webhook installed on the specified repository.",
@@ -1604,11 +1604,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "c5d503892f5d57707ec5ee9c7df8d3c8",
+            "id": "ad74f51206be220d29f4eb8e0d733ce5",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}",
             "description": "",
@@ -1627,11 +1627,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "749f215cafa85bfe38aedc8e5f0fe60c",
+            "id": "71cb48f593e87485ac931c7d25d2ec57",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}",
             "description": "Gets the public information associated with a user account.\n\nIf the user's profile is private, `location`, `website` and\n`created_on` elements are omitted.",
@@ -1658,11 +1658,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "6e294afad363e59866c76391000aefa3",
+            "id": "77bcfd0cededd49dd942c90cd138fa48",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}",
             "description": "Used to update a snippet. Use this to add and delete files and to\nchange a snippet's title.\n\nTo update a snippet, one can either PUT a full snapshot, or only the\nparts that need to be changed.\n\nThe contract for PUT on this API is that properties missing from the\nrequest remain untouched so that snippets can be efficiently\nmanipulated with differential payloads.\n\nTo delete a property (e.g. the title, or a file), include its name in\nthe request, but omit its value (use `null`).\n\nAs in Git, explici",
@@ -1689,11 +1689,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "d5c5a4dc095806824ff475759d386480",
+            "id": "4e41c9bd9b50c104607955ed9f3eaebd",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}",
             "description": "Deletes a snippet and returns an empty response.",
@@ -1720,11 +1720,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "d2d78147fd48d2741e71d35040dd82a2",
+            "id": "49ee88f6add268acbd831741eaacfe26",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}",
             "description": "",
@@ -1743,11 +1743,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "97b58fdb8150dbf1b891b841adfa6e66",
+            "id": "9cc67277ee04e158eb05559c21b92747",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}",
             "description": "Retrieves a single snippet.\n\nSnippets support multiple content types:\n\n* application\/json\n* multipart\/related\n* multipart\/form-data\n\n\napplication\/json\n----------------\n\nThe default content type of the response is `application\/json`.\nSince JSON is always `utf-8`, it cannot reliably contain file contents\nfor files that are not text. Therefore, JSON snippet documents only\ncontain the filename and links to the file contents.\n\nThis means that in order to retrieve all parts of a snippet, N+1\nrequests ",
@@ -1774,11 +1774,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "1029cb9442dac759702c4a1a36270063",
+            "id": "c5b2b724756d1f346f59cae1193b454e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers",
             "description": "",
@@ -1797,11 +1797,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "d56283d2532319a689cc6a918a1135cf",
+            "id": "438aa1b033d73f26e22b9ce7762aa547",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon\/linkers",
             "description": "",
@@ -1820,11 +1820,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a6d3e8574d144bfdf19a62093c7a4bd6",
+            "id": "4e61b4ea92e1888f0db2b1f11751ea42",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/comments\/{comment_id}",
             "description": "",
@@ -1843,11 +1843,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "7322ea48ad018c8c2fea9ecf027e4ab4",
+            "id": "c455c0ab751341b291ae27653c250165",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/comments\/{comment_id}",
             "description": "Returns a specific pull request comment.",
@@ -1866,11 +1866,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "fdcad531c3a31a0035a63a3a0d964a99",
+            "id": "3a95be5bbd63958980aa2456c249820f",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/components\/{component_id}",
             "description": "",
@@ -1889,11 +1889,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "8f2ac18ab90f78c2b9ac2f7af19501f7",
+            "id": "2d1ea923a90d2542e854c5dccfb65cae",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/components\/{component_id}",
             "description": "Returns the specified issue tracker component object.",
@@ -1920,11 +1920,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "8376dddbaaf0f1902d9f4e2a1ae7fbb2",
+            "id": "23157e48d4caf3f6aed71e65e3dde45d",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon",
             "description": "",
@@ -1943,11 +1943,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a02e5c9a798c3567b470e1dec294bfee",
+            "id": "2233c1a22b33fc3379495f8d1e46b941",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon",
             "description": "",
@@ -1966,11 +1966,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "6613cc555f7ee848536755a8ac23fcf1",
+            "id": "f36199c3999b2d4238528992b9628d66",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/addon",
             "description": "",
@@ -1989,11 +1989,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "5a20d8a921e199901e660889556bf069",
+            "id": "27490028525a0731196f80982539ec29",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/following",
             "description": "",
@@ -2012,11 +2012,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "df06e74230ef09aa320ae04b79849dd1",
+            "id": "c395a34c73656260cfc14ca2c71b2be6",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/users\/{username}\/following",
             "description": "Returns the list of accounts this user is following.",
@@ -2043,11 +2043,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "26a470f2ff9b23f1e12cba6b56e8bb81",
+            "id": "9a821d79a54e042ca87ef8090af75230",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}",
             "description": "Deletes the specified issue. This requires write access to the\nrepository.",
@@ -2066,11 +2066,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "1c95aae9adf5c3bea1f4db8068cf21aa",
+            "id": "5b8dadd6fe34be4fcbb520a36319212e",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}",
             "description": "",
@@ -2089,11 +2089,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "52d56ac584dbf751ea473077368084d6",
+            "id": "a69dc869377e9d848ea46ab08e617259",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues\/{issue_id}",
             "description": "Returns the specified issue.",
@@ -2112,11 +2112,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "45833b6dc270833cc2452da92080eabc",
+            "id": "39d972eb2ec9644667c7ac3f5fd43a0a",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}\/repositories",
             "description": "",
@@ -2135,11 +2135,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "fa5c9e0724c4ce74aca30a1ab71fc0bd",
+            "id": "f79be4434026b77229474b35b942cd5c",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}\/repositories",
             "description": "All repositories owned by a user\/team. This includes private\nrepositories, but filtered down to the ones that the calling user has\naccess to.",
@@ -2158,11 +2158,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "a1ba21d56b4d778bf16f0c94bde7a283",
+            "id": "22dab47cf704b4897dc22aa01b3e83c4",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads",
             "description": "Upload new download artifacts.\n\nTo upload files, perform a `multipart\/form-data` POST containing one\nor more `files` fields:\n\n    $ echo Hello World > hello.txt\n    $ curl -s -u evzijst -X POST https:\/\/api.bitbucket.org\/2.0\/repositories\/evzijst\/git-tests\/downloads -F files=@hello.txt\n\nWhen a file is uploaded with the same name as an existing artifact,\nthen the existing file will be replaced.",
@@ -2181,11 +2181,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "4fb5c23b51acf350c5bff039ed1350fa",
+            "id": "c0925c0e7dfa76dc09afab6ba0510211",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads",
             "description": "",
@@ -2204,11 +2204,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "efefb7ca0f986a355580462fc418552b",
+            "id": "f65adc911ebdc68fe3f3fe38c6676837",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/downloads",
             "description": "Returns a list of download links associated with the repository.",
@@ -2227,11 +2227,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "191781de8e33d899170fb43396f252d6",
+            "id": "3dc65f2c34817ed58a60f8e5c30ae3d9",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs",
             "description": "",
@@ -2250,11 +2250,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "f7c27d9ca980efb1ccb1ccba4d13403a",
+            "id": "f64c70ff3e551c548272e0ff89dba339",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/refs",
             "description": "",
@@ -2273,11 +2273,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "49085264c423c1ad78aadc4090380587",
+            "id": "d04f4a8d4dee85f0c118f7c16a54f13d",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/hook_events",
             "description": "",
@@ -2296,11 +2296,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "ccdadcf4966fc3a621e1050b0f5a80ec",
+            "id": "d8c96174478808cd02cd976c8649a624",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/hook_events",
             "description": "Returns the webhook resource or subject types on which webhooks can\nbe registered.\n\nEach resource\/subject type contains an `event` link that returns the\npaginated list of specific events each individual subject type can\nemit.\n\nThis endpoint is publicly accessible and does not require\nauthentication or scopes.",
@@ -2319,11 +2319,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "76584efc95e3732e33405dd0c7ab0db9",
+            "id": "5d8cb2e0957119e4c8c4050bda22b2a5",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}",
             "description": "",
@@ -2342,11 +2342,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "b4be2a0fd2e1a11659db507d3433383f",
+            "id": "ab4f9acc916c98b3b4a8059dd4fb9875",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/teams\/{username}",
             "description": "Gets the public information associated with a team.\n\nIf the team's profile is private, `location`, `website` and\n`created_on` elements are omitted.",
@@ -2373,11 +2373,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "1ab7685b357b2d070cd8289b7fbdcfa4",
+            "id": "6b9a246fbe36e601efb1c530641ac6a3",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/user\/emails\/{email}",
             "description": "",
@@ -2396,11 +2396,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "24b1299eb9e809926ab68f7dc58fb8ba",
+            "id": "b90e1c9d2d425448ed7a9762e198eed1",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/user\/emails\/{email}",
             "description": "Returns details about a specific one of the authenticated user's\nemail addresses.\n\nDetails describe whether the address has been confirmed by the user and\nwhether it is the user's primary address or not.",
@@ -2419,11 +2419,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "7b11d4bdd6f2a560d88436d824b9a9ab",
+            "id": "9f7540c889a2cf698ed9fe1533354701",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/approve",
             "description": "Approve the specified pull request as the authenticated user.",
@@ -2442,11 +2442,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "e69d3fd0a2c64ff585814b2f0dd5c464",
+            "id": "9d6631362859c14e16ded2e85786134c",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/approve",
             "description": "",
@@ -2465,11 +2465,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "4dbf38f6443824496d3963b39d3eb8f8",
+            "id": "e8af2462af37e11a9eb43736b26cfb56",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/pullrequests\/{pull_request_id}\/approve",
             "description": "Redact the authenticated user's approval of the specified pull\nrequest.",
@@ -2488,11 +2488,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "e92dae7985b595c53017e21cde82e2ca",
+            "id": "577437684b2588484ca36630df079406",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/patch\/{spec}",
             "description": "",
@@ -2511,11 +2511,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "e510039f1b43352437a722e5ed908dad",
+            "id": "90a4703f5270b55f8573e73dc0c2b6bd",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/patch\/{spec}",
             "description": "",
@@ -2534,11 +2534,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "98c1bd649a8fe8ad00a3fbc8391b09b5",
+            "id": "a6461d3847125764668c8763251b5ea3",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/{node_id}\/diff",
             "description": "",
@@ -2557,11 +2557,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "609db01ebfee66e3fda502e76548f0c9",
+            "id": "37c36c56873ffa43bedb7773d6416331",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/snippets\/{username}\/{encoded_id}\/{node_id}\/diff",
             "description": "Returns the diff of the specified commit against its first parent.\n\nNote that this resource is different in functionality from the `patch`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo\/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical t",
@@ -2602,11 +2602,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "488c6db6b82477c3ae0935de990b9151",
+            "id": "719e69957cc6c04ae06a30ff2c9d7a9c",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/forks",
             "description": "",
@@ -2625,11 +2625,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "138ea6a841d6515315aac7665f22e92c",
+            "id": "34ac4e6ae88099b23b69270489320f76",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/forks",
             "description": "Returns a paginated list of all the forks of the specified\nrepository.",
@@ -2648,11 +2648,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         },
         {
-            "id": "226814cdc92bfeec4d97247bdbd614ed",
+            "id": "b694523c671187a3099bbd05c5715a07",
             "name": "",
             "url": "http:\/\/app18.ash-private.bitbucket.org\/2.0\/repositories\/{username}\/{repo_slug}\/issues",
             "description": "Creates a new issue.\n\nThis call requires authentication. Private repositories or private\nissue trackers require the caller to authenticate with an account that\nhas appropriate authorisation.\n\nThe authenticated user is used for the issue's `reporter` field.",
@@ -2671,7 +2671,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "848d55650d1dee176e5dbd08a7d481de",
+            "collectionId": "e9a7750264324197508729b4c00e154d",
             "rawModeData": ""
         }
     ]
