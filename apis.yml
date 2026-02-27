@@ -1,0 +1,87 @@
+name: Bitbucket
+description: Bitbucket is a Git-based source code repository hosting service owned by Atlassian. It offers both commercial plans and free accounts with unlimited private repositories.
+image: https://www.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_slate.png
+tags:
+- Version Control
+- Git
+- Repository Hosting
+- DevOps
+- CI/CD
+- Code Collaboration
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+url: https://bitbucket.org
+apis:
+- name: Bitbucket Cloud REST API
+  description: The REST API for Bitbucket Cloud allows you to build apps using any language you want. It exposes a wide range of primitive operations to perform on resources like repositories, changesets, pull requests, and users.
+  image: https://www.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_slate.png
+  humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
+  baseURL: https://api.bitbucket.org/2.0
+  tags:
+  - REST
+  - Repositories
+  - Pull Requests
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://developer.atlassian.com/bitbucket/api/2/reference/
+  - type: OpenAPI
+    url: https://developer.atlassian.com/bitbucket/api/2/reference/meta/uri-uuid
+  - type: Authentication
+    url: https://developer.atlassian.com/cloud/bitbucket/rest/intro/#authentication
+  - type: Rate Limits
+    url: https://developer.atlassian.com/cloud/bitbucket/rest/intro/#rate-limiting
+  contact:
+  - type: Support
+    url: https://support.atlassian.com/bitbucket-cloud/
+- name: Bitbucket Webhooks API
+  description: Webhooks provide a way to configure Bitbucket Cloud to make requests to your server when certain events occur in a repository.
+  image: https://www.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_slate.png
+  humanURL: https://developer.atlassian.com/cloud/bitbucket/rest/api-group-webhooks/
+  baseURL: https://api.bitbucket.org/2.0
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  properties:
+  - type: Documentation
+    url: https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/
+  - type: Events Reference
+    url: https://support.atlassian.com/bitbucket-cloud/docs/event-payloads/
+- name: Bitbucket Pipelines API
+  description: API for managing Bitbucket Pipelines, Atlassian's integrated CI/CD service.
+  image: https://www.atlassian.com/dam/jcr:e2a6f06f-b3d5-4002-aed3-73539c56a2eb/bitbucket_rgb_slate.png
+  humanURL: https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pipelines/
+  baseURL: https://api.bitbucket.org/2.0
+  tags:
+  - CI/CD
+  - Pipelines
+  - Automation
+  - Deployments
+  properties:
+  - type: Documentation
+    url: https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pipelines/
+  - type: Pipelines Guide
+    url: https://support.atlassian.com/bitbucket-cloud/docs/get-started-with-bitbucket-pipelines/
+maintainers:
+- name: Atlassian
+  email: support@atlassian.com
+  url: https://www.atlassian.com
+common:
+- type: Portal
+  url: https://developer.atlassian.com/
+- type: Status
+  url: https://status.atlassian.com/
+- type: Terms of Service
+  url: https://www.atlassian.com/legal/cloud-terms-of-service
+- type: Privacy Policy
+  url: https://www.atlassian.com/legal/privacy-policy
+- type: Sign Up
+  url: https://bitbucket.org/account/signup/
+- type: Pricing
+  url: https://bitbucket.org/product/pricing
+- type: Blog
+  url: https://bitbucket.org/blog/
+- type: GitHub Organization
+  url: https://github.com/atlassian
