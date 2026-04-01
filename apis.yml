@@ -16,7 +16,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-04-01'
 specificationVersion: '0.19'
 apis:
   - aid: bitbucket:bitbucket-cloud-rest-api
@@ -37,6 +37,8 @@ apis:
         url: https://developer.atlassian.com/bitbucket/api/2/reference/
       - type: Authentication
         url: https://developer.atlassian.com/cloud/bitbucket/rest/intro/#authentication
+      - type: OpenAPI
+        url: openapi/bitbucket-cloud-rest-api-openapi.json
   - aid: bitbucket:bitbucket-pipelines-api
     name: Bitbucket Pipelines API
     description: API for managing Bitbucket Pipelines, Atlassian's integrated CI/CD service.
