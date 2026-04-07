@@ -7,12 +7,12 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Version Control
-  - Git
-  - Repository Hosting
-  - DevOps
   - CI/CD
   - Code Collaboration
+  - DevOps
+  - Git
+  - Repository Hosting
+  - Version Control
 url: >-
   https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -28,9 +28,9 @@ apis:
     humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
     baseURL: https://api.bitbucket.org/2.0
     tags:
-      - REST
-      - Repositories
       - Pull Requests
+      - Repositories
+      - REST
       - Webhooks
     properties:
       - type: Documentation
@@ -45,10 +45,10 @@ apis:
     humanURL: https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pipelines/
     baseURL: https://api.bitbucket.org/2.0
     tags:
-      - CI/CD
-      - Pipelines
       - Automation
+      - CI/CD
       - Deployments
+      - Pipelines
     properties:
       - type: Documentation
         url: https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pipelines/
