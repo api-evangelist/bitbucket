@@ -1,0 +1,227 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Bitbucket"
+  description: "Vocabulary covering the Bitbucket Cloud REST API operational and capability dimensions."
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+operational:
+  apis:
+    - name: Bitbucket Cloud REST API
+      namespace: cloud-rest-api
+      version: "2.0"
+      baseUrl: https://api.bitbucket.org/2.0
+      status: active
+
+  resources:
+    - name: repositories
+      apis: [cloud-rest-api]
+      actions: [list, get, create, update, delete]
+    - name: pullrequests
+      apis: [cloud-rest-api]
+      actions: [list, get, create, update, merge, decline, approve]
+    - name: pipelines
+      apis: [cloud-rest-api]
+      actions: [list, get, trigger, stop]
+    - name: commits
+      apis: [cloud-rest-api]
+      actions: [list, get]
+    - name: branches
+      apis: [cloud-rest-api]
+      actions: [list, get, create, delete]
+    - name: webhooks
+      apis: [cloud-rest-api]
+      actions: [list, get, create, update, delete]
+    - name: issues
+      apis: [cloud-rest-api]
+      actions: [list, get, create, update, delete]
+    - name: workspaces
+      apis: [cloud-rest-api]
+      actions: [list, get]
+    - name: projects
+      apis: [cloud-rest-api]
+      actions: [list, get, create, update, delete]
+    - name: deployments
+      apis: [cloud-rest-api]
+      actions: [list, get]
+
+  actions:
+    - name: list
+      methods: [GET]
+      pattern: read
+    - name: get
+      methods: [GET]
+      pattern: read
+    - name: create
+      methods: [POST]
+      pattern: write
+    - name: update
+      methods: [PUT]
+      pattern: write
+    - name: delete
+      methods: [DELETE]
+      pattern: destructive
+    - name: merge
+      methods: [POST]
+      pattern: write
+    - name: decline
+      methods: [POST]
+      pattern: write
+    - name: approve
+      methods: [POST]
+      pattern: write
+    - name: trigger
+      methods: [POST]
+      pattern: write
+    - name: stop
+      methods: [POST]
+      pattern: write
+
+  schemas:
+    core:
+      - name: Repository
+        description: A Git repository
+        keyProperties: [uuid, full_name, slug, is_private, scm]
+      - name: Pullrequest
+        description: A pull request for code review
+        keyProperties: [id, title, state, source, destination]
+      - name: Pipeline
+        description: A CI/CD pipeline execution
+        keyProperties: [uuid, build_number, state, target]
+      - name: Commit
+        description: A Git commit
+        keyProperties: [hash, message, date, author]
+    collaboration:
+      - name: Comment
+        description: A comment on a pull request or commit
+        keyProperties: [id, content, user, created_on]
+      - name: Issue
+        description: A tracked issue
+        keyProperties: [id, title, state, priority]
+    infrastructure:
+      - name: Workspace
+        description: A Bitbucket workspace
+        keyProperties: [uuid, slug, name]
+      - name: Project
+        description: A project grouping repositories
+        keyProperties: [uuid, key, name]
+
+  parameters:
+    pagination:
+      - name: page
+        type: integer
+      - name: pagelen
+        type: integer
+    identifiers:
+      - name: workspace
+        type: string
+      - name: repo_slug
+        type: string
+      - name: pull_request_id
+        type: integer
+      - name: pipeline_uuid
+        type: string
+      - name: node
+        type: string
+    filters:
+      - name: state
+        type: string
+      - name: q
+        type: string
+      - name: sort
+        type: string
+
+  enums:
+    pullRequestStates:
+      - OPEN
+      - MERGED
+      - DECLINED
+      - SUPERSEDED
+    pipelineStates:
+      - PENDING
+      - IN_PROGRESS
+      - COMPLETED
+      - HALTED
+      - PAUSED
+    forkPolicies:
+      - allow_forks
+      - no_public_forks
+      - no_forks
+    scmTypes:
+      - git
+      - hg
+
+  authentication:
+    schemes:
+      - type: oauth2
+        flows: [authorizationCode]
+        scopes:
+          - repository
+          - repository:write
+          - pullrequest
+          - pullrequest:write
+          - pipeline
+          - pipeline:write
+      - type: basic
+      - type: apikey
+        key: Authorization
+        placement: header
+
+capability:
+  workflows:
+    - name: Code Collaboration
+      file: capabilities/code-collaboration.yaml
+      description: "Repository management, pull requests, code reviews, and CI/CD pipelines"
+      apisUsed: [cloud-rest-api]
+      toolCount: 13
+      personas: [Developer, DevOps Engineer]
+      domains: [Source Control, Code Review, CI/CD]
+
+  personas:
+    - id: developer
+      name: Developer
+      description: Writes code, creates pull requests, and reviews code
+      workflows: [Code Collaboration]
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: Manages CI/CD pipelines, deployments, and repository settings
+      workflows: [Code Collaboration]
+
+  domains:
+    - name: Source Control
+      description: Managing Git repositories, branches, and commits
+      resources: [repositories, commits, branches]
+    - name: Code Review
+      description: Pull request workflows and code reviews
+      resources: [pullrequests]
+    - name: CI/CD
+      description: Continuous integration and deployment pipelines
+      resources: [pipelines, deployments]
+
+  namespaces:
+    consumed:
+      - cloud-rest-api
+    restExposed:
+      - namespace: code-collaboration-api
+        port: 8080
+    mcpExposed:
+      - namespace: code-collaboration-mcp
+        port: 9090
+
+  binds:
+    - BITBUCKET_TOKEN
+
+crossReference:
+  - resource: repositories
+    operations: [listRepositories, getRepository, createRepository, deleteRepository]
+    workflows: [Code Collaboration]
+    personas: [Developer, DevOps Engineer]
+  - resource: pullrequests
+    operations: [listPullrequests, createPullrequest, getPullrequest, mergePullrequest, declinePullrequest]
+    workflows: [Code Collaboration]
+    personas: [Developer]
+  - resource: pipelines
+    operations: [listPipelines, triggerPipeline, getPipeline, stopPipeline]
+    workflows: [Code Collaboration]
+    personas: [DevOps Engineer]

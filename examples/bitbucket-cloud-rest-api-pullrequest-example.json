@@ -1,0 +1,46 @@
+{
+  "type": "pullrequest",
+  "id": 42,
+  "title": "Add user authentication module",
+  "description": "Implements OAuth2 authentication for the API endpoints.",
+  "state": "OPEN",
+  "created_on": "2026-04-14T09:00:00Z",
+  "updated_on": "2026-04-15T16:30:00Z",
+  "close_source_branch": true,
+  "author": {
+    "type": "user",
+    "display_name": "Jane Smith",
+    "uuid": "{b2c3d4e5-f6a7-8901-bcde-f23456789012}"
+  },
+  "source": {
+    "branch": {
+      "name": "feature/auth-module"
+    },
+    "repository": {
+      "full_name": "acme-corp/web-application"
+    }
+  },
+  "destination": {
+    "branch": {
+      "name": "main"
+    },
+    "repository": {
+      "full_name": "acme-corp/web-application"
+    }
+  },
+  "comment_count": 5,
+  "task_count": 2,
+  "reviewers": [
+    {
+      "type": "user",
+      "display_name": "John Doe"
+    }
+  ],
+  "participants": [
+    {
+      "type": "participant",
+      "role": "REVIEWER",
+      "approved": false
+    }
+  ]
+}

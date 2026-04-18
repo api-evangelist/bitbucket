@@ -1,0 +1,27 @@
+{
+  "type": "pipeline",
+  "uuid": "{c3d4e5f6-a7b8-9012-cdef-345678901234}",
+  "build_number": 156,
+  "creator": {
+    "type": "user",
+    "display_name": "Jane Smith"
+  },
+  "repository": {
+    "type": "repository",
+    "full_name": "acme-corp/web-application"
+  },
+  "target": {
+    "type": "pipeline_ref_target",
+    "ref_type": "branch",
+    "ref_name": "main"
+  },
+  "state": {
+    "name": "COMPLETED",
+    "result": {
+      "name": "SUCCESSFUL"
+    }
+  },
+  "created_on": "2026-04-15T10:00:00Z",
+  "completed_on": "2026-04-15T10:05:30Z",
+  "build_seconds_used": 330
+}

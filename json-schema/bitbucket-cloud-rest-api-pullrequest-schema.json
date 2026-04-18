@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/json-schema/bitbucket-cloud-rest-api-pullrequest-schema.json",
+  "title": "Pullrequest",
+  "description": "A Bitbucket Cloud pull request.",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "id": { "type": "integer", "description": "The pull request ID." },
+    "title": { "type": "string", "description": "The pull request title." },
+    "description": { "type": "string", "description": "The pull request description." },
+    "state": { "type": "string", "enum": ["OPEN", "MERGED", "DECLINED", "SUPERSEDED"] },
+    "created_on": { "type": "string", "format": "date-time" },
+    "updated_on": { "type": "string", "format": "date-time" },
+    "close_source_branch": { "type": "boolean" },
+    "author": { "type": "object", "description": "The author of the pull request." },
+    "source": { "type": "object", "description": "The source branch.", "properties": { "branch": { "type": "object", "properties": { "name": { "type": "string" } } }, "repository": { "type": "object" } } },
+    "destination": { "type": "object", "description": "The destination branch.", "properties": { "branch": { "type": "object", "properties": { "name": { "type": "string" } } }, "repository": { "type": "object" } } },
+    "merge_commit": { "type": "object", "properties": { "hash": { "type": "string" } } },
+    "comment_count": { "type": "integer" },
+    "task_count": { "type": "integer" },
+    "reviewers": { "type": "array", "items": { "type": "object" } },
+    "participants": { "type": "array", "items": { "type": "object" } }
+  }
+}

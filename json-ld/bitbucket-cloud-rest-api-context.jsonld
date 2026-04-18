@@ -1,0 +1,108 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "bb": "https://api.bitbucket.org/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Repository": "bb:Repository",
+    "Pullrequest": "bb:Pullrequest",
+    "Pipeline": "bb:Pipeline",
+    "Commit": "bb:Commit",
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "uuid": {
+      "@id": "bb:uuid",
+      "@type": "xsd:string"
+    },
+    "fullName": {
+      "@id": "bb:full_name",
+      "@type": "xsd:string"
+    },
+    "slug": {
+      "@id": "bb:slug",
+      "@type": "xsd:string"
+    },
+    "isPrivate": {
+      "@id": "bb:is_private",
+      "@type": "xsd:boolean"
+    },
+    "createdOn": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedOn": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "completedOn": {
+      "@id": "bb:completed_on",
+      "@type": "xsd:dateTime"
+    },
+    "size": {
+      "@id": "bb:size",
+      "@type": "xsd:integer"
+    },
+    "language": {
+      "@id": "bb:language",
+      "@type": "xsd:string"
+    },
+    "hash": {
+      "@id": "bb:hash",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "bb:message",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "bb:title",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "bb:state",
+      "@type": "xsd:string"
+    },
+    "buildNumber": {
+      "@id": "bb:build_number",
+      "@type": "xsd:integer"
+    },
+    "commentCount": {
+      "@id": "bb:comment_count",
+      "@type": "xsd:integer"
+    },
+    "taskCount": {
+      "@id": "bb:task_count",
+      "@type": "xsd:integer"
+    },
+    "forkPolicy": {
+      "@id": "bb:fork_policy",
+      "@type": "xsd:string"
+    },
+    "scm": {
+      "@id": "bb:scm",
+      "@type": "xsd:string"
+    },
+    "reviewers": {
+      "@id": "bb:reviewers",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "participants": {
+      "@id": "bb:participants",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "parents": {
+      "@id": "bb:parents",
+      "@container": "@set",
+      "@type": "@id"
+    }
+  }
+}

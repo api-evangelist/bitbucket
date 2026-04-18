@@ -1,0 +1,188 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Bitbucket Code Collaboration"
+  description: "Workflow capability for code collaboration using Bitbucket - managing repositories, pull requests, code reviews, and CI/CD pipelines. Used by developers and DevOps engineers."
+  tags:
+    - Bitbucket
+    - Code Collaboration
+    - CI/CD
+    - DevOps
+    - Pull Requests
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      BITBUCKET_TOKEN: BITBUCKET_TOKEN
+
+capability:
+  consumes:
+    - import: cloud-rest-api
+      location: ./shared/cloud-rest-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: code-collaboration-api
+      description: "Unified REST API for Bitbucket code collaboration workflows."
+      resources:
+        - path: /v1/repositories
+          name: repositories
+          description: "Repository management"
+          operations:
+            - method: GET
+              name: list-repositories
+              description: "List repositories"
+              call: "cloud-rest-api.list-repositories"
+            - method: POST
+              name: create-repository
+              description: "Create a repository"
+              call: "cloud-rest-api.create-repository"
+            - method: GET
+              name: get-repository
+              description: "Get repository details"
+              call: "cloud-rest-api.get-repository"
+        - path: /v1/pullrequests
+          name: pullrequests
+          description: "Pull request management"
+          operations:
+            - method: GET
+              name: list-pullrequests
+              description: "List pull requests"
+              call: "cloud-rest-api.list-pullrequests"
+            - method: POST
+              name: create-pullrequest
+              description: "Create a pull request"
+              call: "cloud-rest-api.create-pullrequest"
+            - method: POST
+              name: merge-pullrequest
+              description: "Merge a pull request"
+              call: "cloud-rest-api.merge-pullrequest"
+        - path: /v1/pipelines
+          name: pipelines
+          description: "CI/CD pipeline management"
+          operations:
+            - method: GET
+              name: list-pipelines
+              description: "List pipelines"
+              call: "cloud-rest-api.list-pipelines"
+            - method: POST
+              name: trigger-pipeline
+              description: "Trigger a pipeline"
+              call: "cloud-rest-api.trigger-pipeline"
+
+    - type: mcp
+      port: 9090
+      namespace: code-collaboration-mcp
+      transport: http
+      description: "MCP server for AI-assisted Bitbucket code collaboration."
+      tools:
+        - name: list-repositories
+          description: "List repositories in a workspace"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "cloud-rest-api.list-repositories"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-repository
+          description: "Get repository details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-repository"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-repository
+          description: "Create a new Git repository"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.create-repository"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-repository
+          description: "Delete a repository"
+          hints:
+            destructive: true
+          call: "cloud-rest-api.delete-repository"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-pullrequests
+          description: "List pull requests for a repository"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "cloud-rest-api.list-pullrequests"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-pullrequest
+          description: "Create a new pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.create-pullrequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-pullrequest
+          description: "Get pull request details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-pullrequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: merge-pullrequest
+          description: "Merge a pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.merge-pullrequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: decline-pullrequest
+          description: "Decline a pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.decline-pullrequest"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-pipelines
+          description: "List CI/CD pipelines"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "cloud-rest-api.list-pipelines"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: trigger-pipeline
+          description: "Trigger a new CI/CD pipeline"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.trigger-pipeline"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-pipeline
+          description: "Get pipeline execution details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-pipeline"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: stop-pipeline
+          description: "Stop a running pipeline"
+          hints:
+            destructive: true
+          call: "cloud-rest-api.stop-pipeline"
+          outputParameters:
+            - type: object
+              mapping: "$."

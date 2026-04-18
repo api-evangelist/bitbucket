@@ -1,0 +1,386 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Bitbucket Cloud REST API"
+  description: "Manage repositories, pull requests, pipelines, commits, and other Bitbucket Cloud resources."
+  tags:
+    - Bitbucket
+    - Git
+    - Repositories
+    - Pull Requests
+    - CI/CD
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      BITBUCKET_TOKEN: BITBUCKET_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: cloud-rest-api
+      baseUri: https://api.bitbucket.org/2.0
+      description: "Bitbucket Cloud REST API 2.0 for managing Git repositories and related resources."
+      authentication:
+        type: bearer
+        token: "{{BITBUCKET_TOKEN}}"
+      resources:
+        - name: repositories
+          path: /repositories
+          description: "Repository management"
+          operations:
+            - name: list-repositories
+              method: GET
+              description: "List repositories for a workspace"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                  description: "The workspace slug"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-repository
+              method: GET
+              description: "Get a repository"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-repository
+              method: POST
+              description: "Create a new repository"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  scm: "{{tools.scm}}"
+                  is_private: "{{tools.is_private}}"
+            - name: delete-repository
+              method: DELETE
+              description: "Delete a repository"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: pullrequests
+          path: /repositories/{workspace}/{repo_slug}/pullrequests
+          description: "Pull request operations"
+          operations:
+            - name: list-pullrequests
+              method: GET
+              description: "List pull requests"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-pullrequest
+              method: POST
+              description: "Create a pull request"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-pullrequest
+              method: GET
+              description: "Get a pull request"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: pull_request_id
+                  in: path
+                  type: integer
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: merge-pullrequest
+              method: POST
+              description: "Merge a pull request"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: pull_request_id
+                  in: path
+                  type: integer
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: decline-pullrequest
+              method: POST
+              description: "Decline a pull request"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: pull_request_id
+                  in: path
+                  type: integer
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: pipelines
+          path: /repositories/{workspace}/{repo_slug}/pipelines
+          description: "Pipeline operations"
+          operations:
+            - name: list-pipelines
+              method: GET
+              description: "List pipelines"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: trigger-pipeline
+              method: POST
+              description: "Trigger a pipeline"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-pipeline
+              method: GET
+              description: "Get a pipeline"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: pipeline_uuid
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: stop-pipeline
+              method: POST
+              description: "Stop a running pipeline"
+              inputParameters:
+                - name: workspace
+                  in: path
+                  type: string
+                  required: true
+                - name: repo_slug
+                  in: path
+                  type: string
+                  required: true
+                - name: pipeline_uuid
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: cloud-rest-api-rest
+      resources:
+        - path: /v1/repositories
+          name: repositories
+          description: "Repository management"
+          operations:
+            - method: GET
+              name: list-repositories
+              call: "cloud-rest-api.list-repositories"
+        - path: /v1/pullrequests
+          name: pullrequests
+          description: "Pull request management"
+          operations:
+            - method: GET
+              name: list-pullrequests
+              call: "cloud-rest-api.list-pullrequests"
+        - path: /v1/pipelines
+          name: pipelines
+          description: "Pipeline management"
+          operations:
+            - method: GET
+              name: list-pipelines
+              call: "cloud-rest-api.list-pipelines"
+
+    - type: mcp
+      port: 9100
+      namespace: cloud-rest-api-mcp
+      transport: http
+      tools:
+        - name: list-repositories
+          description: "List Bitbucket repositories"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.list-repositories"
+        - name: get-repository
+          description: "Get repository details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-repository"
+        - name: create-repository
+          description: "Create a new repository"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.create-repository"
+        - name: delete-repository
+          description: "Delete a repository"
+          hints:
+            destructive: true
+          call: "cloud-rest-api.delete-repository"
+        - name: list-pullrequests
+          description: "List pull requests"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.list-pullrequests"
+        - name: create-pullrequest
+          description: "Create a pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.create-pullrequest"
+        - name: get-pullrequest
+          description: "Get pull request details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-pullrequest"
+        - name: merge-pullrequest
+          description: "Merge a pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.merge-pullrequest"
+        - name: decline-pullrequest
+          description: "Decline a pull request"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.decline-pullrequest"
+        - name: list-pipelines
+          description: "List CI/CD pipelines"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.list-pipelines"
+        - name: trigger-pipeline
+          description: "Trigger a new pipeline"
+          hints:
+            readOnly: false
+          call: "cloud-rest-api.trigger-pipeline"
+        - name: get-pipeline
+          description: "Get pipeline details"
+          hints:
+            readOnly: true
+          call: "cloud-rest-api.get-pipeline"
+        - name: stop-pipeline
+          description: "Stop a running pipeline"
+          hints:
+            destructive: true
+          call: "cloud-rest-api.stop-pipeline"

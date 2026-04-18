@@ -1,0 +1,176 @@
+rules:
+  # INFO / METADATA
+  info-title-required:
+    description: Info object must have a title
+    given: $.info
+    severity: error
+    then:
+      field: title
+      function: truthy
+
+  info-description-required:
+    description: Info object must have a description
+    given: $.info
+    severity: error
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: Info object must have a version
+    given: $.info
+    severity: error
+    then:
+      field: version
+      function: truthy
+
+  # PATHS
+  paths-kebab-case:
+    description: Path segments should use kebab-case
+    given: $.paths
+    severity: warn
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9_-]+(/{[a-zA-Z_]+})?)*$"
+
+  paths-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    given: $.paths
+    severity: error
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Operations must have a summary
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: summary
+      function: truthy
+
+  operation-description-required:
+    description: Operations must have a description
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  operation-operationid-required:
+    description: Operations must have an operationId
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  operation-tags-required:
+    description: Operations must have at least one tag
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries should start with Bitbucket
+    given: $.paths[*][get,post,put,patch,delete].summary
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Bitbucket "
+
+  # PARAMETERS
+  parameter-description-required:
+    description: Parameters must have descriptions
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Operations must define a success response
+    given: $.paths[*][get,post,put,patch,delete].responses
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  # SCHEMAS
+  schema-type-required:
+    description: Schemas should have a type defined
+    given: $.definitions[*]
+    severity: warn
+    then:
+      field: type
+      function: truthy
+
+  # PROPERTY NAMING
+  schema-property-snake-case:
+    description: Schema properties should use snake_case
+    given: $.definitions[*].properties
+    severity: warn
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  # SECURITY
+  security-global-defined:
+    description: Global security should be defined
+    given: $
+    severity: warn
+    then:
+      field: security
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations must not have a request body
+    given: $.paths[*].get
+    severity: error
+    then:
+      field: requestBody
+      function: falsy
+
+  delete-no-request-body:
+    description: DELETE operations should not have a request body
+    given: $.paths[*].delete
+    severity: warn
+    then:
+      field: requestBody
+      function: falsy
+
+  # PAGINATION
+  pagination-use-page:
+    description: Paginated endpoints should use page-based pagination
+    given: $.paths[*].get.parameters[?(@.name=='page')]
+    severity: info
+    then:
+      field: name
+      function: truthy
+
+  # TAGS
+  tag-title-case:
+    description: Tag names should use Title Case
+    given: $.tags[*].name
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"

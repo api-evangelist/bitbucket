@@ -1,0 +1,30 @@
+{
+  "type": "repository",
+  "uuid": "{a1b2c3d4-e5f6-7890-abcd-ef1234567890}",
+  "full_name": "acme-corp/web-application",
+  "name": "web-application",
+  "slug": "web-application",
+  "description": "Main web application for ACME Corp",
+  "is_private": true,
+  "created_on": "2025-01-15T10:00:00Z",
+  "updated_on": "2026-04-15T14:30:00Z",
+  "size": 52428800,
+  "language": "python",
+  "has_issues": true,
+  "has_wiki": false,
+  "fork_policy": "no_public_forks",
+  "scm": "git",
+  "project": {
+    "type": "project",
+    "key": "WEB",
+    "name": "Web Platform"
+  },
+  "mainbranch": {
+    "type": "branch",
+    "name": "main"
+  },
+  "owner": {
+    "type": "team",
+    "display_name": "ACME Corp"
+  }
+}

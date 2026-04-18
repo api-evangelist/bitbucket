@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/json-structure/bitbucket-cloud-rest-api-commit-structure.json",
+  "name": "Commit",
+  "description": "A Bitbucket Cloud commit.",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "hash": { "type": "string" },
+    "date": { "type": "datetime" },
+    "message": { "type": "string" }
+  }
+}

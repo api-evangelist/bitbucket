@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/json-schema/bitbucket-cloud-rest-api-pipeline-schema.json",
+  "title": "Pipeline",
+  "description": "A Bitbucket Pipelines CI/CD pipeline.",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "uuid": { "type": "string", "description": "The pipeline UUID." },
+    "build_number": { "type": "integer", "description": "The build number." },
+    "creator": { "type": "object", "description": "The user who triggered the pipeline." },
+    "repository": { "type": "object", "description": "The repository." },
+    "target": { "type": "object", "description": "The pipeline target (branch, tag, etc.)." },
+    "state": { "type": "object", "description": "The pipeline state.", "properties": { "name": { "type": "string", "enum": ["PENDING", "IN_PROGRESS", "COMPLETED", "HALTED", "PAUSED"] } } },
+    "created_on": { "type": "string", "format": "date-time" },
+    "completed_on": { "type": "string", "format": "date-time" },
+    "build_seconds_used": { "type": "integer" }
+  }
+}

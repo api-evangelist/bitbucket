@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/json-structure/bitbucket-cloud-rest-api-pullrequest-structure.json",
+  "name": "Pullrequest",
+  "description": "A Bitbucket Cloud pull request.",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "id": { "type": "int32" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "state": { "type": "string" },
+    "created_on": { "type": "datetime" },
+    "updated_on": { "type": "datetime" },
+    "close_source_branch": { "type": "boolean" },
+    "comment_count": { "type": "int32" },
+    "task_count": { "type": "int32" }
+  }
+}

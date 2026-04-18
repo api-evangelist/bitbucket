@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/json-structure/bitbucket-cloud-rest-api-repository-structure.json",
+  "name": "Repository",
+  "description": "A Bitbucket Cloud repository.",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string" },
+    "uuid": { "type": "uuid" },
+    "full_name": { "type": "string" },
+    "name": { "type": "string" },
+    "slug": { "type": "string" },
+    "description": { "type": "string" },
+    "is_private": { "type": "boolean" },
+    "created_on": { "type": "datetime" },
+    "updated_on": { "type": "datetime" },
+    "size": { "type": "int64" },
+    "language": { "type": "string" },
+    "has_issues": { "type": "boolean" },
+    "has_wiki": { "type": "boolean" },
+    "fork_policy": { "type": "string" },
+    "scm": { "type": "string" }
+  }
+}
