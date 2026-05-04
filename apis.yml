@@ -1,10 +1,8 @@
 aid: bitbucket
 name: Bitbucket
-description: >-
-  Bitbucket is a Git-based source code repository hosting service owned by
-  Atlassian offering both commercial plans and free accounts with unlimited
-  private repositories, along with CI/CD pipelines, code reviews via pull
-  requests, and code collaboration tools for development teams.
+description: Bitbucket is a Git-based source code repository hosting service owned by Atlassian offering
+  both commercial plans and free accounts with unlimited private repositories, along with CI/CD pipelines,
+  code reviews via pull requests, and code collaboration tools for development teams.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -17,18 +15,16 @@ tags:
   - Pull Requests
   - Repository Hosting
   - Version Control
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-04-18'
+modified: '2026-05-04'
 specificationVersion: '0.19'
 apis:
   - aid: bitbucket:bitbucket-cloud-rest-api
     name: Bitbucket Cloud REST API
-    description: >-
-      The REST API for Bitbucket Cloud allows you to build apps using any
-      language, exposing operations on repositories, pull requests, commits,
-      pipelines, workspaces, projects, webhooks, issues, and users.
+    description: The REST API for Bitbucket Cloud allows you to build apps using any language, exposing
+      operations on repositories, pull requests, commits, pipelines, workspaces, projects, webhooks, issues,
+      and users.
     humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
     baseURL: https://api.bitbucket.org/2.0
     tags:
@@ -97,24 +93,25 @@ common:
     url: vocabulary/bitbucket-vocabulary.yaml
   - type: Features
     data:
-      - name: Git Repository Hosting
-        description: Host unlimited private and public Git repositories with fine-grained access controls.
-      - name: Pull Requests
-        description: Code review workflows with inline comments, approvals, and merge checks.
-      - name: Bitbucket Pipelines
-        description: Integrated CI/CD service for building, testing, and deploying code.
-      - name: Branch Permissions
-        description: Enforce branch restrictions and merge requirements.
-      - name: Webhooks
-        description: Receive real-time notifications about repository events.
-      - name: Issue Tracking
-        description: Built-in issue tracker for managing bugs and feature requests.
-      - name: Deployment Environments
-        description: Track deployments across multiple environments.
-      - name: Code Search
-        description: Search across repositories, code, and pull requests.
-      - name: Snippets
-        description: Share code snippets with version history.
+      - 'Free: 5 users, 1 GB, 50 build minutes/mo'
+      - 'Standard at $3.65/user/mo: unlimited users/storage, 2,500 build minutes'
+      - 'Premium at $7.25/user/mo: 3,500 minutes, AI PR, IP allowlisting, 99.9% SLA'
+      - REST API v2 at api.bitbucket.org/2.0
+      - 1,000 req/hr per user, 60K req/hr per IP
+      - Pipelines for CI/CD
+      - 'Pipeline concurrency: 1 Free, 10 Standard, 20 Premium'
+      - OAuth 2.0 + repository/workspace access tokens
+      - Webhooks for repository, PR, pipeline events
+      - Code insights for static analysis integration
+      - Self-hosted runners (1 slot Standard, 2 Premium)
+      - Deployment environments tracking
+      - Native Jira integration
+      - Atlassian Marketplace apps
+      - Git LFS support (5 GB Standard, 10 GB Premium)
+      - Forge / Connect framework for apps
+    sources:
+      - https://www.atlassian.com/software/bitbucket/pricing
+    updated: '2026-05-04'
   - type: UseCases
     data:
       - name: Code Review Workflows

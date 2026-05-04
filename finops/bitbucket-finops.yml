@@ -1,0 +1,57 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Bitbucket Cloud
+providerId: bitbucket
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Source Control + CI/CD
+description: FOCUS-aligned FinOps for Bitbucket Cloud.
+sources:
+  - https://www.atlassian.com/software/bitbucket/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Bitbucket Cloud
+serviceCategory: Source Control + CI/CD
+billingModel:
+  pricingCategory: Per-User Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Bitbucket Cloud
+  ServiceCategory: Source Control + CI/CD
+  ProviderName: Bitbucket Cloud
+  PublisherName: Bitbucket Cloud
+  BillingCurrency: USD
+meters:
+  - name: user_seats
+    unit: seat-month
+    aggregation: max
+    dimensions:
+      - plan
+  - name: build_minutes
+    unit: minute
+    aggregation: sum
+  - name: git_lfs_storage
+    unit: GB-month
+    aggregation: max
+  - name: deployment_environments
+    unit: env-month
+    aggregation: max
+principles:
+  - name: Visibility
+    description: Track Bitbucket Cloud consumption monthly.
+  - name: Allocation
+    description: Tag usage to teams/cost centers.
+  - name: Optimization
+    description: Right-size; reclaim unused entitlements.
+  - name: Accountability
+    description: Set spend alerts; quarterly review.

@@ -1,0 +1,43 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bitbucket Cloud
+providerId: bitbucket
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Source Control
+description: Bitbucket REST API rate limits per IP and per user.
+sources:
+  - https://www.atlassian.com/software/bitbucket/pricing
+  - https://support.atlassian.com/bitbucket-cloud/docs/api-request-limits/
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+responseCodes:
+  throttled: 429
+limits:
+  - name: Authenticated requests (per user)
+    scope: user
+    metric: requests_per_hour
+    limit: 1000
+    timeFrame: hour
+  - name: Per IP
+    scope: ip
+    metric: requests_per_hour
+    limit: 60000
+    timeFrame: hour
+  - name: Pipelines builds (Free)
+    scope: workspace
+    metric: concurrent
+    limit: 1
+  - name: Pipelines builds (Standard)
+    scope: workspace
+    metric: concurrent
+    limit: 10
+  - name: Pipelines builds (Premium)
+    scope: workspace
+    metric: concurrent
+    limit: 20

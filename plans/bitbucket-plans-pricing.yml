@@ -1,0 +1,139 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bitbucket Cloud
+providerId: bitbucket
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Source Control
+  - CI/CD
+  - Git
+description: Bitbucket Cloud per-user-per-month plans.
+sources:
+  - https://www.atlassian.com/software/bitbucket/pricing
+plans:
+  - id: bitbucket-free
+    name: Free
+    type: freemium
+    description: Up to 5 users; 1 GB storage; 50 build minutes/mo.
+    entries:
+      - label: Users
+        name: users
+        type: quota
+        metric: user
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Storage
+        name: storage
+        type: quota
+        metric: GB
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Build minutes
+        name: minutes
+        type: quota
+        metric: minute
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited private repos
+      - name: Jira integration
+      - name: CI/CD with Pipelines
+  - id: bitbucket-standard
+    name: Standard
+    type: paid
+    description: $3.65/user/month.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '3.65'
+        userMultiplied: true
+      - label: Build minutes
+        name: minutes
+        type: quota
+        metric: minute
+        limit: 2500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Git LFS
+        name: lfs
+        type: quota
+        metric: GB
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited users
+      - name: Unlimited storage
+      - name: 3 code insight integrations
+      - name: 100 deployment environments
+      - name: 1 build slot for self-hosted runners
+  - id: bitbucket-premium
+    name: Premium
+    type: paid
+    description: $7.25/user/month.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '7.25'
+        userMultiplied: true
+      - label: Build minutes
+        name: minutes
+        type: quota
+        metric: minute
+        limit: 3500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Git LFS
+        name: lfs
+        type: quota
+        metric: GB
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited code insights
+      - name: AI-powered PR features
+      - name: IP allowlisting
+      - name: Enforced merge checks
+      - name: Required 2FA
+      - name: 2 build slots for self-hosted runners
+      - name: 99.9% SLA
