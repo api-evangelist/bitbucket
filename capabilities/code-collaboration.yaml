@@ -1,188 +1,449 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Bitbucket Code Collaboration"
-  description: "Workflow capability for code collaboration using Bitbucket - managing repositories, pull requests, code reviews, and CI/CD pipelines. Used by developers and DevOps engineers."
+  label: Bitbucket Code Collaboration
+  description: Workflow capability for code collaboration using Bitbucket - managing repositories, pull requests, code reviews,
+    and CI/CD pipelines. Used by developers and DevOps engineers.
   tags:
-    - Bitbucket
-    - Code Collaboration
-    - CI/CD
-    - DevOps
-    - Pull Requests
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Bitbucket
+  - Code Collaboration
+  - CI/CD
+  - DevOps
+  - Pull Requests
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      BITBUCKET_TOKEN: BITBUCKET_TOKEN
-
+- namespace: env
+  keys:
+    BITBUCKET_TOKEN: BITBUCKET_TOKEN
 capability:
   consumes:
-    - import: cloud-rest-api
-      location: ./shared/cloud-rest-api.yaml
-
+  - type: http
+    namespace: cloud-rest-api
+    baseUri: https://api.bitbucket.org/2.0
+    description: Bitbucket Cloud REST API 2.0 for managing Git repositories and related resources.
+    authentication:
+      type: bearer
+      token: '{{BITBUCKET_TOKEN}}'
+    resources:
+    - name: repositories
+      path: /repositories
+      description: Repository management
+      operations:
+      - name: list-repositories
+        method: GET
+        description: List repositories for a workspace
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+          description: The workspace slug
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-repository
+        method: GET
+        description: Get a repository
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-repository
+        method: POST
+        description: Create a new repository
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            scm: '{{tools.scm}}'
+            is_private: '{{tools.is_private}}'
+      - name: delete-repository
+        method: DELETE
+        description: Delete a repository
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pullrequests
+      path: /repositories/{workspace}/{repo_slug}/pullrequests
+      description: Pull request operations
+      operations:
+      - name: list-pullrequests
+        method: GET
+        description: List pull requests
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: state
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-pullrequest
+        method: POST
+        description: Create a pull request
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-pullrequest
+        method: GET
+        description: Get a pull request
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: pull_request_id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: merge-pullrequest
+        method: POST
+        description: Merge a pull request
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: pull_request_id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: decline-pullrequest
+        method: POST
+        description: Decline a pull request
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: pull_request_id
+          in: path
+          type: integer
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines
+      path: /repositories/{workspace}/{repo_slug}/pipelines
+      description: Pipeline operations
+      operations:
+      - name: list-pipelines
+        method: GET
+        description: List pipelines
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: trigger-pipeline
+        method: POST
+        description: Trigger a pipeline
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-pipeline
+        method: GET
+        description: Get a pipeline
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: stop-pipeline
+        method: POST
+        description: Stop a running pipeline
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: code-collaboration-api
-      description: "Unified REST API for Bitbucket code collaboration workflows."
-      resources:
-        - path: /v1/repositories
-          name: repositories
-          description: "Repository management"
-          operations:
-            - method: GET
-              name: list-repositories
-              description: "List repositories"
-              call: "cloud-rest-api.list-repositories"
-            - method: POST
-              name: create-repository
-              description: "Create a repository"
-              call: "cloud-rest-api.create-repository"
-            - method: GET
-              name: get-repository
-              description: "Get repository details"
-              call: "cloud-rest-api.get-repository"
-        - path: /v1/pullrequests
-          name: pullrequests
-          description: "Pull request management"
-          operations:
-            - method: GET
-              name: list-pullrequests
-              description: "List pull requests"
-              call: "cloud-rest-api.list-pullrequests"
-            - method: POST
-              name: create-pullrequest
-              description: "Create a pull request"
-              call: "cloud-rest-api.create-pullrequest"
-            - method: POST
-              name: merge-pullrequest
-              description: "Merge a pull request"
-              call: "cloud-rest-api.merge-pullrequest"
-        - path: /v1/pipelines
-          name: pipelines
-          description: "CI/CD pipeline management"
-          operations:
-            - method: GET
-              name: list-pipelines
-              description: "List pipelines"
-              call: "cloud-rest-api.list-pipelines"
-            - method: POST
-              name: trigger-pipeline
-              description: "Trigger a pipeline"
-              call: "cloud-rest-api.trigger-pipeline"
-
-    - type: mcp
-      port: 9090
-      namespace: code-collaboration-mcp
-      transport: http
-      description: "MCP server for AI-assisted Bitbucket code collaboration."
-      tools:
-        - name: list-repositories
-          description: "List repositories in a workspace"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cloud-rest-api.list-repositories"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-repository
-          description: "Get repository details"
-          hints:
-            readOnly: true
-          call: "cloud-rest-api.get-repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-repository
-          description: "Create a new Git repository"
-          hints:
-            readOnly: false
-          call: "cloud-rest-api.create-repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-repository
-          description: "Delete a repository"
-          hints:
-            destructive: true
-          call: "cloud-rest-api.delete-repository"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-pullrequests
-          description: "List pull requests for a repository"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cloud-rest-api.list-pullrequests"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-pullrequest
-          description: "Create a new pull request"
-          hints:
-            readOnly: false
-          call: "cloud-rest-api.create-pullrequest"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-pullrequest
-          description: "Get pull request details"
-          hints:
-            readOnly: true
-          call: "cloud-rest-api.get-pullrequest"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: merge-pullrequest
-          description: "Merge a pull request"
-          hints:
-            readOnly: false
-          call: "cloud-rest-api.merge-pullrequest"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: decline-pullrequest
-          description: "Decline a pull request"
-          hints:
-            readOnly: false
-          call: "cloud-rest-api.decline-pullrequest"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-pipelines
-          description: "List CI/CD pipelines"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "cloud-rest-api.list-pipelines"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: trigger-pipeline
-          description: "Trigger a new CI/CD pipeline"
-          hints:
-            readOnly: false
-          call: "cloud-rest-api.trigger-pipeline"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-pipeline
-          description: "Get pipeline execution details"
-          hints:
-            readOnly: true
-          call: "cloud-rest-api.get-pipeline"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: stop-pipeline
-          description: "Stop a running pipeline"
-          hints:
-            destructive: true
-          call: "cloud-rest-api.stop-pipeline"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: code-collaboration-api
+    description: Unified REST API for Bitbucket code collaboration workflows.
+    resources:
+    - path: /v1/repositories
+      name: repositories
+      description: Repository management
+      operations:
+      - method: GET
+        name: list-repositories
+        description: List repositories
+        call: cloud-rest-api.list-repositories
+      - method: POST
+        name: create-repository
+        description: Create a repository
+        call: cloud-rest-api.create-repository
+      - method: GET
+        name: get-repository
+        description: Get repository details
+        call: cloud-rest-api.get-repository
+    - path: /v1/pullrequests
+      name: pullrequests
+      description: Pull request management
+      operations:
+      - method: GET
+        name: list-pullrequests
+        description: List pull requests
+        call: cloud-rest-api.list-pullrequests
+      - method: POST
+        name: create-pullrequest
+        description: Create a pull request
+        call: cloud-rest-api.create-pullrequest
+      - method: POST
+        name: merge-pullrequest
+        description: Merge a pull request
+        call: cloud-rest-api.merge-pullrequest
+    - path: /v1/pipelines
+      name: pipelines
+      description: CI/CD pipeline management
+      operations:
+      - method: GET
+        name: list-pipelines
+        description: List pipelines
+        call: cloud-rest-api.list-pipelines
+      - method: POST
+        name: trigger-pipeline
+        description: Trigger a pipeline
+        call: cloud-rest-api.trigger-pipeline
+  - type: mcp
+    port: 9090
+    namespace: code-collaboration-mcp
+    transport: http
+    description: MCP server for AI-assisted Bitbucket code collaboration.
+    tools:
+    - name: list-repositories
+      description: List repositories in a workspace
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cloud-rest-api.list-repositories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repository
+      description: Get repository details
+      hints:
+        readOnly: true
+      call: cloud-rest-api.get-repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repository
+      description: Create a new Git repository
+      hints:
+        readOnly: false
+      call: cloud-rest-api.create-repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-repository
+      description: Delete a repository
+      hints:
+        destructive: true
+      call: cloud-rest-api.delete-repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-pullrequests
+      description: List pull requests for a repository
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cloud-rest-api.list-pullrequests
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-pullrequest
+      description: Create a new pull request
+      hints:
+        readOnly: false
+      call: cloud-rest-api.create-pullrequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pullrequest
+      description: Get pull request details
+      hints:
+        readOnly: true
+      call: cloud-rest-api.get-pullrequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: merge-pullrequest
+      description: Merge a pull request
+      hints:
+        readOnly: false
+      call: cloud-rest-api.merge-pullrequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: decline-pullrequest
+      description: Decline a pull request
+      hints:
+        readOnly: false
+      call: cloud-rest-api.decline-pullrequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-pipelines
+      description: List CI/CD pipelines
+      hints:
+        readOnly: true
+        openWorld: true
+      call: cloud-rest-api.list-pipelines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: trigger-pipeline
+      description: Trigger a new CI/CD pipeline
+      hints:
+        readOnly: false
+      call: cloud-rest-api.trigger-pipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pipeline
+      description: Get pipeline execution details
+      hints:
+        readOnly: true
+      call: cloud-rest-api.get-pipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-pipeline
+      description: Stop a running pipeline
+      hints:
+        destructive: true
+      call: cloud-rest-api.stop-pipeline
+      outputParameters:
+      - type: object
+        mapping: $.
