@@ -83,7 +83,7 @@ common:
     url: https://github.com/atlassian
   - type: Support
     url: https://support.atlassian.com/bitbucket-cloud/
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/bitbucket-cloud-rest-api-context.jsonld
   - type: SpectralRules
     url: rules/bitbucket-spectral-rules.yml
