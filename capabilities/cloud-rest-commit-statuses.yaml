@@ -1,0 +1,242 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bitbucket API — Commit statuses
+  description: 'Bitbucket API — Commit statuses. 5 operations. Lead operation: List commit statuses for a commit. Self-contained
+    Naftiko capability covering one Bitbucket business surface.'
+  tags:
+  - Bitbucket
+  - Commit statuses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BITBUCKET_API_KEY: BITBUCKET_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-commit-statuses
+    baseUri: https://api.bitbucket.org/2.0
+    description: Bitbucket API — Commit statuses business capability. Self-contained, no shared references.
+    resources:
+    - name: repositories-workspace-repo_slug-commit-commit-statuses
+      path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses
+      operations:
+      - name: get
+        method: GET
+        description: List commit statuses for a commit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: refname
+          in: query
+          type: string
+          description: If specified, only return commit status objects that were either
+        - name: q
+          in: query
+          type: string
+          description: Query string to narrow down the response as per
+        - name: sort
+          in: query
+          type: string
+          description: Field by which the results should be sorted as per
+    - name: repositories-workspace-repo_slug-commit-commit-statuses-build
+      path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build
+      operations:
+      - name: post
+        method: POST
+        description: Create a build status for a commit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The new commit status object.
+    - name: repositories-workspace-repo_slug-commit-commit-statuses-build-key
+      path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}
+      operations:
+      - name: get
+        method: GET
+        description: Get a build status for a commit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update a build status for a commit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The updated build status object
+    - name: repositories-workspace-repo_slug-pullrequests-pull_request_id-statuses
+      path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses
+      operations:
+      - name: get
+        method: GET
+        description: List commit statuses for a pull request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Query string to narrow down the response as per
+        - name: sort
+          in: query
+          type: string
+          description: Field by which the results should be sorted as per
+  exposes:
+  - type: rest
+    namespace: cloud-rest-commit-statuses-rest
+    port: 8080
+    description: REST adapter for Bitbucket API — Commit statuses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repositories/{workspace}/{repo-slug}/commit/{commit}/statuses
+      name: repositories-workspace-repo-slug-commit-commit-statuses
+      description: REST surface for repositories-workspace-repo_slug-commit-commit-statuses.
+      operations:
+      - method: GET
+        name: get
+        description: List commit statuses for a commit
+        call: cloud-rest-commit-statuses.get
+        with:
+          refname: rest.refname
+          q: rest.q
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/commit/{commit}/statuses/build
+      name: repositories-workspace-repo-slug-commit-commit-statuses-build
+      description: REST surface for repositories-workspace-repo_slug-commit-commit-statuses-build.
+      operations:
+      - method: POST
+        name: post
+        description: Create a build status for a commit
+        call: cloud-rest-commit-statuses.post
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/commit/{commit}/statuses/build/{key}
+      name: repositories-workspace-repo-slug-commit-commit-statuses-build-key
+      description: REST surface for repositories-workspace-repo_slug-commit-commit-statuses-build-key.
+      operations:
+      - method: GET
+        name: get
+        description: Get a build status for a commit
+        call: cloud-rest-commit-statuses.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update a build status for a commit
+        call: cloud-rest-commit-statuses.put
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pullrequests/{pull-request-id}/statuses
+      name: repositories-workspace-repo-slug-pullrequests-pull-request-id-statuses
+      description: REST surface for repositories-workspace-repo_slug-pullrequests-pull_request_id-statuses.
+      operations:
+      - method: GET
+        name: get
+        description: List commit statuses for a pull request
+        call: cloud-rest-commit-statuses.get
+        with:
+          q: rest.q
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-commit-statuses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bitbucket API — Commit statuses. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-commit-statuses-commit
+      description: List commit statuses for a commit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-commit-statuses.get
+      with:
+        refname: tools.refname
+        q: tools.q
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-build-status-commit
+      description: Create a build status for a commit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-commit-statuses.post
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-build-status-commit
+      description: Get a build status for a commit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-commit-statuses.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-build-status-commit
+      description: Update a build status for a commit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-commit-statuses.put
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-commit-statuses-pull-request
+      description: List commit statuses for a pull request
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-commit-statuses.get
+      with:
+        q: tools.q
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.

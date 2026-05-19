@@ -1,0 +1,3613 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bitbucket API — Pipelines
+  description: 'Bitbucket API — Pipelines. 68 operations. Lead operation: List variables for an environment. Self-contained
+    Naftiko capability covering one Bitbucket business surface.'
+  tags:
+  - Bitbucket
+  - Pipelines
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BITBUCKET_API_KEY: BITBUCKET_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-pipelines
+    baseUri: https://api.bitbucket.org/2.0
+    description: Bitbucket API — Pipelines business capability. Self-contained, no shared references.
+    resources:
+    - name: repositories-workspace-repo_slug-deployments_config-environments-environment_uui
+      path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables
+      operations:
+      - name: getdeploymentvariables
+        method: GET
+        description: List variables for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: environment_uuid
+          in: path
+          type: string
+          description: The environment.
+          required: true
+      - name: createdeploymentvariable
+        method: POST
+        description: Create a variable for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: environment_uuid
+          in: path
+          type: string
+          description: The environment.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The variable to create
+          required: true
+    - name: repositories-workspace-repo_slug-deployments_config-environments-environment_uui
+      path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}
+      operations:
+      - name: updatedeploymentvariable
+        method: PUT
+        description: Update a variable for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: environment_uuid
+          in: path
+          type: string
+          description: The environment.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to update.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated deployment variable.
+          required: true
+      - name: deletedeploymentvariable
+        method: DELETE
+        description: Delete a variable for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: environment_uuid
+          in: path
+          type: string
+          description: The environment.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to delete.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines
+      path: /repositories/{workspace}/{repo_slug}/pipelines
+      operations:
+      - name: getpipelinesforrepository
+        method: GET
+        description: List pipelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: creator.uuid
+          in: query
+          type: string
+          description: The UUID of the creator of the pipeline to filter by.
+        - name: target.ref_type
+          in: query
+          type: string
+          description: The type of the reference to filter by.
+        - name: target.ref_name
+          in: query
+          type: string
+          description: The reference name to filter by.
+        - name: target.branch
+          in: query
+          type: string
+          description: The name of the branch to filter by.
+        - name: target.commit.hash
+          in: query
+          type: string
+          description: The revision to filter by.
+        - name: target.selector.pattern
+          in: query
+          type: string
+          description: The pipeline pattern to filter by.
+        - name: target.selector.type
+          in: query
+          type: string
+          description: The type of pipeline to filter by.
+        - name: created_on
+          in: query
+          type: string
+          description: The creation date to filter by.
+        - name: trigger_type
+          in: query
+          type: string
+          description: The trigger type to filter by.
+        - name: status
+          in: query
+          type: string
+          description: The pipeline status to filter by.
+        - name: sort
+          in: query
+          type: string
+          description: The attribute name to sort on.
+        - name: page
+          in: query
+          type: integer
+          description: The page number of elements to retrieve.
+        - name: pagelen
+          in: query
+          type: integer
+          description: The maximum number of results to return.
+      - name: createpipelineforrepository
+        method: POST
+        description: Run a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The pipeline to initiate.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-config-caches
+      path: /repositories/{workspace}/{repo_slug}/pipelines-config/caches
+      operations:
+      - name: getrepositorypipelinecaches
+        method: GET
+        description: List caches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: deleterepositorypipelinecaches
+        method: DELETE
+        description: Delete caches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: The cache name.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-config-caches-cache_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}
+      operations:
+      - name: deleterepositorypipelinecache
+        method: DELETE
+        description: Delete a cache
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: cache_uuid
+          in: path
+          type: string
+          description: The UUID of the cache to delete.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-config-caches-cache_uuid-content-uri
+      path: /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}/content-uri
+      operations:
+      - name: getrepositorypipelinecachecontenturi
+        method: GET
+        description: Get cache content URI
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: cache_uuid
+          in: path
+          type: string
+          description: The UUID of the cache.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-config-runners
+      path: /repositories/{workspace}/{repo_slug}/pipelines-config/runners
+      operations:
+      - name: getrepositoryrunners
+        method: GET
+        description: Get repository runners
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: createrepositoryrunner
+        method: POST
+        description: Create repository runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-config-runners-runner_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines-config/runners/{runner_uuid}
+      operations:
+      - name: getrepositoryrunner
+        method: GET
+        description: Get repository runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+      - name: updaterepositoryrunner
+        method: PUT
+        description: Update repository runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+      - name: deleterepositoryrunner
+        method: DELETE
+        description: Delete repository runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}
+      operations:
+      - name: getpipelineforrepository
+        method: GET
+        description: Get a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The pipeline UUID.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps
+      operations:
+      - name: getpipelinestepsforrepository
+        method: GET
+        description: List steps for a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}
+      operations:
+      - name: getpipelinestepforrepository
+        method: GET
+        description: Get a step of a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-log
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/log
+      operations:
+      - name: getpipelinesteplogforrepository
+        method: GET
+        description: Get log file for a step
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-logs-lo
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/logs/{log_uuid}
+      operations:
+      - name: getpipelinecontainerlog
+        method: GET
+        description: Get the logs for the build container or a service container for a given step of a pipeline.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+        - name: log_uuid
+          in: path
+          type: string
+          description: For the main build container specify the step UUID; for a service container specify the service container
+            UUID
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports
+      operations:
+      - name: getpipelinetestreports
+        method: GET
+        description: Get a summary of test reports for a given step of a pipeline.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases
+      operations:
+      - name: getpipelinetestreporttestcases
+        method: GET
+        description: Get test cases for a given step of a pipeline.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases/{test_case_uuid}/test_case_reasons
+      operations:
+      - name: getpipelinetestreporttestcasereasons
+        method: GET
+        description: Get test case reasons (output) for a given test case in a step of a pipeline.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+        - name: step_uuid
+          in: path
+          type: string
+          description: The UUID of the step.
+          required: true
+        - name: test_case_uuid
+          in: path
+          type: string
+          description: The UUID of the test case.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines-pipeline_uuid-stopPipeline
+      path: /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/stopPipeline
+      operations:
+      - name: stoppipeline
+        method: POST
+        description: Stop a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: pipeline_uuid
+          in: path
+          type: string
+          description: The UUID of the pipeline.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config
+      operations:
+      - name: getrepositorypipelineconfig
+        method: GET
+        description: Get configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: updaterepositorypipelineconfig
+        method: PUT
+        description: Update configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated repository pipelines configuration.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-build_number
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/build_number
+      operations:
+      - name: updaterepositorybuildnumber
+        method: PUT
+        description: Update the next build number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The build number to update.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-schedules
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/schedules
+      operations:
+      - name: createrepositorypipelineschedule
+        method: POST
+        description: Create a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The schedule to create.
+          required: true
+      - name: getrepositorypipelineschedules
+        method: GET
+        description: List schedules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-schedules-schedule_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}
+      operations:
+      - name: getrepositorypipelineschedule
+        method: GET
+        description: Get a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: schedule_uuid
+          in: path
+          type: string
+          description: The uuid of the schedule.
+          required: true
+      - name: updaterepositorypipelineschedule
+        method: PUT
+        description: Update a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: schedule_uuid
+          in: path
+          type: string
+          description: The uuid of the schedule.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The schedule to update.
+          required: true
+      - name: deleterepositorypipelineschedule
+        method: DELETE
+        description: Delete a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: schedule_uuid
+          in: path
+          type: string
+          description: The uuid of the schedule.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-schedules-schedule_uuid-execut
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}/executions
+      operations:
+      - name: getrepositorypipelinescheduleexecutions
+        method: GET
+        description: List executions of a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: schedule_uuid
+          in: path
+          type: string
+          description: The uuid of the schedule.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-ssh-key_pair
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/key_pair
+      operations:
+      - name: getrepositorypipelinesshkeypair
+        method: GET
+        description: Get SSH key pair
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: updaterepositorypipelinekeypair
+        method: PUT
+        description: Update SSH key pair
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The created or updated SSH key pair.
+          required: true
+      - name: deleterepositorypipelinekeypair
+        method: DELETE
+        description: Delete SSH key pair
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-ssh-known_hosts
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts
+      operations:
+      - name: getrepositorypipelineknownhosts
+        method: GET
+        description: List known hosts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: createrepositorypipelineknownhost
+        method: POST
+        description: Create a known host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The known host to create.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-ssh-known_hosts-known_host_uui
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts/{known_host_uuid}
+      operations:
+      - name: getrepositorypipelineknownhost
+        method: GET
+        description: Get a known host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: known_host_uuid
+          in: path
+          type: string
+          description: The UUID of the known host to retrieve.
+          required: true
+      - name: updaterepositorypipelineknownhost
+        method: PUT
+        description: Update a known host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: known_host_uuid
+          in: path
+          type: string
+          description: The UUID of the known host to update.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated known host.
+          required: true
+      - name: deleterepositorypipelineknownhost
+        method: DELETE
+        description: Delete a known host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: known_host_uuid
+          in: path
+          type: string
+          description: The UUID of the known host to delete.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-variables
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/variables
+      operations:
+      - name: getrepositorypipelinevariables
+        method: GET
+        description: List variables for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+      - name: createrepositorypipelinevariable
+        method: POST
+        description: Create a variable for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The variable to create.
+          required: true
+    - name: repositories-workspace-repo_slug-pipelines_config-variables-variable_uuid
+      path: /repositories/{workspace}/{repo_slug}/pipelines_config/variables/{variable_uuid}
+      operations:
+      - name: getrepositorypipelinevariable
+        method: GET
+        description: Get a variable for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to retrieve.
+          required: true
+      - name: updaterepositorypipelinevariable
+        method: PUT
+        description: Update a variable for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to update.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated variable
+          required: true
+      - name: deleterepositorypipelinevariable
+        method: DELETE
+        description: Delete a variable for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: repo_slug
+          in: path
+          type: string
+          description: The repository.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to delete.
+          required: true
+    - name: teams-username-pipelines_config-variables
+      path: /teams/{username}/pipelines_config/variables
+      operations:
+      - name: getpipelinevariablesforteam
+        method: GET
+        description: List variables for an account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The account.
+          required: true
+      - name: createpipelinevariableforteam
+        method: POST
+        description: Create a variable for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The variable to create.
+    - name: teams-username-pipelines_config-variables-variable_uuid
+      path: /teams/{username}/pipelines_config/variables/{variable_uuid}
+      operations:
+      - name: getpipelinevariableforteam
+        method: GET
+        description: Get a variable for a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to retrieve.
+          required: true
+      - name: updatepipelinevariableforteam
+        method: PUT
+        description: Update a variable for a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated variable.
+          required: true
+      - name: deletepipelinevariableforteam
+        method: DELETE
+        description: Delete a variable for a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The account.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to delete.
+          required: true
+    - name: users-selected_user-pipelines_config-variables
+      path: /users/{selected_user}/pipelines_config/variables
+      operations:
+      - name: getpipelinevariablesforuser
+        method: GET
+        description: List variables for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: selected_user
+          in: path
+          type: string
+          description: Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian
+            Account ID.
+          required: true
+      - name: createpipelinevariableforuser
+        method: POST
+        description: Create a variable for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: selected_user
+          in: path
+          type: string
+          description: Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian
+            Account ID.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The variable to create.
+    - name: users-selected_user-pipelines_config-variables-variable_uuid
+      path: /users/{selected_user}/pipelines_config/variables/{variable_uuid}
+      operations:
+      - name: getpipelinevariableforuser
+        method: GET
+        description: Get a variable for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: selected_user
+          in: path
+          type: string
+          description: Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian
+            Account ID.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to retrieve.
+          required: true
+      - name: updatepipelinevariableforuser
+        method: PUT
+        description: Update a variable for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: selected_user
+          in: path
+          type: string
+          description: Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian
+            Account ID.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated variable.
+          required: true
+      - name: deletepipelinevariableforuser
+        method: DELETE
+        description: Delete a variable for a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: selected_user
+          in: path
+          type: string
+          description: Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian
+            Account ID.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to delete.
+          required: true
+    - name: workspaces-workspace-pipelines-config-identity-oidc-.well-known-openid-configura
+      path: /workspaces/{workspace}/pipelines-config/identity/oidc/.well-known/openid-configuration
+      operations:
+      - name: getoidcconfiguration
+        method: GET
+        description: Get OpenID configuration for OIDC in Pipelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+    - name: workspaces-workspace-pipelines-config-identity-oidc-keys.json
+      path: /workspaces/{workspace}/pipelines-config/identity/oidc/keys.json
+      operations:
+      - name: getoidckeys
+        method: GET
+        description: Get keys for OIDC in Pipelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+    - name: workspaces-workspace-pipelines-config-runners
+      path: /workspaces/{workspace}/pipelines-config/runners
+      operations:
+      - name: getworkspacerunners
+        method: GET
+        description: Get workspace runners
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+      - name: createworkspacerunner
+        method: POST
+        description: Create workspace runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+    - name: workspaces-workspace-pipelines-config-runners-runner_uuid
+      path: /workspaces/{workspace}/pipelines-config/runners/{runner_uuid}
+      operations:
+      - name: getworkspacerunner
+        method: GET
+        description: Get workspace runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+      - name: updateworkspacerunner
+        method: PUT
+        description: Update workspace runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+      - name: deleteworkspacerunner
+        method: DELETE
+        description: Delete workspace runner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: runner_uuid
+          in: path
+          type: string
+          description: The runner uuid.
+          required: true
+    - name: workspaces-workspace-pipelines-config-variables
+      path: /workspaces/{workspace}/pipelines-config/variables
+      operations:
+      - name: getpipelinevariablesforworkspace
+        method: GET
+        description: List variables for a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+      - name: createpipelinevariableforworkspace
+        method: POST
+        description: Create a variable for a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The variable to create.
+    - name: workspaces-workspace-pipelines-config-variables-variable_uuid
+      path: /workspaces/{workspace}/pipelines-config/variables/{variable_uuid}
+      operations:
+      - name: getpipelinevariableforworkspace
+        method: GET
+        description: Get variable for a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to retrieve.
+          required: true
+      - name: updatepipelinevariableforworkspace
+        method: PUT
+        description: Update variable for a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable.
+          required: true
+        - name: _body
+          in: body
+          type: string
+          description: The updated variable.
+          required: true
+      - name: deletepipelinevariableforworkspace
+        method: DELETE
+        description: Delete a variable for a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace
+          in: path
+          type: string
+          description: This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example
+            `{workspace UUID}`.
+          required: true
+        - name: variable_uuid
+          in: path
+          type: string
+          description: The UUID of the variable to delete.
+          required: true
+  exposes:
+  - type: rest
+    namespace: cloud-rest-pipelines-rest
+    port: 8080
+    description: REST adapter for Bitbucket API — Pipelines. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/repositories/{workspace}/{repo-slug}/deployments-config/environments/{environment-uuid}/variables
+      name: repositories-workspace-repo-slug-deployments-config-environments-environment-uui
+      description: REST surface for repositories-workspace-repo_slug-deployments_config-environments-environment_uui.
+      operations:
+      - method: GET
+        name: getdeploymentvariables
+        description: List variables for an environment
+        call: cloud-rest-pipelines.getdeploymentvariables
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          environment_uuid: rest.environment_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdeploymentvariable
+        description: Create a variable for an environment
+        call: cloud-rest-pipelines.createdeploymentvariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          environment_uuid: rest.environment_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/deployments-config/environments/{environment-uuid}/variables/{variable-uuid}
+      name: repositories-workspace-repo-slug-deployments-config-environments-environment-uui
+      description: REST surface for repositories-workspace-repo_slug-deployments_config-environments-environment_uui.
+      operations:
+      - method: PUT
+        name: updatedeploymentvariable
+        description: Update a variable for an environment
+        call: cloud-rest-pipelines.updatedeploymentvariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          environment_uuid: rest.environment_uuid
+          variable_uuid: rest.variable_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedeploymentvariable
+        description: Delete a variable for an environment
+        call: cloud-rest-pipelines.deletedeploymentvariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          environment_uuid: rest.environment_uuid
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines
+      name: repositories-workspace-repo-slug-pipelines
+      description: REST surface for repositories-workspace-repo_slug-pipelines.
+      operations:
+      - method: GET
+        name: getpipelinesforrepository
+        description: List pipelines
+        call: cloud-rest-pipelines.getpipelinesforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          creator.uuid: rest.creator.uuid
+          target.ref_type: rest.target.ref_type
+          target.ref_name: rest.target.ref_name
+          target.branch: rest.target.branch
+          target.commit.hash: rest.target.commit.hash
+          target.selector.pattern: rest.target.selector.pattern
+          target.selector.type: rest.target.selector.type
+          created_on: rest.created_on
+          trigger_type: rest.trigger_type
+          status: rest.status
+          sort: rest.sort
+          page: rest.page
+          pagelen: rest.pagelen
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipelineforrepository
+        description: Run a pipeline
+        call: cloud-rest-pipelines.createpipelineforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/caches
+      name: repositories-workspace-repo-slug-pipelines-config-caches
+      description: REST surface for repositories-workspace-repo_slug-pipelines-config-caches.
+      operations:
+      - method: GET
+        name: getrepositorypipelinecaches
+        description: List caches
+        call: cloud-rest-pipelines.getrepositorypipelinecaches
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositorypipelinecaches
+        description: Delete caches
+        call: cloud-rest-pipelines.deleterepositorypipelinecaches
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/caches/{cache-uuid}
+      name: repositories-workspace-repo-slug-pipelines-config-caches-cache-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines-config-caches-cache_uuid.
+      operations:
+      - method: DELETE
+        name: deleterepositorypipelinecache
+        description: Delete a cache
+        call: cloud-rest-pipelines.deleterepositorypipelinecache
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          cache_uuid: rest.cache_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/caches/{cache-uuid}/content-uri
+      name: repositories-workspace-repo-slug-pipelines-config-caches-cache-uuid-content-uri
+      description: REST surface for repositories-workspace-repo_slug-pipelines-config-caches-cache_uuid-content-uri.
+      operations:
+      - method: GET
+        name: getrepositorypipelinecachecontenturi
+        description: Get cache content URI
+        call: cloud-rest-pipelines.getrepositorypipelinecachecontenturi
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          cache_uuid: rest.cache_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/runners
+      name: repositories-workspace-repo-slug-pipelines-config-runners
+      description: REST surface for repositories-workspace-repo_slug-pipelines-config-runners.
+      operations:
+      - method: GET
+        name: getrepositoryrunners
+        description: Get repository runners
+        call: cloud-rest-pipelines.getrepositoryrunners
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrepositoryrunner
+        description: Create repository runner
+        call: cloud-rest-pipelines.createrepositoryrunner
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/runners/{runner-uuid}
+      name: repositories-workspace-repo-slug-pipelines-config-runners-runner-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines-config-runners-runner_uuid.
+      operations:
+      - method: GET
+        name: getrepositoryrunner
+        description: Get repository runner
+        call: cloud-rest-pipelines.getrepositoryrunner
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositoryrunner
+        description: Update repository runner
+        call: cloud-rest-pipelines.updaterepositoryrunner
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositoryrunner
+        description: Delete repository runner
+        call: cloud-rest-pipelines.deleterepositoryrunner
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid.
+      operations:
+      - method: GET
+        name: getpipelineforrepository
+        description: Get a pipeline
+        call: cloud-rest-pipelines.getpipelineforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps.
+      operations:
+      - method: GET
+        name: getpipelinestepsforrepository
+        description: List steps for a pipeline
+        call: cloud-rest-pipelines.getpipelinestepsforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid.
+      operations:
+      - method: GET
+        name: getpipelinestepforrepository
+        description: Get a step of a pipeline
+        call: cloud-rest-pipelines.getpipelinestepforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}/log
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid-log
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-log.
+      operations:
+      - method: GET
+        name: getpipelinesteplogforrepository
+        description: Get log file for a step
+        call: cloud-rest-pipelines.getpipelinesteplogforrepository
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}/logs/{log-uuid}
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid-logs-lo
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-logs-lo.
+      operations:
+      - method: GET
+        name: getpipelinecontainerlog
+        description: Get the logs for the build container or a service container for a given step of a pipeline.
+        call: cloud-rest-pipelines.getpipelinecontainerlog
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+          log_uuid: rest.log_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}/test-reports
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid-test-re
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re.
+      operations:
+      - method: GET
+        name: getpipelinetestreports
+        description: Get a summary of test reports for a given step of a pipeline.
+        call: cloud-rest-pipelines.getpipelinetestreports
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}/test-reports/test-cases
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid-test-re
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re.
+      operations:
+      - method: GET
+        name: getpipelinetestreporttestcases
+        description: Get test cases for a given step of a pipeline.
+        call: cloud-rest-pipelines.getpipelinetestreporttestcases
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/steps/{step-uuid}/test-reports/test-cases/{test-case-uuid}/test-case-reasons
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-steps-step-uuid-test-re
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-steps-step_uuid-test_re.
+      operations:
+      - method: GET
+        name: getpipelinetestreporttestcasereasons
+        description: Get test case reasons (output) for a given test case in a step of a pipeline.
+        call: cloud-rest-pipelines.getpipelinetestreporttestcasereasons
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+          step_uuid: rest.step_uuid
+          test_case_uuid: rest.test_case_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines/{pipeline-uuid}/stoppipeline
+      name: repositories-workspace-repo-slug-pipelines-pipeline-uuid-stoppipeline
+      description: REST surface for repositories-workspace-repo_slug-pipelines-pipeline_uuid-stopPipeline.
+      operations:
+      - method: POST
+        name: stoppipeline
+        description: Stop a pipeline
+        call: cloud-rest-pipelines.stoppipeline
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          pipeline_uuid: rest.pipeline_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config
+      name: repositories-workspace-repo-slug-pipelines-config
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config.
+      operations:
+      - method: GET
+        name: getrepositorypipelineconfig
+        description: Get configuration
+        call: cloud-rest-pipelines.getrepositorypipelineconfig
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositorypipelineconfig
+        description: Update configuration
+        call: cloud-rest-pipelines.updaterepositorypipelineconfig
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/build-number
+      name: repositories-workspace-repo-slug-pipelines-config-build-number
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-build_number.
+      operations:
+      - method: PUT
+        name: updaterepositorybuildnumber
+        description: Update the next build number
+        call: cloud-rest-pipelines.updaterepositorybuildnumber
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/schedules
+      name: repositories-workspace-repo-slug-pipelines-config-schedules
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-schedules.
+      operations:
+      - method: POST
+        name: createrepositorypipelineschedule
+        description: Create a schedule
+        call: cloud-rest-pipelines.createrepositorypipelineschedule
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrepositorypipelineschedules
+        description: List schedules
+        call: cloud-rest-pipelines.getrepositorypipelineschedules
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/schedules/{schedule-uuid}
+      name: repositories-workspace-repo-slug-pipelines-config-schedules-schedule-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-schedules-schedule_uuid.
+      operations:
+      - method: GET
+        name: getrepositorypipelineschedule
+        description: Get a schedule
+        call: cloud-rest-pipelines.getrepositorypipelineschedule
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          schedule_uuid: rest.schedule_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositorypipelineschedule
+        description: Update a schedule
+        call: cloud-rest-pipelines.updaterepositorypipelineschedule
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          schedule_uuid: rest.schedule_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositorypipelineschedule
+        description: Delete a schedule
+        call: cloud-rest-pipelines.deleterepositorypipelineschedule
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          schedule_uuid: rest.schedule_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/schedules/{schedule-uuid}/executions
+      name: repositories-workspace-repo-slug-pipelines-config-schedules-schedule-uuid-execut
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-schedules-schedule_uuid-execut.
+      operations:
+      - method: GET
+        name: getrepositorypipelinescheduleexecutions
+        description: List executions of a schedule
+        call: cloud-rest-pipelines.getrepositorypipelinescheduleexecutions
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          schedule_uuid: rest.schedule_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/ssh/key-pair
+      name: repositories-workspace-repo-slug-pipelines-config-ssh-key-pair
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-ssh-key_pair.
+      operations:
+      - method: GET
+        name: getrepositorypipelinesshkeypair
+        description: Get SSH key pair
+        call: cloud-rest-pipelines.getrepositorypipelinesshkeypair
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositorypipelinekeypair
+        description: Update SSH key pair
+        call: cloud-rest-pipelines.updaterepositorypipelinekeypair
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositorypipelinekeypair
+        description: Delete SSH key pair
+        call: cloud-rest-pipelines.deleterepositorypipelinekeypair
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/ssh/known-hosts
+      name: repositories-workspace-repo-slug-pipelines-config-ssh-known-hosts
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-ssh-known_hosts.
+      operations:
+      - method: GET
+        name: getrepositorypipelineknownhosts
+        description: List known hosts
+        call: cloud-rest-pipelines.getrepositorypipelineknownhosts
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrepositorypipelineknownhost
+        description: Create a known host
+        call: cloud-rest-pipelines.createrepositorypipelineknownhost
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/ssh/known-hosts/{known-host-uuid}
+      name: repositories-workspace-repo-slug-pipelines-config-ssh-known-hosts-known-host-uui
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-ssh-known_hosts-known_host_uui.
+      operations:
+      - method: GET
+        name: getrepositorypipelineknownhost
+        description: Get a known host
+        call: cloud-rest-pipelines.getrepositorypipelineknownhost
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          known_host_uuid: rest.known_host_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositorypipelineknownhost
+        description: Update a known host
+        call: cloud-rest-pipelines.updaterepositorypipelineknownhost
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          known_host_uuid: rest.known_host_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositorypipelineknownhost
+        description: Delete a known host
+        call: cloud-rest-pipelines.deleterepositorypipelineknownhost
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          known_host_uuid: rest.known_host_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/variables
+      name: repositories-workspace-repo-slug-pipelines-config-variables
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-variables.
+      operations:
+      - method: GET
+        name: getrepositorypipelinevariables
+        description: List variables for a repository
+        call: cloud-rest-pipelines.getrepositorypipelinevariables
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrepositorypipelinevariable
+        description: Create a variable for a repository
+        call: cloud-rest-pipelines.createrepositorypipelinevariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/pipelines-config/variables/{variable-uuid}
+      name: repositories-workspace-repo-slug-pipelines-config-variables-variable-uuid
+      description: REST surface for repositories-workspace-repo_slug-pipelines_config-variables-variable_uuid.
+      operations:
+      - method: GET
+        name: getrepositorypipelinevariable
+        description: Get a variable for a repository
+        call: cloud-rest-pipelines.getrepositorypipelinevariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterepositorypipelinevariable
+        description: Update a variable for a repository
+        call: cloud-rest-pipelines.updaterepositorypipelinevariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          variable_uuid: rest.variable_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepositorypipelinevariable
+        description: Delete a variable for a repository
+        call: cloud-rest-pipelines.deleterepositorypipelinevariable
+        with:
+          workspace: rest.workspace
+          repo_slug: rest.repo_slug
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{username}/pipelines-config/variables
+      name: teams-username-pipelines-config-variables
+      description: REST surface for teams-username-pipelines_config-variables.
+      operations:
+      - method: GET
+        name: getpipelinevariablesforteam
+        description: List variables for an account
+        call: cloud-rest-pipelines.getpipelinevariablesforteam
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipelinevariableforteam
+        description: Create a variable for a user
+        call: cloud-rest-pipelines.createpipelinevariableforteam
+        with:
+          username: rest.username
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/teams/{username}/pipelines-config/variables/{variable-uuid}
+      name: teams-username-pipelines-config-variables-variable-uuid
+      description: REST surface for teams-username-pipelines_config-variables-variable_uuid.
+      operations:
+      - method: GET
+        name: getpipelinevariableforteam
+        description: Get a variable for a team
+        call: cloud-rest-pipelines.getpipelinevariableforteam
+        with:
+          username: rest.username
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepipelinevariableforteam
+        description: Update a variable for a team
+        call: cloud-rest-pipelines.updatepipelinevariableforteam
+        with:
+          username: rest.username
+          variable_uuid: rest.variable_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepipelinevariableforteam
+        description: Delete a variable for a team
+        call: cloud-rest-pipelines.deletepipelinevariableforteam
+        with:
+          username: rest.username
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{selected-user}/pipelines-config/variables
+      name: users-selected-user-pipelines-config-variables
+      description: REST surface for users-selected_user-pipelines_config-variables.
+      operations:
+      - method: GET
+        name: getpipelinevariablesforuser
+        description: List variables for a user
+        call: cloud-rest-pipelines.getpipelinevariablesforuser
+        with:
+          selected_user: rest.selected_user
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipelinevariableforuser
+        description: Create a variable for a user
+        call: cloud-rest-pipelines.createpipelinevariableforuser
+        with:
+          selected_user: rest.selected_user
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{selected-user}/pipelines-config/variables/{variable-uuid}
+      name: users-selected-user-pipelines-config-variables-variable-uuid
+      description: REST surface for users-selected_user-pipelines_config-variables-variable_uuid.
+      operations:
+      - method: GET
+        name: getpipelinevariableforuser
+        description: Get a variable for a user
+        call: cloud-rest-pipelines.getpipelinevariableforuser
+        with:
+          selected_user: rest.selected_user
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepipelinevariableforuser
+        description: Update a variable for a user
+        call: cloud-rest-pipelines.updatepipelinevariableforuser
+        with:
+          selected_user: rest.selected_user
+          variable_uuid: rest.variable_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepipelinevariableforuser
+        description: Delete a variable for a user
+        call: cloud-rest-pipelines.deletepipelinevariableforuser
+        with:
+          selected_user: rest.selected_user
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/identity/oidc/well-known/openid-configuration
+      name: workspaces-workspace-pipelines-config-identity-oidc-well-known-openid-configura
+      description: REST surface for workspaces-workspace-pipelines-config-identity-oidc-.well-known-openid-configura.
+      operations:
+      - method: GET
+        name: getoidcconfiguration
+        description: Get OpenID configuration for OIDC in Pipelines
+        call: cloud-rest-pipelines.getoidcconfiguration
+        with:
+          workspace: rest.workspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/identity/oidc/keys-json
+      name: workspaces-workspace-pipelines-config-identity-oidc-keys-json
+      description: REST surface for workspaces-workspace-pipelines-config-identity-oidc-keys.json.
+      operations:
+      - method: GET
+        name: getoidckeys
+        description: Get keys for OIDC in Pipelines
+        call: cloud-rest-pipelines.getoidckeys
+        with:
+          workspace: rest.workspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/runners
+      name: workspaces-workspace-pipelines-config-runners
+      description: REST surface for workspaces-workspace-pipelines-config-runners.
+      operations:
+      - method: GET
+        name: getworkspacerunners
+        description: Get workspace runners
+        call: cloud-rest-pipelines.getworkspacerunners
+        with:
+          workspace: rest.workspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworkspacerunner
+        description: Create workspace runner
+        call: cloud-rest-pipelines.createworkspacerunner
+        with:
+          workspace: rest.workspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/runners/{runner-uuid}
+      name: workspaces-workspace-pipelines-config-runners-runner-uuid
+      description: REST surface for workspaces-workspace-pipelines-config-runners-runner_uuid.
+      operations:
+      - method: GET
+        name: getworkspacerunner
+        description: Get workspace runner
+        call: cloud-rest-pipelines.getworkspacerunner
+        with:
+          workspace: rest.workspace
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworkspacerunner
+        description: Update workspace runner
+        call: cloud-rest-pipelines.updateworkspacerunner
+        with:
+          workspace: rest.workspace
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkspacerunner
+        description: Delete workspace runner
+        call: cloud-rest-pipelines.deleteworkspacerunner
+        with:
+          workspace: rest.workspace
+          runner_uuid: rest.runner_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/variables
+      name: workspaces-workspace-pipelines-config-variables
+      description: REST surface for workspaces-workspace-pipelines-config-variables.
+      operations:
+      - method: GET
+        name: getpipelinevariablesforworkspace
+        description: List variables for a workspace
+        call: cloud-rest-pipelines.getpipelinevariablesforworkspace
+        with:
+          workspace: rest.workspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipelinevariableforworkspace
+        description: Create a variable for a workspace
+        call: cloud-rest-pipelines.createpipelinevariableforworkspace
+        with:
+          workspace: rest.workspace
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/pipelines-config/variables/{variable-uuid}
+      name: workspaces-workspace-pipelines-config-variables-variable-uuid
+      description: REST surface for workspaces-workspace-pipelines-config-variables-variable_uuid.
+      operations:
+      - method: GET
+        name: getpipelinevariableforworkspace
+        description: Get variable for a workspace
+        call: cloud-rest-pipelines.getpipelinevariableforworkspace
+        with:
+          workspace: rest.workspace
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepipelinevariableforworkspace
+        description: Update variable for a workspace
+        call: cloud-rest-pipelines.updatepipelinevariableforworkspace
+        with:
+          workspace: rest.workspace
+          variable_uuid: rest.variable_uuid
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepipelinevariableforworkspace
+        description: Delete a variable for a workspace
+        call: cloud-rest-pipelines.deletepipelinevariableforworkspace
+        with:
+          workspace: rest.workspace
+          variable_uuid: rest.variable_uuid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-pipelines-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bitbucket API — Pipelines. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-variables-environment
+      description: List variables for an environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getdeploymentvariables
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        environment_uuid: tools.environment_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-variable-environment
+      description: Create a variable for an environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createdeploymentvariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        environment_uuid: tools.environment_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-variable-environment
+      description: Update a variable for an environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updatedeploymentvariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        environment_uuid: tools.environment_uuid
+        variable_uuid: tools.variable_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-variable-environment
+      description: Delete a variable for an environment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deletedeploymentvariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        environment_uuid: tools.environment_uuid
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-pipelines
+      description: List pipelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinesforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        creator.uuid: tools.creator.uuid
+        target.ref_type: tools.target.ref_type
+        target.ref_name: tools.target.ref_name
+        target.branch: tools.target.branch
+        target.commit.hash: tools.target.commit.hash
+        target.selector.pattern: tools.target.selector.pattern
+        target.selector.type: tools.target.selector.type
+        created_on: tools.created_on
+        trigger_type: tools.trigger_type
+        status: tools.status
+        sort: tools.sort
+        page: tools.page
+        pagelen: tools.pagelen
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-pipeline
+      description: Run a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createpipelineforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-caches
+      description: List caches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinecaches
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-caches
+      description: Delete caches
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelinecaches
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-cache
+      description: Delete a cache
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelinecache
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        cache_uuid: tools.cache_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cache-content-uri
+      description: Get cache content URI
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinecachecontenturi
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        cache_uuid: tools.cache_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repository-runners
+      description: Get repository runners
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositoryrunners
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repository-runner
+      description: Create repository runner
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createrepositoryrunner
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repository-runner
+      description: Get repository runner
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositoryrunner
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-repository-runner
+      description: Update repository runner
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositoryrunner
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-repository-runner
+      description: Delete repository runner
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositoryrunner
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pipeline
+      description: Get a pipeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelineforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-steps-pipeline
+      description: List steps for a pipeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinestepsforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-step-pipeline
+      description: Get a step of a pipeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinestepforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-log-file-step
+      description: Get log file for a step
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinesteplogforrepository
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-logs-build-container-service
+      description: Get the logs for the build container or a service container for a given step of a pipeline.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinecontainerlog
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+        log_uuid: tools.log_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-summary-test-reports-given
+      description: Get a summary of test reports for a given step of a pipeline.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinetestreports
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-test-cases-given-step
+      description: Get test cases for a given step of a pipeline.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinetestreporttestcases
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-test-case-reasons-output
+      description: Get test case reasons (output) for a given test case in a step of a pipeline.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinetestreporttestcasereasons
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+        step_uuid: tools.step_uuid
+        test_case_uuid: tools.test_case_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-pipeline
+      description: Stop a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.stoppipeline
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        pipeline_uuid: tools.pipeline_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-configuration
+      description: Get configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelineconfig
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-configuration
+      description: Update configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorypipelineconfig
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-next-build-number
+      description: Update the next build number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorybuildnumber
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-schedule
+      description: Create a schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createrepositorypipelineschedule
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedules
+      description: List schedules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelineschedules
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule
+      description: Get a schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelineschedule
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        schedule_uuid: tools.schedule_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule
+      description: Update a schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorypipelineschedule
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        schedule_uuid: tools.schedule_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule
+      description: Delete a schedule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelineschedule
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        schedule_uuid: tools.schedule_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-executions-schedule
+      description: List executions of a schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinescheduleexecutions
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        schedule_uuid: tools.schedule_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ssh-key-pair
+      description: Get SSH key pair
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinesshkeypair
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-ssh-key-pair
+      description: Update SSH key pair
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorypipelinekeypair
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ssh-key-pair
+      description: Delete SSH key pair
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelinekeypair
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-known-hosts
+      description: List known hosts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelineknownhosts
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-known-host
+      description: Create a known host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createrepositorypipelineknownhost
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-known-host
+      description: Get a known host
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelineknownhost
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        known_host_uuid: tools.known_host_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-known-host
+      description: Update a known host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorypipelineknownhost
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        known_host_uuid: tools.known_host_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-known-host
+      description: Delete a known host
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelineknownhost
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        known_host_uuid: tools.known_host_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-variables-repository
+      description: List variables for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinevariables
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-variable-repository
+      description: Create a variable for a repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createrepositorypipelinevariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variable-repository
+      description: Get a variable for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getrepositorypipelinevariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-variable-repository
+      description: Update a variable for a repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updaterepositorypipelinevariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        variable_uuid: tools.variable_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-variable-repository
+      description: Delete a variable for a repository
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleterepositorypipelinevariable
+      with:
+        workspace: tools.workspace
+        repo_slug: tools.repo_slug
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-variables-account
+      description: List variables for an account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariablesforteam
+      with:
+        username: tools.username
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-variable-user
+      description: Create a variable for a user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createpipelinevariableforteam
+      with:
+        username: tools.username
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variable-team
+      description: Get a variable for a team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariableforteam
+      with:
+        username: tools.username
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-variable-team
+      description: Update a variable for a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updatepipelinevariableforteam
+      with:
+        username: tools.username
+        variable_uuid: tools.variable_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-variable-team
+      description: Delete a variable for a team
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deletepipelinevariableforteam
+      with:
+        username: tools.username
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-variables-user
+      description: List variables for a user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariablesforuser
+      with:
+        selected_user: tools.selected_user
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-variable-user-2
+      description: Create a variable for a user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createpipelinevariableforuser
+      with:
+        selected_user: tools.selected_user
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variable-user
+      description: Get a variable for a user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariableforuser
+      with:
+        selected_user: tools.selected_user
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-variable-user
+      description: Update a variable for a user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updatepipelinevariableforuser
+      with:
+        selected_user: tools.selected_user
+        variable_uuid: tools.variable_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-variable-user
+      description: Delete a variable for a user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deletepipelinevariableforuser
+      with:
+        selected_user: tools.selected_user
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-openid-configuration-oidc-pipelines
+      description: Get OpenID configuration for OIDC in Pipelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getoidcconfiguration
+      with:
+        workspace: tools.workspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-keys-oidc-pipelines
+      description: Get keys for OIDC in Pipelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getoidckeys
+      with:
+        workspace: tools.workspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workspace-runners
+      description: Get workspace runners
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getworkspacerunners
+      with:
+        workspace: tools.workspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-workspace-runner
+      description: Create workspace runner
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createworkspacerunner
+      with:
+        workspace: tools.workspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workspace-runner
+      description: Get workspace runner
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getworkspacerunner
+      with:
+        workspace: tools.workspace
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-workspace-runner
+      description: Update workspace runner
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updateworkspacerunner
+      with:
+        workspace: tools.workspace
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-workspace-runner
+      description: Delete workspace runner
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deleteworkspacerunner
+      with:
+        workspace: tools.workspace
+        runner_uuid: tools.runner_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-variables-workspace
+      description: List variables for a workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariablesforworkspace
+      with:
+        workspace: tools.workspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-variable-workspace
+      description: Create a variable for a workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-pipelines.createpipelinevariableforworkspace
+      with:
+        workspace: tools.workspace
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-variable-workspace
+      description: Get variable for a workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.getpipelinevariableforworkspace
+      with:
+        workspace: tools.workspace
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-variable-workspace
+      description: Update variable for a workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-pipelines.updatepipelinevariableforworkspace
+      with:
+        workspace: tools.workspace
+        variable_uuid: tools.variable_uuid
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-variable-workspace
+      description: Delete a variable for a workspace
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-pipelines.deletepipelinevariableforworkspace
+      with:
+        workspace: tools.workspace
+        variable_uuid: tools.variable_uuid
+      outputParameters:
+      - type: object
+        mapping: $.

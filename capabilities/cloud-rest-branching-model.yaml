@@ -1,0 +1,245 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bitbucket API — Branching model
+  description: 'Bitbucket API — Branching model. 7 operations. Lead operation: Get the branching model for a repository. Self-contained
+    Naftiko capability covering one Bitbucket business surface.'
+  tags:
+  - Bitbucket
+  - Branching model
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BITBUCKET_API_KEY: BITBUCKET_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-branching-model
+    baseUri: https://api.bitbucket.org/2.0
+    description: Bitbucket API — Branching model business capability. Self-contained, no shared references.
+    resources:
+    - name: repositories-workspace-repo_slug-branching-model
+      path: /repositories/{workspace}/{repo_slug}/branching-model
+      operations:
+      - name: get
+        method: GET
+        description: Get the branching model for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-branching-model-settings
+      path: /repositories/{workspace}/{repo_slug}/branching-model/settings
+      operations:
+      - name: get
+        method: GET
+        description: Get the branching model config for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update the branching model config for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-effective-branching-model
+      path: /repositories/{workspace}/{repo_slug}/effective-branching-model
+      operations:
+      - name: get
+        method: GET
+        description: Get the effective, or currently applied, branching model for a repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace-projects-project_key-branching-model
+      path: /workspaces/{workspace}/projects/{project_key}/branching-model
+      operations:
+      - name: get
+        method: GET
+        description: Get the branching model for a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace-projects-project_key-branching-model-settings
+      path: /workspaces/{workspace}/projects/{project_key}/branching-model/settings
+      operations:
+      - name: get
+        method: GET
+        description: Get the branching model config for a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update the branching model config for a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: cloud-rest-branching-model-rest
+    port: 8080
+    description: REST adapter for Bitbucket API — Branching model. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repositories/{workspace}/{repo-slug}/branching-model
+      name: repositories-workspace-repo-slug-branching-model
+      description: REST surface for repositories-workspace-repo_slug-branching-model.
+      operations:
+      - method: GET
+        name: get
+        description: Get the branching model for a repository
+        call: cloud-rest-branching-model.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/branching-model/settings
+      name: repositories-workspace-repo-slug-branching-model-settings
+      description: REST surface for repositories-workspace-repo_slug-branching-model-settings.
+      operations:
+      - method: GET
+        name: get
+        description: Get the branching model config for a repository
+        call: cloud-rest-branching-model.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update the branching model config for a repository
+        call: cloud-rest-branching-model.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/effective-branching-model
+      name: repositories-workspace-repo-slug-effective-branching-model
+      description: REST surface for repositories-workspace-repo_slug-effective-branching-model.
+      operations:
+      - method: GET
+        name: get
+        description: Get the effective, or currently applied, branching model for a repository
+        call: cloud-rest-branching-model.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/projects/{project-key}/branching-model
+      name: workspaces-workspace-projects-project-key-branching-model
+      description: REST surface for workspaces-workspace-projects-project_key-branching-model.
+      operations:
+      - method: GET
+        name: get
+        description: Get the branching model for a project
+        call: cloud-rest-branching-model.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace}/projects/{project-key}/branching-model/settings
+      name: workspaces-workspace-projects-project-key-branching-model-settings
+      description: REST surface for workspaces-workspace-projects-project_key-branching-model-settings.
+      operations:
+      - method: GET
+        name: get
+        description: Get the branching model config for a project
+        call: cloud-rest-branching-model.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update the branching model config for a project
+        call: cloud-rest-branching-model.put
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-branching-model-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bitbucket API — Branching model. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-branching-model-repository
+      description: Get the branching model for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-branching-model-config-repository
+      description: Get the branching model config for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-branching-model-config-repository
+      description: Update the branching model config for a repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-effective-currently-applied-branching
+      description: Get the effective, or currently applied, branching model for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-branching-model-project
+      description: Get the branching model for a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-branching-model-config-project
+      description: Get the branching model config for a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-branching-model-config-project
+      description: Update the branching model config for a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-branching-model.put
+      outputParameters:
+      - type: object
+        mapping: $.

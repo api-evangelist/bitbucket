@@ -1,0 +1,1068 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bitbucket API — Issue tracker
+  description: 'Bitbucket API — Issue tracker. 33 operations. Lead operation: List components. Self-contained Naftiko capability
+    covering one Bitbucket business surface.'
+  tags:
+  - Bitbucket
+  - Issue tracker
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BITBUCKET_API_KEY: BITBUCKET_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-rest-issue-tracker
+    baseUri: https://api.bitbucket.org/2.0
+    description: Bitbucket API — Issue tracker business capability. Self-contained, no shared references.
+    resources:
+    - name: repositories-workspace-repo_slug-components
+      path: /repositories/{workspace}/{repo_slug}/components
+      operations:
+      - name: get
+        method: GET
+        description: List components
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-components-component_id
+      path: /repositories/{workspace}/{repo_slug}/components/{component_id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a component for issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues
+      path: /repositories/{workspace}/{repo_slug}/issues
+      operations:
+      - name: get
+        method: GET
+        description: List issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The new issue. The only required element is `title`. All other elements can be omitted from the body.
+          required: true
+    - name: repositories-workspace-repo_slug-issues-export
+      path: /repositories/{workspace}/{repo_slug}/issues/export
+      operations:
+      - name: post
+        method: POST
+        description: Export issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: 'The options to apply to the export. Available options include `project_key` and `project_name` which,
+            if specified, are used as the project key and name in the '
+    - name: repositories-workspace-repo_slug-issues-export-repo_name}-issues-{task_id}.zip
+      path: /repositories/{workspace}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip
+      operations:
+      - name: get
+        method: GET
+        description: Check issue export status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-import
+      path: /repositories/{workspace}/{repo_slug}/issues/import
+      operations:
+      - name: get
+        method: GET
+        description: Check issue import status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Import issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Get an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id-attachments
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments
+      operations:
+      - name: get
+        method: GET
+        description: List attachments for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Upload an attachment to an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id-attachments-path
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an attachment for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Get attachment for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id-changes
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes
+      operations:
+      - name: get
+        method: GET
+        description: List changes on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Query string to narrow down the response. See
+        - name: sort
+          in: query
+          type: string
+          description: Name of a response property to sort results. See
+      - name: post
+        method: POST
+        description: Modify the state of an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The new issue state change. The only required elements are `changes.[].new`. All other elements can
+            be omitted from the body.
+          required: true
+    - name: repositories-workspace-repo_slug-issues-issue_id-changes-change_id
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes/{change_id}
+      operations:
+      - name: get
+        method: GET
+        description: Get issue change object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id-comments
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments
+      operations:
+      - name: get
+        method: GET
+        description: List comments on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Query string to narrow down the response as per
+      - name: post
+        method: POST
+        description: Create a comment on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The new issue comment object.
+          required: true
+    - name: repositories-workspace-repo_slug-issues-issue_id-comments-comment_id
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a comment on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Get a comment on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update a comment on an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _body
+          in: body
+          type: string
+          description: The updated comment.
+          required: true
+    - name: repositories-workspace-repo_slug-issues-issue_id-vote
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote
+      operations:
+      - name: delete
+        method: DELETE
+        description: Remove vote for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Check if current user voted for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Vote for an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-issues-issue_id-watch
+      path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch
+      operations:
+      - name: delete
+        method: DELETE
+        description: Stop watching an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Check if current user is watching a issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Watch an issue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-milestones
+      path: /repositories/{workspace}/{repo_slug}/milestones
+      operations:
+      - name: get
+        method: GET
+        description: List milestones
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-milestones-milestone_id
+      path: /repositories/{workspace}/{repo_slug}/milestones/{milestone_id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a milestone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-versions
+      path: /repositories/{workspace}/{repo_slug}/versions
+      operations:
+      - name: get
+        method: GET
+        description: List defined versions for issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repositories-workspace-repo_slug-versions-version_id
+      path: /repositories/{workspace}/{repo_slug}/versions/{version_id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a defined version for issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: cloud-rest-issue-tracker-rest
+    port: 8080
+    description: REST adapter for Bitbucket API — Issue tracker. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/repositories/{workspace}/{repo-slug}/components
+      name: repositories-workspace-repo-slug-components
+      description: REST surface for repositories-workspace-repo_slug-components.
+      operations:
+      - method: GET
+        name: get
+        description: List components
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/components/{component-id}
+      name: repositories-workspace-repo-slug-components-component-id
+      description: REST surface for repositories-workspace-repo_slug-components-component_id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a component for issues
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues
+      name: repositories-workspace-repo-slug-issues
+      description: REST surface for repositories-workspace-repo_slug-issues.
+      operations:
+      - method: GET
+        name: get
+        description: List issues
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create an issue
+        call: cloud-rest-issue-tracker.post
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/export
+      name: repositories-workspace-repo-slug-issues-export
+      description: REST surface for repositories-workspace-repo_slug-issues-export.
+      operations:
+      - method: POST
+        name: post
+        description: Export issues
+        call: cloud-rest-issue-tracker.post
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/export/repo-name-issues-task-id-zip
+      name: repositories-workspace-repo-slug-issues-export-repo-name-issues-task-id-zip
+      description: REST surface for repositories-workspace-repo_slug-issues-export-repo_name}-issues-{task_id}.zip.
+      operations:
+      - method: GET
+        name: get
+        description: Check issue export status
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/import
+      name: repositories-workspace-repo-slug-issues-import
+      description: REST surface for repositories-workspace-repo_slug-issues-import.
+      operations:
+      - method: GET
+        name: get
+        description: Check issue import status
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Import issues
+        call: cloud-rest-issue-tracker.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}
+      name: repositories-workspace-repo-slug-issues-issue-id
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an issue
+        call: cloud-rest-issue-tracker.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Get an issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update an issue
+        call: cloud-rest-issue-tracker.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/attachments
+      name: repositories-workspace-repo-slug-issues-issue-id-attachments
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-attachments.
+      operations:
+      - method: GET
+        name: get
+        description: List attachments for an issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Upload an attachment to an issue
+        call: cloud-rest-issue-tracker.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/attachments/{path}
+      name: repositories-workspace-repo-slug-issues-issue-id-attachments-path
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-attachments-path.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an attachment for an issue
+        call: cloud-rest-issue-tracker.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Get attachment for an issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/changes
+      name: repositories-workspace-repo-slug-issues-issue-id-changes
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-changes.
+      operations:
+      - method: GET
+        name: get
+        description: List changes on an issue
+        call: cloud-rest-issue-tracker.get
+        with:
+          q: rest.q
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Modify the state of an issue
+        call: cloud-rest-issue-tracker.post
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/changes/{change-id}
+      name: repositories-workspace-repo-slug-issues-issue-id-changes-change-id
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-changes-change_id.
+      operations:
+      - method: GET
+        name: get
+        description: Get issue change object
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/comments
+      name: repositories-workspace-repo-slug-issues-issue-id-comments
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-comments.
+      operations:
+      - method: GET
+        name: get
+        description: List comments on an issue
+        call: cloud-rest-issue-tracker.get
+        with:
+          q: rest.q
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a comment on an issue
+        call: cloud-rest-issue-tracker.post
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/comments/{comment-id}
+      name: repositories-workspace-repo-slug-issues-issue-id-comments-comment-id
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-comments-comment_id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a comment on an issue
+        call: cloud-rest-issue-tracker.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Get a comment on an issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update a comment on an issue
+        call: cloud-rest-issue-tracker.put
+        with:
+          _body: rest._body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/vote
+      name: repositories-workspace-repo-slug-issues-issue-id-vote
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-vote.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Remove vote for an issue
+        call: cloud-rest-issue-tracker.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Check if current user voted for an issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Vote for an issue
+        call: cloud-rest-issue-tracker.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/issues/{issue-id}/watch
+      name: repositories-workspace-repo-slug-issues-issue-id-watch
+      description: REST surface for repositories-workspace-repo_slug-issues-issue_id-watch.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Stop watching an issue
+        call: cloud-rest-issue-tracker.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Check if current user is watching a issue
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Watch an issue
+        call: cloud-rest-issue-tracker.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/milestones
+      name: repositories-workspace-repo-slug-milestones
+      description: REST surface for repositories-workspace-repo_slug-milestones.
+      operations:
+      - method: GET
+        name: get
+        description: List milestones
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/milestones/{milestone-id}
+      name: repositories-workspace-repo-slug-milestones-milestone-id
+      description: REST surface for repositories-workspace-repo_slug-milestones-milestone_id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a milestone
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/versions
+      name: repositories-workspace-repo-slug-versions
+      description: REST surface for repositories-workspace-repo_slug-versions.
+      operations:
+      - method: GET
+        name: get
+        description: List defined versions for issues
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repositories/{workspace}/{repo-slug}/versions/{version-id}
+      name: repositories-workspace-repo-slug-versions-version-id
+      description: REST surface for repositories-workspace-repo_slug-versions-version_id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a defined version for issues
+        call: cloud-rest-issue-tracker.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-rest-issue-tracker-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bitbucket API — Issue tracker. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-components
+      description: List components
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-component-issues
+      description: Get a component for issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-issues
+      description: List issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-issue
+      description: Create an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-issues
+      description: Export issues
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-issue-export-status
+      description: Check issue export status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-issue-import-status
+      description: Check issue import status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-issues
+      description: Import issues
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-issue
+      description: Delete an issue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-issue-tracker.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-issue
+      description: Get an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-issue
+      description: Update an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-attachments-issue
+      description: List attachments for an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-attachment-issue
+      description: Upload an attachment to an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-attachment-issue
+      description: Delete an attachment for an issue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-issue-tracker.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-attachment-issue
+      description: Get attachment for an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-changes-issue
+      description: List changes on an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      with:
+        q: tools.q
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-state-issue
+      description: Modify the state of an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-issue-change-object
+      description: Get issue change object
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-comments-issue
+      description: List comments on an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      with:
+        q: tools.q
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-comment-issue
+      description: Create a comment on an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-rest-issue-tracker.post
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-comment-issue
+      description: Delete a comment on an issue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-issue-tracker.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-comment-issue
+      description: Get a comment on an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-comment-issue
+      description: Update a comment on an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.put
+      with:
+        _body: tools._body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-vote-issue
+      description: Remove vote for an issue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-issue-tracker.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-if-current-user-voted
+      description: Check if current user voted for an issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: vote-issue
+      description: Vote for an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-watching-issue
+      description: Stop watching an issue
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-rest-issue-tracker.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-if-current-user-is
+      description: Check if current user is watching a issue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: watch-issue
+      description: Watch an issue
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-milestones
+      description: List milestones
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-milestone
+      description: Get a milestone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-defined-versions-issues
+      description: List defined versions for issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-defined-version-issues
+      description: Get a defined version for issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-rest-issue-tracker.get
+      outputParameters:
+      - type: object
+        mapping: $.
