@@ -1,0 +1,199 @@
+name: Bitbucket Domain Vocabulary
+provider: Bitbucket
+providerId: bitbucket
+description: Tag-derived vocabulary for the Bitbucket API surface; sourced from openapi/ tags.
+terms:
+- term: Addon
+  description: 'The addon resource is intended to use used by Bitbucket Cloud Connect
+
+    Apps, and only supports JWT authentication.'
+- term: Branch restrictions
+  description: 'Repository owners and administrators can set branch management
+
+    rules on a repository that control what can be pushed by whom.
+
+    Through these rules, you can enforce a project or team
+
+    workflow. For example, owners or administrators can:
+
+
+    * Limit push powers
+
+    * Prevent branch deletion
+
+    * Prevent history re-writes (Git only)'
+- term: Branching model
+  description: 'The branching model resource is used to modify the branching model
+
+    for a repository.
+
+
+    You can use the branching model to define a branch based workflow
+
+    for your repositories. When you map your workflow to branch types,
+
+    you can ensure that branches are named consistently by configuring
+
+    which branch types to make available.'
+- term: Commit statuses
+  description: 'Commit statuses provide a way to tag commits with meta data,
+
+    like automated build results.'
+- term: Commits
+  description: 'These are the repository''s commits. They are paginated and returned in
+
+    reverse chronological order, similar to the output of git log.'
+- term: Deployments
+  description: 'Teams are deploying code faster than ever, thanks to continuous
+
+    delivery practices and tools like Bitbucket Pipelines. Bitbucket
+
+    Deployments gives teams visibility into their deployment
+
+    environments and helps teams to track how far changes have
+
+    progressed in their deployment pipeline.'
+- term: Downloads
+  description: Access the list of download links associated with the repository.
+- term: GPG
+  description: The GPG resource allows you to manage GPG keys.
+- term: Issue tracker
+  description: 'The issue resources provide functionality for getting information on
+
+    issues in an issue tracker, creating new issues, updating them and deleting
+
+    them.
+
+
+    You can access public issues without authentication, but you can''t gain access
+
+    to private repositories'' issues. By authenticating, you will get the ability
+
+    to create issues, as well as access to updating data or deleting issues you
+
+    have access to. Issue Tracker features are not supported for repositories in workspaces administered through admin.atlassian.com.'
+- term: Pipelines
+  description: 'Bitbucket Pipelines brings continuous delivery to Bitbucket
+
+    Cloud, empowering teams with full branching to deployment
+
+    visibility and faster feedback loops.'
+- term: Projects
+  description: 'Bitbucket Cloud projects make it easier for teams to focus on
+
+    a goal, product, or process by organizing their repositories.'
+- term: Pullrequests
+  description: 'Pull requests are a feature that makes it easier for developers
+
+    to collaborate using Bitbucket. They provide a user-friendly web
+
+    interface for discussing proposed changes before integrating them
+
+    into the official project.'
+- term: Refs
+  description: "The refs resource allows you access branches and tags in a repository.\nBy default, results will be in the\
+    \ order the underlying source control\nsystem returns them and identical to the ordering one sees when running\n\"$ git\
+    \ show-ref\". Note that this follows simple lexical ordering of the\n ref names."
+- term: Reports
+  description: 'Code insights provides reports, annotations, and metrics to help you
+
+    and your team improve code quality in pull requests throughout the code
+
+    review process. Some of the available code insights are static analysis
+
+    reports, security scan results, artifact links, unit tests, and build
+
+    status.'
+- term: Repositories
+  description: 'A Git repository is a virtual storage of your project. It
+
+    allows you to save versions of your code, which you can access
+
+    when needed. The repo resource allows you to access public repos,
+
+    or repos that belong to a specific workspace.'
+- term: SSH
+  description: The SSH resource allows you to manage SSH keys.
+- term: Snippets
+  description: "Snippets allow you share code segments or files with yourself, members of\nyour workspace, or the world.\n\
+    \nLike pull requests, repositories and workspaces, the full set of snippets\nis defined by what the current user has access\
+    \ to. This includes all\nsnippets owned by any of the workspaces the user is a member of, or\nsnippets by other users\
+    \ that the current user is either watching or has\n collaborated on (for instance by commenting on it)."
+- term: Source
+  description: "Browse the source code in the repository and\n                              create new commits by uploading."
+- term: Teams
+  description: 'The teams resource has been deprecated, and the workspaces
+
+    endpoint should be used instead.
+
+
+    The teams resource returns all the teams that the authenticated
+
+    user is associated with.'
+- term: Users
+  description: 'The users resource allows you to access public information
+
+    associated with a user account. Most resources in the users
+
+    endpoint have been deprecated in favor of workspaces.'
+- term: Webhooks
+  description: 'Webhooks provide a way to configure Bitbucket Cloud to make requests to
+
+    your server (or another external service) whenever certain events occur in
+
+    Bitbucket Cloud.
+
+
+    A webhook consists of:
+
+
+    * A subject -- The resource that generates the events. Currently, this resource
+
+    is the repository, user account, or team where you create the webhook.
+
+    * One or more event -- The default event is a repository push, but you can
+
+    select multiple events that can trigger the webhook.
+
+    * A URL -- The endpoint where you want Bitbucket to send the event payloads
+
+    when a matching event happens.
+
+
+    There are two parts to getting a webhook to work: creating the webhook and
+
+    triggering the webhook. After you create a webhook for an event, every time
+
+    that event occurs, Bitbucket sends a payload request that describes the event
+
+    to the specified URL. Thus, you can think of webhooks as a kind of
+
+    notification system.
+
+
+    Use webhooks to integrate applications with Bitbucket Cloud. The following
+
+    use cases provides examples of when you would want to use webhooks:
+
+
+    * Every time a user pushes commits in a repository, you may want to notify
+
+    your CI server to start a build.
+
+    * Every time a user pushes commits or creates a pull request, you may want to
+
+    display a notification in your application.'
+- term: Wiki
+  description: 'The wiki is a simple place to keep documents. Some people use it
+
+    as their project home page. The wiki is a Git repository, so you
+
+    can clone it and edit it like any other source files.'
+- term: Workspaces
+  description: 'A workspace is where you create repositories, collaborate on
+
+    your code, and organize different streams of work in your Bitbucket
+
+    Cloud account. Workspaces replace the use of teams and users in API
+
+    calls.'
