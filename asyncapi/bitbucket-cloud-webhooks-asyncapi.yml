@@ -1,0 +1,1021 @@
+asyncapi: 2.6.0
+info:
+  title: Bitbucket Cloud Webhook Events
+  description: >-
+    Bitbucket Cloud webhooks deliver event payloads to a subscriber URL via HTTP
+    POST whenever a configured event occurs in a repository or workspace.
+    Each event request includes an X-Event-Key header identifying the event,
+    an X-Hook-UUID header identifying the webhook subscription, an X-Request-UUID
+    header identifying the delivery, and an X-Attempt-Number header indicating
+    the delivery attempt. Subscribers can register hooks for repository events,
+    pull request events, and issue events on the issue tracker.
+  version: '1.0'
+  contact:
+    name: Atlassian Support
+    url: https://support.atlassian.com/bitbucket-cloud/
+  license:
+    name: Proprietary
+  externalDocs:
+    description: Bitbucket Cloud event payloads documentation
+    url: https://support.atlassian.com/bitbucket-cloud/docs/event-payloads/
+servers:
+  subscriber:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      The subscriber HTTPS endpoint configured for the Bitbucket Cloud webhook.
+      Bitbucket sends an HTTP POST request with a JSON-encoded body to this
+      endpoint when the subscribed event fires.
+    variables:
+      webhookUrl:
+        description: >-
+          The URL of the subscriber endpoint configured in the Bitbucket Cloud
+          webhook settings for a repository or workspace.
+channels:
+  /webhook/repo/push:
+    description: >-
+      Receives the repo:push event payload. Triggered whenever a user pushes
+      changes to the repository. The push payload describes the set of changes
+      (created, updated, or removed branches and tags) included in the push.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoPush
+      summary: Receive a repo:push event
+      message:
+        $ref: '#/components/messages/RepoPush'
+  /webhook/repo/fork:
+    description: >-
+      Receives the repo:fork event payload. Triggered when a user forks the
+      repository. The payload includes both the original repository and the new
+      fork.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoFork
+      summary: Receive a repo:fork event
+      message:
+        $ref: '#/components/messages/RepoFork'
+  /webhook/repo/updated:
+    description: >-
+      Receives the repo:updated event payload. Triggered when a repository's
+      details such as name, description, language, website, or main branch are
+      changed. The payload includes a changes object describing the new and old
+      values.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoUpdated
+      summary: Receive a repo:updated event
+      message:
+        $ref: '#/components/messages/RepoUpdated'
+  /webhook/repo/transfer:
+    description: >-
+      Receives the repo:transfer event payload. Triggered when a repository is
+      transferred from one workspace to another. The payload includes the new
+      repository, the previous workspace owner, and the actor performing the
+      transfer.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoTransfer
+      summary: Receive a repo:transfer event
+      message:
+        $ref: '#/components/messages/RepoTransfer'
+  /webhook/repo/deleted:
+    description: >-
+      Receives the repo:deleted event payload. Triggered when a repository is
+      deleted. The payload includes the original repository and the user who
+      deleted it.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoDeleted
+      summary: Receive a repo:deleted event
+      message:
+        $ref: '#/components/messages/RepoDeleted'
+  /webhook/repo/commit_comment_created:
+    description: >-
+      Receives the repo:commit_comment_created event payload. Triggered when a
+      user comments on a commit in the repository. The payload includes the
+      commit, the comment, and the repository.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoCommitCommentCreated
+      summary: Receive a repo:commit_comment_created event
+      message:
+        $ref: '#/components/messages/RepoCommitCommentCreated'
+  /webhook/repo/commit_status_created:
+    description: >-
+      Receives the repo:commit_status_created event payload. Triggered when a
+      build status is created for a commit, typically by a CI/CD integration.
+      The payload includes the commit status object.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoCommitStatusCreated
+      summary: Receive a repo:commit_status_created event
+      message:
+        $ref: '#/components/messages/RepoCommitStatusCreated'
+  /webhook/repo/commit_status_updated:
+    description: >-
+      Receives the repo:commit_status_updated event payload. Triggered when an
+      existing commit build status is updated (for example, from INPROGRESS to
+      SUCCESSFUL or FAILED).
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveRepoCommitStatusUpdated
+      summary: Receive a repo:commit_status_updated event
+      message:
+        $ref: '#/components/messages/RepoCommitStatusUpdated'
+  /webhook/pullrequest/created:
+    description: >-
+      Receives the pullrequest:created event payload. Triggered when a new pull
+      request is created in the repository.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCreated
+      summary: Receive a pullrequest:created event
+      message:
+        $ref: '#/components/messages/PullRequestCreated'
+  /webhook/pullrequest/updated:
+    description: >-
+      Receives the pullrequest:updated event payload. Triggered when a pull
+      request's title, description, reviewers, or destination branch is updated.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestUpdated
+      summary: Receive a pullrequest:updated event
+      message:
+        $ref: '#/components/messages/PullRequestUpdated'
+  /webhook/pullrequest/approved:
+    description: >-
+      Receives the pullrequest:approved event payload. Triggered when a user
+      approves a pull request. The payload includes an approval object with
+      the date and the approving user.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestApproved
+      summary: Receive a pullrequest:approved event
+      message:
+        $ref: '#/components/messages/PullRequestApproved'
+  /webhook/pullrequest/unapproved:
+    description: >-
+      Receives the pullrequest:unapproved event payload. Triggered when a user
+      removes their approval from a pull request.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestUnapproved
+      summary: Receive a pullrequest:unapproved event
+      message:
+        $ref: '#/components/messages/PullRequestUnapproved'
+  /webhook/pullrequest/fulfilled:
+    description: >-
+      Receives the pullrequest:fulfilled event payload. Triggered when a pull
+      request is merged. The pullrequest object has a state of MERGED.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestFulfilled
+      summary: Receive a pullrequest:fulfilled event
+      message:
+        $ref: '#/components/messages/PullRequestFulfilled'
+  /webhook/pullrequest/rejected:
+    description: >-
+      Receives the pullrequest:rejected event payload. Triggered when a pull
+      request is declined. The pullrequest object has a state of DECLINED.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestRejected
+      summary: Receive a pullrequest:rejected event
+      message:
+        $ref: '#/components/messages/PullRequestRejected'
+  /webhook/pullrequest/comment_created:
+    description: >-
+      Receives the pullrequest:comment_created event payload. Triggered when a
+      user comments on a pull request.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCommentCreated
+      summary: Receive a pullrequest:comment_created event
+      message:
+        $ref: '#/components/messages/PullRequestCommentCreated'
+  /webhook/pullrequest/comment_updated:
+    description: >-
+      Receives the pullrequest:comment_updated event payload. Triggered when a
+      pull request comment is edited.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCommentUpdated
+      summary: Receive a pullrequest:comment_updated event
+      message:
+        $ref: '#/components/messages/PullRequestCommentUpdated'
+  /webhook/pullrequest/comment_deleted:
+    description: >-
+      Receives the pullrequest:comment_deleted event payload. Triggered when a
+      pull request comment is deleted.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCommentDeleted
+      summary: Receive a pullrequest:comment_deleted event
+      message:
+        $ref: '#/components/messages/PullRequestCommentDeleted'
+  /webhook/pullrequest/comment_resolved:
+    description: >-
+      Receives the pullrequest:comment_resolved event payload. Triggered when a
+      pull request comment thread is marked as resolved.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCommentResolved
+      summary: Receive a pullrequest:comment_resolved event
+      message:
+        $ref: '#/components/messages/PullRequestCommentResolved'
+  /webhook/pullrequest/comment_reopened:
+    description: >-
+      Receives the pullrequest:comment_reopened event payload. Triggered when a
+      previously resolved pull request comment thread is reopened.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestCommentReopened
+      summary: Receive a pullrequest:comment_reopened event
+      message:
+        $ref: '#/components/messages/PullRequestCommentReopened'
+  /webhook/pullrequest/changes_request_created:
+    description: >-
+      Receives the pullrequest:changes_request_created event payload. Triggered
+      when a reviewer requests changes on a pull request.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestChangesRequestCreated
+      summary: Receive a pullrequest:changes_request_created event
+      message:
+        $ref: '#/components/messages/PullRequestChangesRequestCreated'
+  /webhook/pullrequest/changes_request_removed:
+    description: >-
+      Receives the pullrequest:changes_request_removed event payload. Triggered
+      when a reviewer removes a previously created change request from a pull
+      request.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receivePullRequestChangesRequestRemoved
+      summary: Receive a pullrequest:changes_request_removed event
+      message:
+        $ref: '#/components/messages/PullRequestChangesRequestRemoved'
+  /webhook/issue/created:
+    description: >-
+      Receives the issue:created event payload. Triggered when a user files a
+      new issue on the repository's issue tracker.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveIssueCreated
+      summary: Receive an issue:created event
+      message:
+        $ref: '#/components/messages/IssueCreated'
+  /webhook/issue/updated:
+    description: >-
+      Receives the issue:updated event payload. Triggered when an issue's
+      status, kind, priority, assignee, or other fields are changed. The
+      payload includes a changes object and may include an associated comment.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveIssueUpdated
+      summary: Receive an issue:updated event
+      message:
+        $ref: '#/components/messages/IssueUpdated'
+  /webhook/issue/comment_created:
+    description: >-
+      Receives the issue:comment_created event payload. Triggered when a user
+      comments on an issue.
+    bindings:
+      http:
+        type: request
+        method: POST
+    publish:
+      operationId: receiveIssueCommentCreated
+      summary: Receive an issue:comment_created event
+      message:
+        $ref: '#/components/messages/IssueCommentCreated'
+components:
+  messages:
+    RepoPush:
+      name: repoPush
+      title: Repository Push
+      summary: >-
+        Fired when a user pushes one or more commits, or creates or deletes a
+        branch or tag in the repository.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoPushPayload'
+    RepoFork:
+      name: repoFork
+      title: Repository Fork
+      summary: Fired when a user forks the repository.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoForkPayload'
+    RepoUpdated:
+      name: repoUpdated
+      title: Repository Updated
+      summary: >-
+        Fired when a repository's details (name, description, language,
+        website, main branch) are changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoUpdatedPayload'
+    RepoTransfer:
+      name: repoTransfer
+      title: Repository Transfer
+      summary: Fired when a repository is transferred from one workspace to another.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoTransferPayload'
+    RepoDeleted:
+      name: repoDeleted
+      title: Repository Deleted
+      summary: Fired when a repository is deleted.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoDeletedPayload'
+    RepoCommitCommentCreated:
+      name: repoCommitCommentCreated
+      title: Commit Comment Created
+      summary: Fired when a user comments on a commit in the repository.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoCommitCommentCreatedPayload'
+    RepoCommitStatusCreated:
+      name: repoCommitStatusCreated
+      title: Commit Status Created
+      summary: Fired when a build status is created for a commit.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoCommitStatusCreatedPayload'
+    RepoCommitStatusUpdated:
+      name: repoCommitStatusUpdated
+      title: Commit Status Updated
+      summary: Fired when an existing build status on a commit is updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/RepoCommitStatusUpdatedPayload'
+    PullRequestCreated:
+      name: pullRequestCreated
+      title: Pull Request Created
+      summary: Fired when a new pull request is created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    PullRequestUpdated:
+      name: pullRequestUpdated
+      title: Pull Request Updated
+      summary: >-
+        Fired when a pull request's title, description, reviewers, or
+        destination branch is updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    PullRequestApproved:
+      name: pullRequestApproved
+      title: Pull Request Approved
+      summary: Fired when a user approves a pull request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestApprovalPayload'
+    PullRequestUnapproved:
+      name: pullRequestUnapproved
+      title: Pull Request Unapproved
+      summary: Fired when a user removes their approval from a pull request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestApprovalPayload'
+    PullRequestFulfilled:
+      name: pullRequestFulfilled
+      title: Pull Request Merged
+      summary: Fired when a pull request is merged.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    PullRequestRejected:
+      name: pullRequestRejected
+      title: Pull Request Declined
+      summary: Fired when a pull request is declined.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    PullRequestCommentCreated:
+      name: pullRequestCommentCreated
+      title: Pull Request Comment Created
+      summary: Fired when a user comments on a pull request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestCommentPayload'
+    PullRequestCommentUpdated:
+      name: pullRequestCommentUpdated
+      title: Pull Request Comment Updated
+      summary: Fired when a pull request comment is edited.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestCommentPayload'
+    PullRequestCommentDeleted:
+      name: pullRequestCommentDeleted
+      title: Pull Request Comment Deleted
+      summary: Fired when a pull request comment is deleted.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestCommentPayload'
+    PullRequestCommentResolved:
+      name: pullRequestCommentResolved
+      title: Pull Request Comment Resolved
+      summary: Fired when a pull request comment thread is marked as resolved.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestCommentPayload'
+    PullRequestCommentReopened:
+      name: pullRequestCommentReopened
+      title: Pull Request Comment Reopened
+      summary: Fired when a previously resolved pull request comment thread is reopened.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestCommentPayload'
+    PullRequestChangesRequestCreated:
+      name: pullRequestChangesRequestCreated
+      title: Pull Request Changes Requested
+      summary: Fired when a reviewer requests changes on a pull request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    PullRequestChangesRequestRemoved:
+      name: pullRequestChangesRequestRemoved
+      title: Pull Request Changes Request Removed
+      summary: Fired when a reviewer removes a previously created change request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/PullRequestPayload'
+    IssueCreated:
+      name: issueCreated
+      title: Issue Created
+      summary: Fired when a new issue is filed on the repository's issue tracker.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/IssuePayload'
+    IssueUpdated:
+      name: issueUpdated
+      title: Issue Updated
+      summary: >-
+        Fired when an issue's fields (status, kind, priority, assignee, etc.)
+        are changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/IssueUpdatedPayload'
+    IssueCommentCreated:
+      name: issueCommentCreated
+      title: Issue Comment Created
+      summary: Fired when a user comments on an issue.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/EventHeaders'
+      payload:
+        $ref: '#/components/schemas/IssueCommentCreatedPayload'
+  schemas:
+    EventHeaders:
+      type: object
+      description: >-
+        HTTP headers sent by Bitbucket Cloud with every webhook event request.
+      properties:
+        X-Event-Key:
+          type: string
+          description: >-
+            The event key of the event that triggered the webhook (for example,
+            repo:push).
+        X-Hook-UUID:
+          type: string
+          description: The UUID of the webhook that the event triggered.
+        X-Request-UUID:
+          type: string
+          description: The UUID identifying the specific delivery attempt.
+        X-Attempt-Number:
+          type: string
+          description: The retry attempt number for this webhook delivery.
+    Account:
+      type: object
+      description: >-
+        Common Account entity. An Account is either a user, a team, or an
+        application user (AppUser).
+      properties:
+        type:
+          type: string
+          description: The account subtype (user, team, or app_user).
+        uuid:
+          type: string
+        display_name:
+          type: string
+        nickname:
+          type: string
+        account_id:
+          type: string
+        links:
+          type: object
+    Repository:
+      type: object
+      description: Common Repository entity.
+      properties:
+        type:
+          type: string
+        uuid:
+          type: string
+        name:
+          type: string
+        full_name:
+          type: string
+        scm:
+          type: string
+        is_private:
+          type: boolean
+        owner:
+          $ref: '#/components/schemas/Account'
+        workspace:
+          $ref: '#/components/schemas/Workspace'
+        project:
+          type: object
+        website:
+          type: string
+        links:
+          type: object
+    Workspace:
+      type: object
+      description: Common Workspace entity (the container of the repository).
+      properties:
+        type:
+          type: string
+        uuid:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        links:
+          type: object
+    Commit:
+      type: object
+      description: Common Commit entity.
+      properties:
+        type:
+          type: string
+        hash:
+          type: string
+        date:
+          type: string
+          format: date-time
+        author:
+          type: object
+        message:
+          type: string
+        links:
+          type: object
+        parents:
+          type: array
+          items:
+            type: object
+    Comment:
+      type: object
+      description: Common Comment entity used for commit, pull request, and issue comments.
+      properties:
+        id:
+          type: integer
+        parent:
+          type: object
+        content:
+          type: object
+          properties:
+            raw:
+              type: string
+            html:
+              type: string
+            markup:
+              type: string
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/Account'
+        links:
+          type: object
+    PullRequest:
+      type: object
+      description: Common Pull Request entity.
+      properties:
+        type:
+          type: string
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+          description: One of OPEN, MERGED, DECLINED, SUPERSEDED.
+        author:
+          $ref: '#/components/schemas/Account'
+        source:
+          type: object
+        destination:
+          type: object
+        merge_commit:
+          type: object
+        participants:
+          type: array
+          items:
+            type: object
+        reviewers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        close_source_branch:
+          type: boolean
+        closed_by:
+          $ref: '#/components/schemas/Account'
+        reason:
+          type: string
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        links:
+          type: object
+    Issue:
+      type: object
+      description: Common Issue entity (issue tracker).
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: object
+        state:
+          type: string
+        kind:
+          type: string
+        priority:
+          type: string
+        reporter:
+          $ref: '#/components/schemas/Account'
+        assignee:
+          $ref: '#/components/schemas/Account'
+        milestone:
+          type: object
+        component:
+          type: object
+        version:
+          type: object
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        links:
+          type: object
+    CommitStatus:
+      type: object
+      description: Common Commit Status entity.
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+          description: One of INPROGRESS, SUCCESSFUL, FAILED, STOPPED.
+        url:
+          type: string
+        commit:
+          $ref: '#/components/schemas/Commit'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        links:
+          type: object
+    PushChange:
+      type: object
+      description: >-
+        A single change in a push event, describing the new and old reference
+        states for a branch or tag and the list of commits.
+      properties:
+        new:
+          type: object
+          description: The new state of the reference, or null if the ref was deleted.
+        old:
+          type: object
+          description: The previous state of the reference, or null if the ref was created.
+        links:
+          type: object
+        created:
+          type: boolean
+        forced:
+          type: boolean
+        closed:
+          type: boolean
+        commits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Commit'
+        truncated:
+          type: boolean
+    RepoPushPayload:
+      type: object
+      description: Payload for the repo:push event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        push:
+          type: object
+          properties:
+            changes:
+              type: array
+              items:
+                $ref: '#/components/schemas/PushChange'
+    RepoForkPayload:
+      type: object
+      description: Payload for the repo:fork event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        fork:
+          $ref: '#/components/schemas/Repository'
+    RepoUpdatedPayload:
+      type: object
+      description: Payload for the repo:updated event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        changes:
+          type: object
+          description: >-
+            Details of the change, including the new value and previous value
+            for each updated property (name, description, language, website,
+            links, main branch).
+    RepoTransferPayload:
+      type: object
+      description: Payload for the repo:transfer event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        previous_workspace:
+          $ref: '#/components/schemas/Workspace'
+    RepoDeletedPayload:
+      type: object
+      description: Payload for the repo:deleted event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+    RepoCommitCommentCreatedPayload:
+      type: object
+      description: Payload for the repo:commit_comment_created event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        comment:
+          $ref: '#/components/schemas/Comment'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        commit:
+          $ref: '#/components/schemas/Commit'
+    RepoCommitStatusCreatedPayload:
+      type: object
+      description: Payload for the repo:commit_status_created event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        commit_status:
+          $ref: '#/components/schemas/CommitStatus'
+    RepoCommitStatusUpdatedPayload:
+      type: object
+      description: Payload for the repo:commit_status_updated event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        commit_status:
+          $ref: '#/components/schemas/CommitStatus'
+    PullRequestPayload:
+      type: object
+      description: >-
+        Payload shared by pullrequest:created, pullrequest:updated,
+        pullrequest:fulfilled, pullrequest:rejected,
+        pullrequest:changes_request_created, and
+        pullrequest:changes_request_removed events.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        pullrequest:
+          $ref: '#/components/schemas/PullRequest'
+        repository:
+          $ref: '#/components/schemas/Repository'
+    PullRequestApprovalPayload:
+      type: object
+      description: Payload for pullrequest:approved and pullrequest:unapproved events.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        pullrequest:
+          $ref: '#/components/schemas/PullRequest'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        approval:
+          type: object
+          description: Details of the approval action.
+          properties:
+            date:
+              type: string
+              format: date-time
+            user:
+              $ref: '#/components/schemas/Account'
+    PullRequestCommentPayload:
+      type: object
+      description: >-
+        Payload for pullrequest:comment_created, pullrequest:comment_updated,
+        pullrequest:comment_deleted, pullrequest:comment_resolved, and
+        pullrequest:comment_reopened events.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        pullrequest:
+          $ref: '#/components/schemas/PullRequest'
+        comment:
+          $ref: '#/components/schemas/Comment'
+    IssuePayload:
+      type: object
+      description: Payload for the issue:created event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        issue:
+          $ref: '#/components/schemas/Issue'
+        repository:
+          $ref: '#/components/schemas/Repository'
+    IssueUpdatedPayload:
+      type: object
+      description: Payload for the issue:updated event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        issue:
+          $ref: '#/components/schemas/Issue'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        comment:
+          $ref: '#/components/schemas/Comment'
+          description: The comment added with the update, when present.
+        changes:
+          type: object
+          description: >-
+            Details of the change to the issue, including new and previous
+            values for the modified fields.
+    IssueCommentCreatedPayload:
+      type: object
+      description: Payload for the issue:comment_created event.
+      properties:
+        actor:
+          $ref: '#/components/schemas/Account'
+        repository:
+          $ref: '#/components/schemas/Repository'
+        issue:
+          $ref: '#/components/schemas/Issue'
+        comment:
+          $ref: '#/components/schemas/Comment'

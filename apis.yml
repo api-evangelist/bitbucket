@@ -17,7 +17,7 @@ tags:
 - Version Control
 url: https://raw.githubusercontent.com/api-evangelist/bitbucket/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-05-29'
 specificationVersion: '0.19'
 apis:
 - aid: bitbucket:bitbucket-cloud-rest-api
@@ -111,6 +111,8 @@ apis:
     url: capabilities/cloud-rest-workspaces.yaml
   - type: NaftikoCapability
     url: capabilities/cloud-rest-properties.yaml
+  - type: AsyncAPI
+    url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/atlassian
