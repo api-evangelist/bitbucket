@@ -5,7 +5,7 @@ description: >-
   free accounts with unlimited private repositories, along with CI/CD pipelines, code reviews via pull requests, and
   code collaboration tools for development teams.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Atlassian
   - CI/CD
