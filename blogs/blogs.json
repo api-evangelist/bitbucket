@@ -2,11 +2,11 @@
   "repo": "bitbucket",
   "feeds": [
     {
-      "source": "https://www.atlassian.com/bitbucket/blog/",
+      "source": "https://www.atlassian.com/blog/comments/feed",
       "feed_url": "https://www.atlassian.com/blog/comments/feed",
       "title": "",
-      "saved": 2,
-      "method": "discovered"
+      "saved": 3,
+      "method": "feed"
     },
     {
       "source": "https://bitbucket.org/account/signup/",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 17,
+  "fetched": "2026-06-27T12:03:07Z"
 }

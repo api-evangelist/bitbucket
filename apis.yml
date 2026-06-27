@@ -59,13 +59,13 @@ apis:
         url: json-structure/bitbucket-cloud-rest-api-pipeline-structure.json
       - type: JSONStructure
         url: json-structure/bitbucket-cloud-rest-api-commit-structure.json
-      - type: Example
+      - type: Examples
         url: examples/bitbucket-cloud-rest-api-repository-example.json
-      - type: Example
+      - type: Examples
         url: examples/bitbucket-cloud-rest-api-pullrequest-example.json
-      - type: Example
+      - type: Examples
         url: examples/bitbucket-cloud-rest-api-pipeline-example.json
-      - type: Example
+      - type: Examples
         url: examples/bitbucket-cloud-rest-api-commit-example.json
       - type: AsyncAPI
         url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
@@ -80,7 +80,7 @@ common:
     url: https://www.atlassian.com/legal/cloud-terms-of-service
   - type: PrivacyPolicy
     url: https://www.atlassian.com/legal/privacy-policy
-  - type: SignUp
+  - type: Signup
     url: https://bitbucket.org/account/signup/
   - type: Blog
     url: https://bitbucket.org/blog/
