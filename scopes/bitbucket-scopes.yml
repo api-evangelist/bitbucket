@@ -1,0 +1,169 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bitbucket-cloud-rest-api-openapi.json
+schemes:
+- name: oauth2
+  source: openapi/bitbucket-cloud-rest-api-openapi.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://bitbucket.org/site/oauth2/authorize
+    tokenUrl: https://bitbucket.org/site/oauth2/access_token
+  description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+scopes:
+- scope: account
+  description: Read your account information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: account:write
+  description: Read and modify your account information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: email
+  description: Read your account's primary email address
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: issue
+  description: Read your repositories' issues
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: issue:write
+  description: Read and modify your repositories' issues
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: pipeline
+  description: Access your repositories' build pipelines
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: pipeline:variable
+  description: Access your repositories' build pipelines and configure their variables
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: pipeline:write
+  description: Access and rerun your repositories' build pipelines
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: project
+  description: Read your workspace's project settings and read repositories contained within
+    your workspace's projects
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: project:admin
+  description: Read and modify settings for projects in your workspace
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: pullrequest
+  description: Read your repositories and their pull requests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: pullrequest:write
+  description: Read and modify your repositories and their pull requests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: repository
+  description: Read your repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: repository:admin
+  description: Administer your repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: repository:delete
+  description: Delete your repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: repository:write
+  description: Read and modify your repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: runner
+  description: Access your workspaces/repositories' runners
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: runner:write
+  description: Access and edit your workspaces/repositories' runners
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: snippet
+  description: Read your snippets
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: snippet:write
+  description: Read and modify your snippets
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: team
+  description: Read your team membership information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: team:write
+  description: Read and modify your team membership information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: test
+  description: Access your workspaces/repositories' test
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: test:write
+  description: Access and edit your workspaces/repositories' test
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: webhook
+  description: Read and modify your repositories' webhooks
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json
+- scope: wiki
+  description: Read and modify your repositories' wikis
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/bitbucket-cloud-rest-api-openapi.json

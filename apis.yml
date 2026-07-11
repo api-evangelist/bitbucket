@@ -70,6 +70,8 @@ apis:
       - type: AsyncAPI
         url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 common:
+  - type: OAuthScopes
+    url: scopes/bitbucket-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/atlassian
   - type: Portal
