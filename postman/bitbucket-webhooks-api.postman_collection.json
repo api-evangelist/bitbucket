@@ -1,0 +1,2607 @@
+{
+  "info": {
+    "_postman_id": "abc47866-4906-4d2d-a711-6ec8d2494060",
+    "name": "Bitbucket Addon Webhooks API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:15:04.000Z",
+    "updatedAt": "2026-07-28T01:15:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-abc47866-4906-4d2d-a711-6ec8d2494060"
+  },
+  "item": [
+    {
+      "name": "hook_events",
+      "item": [
+        {
+          "name": "{subject_type}",
+          "item": [
+            {
+              "name": "List subscribable webhook types",
+              "id": "a503acfb-3983-4162-98b8-8285942ed60c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hook_events/:subject_type",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hook_events",
+                    ":subject_type"
+                  ],
+                  "variable": [
+                    {
+                      "id": "74ed191f-9c6e-4562-845b-fc5fc00862ad",
+                      "key": "subject_type",
+                      "value": "repository",
+                      "description": "(Required) A resource or subject type."
+                    }
+                  ]
+                },
+                "description": "Returns a paginated list of all valid webhook events for the\nspecified entity.\n**The team and user webhooks are deprecated, and you should use workspace instead.\nFor more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/).**\n\nThis is public data that does not require any scopes or authentication.\n\nNOTE: The example response is a truncated response object for the `workspace` `subject_type`.\nWe return the same structure for the other `subject_type` objects."
+              },
+              "response": [
+                {
+                  "id": "3f1e6c83-4090-412e-b39b-4709b04b74f9",
+                  "name": "A paginated list of webhook types available to subscribe on.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hook_events/:subject_type",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hook_events",
+                        ":subject_type"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subject_type"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"event\": \"pullrequest:push\",\n      \"category\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"event\": \"pullrequest:unapproved\",\n      \"category\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-3f1e6c83-4090-412e-b39b-4709b04b74f9"
+                },
+                {
+                  "id": "9b846504-308b-43a4-86f5-40cbb5e0a6da",
+                  "name": "If an invalid `{subject_type}` value was specified.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hook_events/:subject_type",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hook_events",
+                        ":subject_type"
+                      ],
+                      "variable": [
+                        {
+                          "key": "subject_type"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-9b846504-308b-43a4-86f5-40cbb5e0a6da"
+                }
+              ],
+              "createdAt": "2026-07-28T01:15:04.000Z",
+              "updatedAt": "2026-07-28T01:15:04.000Z",
+              "uid": "35240-a503acfb-3983-4162-98b8-8285942ed60c"
+            }
+          ],
+          "id": "1f0c48ac-e44c-4d2c-850c-129cf09db9a7",
+          "createdAt": "2026-07-28T01:15:04.000Z",
+          "updatedAt": "2026-07-28T01:15:04.000Z",
+          "uid": "35240-1f0c48ac-e44c-4d2c-850c-129cf09db9a7"
+        },
+        {
+          "name": "Get a webhook resource",
+          "id": "f27c6bd6-7ca8-4806-bea6-19781904db8a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/hook_events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hook_events"
+              ]
+            },
+            "description": "Returns the webhook resource or subject types on which webhooks can\nbe registered.\n\nEach resource/subject type contains an `events` link that returns the\npaginated list of specific events each individual subject type can\nemit.\n\nThis endpoint is publicly accessible and does not require\nauthentication or scopes."
+          },
+          "response": [
+            {
+              "id": "ce2c41d8-1b01-41b6-8c3a-fd35e3aa33e7",
+              "name": "A mapping of resource/subject types pointing to their individual event types.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hook_events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hook_events"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"repository\": {\n    \"events\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"workspace\": {\n    \"events\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:15:04.000Z",
+              "updatedAt": "2026-07-28T01:15:04.000Z",
+              "uid": "35240-ce2c41d8-1b01-41b6-8c3a-fd35e3aa33e7"
+            }
+          ],
+          "createdAt": "2026-07-28T01:15:04.000Z",
+          "updatedAt": "2026-07-28T01:15:04.000Z",
+          "uid": "35240-f27c6bd6-7ca8-4806-bea6-19781904db8a"
+        }
+      ],
+      "id": "4c2d8df1-d1d7-43a9-ba43-182a7fcc9d52",
+      "createdAt": "2026-07-28T01:15:04.000Z",
+      "updatedAt": "2026-07-28T01:15:04.000Z",
+      "uid": "35240-4c2d8df1-d1d7-43a9-ba43-182a7fcc9d52"
+    },
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "hooks",
+                  "item": [
+                    {
+                      "name": "{uid}",
+                      "item": [
+                        {
+                          "name": "Delete a webhook for a repository",
+                          "id": "16764f33-7c9f-40db-80fb-55ac4f58217e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "867d63cb-77de-47dd-b2f1-afb90b8d0de0",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "d73f5ce8-58c0-448e-8880-b4d30350c999",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "813ed3c1-c284-44e1-833d-94baa2d210ea",
+                                  "key": "uid",
+                                  "value": "<string>",
+                                  "description": "(Required) Installed webhook's ID"
+                                }
+                              ]
+                            },
+                            "description": "Deletes the specified webhook subscription from the given\nrepository."
+                          },
+                          "response": [
+                            {
+                              "id": "d8fc1dfd-1c7e-44f8-b942-bb5c9962b537",
+                              "name": "When the webhook was deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-d8fc1dfd-1c7e-44f8-b942-bb5c9962b537"
+                            },
+                            {
+                              "id": "79d2bdb1-f71b-42cc-9cad-afe5fd7ae3a2",
+                              "name": "If the authenticated user does not have permission to delete the webhook.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-79d2bdb1-f71b-42cc-9cad-afe5fd7ae3a2"
+                            },
+                            {
+                              "id": "8585d2d1-e865-4d31-8422-e9d2995385f2",
+                              "name": "If the webhook or repository does not exist.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-8585d2d1-e865-4d31-8422-e9d2995385f2"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-16764f33-7c9f-40db-80fb-55ac4f58217e"
+                        },
+                        {
+                          "name": "Get a webhook for a repository",
+                          "id": "629f019f-b28c-4db6-8bf2-0e663e0328db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b7c354a1-785b-46f8-8679-f5f6737f1fea",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "2e3b271c-099b-4b3a-a19c-ac3af820e9b4",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "1560411a-e817-4edc-ae57-fde4ddf29bbc",
+                                  "key": "uid",
+                                  "value": "<string>",
+                                  "description": "(Required) Installed webhook's ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns the webhook with the specified id installed on the specified\nrepository."
+                          },
+                          "response": [
+                            {
+                              "id": "baeb6846-6d13-437f-9f2e-d82c52d996a2",
+                              "name": "The webhook subscription object.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-baeb6846-6d13-437f-9f2e-d82c52d996a2"
+                            },
+                            {
+                              "id": "7ad68d82-0155-4423-9fb4-e1b5c5920902",
+                              "name": "If the webhook or repository does not exist.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-7ad68d82-0155-4423-9fb4-e1b5c5920902"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-629f019f-b28c-4db6-8bf2-0e663e0328db"
+                        },
+                        {
+                          "name": "Update a webhook for a repository",
+                          "id": "4b64b8b7-e8a3-4e4e-84c5-33077c82844a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "71527544-53d7-4415-b1cd-2627e4bf06bf",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "87f48208-576f-4911-9b11-6836349c82d0",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "a01f89f2-decd-4525-876a-1f846c1f9848",
+                                  "key": "uid",
+                                  "value": "<string>",
+                                  "description": "(Required) Installed webhook's ID"
+                                }
+                              ]
+                            },
+                            "description": "Updates the specified webhook subscription.\n\nThe following properties can be mutated:\n\n* `description`\n* `url`\n* `secret`\n* `active`\n* `events`\n\nThe hook's secret is used as a key to generate the HMAC hex digest sent in the\n`X-Hub-Signature` header at delivery time. This signature is only generated\nwhen the hook has a secret.\n\nSet the hook's secret by passing the new value in the `secret` field. Passing a\n`null` value in the `secret` field will remove the secret from the hook. The\nhook's secret can be left unchanged by not passing the `secret` field in the\nrequest."
+                          },
+                          "response": [
+                            {
+                              "id": "3836a21a-eb64-44e3-bb7a-cd140765e962",
+                              "name": "The webhook subscription object.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-3836a21a-eb64-44e3-bb7a-cd140765e962"
+                            },
+                            {
+                              "id": "ec96d584-e4c2-4416-8fd9-f8159e2f7876",
+                              "name": "If the authenticated user does not have permission to update the webhook.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-ec96d584-e4c2-4416-8fd9-f8159e2f7876"
+                            },
+                            {
+                              "id": "c90abe22-611b-4680-af64-a740e5c90863",
+                              "name": "If the webhook or repository does not exist.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks/:uid",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "hooks",
+                                    ":uid"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "uid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:15:04.000Z",
+                              "updatedAt": "2026-07-28T01:15:04.000Z",
+                              "uid": "35240-c90abe22-611b-4680-af64-a740e5c90863"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-4b64b8b7-e8a3-4e4e-84c5-33077c82844a"
+                        }
+                      ],
+                      "id": "5bfbc789-bcba-4a5b-8505-739542b5ee2e",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-5bfbc789-bcba-4a5b-8505-739542b5ee2e"
+                    },
+                    {
+                      "name": "List webhooks for a repository",
+                      "id": "0b5df25b-f4b6-44d0-ab37-177d61131a7d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "id": "192d2a42-2733-414e-8efa-9814b09eb4dc",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "ef533233-86e9-4069-8f62-e04046c9860a",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Returns a paginated list of webhooks installed on this repository."
+                      },
+                      "response": [
+                        {
+                          "id": "6b55f09f-cda9-485a-95d8-74126a817c09",
+                          "name": "The paginated list of installed webhooks.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"subject_type\": \"repository\",\n      \"subject\": {\n        \"type\": \"<string>\"\n      },\n      \"active\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"events\": [\n        \"issue:created\"\n      ],\n      \"secret_set\": \"<boolean>\",\n      \"secret\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"subject_type\": \"workspace\",\n      \"subject\": {\n        \"type\": \"<string>\"\n      },\n      \"active\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"events\": [\n        \"pullrequest:comment_resolved\"\n      ],\n      \"secret_set\": \"<boolean>\",\n      \"secret\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-6b55f09f-cda9-485a-95d8-74126a817c09"
+                        },
+                        {
+                          "id": "8ea48416-7323-4c8d-a0ec-9eb2c6c42d09",
+                          "name": "If the authenticated user does not have permission to access the webhooks.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-8ea48416-7323-4c8d-a0ec-9eb2c6c42d09"
+                        },
+                        {
+                          "id": "6f0cd908-96da-4f33-91cd-38292b83f999",
+                          "name": "If the repository does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-6f0cd908-96da-4f33-91cd-38292b83f999"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-0b5df25b-f4b6-44d0-ab37-177d61131a7d"
+                    },
+                    {
+                      "name": "Create a webhook for a repository",
+                      "id": "8af341a7-378c-421c-8075-60ec89674593",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f5db9f10-e415-4f9c-974c-60c3ce88d648",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "d5f5754f-e7fe-416b-9932-23c3e040a3b4",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Creates a new webhook on the specified repository.\n\nExample:\n\n```\n$ curl -X POST -u credentials -H 'Content-Type: application/json'\n  https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo-slug/hooks\n  -d '\n    {\n      \"description\": \"Webhook Description\",\n      \"url\": \"https://example.com/\",\n      \"active\": true,\n      \"secret\": \"this is a really bad secret\",\n      \"events\": [\n        \"repo:push\",\n        \"issue:created\",\n        \"issue:updated\"\n      ]\n    }'\n```\n\nWhen the `secret` is provided it will be used as the key to generate a HMAC\ndigest value sent in the `X-Hub-Signature` header at delivery time. Passing\na `null` or empty `secret` or not passing a `secret` will leave the webhook's\nsecret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook's\nsecret is set.\n\nNote that this call requires the webhook scope, as well as any scope\nthat applies to the events that the webhook subscribes to. In the\nexample above that means: `webhook`, `repository` and `issue`.\n\nAlso note that the `url` must properly resolve and cannot be an\ninternal, non-routed address."
+                      },
+                      "response": [
+                        {
+                          "id": "f52a9650-4ccb-42b1-9668-b336ca51f927",
+                          "name": "If the webhook was registered successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "The URL of new newly created webhook.",
+                                "type": "text/plain"
+                              },
+                              "key": "Location",
+                              "value": "<string>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-f52a9650-4ccb-42b1-9668-b336ca51f927"
+                        },
+                        {
+                          "id": "8f0f7ced-4d3f-45d3-aeab-1395ce2a6b29",
+                          "name": "If the authenticated user does not have permission to install webhooks on the specified repository.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-8f0f7ced-4d3f-45d3-aeab-1395ce2a6b29"
+                        },
+                        {
+                          "id": "287fa8f6-5559-4825-96fc-05385a95d786",
+                          "name": "If the repository does not exist.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/hooks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "hooks"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-287fa8f6-5559-4825-96fc-05385a95d786"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-8af341a7-378c-421c-8075-60ec89674593"
+                    }
+                  ],
+                  "id": "c8cf3016-ce5f-4c54-85b8-163a3a879bc8",
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-c8cf3016-ce5f-4c54-85b8-163a3a879bc8"
+                }
+              ],
+              "id": "11dce9bf-0ebe-4a82-9953-0a4852ec09ee",
+              "createdAt": "2026-07-28T01:15:04.000Z",
+              "updatedAt": "2026-07-28T01:15:04.000Z",
+              "uid": "35240-11dce9bf-0ebe-4a82-9953-0a4852ec09ee"
+            }
+          ],
+          "id": "888d1722-d240-4e3f-baaa-98191598ed51",
+          "createdAt": "2026-07-28T01:15:04.000Z",
+          "updatedAt": "2026-07-28T01:15:04.000Z",
+          "uid": "35240-888d1722-d240-4e3f-baaa-98191598ed51"
+        }
+      ],
+      "id": "07d76cbb-23bd-4608-836d-e3e75b9331d7",
+      "createdAt": "2026-07-28T01:15:04.000Z",
+      "updatedAt": "2026-07-28T01:15:04.000Z",
+      "uid": "35240-07d76cbb-23bd-4608-836d-e3e75b9331d7"
+    },
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "hooks",
+              "item": [
+                {
+                  "name": "{uid}",
+                  "item": [
+                    {
+                      "name": "Delete a webhook for a workspace",
+                      "id": "f0af9b68-bb2c-42e2-954b-68f4365723ed",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7e9f34e8-2adf-4c3a-8722-4e36d2c764ee",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "1e5a181c-f3cd-4942-9a62-7f43ac9b8e70",
+                              "key": "uid",
+                              "value": "<string>",
+                              "description": "(Required) Installed webhook's ID"
+                            }
+                          ]
+                        },
+                        "description": "Deletes the specified webhook subscription from the given workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "ec7b481f-aa5b-4f1f-afa8-9701533f2583",
+                          "name": "When the webhook was deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-ec7b481f-aa5b-4f1f-afa8-9701533f2583"
+                        },
+                        {
+                          "id": "2401d4ce-a964-44fc-bee8-990b144c163b",
+                          "name": "If the authenticated user does not have permission to delete the webhook.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-2401d4ce-a964-44fc-bee8-990b144c163b"
+                        },
+                        {
+                          "id": "e167464e-f8f5-4f88-9a36-840fe97bf462",
+                          "name": "If the webhook or workspace does not exist.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-e167464e-f8f5-4f88-9a36-840fe97bf462"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-f0af9b68-bb2c-42e2-954b-68f4365723ed"
+                    },
+                    {
+                      "name": "Get a webhook for a workspace",
+                      "id": "67abc555-c891-4458-9e1b-e638ab503c08",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c67666dc-e182-4db3-b269-40ac64acad1e",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "dd0d8edf-8753-4c6c-ba4a-66c97cdb1b27",
+                              "key": "uid",
+                              "value": "<string>",
+                              "description": "(Required) Installed webhook's ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns the webhook with the specified id installed on the given\nworkspace."
+                      },
+                      "response": [
+                        {
+                          "id": "fadb65fe-5aa2-4d69-9a8c-e5d37d540286",
+                          "name": "The webhook subscription object.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-fadb65fe-5aa2-4d69-9a8c-e5d37d540286"
+                        },
+                        {
+                          "id": "933dfb8f-bd52-4720-ac92-94a46faa42b4",
+                          "name": "If the webhook or workspace does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-933dfb8f-bd52-4720-ac92-94a46faa42b4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-67abc555-c891-4458-9e1b-e638ab503c08"
+                    },
+                    {
+                      "name": "Update a webhook for a workspace",
+                      "id": "cb21e5f5-674a-483c-87df-a6f2ee7b8ff4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks",
+                            ":uid"
+                          ],
+                          "variable": [
+                            {
+                              "id": "078b7938-0d58-4289-be04-1783dfb8c701",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "e4608013-f92a-4696-88c0-0c81d1b2e851",
+                              "key": "uid",
+                              "value": "<string>",
+                              "description": "(Required) Installed webhook's ID"
+                            }
+                          ]
+                        },
+                        "description": "Updates the specified webhook subscription.\n\nThe following properties can be mutated:\n\n* `description`\n* `url`\n* `secret`\n* `active`\n* `events`\n\nThe hook's secret is used as a key to generate the HMAC hex digest sent in the\n`X-Hub-Signature` header at delivery time. This signature is only generated\nwhen the hook has a secret.\n\nSet the hook's secret by passing the new value in the `secret` field. Passing a\n`null` value in the `secret` field will remove the secret from the hook. The\nhook's secret can be left unchanged by not passing the `secret` field in the\nrequest."
+                      },
+                      "response": [
+                        {
+                          "id": "bcbc8933-d785-46c7-a15f-eb21b7c64164",
+                          "name": "The webhook subscription object.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-bcbc8933-d785-46c7-a15f-eb21b7c64164"
+                        },
+                        {
+                          "id": "cc1a9af0-f78b-4df1-b680-b5a517109050",
+                          "name": "If the authenticated user does not have permission to update the webhook.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-cc1a9af0-f78b-4df1-b680-b5a517109050"
+                        },
+                        {
+                          "id": "f282acda-6744-4602-96e6-4e27ebb3beae",
+                          "name": "If the webhook or workspace does not exist.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "hooks",
+                                ":uid"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "uid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:15:04.000Z",
+                          "updatedAt": "2026-07-28T01:15:04.000Z",
+                          "uid": "35240-f282acda-6744-4602-96e6-4e27ebb3beae"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-cb21e5f5-674a-483c-87df-a6f2ee7b8ff4"
+                    }
+                  ],
+                  "id": "570201c1-2ad7-41bb-b6fb-3513ceba0731",
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-570201c1-2ad7-41bb-b6fb-3513ceba0731"
+                },
+                {
+                  "name": "List webhooks for a workspace",
+                  "id": "a0710b33-0680-446f-b3b8-1b61cf5d3abc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace",
+                        "hooks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4cd86518-35fc-45b3-adbe-3f8ea3ee1369",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of webhooks installed on this workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "c4a34969-5aa7-4d62-9544-94780bb3b293",
+                      "name": "The paginated list of installed webhooks.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"subject_type\": \"repository\",\n      \"subject\": {\n        \"type\": \"<string>\"\n      },\n      \"active\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"events\": [\n        \"issue:created\"\n      ],\n      \"secret_set\": \"<boolean>\",\n      \"secret\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"description\": \"<string>\",\n      \"subject_type\": \"workspace\",\n      \"subject\": {\n        \"type\": \"<string>\"\n      },\n      \"active\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"events\": [\n        \"pullrequest:comment_resolved\"\n      ],\n      \"secret_set\": \"<boolean>\",\n      \"secret\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-c4a34969-5aa7-4d62-9544-94780bb3b293"
+                    },
+                    {
+                      "id": "2cd6c88a-c833-4b6b-9365-12670de2df1b",
+                      "name": "If the authenticated user is not an owner on the specified workspace.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-2cd6c88a-c833-4b6b-9365-12670de2df1b"
+                    },
+                    {
+                      "id": "a1dc6e2d-0609-4919-b349-5aa8e15387e8",
+                      "name": "If the specified workspace does not exist.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-a1dc6e2d-0609-4919-b349-5aa8e15387e8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-a0710b33-0680-446f-b3b8-1b61cf5d3abc"
+                },
+                {
+                  "name": "Create a webhook for a workspace",
+                  "id": "ad1a6827-b97d-48ab-9aaa-4e818697480c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace",
+                        "hooks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "56a774cc-a3a7-4833-b535-f187a0c1d720",
+                          "key": "workspace",
+                          "value": "<string>",
+                          "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new webhook on the specified workspace.\n\nWorkspace webhooks are fired for events from all repositories contained\nby that workspace.\n\nExample:\n\n```\n$ curl -X POST -u credentials -H 'Content-Type: application/json'\n  https://api.bitbucket.org/2.0/workspaces/my-workspace/hooks\n  -d '\n    {\n      \"description\": \"Webhook Description\",\n      \"url\": \"https://example.com/\",\n      \"active\": true,\n      \"secret\": \"this is a really bad secret\",\n      \"events\": [\n        \"repo:push\",\n        \"issue:created\",\n        \"issue:updated\"\n      ]\n    }'\n```\n\nWhen the `secret` is provided it will be used as the key to generate a HMAC\ndigest value sent in the `X-Hub-Signature` header at delivery time. Passing\na `null` or empty `secret` or not passing a `secret` will leave the webhook's\nsecret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook's\nsecret is set.\n\nThis call requires the webhook scope, as well as any scope\nthat applies to the events that the webhook subscribes to. In the\nexample above that means: `webhook`, `repository` and `issue`.\n\nThe `url` must properly resolve and cannot be an internal, non-routed address.\n\nOnly workspace owners can install webhooks on workspaces."
+                  },
+                  "response": [
+                    {
+                      "id": "2c535cd1-8503-4812-b3a9-4632afe475e8",
+                      "name": "If the webhook was registered successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The URL of new newly created webhook.",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"subject_type\": \"repository\",\n  \"subject\": {\n    \"type\": \"<string>\"\n  },\n  \"active\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"events\": [\n    \"repo:commit_comment_created\"\n  ],\n  \"secret_set\": \"<boolean>\",\n  \"secret\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-2c535cd1-8503-4812-b3a9-4632afe475e8"
+                    },
+                    {
+                      "id": "d831f2b6-b26c-495b-9195-f15a7767c89a",
+                      "name": "If the authenticated user does not have permission to install webhooks on the specified workspace.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-d831f2b6-b26c-495b-9195-f15a7767c89a"
+                    },
+                    {
+                      "id": "63c96ee6-7159-43f3-a9c2-6c32e7ced854",
+                      "name": "If the specified workspace does not exist.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace/hooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace",
+                            "hooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"consequat__79\": \"in eiusmod ipsum\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:15:04.000Z",
+                      "updatedAt": "2026-07-28T01:15:04.000Z",
+                      "uid": "35240-63c96ee6-7159-43f3-a9c2-6c32e7ced854"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:15:04.000Z",
+                  "updatedAt": "2026-07-28T01:15:04.000Z",
+                  "uid": "35240-ad1a6827-b97d-48ab-9aaa-4e818697480c"
+                }
+              ],
+              "id": "18f32cea-8435-4317-9181-4a736a802083",
+              "createdAt": "2026-07-28T01:15:04.000Z",
+              "updatedAt": "2026-07-28T01:15:04.000Z",
+              "uid": "35240-18f32cea-8435-4317-9181-4a736a802083"
+            }
+          ],
+          "id": "aaf6b788-971a-4236-a167-aa9c1729b5fb",
+          "createdAt": "2026-07-28T01:15:04.000Z",
+          "updatedAt": "2026-07-28T01:15:04.000Z",
+          "uid": "35240-aaf6b788-971a-4236-a167-aa9c1729b5fb"
+        }
+      ],
+      "id": "9f2040ea-d5ba-4882-993b-f8e3b748f07b",
+      "createdAt": "2026-07-28T01:15:04.000Z",
+      "updatedAt": "2026-07-28T01:15:04.000Z",
+      "uid": "35240-9f2040ea-d5ba-4882-993b-f8e3b748f07b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

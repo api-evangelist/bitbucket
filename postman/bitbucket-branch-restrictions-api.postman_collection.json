@@ -1,0 +1,1750 @@
+{
+  "info": {
+    "_postman_id": "25b98fef-a140-4bbc-981a-c94c92a60e6c",
+    "name": "Bitbucket Addon Branch restrictions API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:47.000Z",
+    "updatedAt": "2026-07-28T01:13:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-25b98fef-a140-4bbc-981a-c94c92a60e6c"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "branch-restrictions",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Delete a branch restriction rule",
+                          "id": "b7128e97-b1a0-43e6-bd98-9141375cae83",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0062d63a-6add-4895-b4a8-709e68df5fcd",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "de8a2580-db63-4c0c-8f35-f19157693da4",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "ee9cc722-5b62-489e-850a-5a85f7451609",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The restriction rule's id"
+                                }
+                              ]
+                            },
+                            "description": "Deletes an existing branch restriction rule."
+                          },
+                          "response": [
+                            {
+                              "id": "b24bc31a-88e7-45b8-a7b1-dc8a8f74f761",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-b24bc31a-88e7-45b8-a7b1-dc8a8f74f761"
+                            },
+                            {
+                              "id": "4f4593d0-860b-484d-902e-b99ea4b83f44",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-4f4593d0-860b-484d-902e-b99ea4b83f44"
+                            },
+                            {
+                              "id": "63b5defc-86cf-4bbe-a5c0-dd001c556e85",
+                              "name": "If the authenticated user does not have admin access to the repository",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-63b5defc-86cf-4bbe-a5c0-dd001c556e85"
+                            },
+                            {
+                              "id": "f062dc59-7678-4e8a-9ebb-670b1e28835b",
+                              "name": "If the repository or branch restriction id does not exist",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-f062dc59-7678-4e8a-9ebb-670b1e28835b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-b7128e97-b1a0-43e6-bd98-9141375cae83"
+                        },
+                        {
+                          "name": "Get a branch restriction rule",
+                          "id": "377b96d2-9d9a-4a89-978e-48f7ba96b3fd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e3866b49-f988-41f5-9311-1555c4b35cde",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "ca142ced-553a-43e3-9767-b57fb4f870e4",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "e1d12ada-5063-4c23-9fb1-827540f2fedb",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The restriction rule's id"
+                                }
+                              ]
+                            },
+                            "description": "Returns a specific branch restriction rule."
+                          },
+                          "response": [
+                            {
+                              "id": "ea75b071-c099-4592-8093-7bd28acd3666",
+                              "name": "The branch restriction rule",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-ea75b071-c099-4592-8093-7bd28acd3666"
+                            },
+                            {
+                              "id": "412eb251-bb28-4dc7-8c67-1f2df80c4d08",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-412eb251-bb28-4dc7-8c67-1f2df80c4d08"
+                            },
+                            {
+                              "id": "baa2b915-ef80-4aa5-9933-b34341962be7",
+                              "name": "If the authenticated user does not have admin access to the repository",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-baa2b915-ef80-4aa5-9933-b34341962be7"
+                            },
+                            {
+                              "id": "4fce8cf7-fe25-4fae-8d7e-438508ad283b",
+                              "name": "If the repository or branch restriction id does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-4fce8cf7-fe25-4fae-8d7e-438508ad283b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-377b96d2-9d9a-4a89-978e-48f7ba96b3fd"
+                        },
+                        {
+                          "name": "Update a branch restriction rule",
+                          "id": "4c0bcc5c-05ad-49e6-87ae-d4bb92f83891",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b0c817f6-9f3c-4148-9346-88c022ef8b80",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "f739d17c-fbac-4d90-b00e-3f566398b9f7",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "1065ee18-366a-42a2-97f3-ffd01c8bb64a",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The restriction rule's id"
+                                }
+                              ]
+                            },
+                            "description": "Updates an existing branch restriction rule.\n\nFields not present in the request body are ignored.\n\nSee [`POST`](/cloud/bitbucket/rest/api-group-branch-restrictions/#api-repositories-workspace-repo-slug-branch-restrictions-post) for details."
+                          },
+                          "response": [
+                            {
+                              "id": "72a9490f-49c7-4d82-b99c-dac323f19efc",
+                              "name": "The updated branch restriction rule",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-72a9490f-49c7-4d82-b99c-dac323f19efc"
+                            },
+                            {
+                              "id": "fed7f21d-03ec-4057-b9c3-6f6a1d3ef900",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-fed7f21d-03ec-4057-b9c3-6f6a1d3ef900"
+                            },
+                            {
+                              "id": "d3df8340-596f-45d7-9fc3-4969c0d74688",
+                              "name": "If the authenticated user does not have admin access to the repository",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-d3df8340-596f-45d7-9fc3-4969c0d74688"
+                            },
+                            {
+                              "id": "71e1e3a3-fb0f-4ea7-b971-fd32857fda27",
+                              "name": "If the repository or branch restriction id does not exist",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branch-restrictions",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:48.000Z",
+                              "updatedAt": "2026-07-28T01:13:48.000Z",
+                              "uid": "35240-71e1e3a3-fb0f-4ea7-b971-fd32857fda27"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-4c0bcc5c-05ad-49e6-87ae-d4bb92f83891"
+                        }
+                      ],
+                      "id": "f9b9417e-9dbd-4c6a-b352-a76e40ee038c",
+                      "createdAt": "2026-07-28T01:13:48.000Z",
+                      "updatedAt": "2026-07-28T01:13:48.000Z",
+                      "uid": "35240-f9b9417e-9dbd-4c6a-b352-a76e40ee038c"
+                    },
+                    {
+                      "name": "List branch restrictions",
+                      "id": "57dbeca2-bae3-4e93-8d94-1b91698db7c8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions?kind=<string>&pattern=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "branch-restrictions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Branch restrictions of this type",
+                              "key": "kind",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Branch restrictions applied to branches of this pattern",
+                              "key": "pattern",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "376924a6-d8a3-45ff-bc21-5796e7fe06ec",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "fdbbbfbc-652b-4c67-b6af-a6e0508db333",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Returns a paginated list of all branch restrictions on the\nrepository."
+                      },
+                      "response": [
+                        {
+                          "id": "1264c7db-7474-423b-8bc4-e436978bdc28",
+                          "name": "A paginated list of branch restrictions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions?kind=<string>&pattern=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Branch restrictions of this type",
+                                  "key": "kind",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Branch restrictions applied to branches of this pattern",
+                                  "key": "pattern",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"branch_match_kind\": \"branching_model\",\n      \"kind\": \"require_approvals_to_merge\",\n      \"pattern\": \"<string>\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"id\": \"<integer>\",\n      \"branch_type\": \"development\",\n      \"value\": \"<integer>\",\n      \"users\": [\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"ut230\": \"est nulla\",\n            \"deserunt1e\": false,\n            \"laboris4\": true\n          },\n          \"created_on\": \"<dateTime>\",\n          \"display_name\": \"<string>\",\n          \"uuid\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"cillum7\": 86331053,\n            \"elit_53e\": false\n          },\n          \"created_on\": \"<dateTime>\",\n          \"display_name\": \"<string>\",\n          \"uuid\": \"<string>\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"dolord\": \"est quis consectetur nulla\"\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"workspace\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"members\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"owners\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"projects\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"repositories\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"snippets\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"self\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"name\": \"<string>\",\n            \"slug\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"is_privacy_enforced\": \"<boolean>\",\n            \"forking_mode\": \"allow_forks\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"full_slug\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"consectetur54_\": true,\n              \"dolorea\": \"occaecat nostrud culpa in\",\n              \"tempor_c\": \"aliquip\"\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"workspace\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"members\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"owners\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"projects\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"repositories\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"snippets\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"self\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"name\": \"<string>\",\n            \"slug\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"is_privacy_enforced\": \"<boolean>\",\n            \"forking_mode\": \"internal_only\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"full_slug\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"branch_match_kind\": \"branching_model\",\n      \"kind\": \"require_all_dependencies_merged\",\n      \"pattern\": \"<string>\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"id\": \"<integer>\",\n      \"branch_type\": \"hotfix\",\n      \"value\": \"<integer>\",\n      \"users\": [\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"est_fd\": \"Lorem\",\n            \"Duis_503\": -79036202.05633639\n          },\n          \"created_on\": \"<dateTime>\",\n          \"display_name\": \"<string>\",\n          \"uuid\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"nulla4\": \"reprehenderit nostrud\",\n            \"ada10\": true\n          },\n          \"created_on\": \"<dateTime>\",\n          \"display_name\": \"<string>\",\n          \"uuid\": \"<string>\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"utd56\": 44356642.7243582,\n              \"labore_c1\": \"in reprehenderit adipisic\"\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"workspace\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"members\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"owners\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"projects\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"repositories\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"snippets\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"self\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"name\": \"<string>\",\n            \"slug\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"is_privacy_enforced\": \"<boolean>\",\n            \"forking_mode\": \"allow_forks\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"full_slug\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"workspace\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"members\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"owners\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"projects\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"repositories\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"snippets\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"self\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"name\": \"<string>\",\n            \"slug\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"is_privacy_enforced\": \"<boolean>\",\n            \"forking_mode\": \"internal_only\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"full_slug\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-1264c7db-7474-423b-8bc4-e436978bdc28"
+                        },
+                        {
+                          "id": "06497051-23e5-4510-b25d-b3fe9267f309",
+                          "name": "If the request was not authenticated",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions?kind=<string>&pattern=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Branch restrictions of this type",
+                                  "key": "kind",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Branch restrictions applied to branches of this pattern",
+                                  "key": "pattern",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-06497051-23e5-4510-b25d-b3fe9267f309"
+                        },
+                        {
+                          "id": "1fe1d42e-32b8-43f6-b919-cbfa0c7d9dfc",
+                          "name": "If the authenticated user does not have admin access to the repository",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions?kind=<string>&pattern=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Branch restrictions of this type",
+                                  "key": "kind",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Branch restrictions applied to branches of this pattern",
+                                  "key": "pattern",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-1fe1d42e-32b8-43f6-b919-cbfa0c7d9dfc"
+                        },
+                        {
+                          "id": "54b502bc-2daa-47ff-9957-4d0c8618b2ad",
+                          "name": "If the repository does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions?kind=<string>&pattern=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Branch restrictions of this type",
+                                  "key": "kind",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Branch restrictions applied to branches of this pattern",
+                                  "key": "pattern",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-54b502bc-2daa-47ff-9957-4d0c8618b2ad"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:13:48.000Z",
+                      "updatedAt": "2026-07-28T01:13:48.000Z",
+                      "uid": "35240-57dbeca2-bae3-4e93-8d94-1b91698db7c8"
+                    },
+                    {
+                      "name": "Create a branch restriction rule",
+                      "id": "619cafdc-2854-485e-8fdd-60a7c9a2ac6a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "branch-restrictions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "91b982bd-5cbf-4a40-ace2-3b64cba36165",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "66ca5d89-d49d-4354-83b8-e884ef620fc4",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Creates a new branch restriction rule for a repository.\n\n`kind` describes what will be restricted. Allowed values include:\n`push`, `force`, `delete`, `restrict_merges`, `require_tasks_to_be_completed`,\n`require_approvals_to_merge`, `require_default_reviewer_approvals_to_merge`,\n`require_no_changes_requested`, `require_passing_builds_to_merge`, `require_commits_behind`,\n`reset_pullrequest_approvals_on_change`, `smart_reset_pullrequest_approvals`,\n`reset_pullrequest_changes_requested_on_change`, `require_all_dependencies_merged`,\n`enforce_merge_checks`, and `allow_auto_merge_when_builds_pass`.\n\nDifferent kinds of branch restrictions have different requirements:\n\n* `push` and `restrict_merges` require `users` and `groups` to be\n  specified. Empty lists are allowed, in which case permission is\n  denied for everybody.\n\nThe restriction applies to all branches that match. There are\ntwo ways to match a branch. It is configured in `branch_match_kind`:\n\n1. `glob`: Matches a branch against the `pattern`. A `'*'` in\n   `pattern` will expand to match zero or more characters, and every\n   other character matches itself. For example, `'foo*'` will match\n   `'foo'` and `'foobar'`, but not `'barfoo'`. `'*'` will match all\n   branches.\n2. `branching_model`: Matches a branch against the repository's\n   branching model. The `branch_type` controls the type of branch\n   to match. Allowed values include: `production`, `development`,\n   `bugfix`, `release`, `feature` and `hotfix`.\n\nThe combination of `kind` and match must be unique. This means that\ntwo `glob` restrictions in a repository cannot have the same `kind` and\n`pattern`. Additionally, two `branching_model` restrictions in a\nrepository cannot have the same `kind` and `branch_type`.\n\n`users` and `groups` are lists of users and groups that are except from\nthe restriction. They can only be configured in `push` and\n`restrict_merges` restrictions. The `push` restriction stops a user\npushing to matching branches unless that user is in `users` or is a\nmember of a group in `groups`. The `restrict_merges` stops a user\nmerging pull requests to matching branches unless that user is in\n`users` or is a member of a group in `groups`. Adding new users or\ngroups to an existing restriction should be done via `PUT`.\n\nNote that branch restrictions with overlapping matchers is allowed,\nbut the resulting behavior may be surprising."
+                      },
+                      "response": [
+                        {
+                          "id": "561f7791-9003-40a2-bedd-e13cdc11f206",
+                          "name": "A paginated list of branch restrictions",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-561f7791-9003-40a2-bedd-e13cdc11f206"
+                        },
+                        {
+                          "id": "b6d51bbc-83db-474c-916c-614fdbafd705",
+                          "name": "If the request was not authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-b6d51bbc-83db-474c-916c-614fdbafd705"
+                        },
+                        {
+                          "id": "41ff1c19-7fc6-4b3f-8c20-381db8f08a04",
+                          "name": "If the authenticated user does not have admin access to the repository",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-41ff1c19-7fc6-4b3f-8c20-381db8f08a04"
+                        },
+                        {
+                          "id": "f9dd1b73-1e96-45df-b6ea-071ac1ac38c7",
+                          "name": "If the repository does not exist",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branch_match_kind\": \"glob\",\n  \"kind\": \"delete\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"release\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"incididunt_9\": \"dolor\",\n        \"pariatur92\": 37815848.95380959,\n        \"quis_b\": true,\n        \"eiusmod_91\": 36296789\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"cupidatatb3\": 45299076\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"culpa_8d3\": 89312706\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"ullamco_db\": 50039174,\n          \"consequat_3\": \"irure \",\n          \"sint_56d\": 58778450.31625396\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"html\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"members\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"owners\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"projects\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"repositories\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"snippets\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"self\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"allow_forks\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branch-restrictions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branch-restrictions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"qui_3\": \"Ut aliqua magna\",\n      \"cupidatat6a4\": 66191567\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:48.000Z",
+                          "updatedAt": "2026-07-28T01:13:48.000Z",
+                          "uid": "35240-f9dd1b73-1e96-45df-b6ea-071ac1ac38c7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:13:48.000Z",
+                      "updatedAt": "2026-07-28T01:13:48.000Z",
+                      "uid": "35240-619cafdc-2854-485e-8fdd-60a7c9a2ac6a"
+                    }
+                  ],
+                  "id": "2dacccca-fe30-4913-aaec-d7c494adcd91",
+                  "createdAt": "2026-07-28T01:13:48.000Z",
+                  "updatedAt": "2026-07-28T01:13:48.000Z",
+                  "uid": "35240-2dacccca-fe30-4913-aaec-d7c494adcd91"
+                }
+              ],
+              "id": "acb686c9-6800-46d4-9703-fa27c7428214",
+              "createdAt": "2026-07-28T01:13:48.000Z",
+              "updatedAt": "2026-07-28T01:13:48.000Z",
+              "uid": "35240-acb686c9-6800-46d4-9703-fa27c7428214"
+            }
+          ],
+          "id": "b259ef33-b07e-4f9a-b6bb-1319ddd45110",
+          "createdAt": "2026-07-28T01:13:48.000Z",
+          "updatedAt": "2026-07-28T01:13:48.000Z",
+          "uid": "35240-b259ef33-b07e-4f9a-b6bb-1319ddd45110"
+        }
+      ],
+      "id": "4fc888ac-ebe2-4294-8f8c-32c4913d0600",
+      "createdAt": "2026-07-28T01:13:48.000Z",
+      "updatedAt": "2026-07-28T01:13:48.000Z",
+      "uid": "35240-4fc888ac-ebe2-4294-8f8c-32c4913d0600"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

@@ -1,0 +1,1454 @@
+{
+  "info": {
+    "_postman_id": "9289c122-3f32-4f79-9475-3cb51eee217d",
+    "name": "Bitbucket Addon SSH API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:14:57.000Z",
+    "updatedAt": "2026-07-28T01:14:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9289c122-3f32-4f79-9475-3cb51eee217d"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{selected_user}",
+          "item": [
+            {
+              "name": "ssh-keys",
+              "item": [
+                {
+                  "name": "{key_id}",
+                  "item": [
+                    {
+                      "name": "Delete a SSH key",
+                      "id": "074b2120-d056-4c4b-ac53-cd97fa6b6d7b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys",
+                            ":key_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "eaa9c7fe-9266-4624-a2ba-1823f1b1cc20",
+                              "key": "selected_user",
+                              "value": "<string>",
+                              "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                            },
+                            {
+                              "id": "313d200c-9058-452d-895f-4459144dde2e",
+                              "key": "key_id",
+                              "value": "<string>",
+                              "description": "(Required) The SSH key's UUID value."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific SSH public key from a user's account."
+                      },
+                      "response": [
+                        {
+                          "id": "908e261a-01c9-4474-8638-eb2ade10b37f",
+                          "name": "The key has been deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-908e261a-01c9-4474-8638-eb2ade10b37f"
+                        },
+                        {
+                          "id": "284dc1e1-caae-41cc-a230-9dac80b2a85a",
+                          "name": "If the submitted key or related value is invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-284dc1e1-caae-41cc-a230-9dac80b2a85a"
+                        },
+                        {
+                          "id": "2bb74c83-4bfe-4358-9725-1672262af8cb",
+                          "name": "If the current user does not have permission to add a key for the specified user",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-2bb74c83-4bfe-4358-9725-1672262af8cb"
+                        },
+                        {
+                          "id": "b94bced7-5692-4078-a0f1-1f103cc5fe54",
+                          "name": "If the specified user does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-b94bced7-5692-4078-a0f1-1f103cc5fe54"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-074b2120-d056-4c4b-ac53-cd97fa6b6d7b"
+                    },
+                    {
+                      "name": "Get a SSH key",
+                      "id": "a7cb55f1-6c7b-49ac-acb5-129b532c436a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys",
+                            ":key_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6957edc5-93b8-4ed1-bb58-3193b783dd29",
+                              "key": "selected_user",
+                              "value": "<string>",
+                              "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                            },
+                            {
+                              "id": "cf7952c6-a276-4f50-add3-461a60e17900",
+                              "key": "key_id",
+                              "value": "<string>",
+                              "description": "(Required) The SSH key's UUID value."
+                            }
+                          ]
+                        },
+                        "description": "Returns a specific SSH public key belonging to a user."
+                      },
+                      "response": [
+                        {
+                          "id": "d69312d8-948e-4b0b-b3bd-91386c1bfe16",
+                          "name": "The specific SSH key matching the user and UUID",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-d69312d8-948e-4b0b-b3bd-91386c1bfe16"
+                        },
+                        {
+                          "id": "c4cf3eb8-b38e-4497-977c-0ed7b065616e",
+                          "name": "If the specified user or key is not accessible to the current user",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-c4cf3eb8-b38e-4497-977c-0ed7b065616e"
+                        },
+                        {
+                          "id": "996d598f-9bd0-4017-b64b-e4f60e4cb21a",
+                          "name": "If the specified user or key does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-996d598f-9bd0-4017-b64b-e4f60e4cb21a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-a7cb55f1-6c7b-49ac-acb5-129b532c436a"
+                    },
+                    {
+                      "name": "Update a SSH key",
+                      "id": "56442c01-9dbf-4d2a-83c7-d5d228dbcbc7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys",
+                            ":key_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1f418fdd-c645-4680-86d1-7db649b3ac66",
+                              "key": "selected_user",
+                              "value": "<string>",
+                              "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                            },
+                            {
+                              "id": "01c5db0d-98a5-45b4-a018-bb0ee9177d2f",
+                              "key": "key_id",
+                              "value": "<string>",
+                              "description": "(Required) The SSH key's UUID value."
+                            }
+                          ]
+                        },
+                        "description": "Updates a specific SSH public key on a user's account\n\nNote: Only the 'comment' field can be updated using this API. To modify the key or comment values, you must delete and add the key again.\n\nExample:\n\n```\n$ curl -X PUT -H \"Content-Type: application/json\" -d '{\"label\": \"Work key\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/{b15b6026-9c02-4626-b4ad-b905f99f763a}\n```"
+                      },
+                      "response": [
+                        {
+                          "id": "8fcf464e-4abc-463b-9267-b08e92a117ed",
+                          "name": "The newly updated SSH key.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-8fcf464e-4abc-463b-9267-b08e92a117ed"
+                        },
+                        {
+                          "id": "9f4a658a-3ec3-4c86-b630-63b365dead8d",
+                          "name": "If the submitted key or related value is invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-9f4a658a-3ec3-4c86-b630-63b365dead8d"
+                        },
+                        {
+                          "id": "dd0bafe5-f761-449a-95a3-c821553be6ed",
+                          "name": "If the current user does not have permission to add a key for the specified user",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-dd0bafe5-f761-449a-95a3-c821553be6ed"
+                        },
+                        {
+                          "id": "50399c47-b4ad-4dc2-906d-cf7d51c6b3c4",
+                          "name": "If the specified user does not exist",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "ssh-keys",
+                                ":key_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "key_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:58.000Z",
+                          "updatedAt": "2026-07-28T01:14:58.000Z",
+                          "uid": "35240-50399c47-b4ad-4dc2-906d-cf7d51c6b3c4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-56442c01-9dbf-4d2a-83c7-d5d228dbcbc7"
+                    }
+                  ],
+                  "id": "2a1e230c-a530-4684-8315-2457f681deb8",
+                  "createdAt": "2026-07-28T01:14:58.000Z",
+                  "updatedAt": "2026-07-28T01:14:58.000Z",
+                  "uid": "35240-2a1e230c-a530-4684-8315-2457f681deb8"
+                },
+                {
+                  "name": "List SSH keys",
+                  "id": "e4023860-46b4-4534-bf31-6866c48dfaa1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user/ssh-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user",
+                        "ssh-keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "febadb6a-0c40-453c-8e79-51d31ea3ec2c",
+                          "key": "selected_user",
+                          "value": "<string>",
+                          "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of the user's SSH public keys."
+                  },
+                  "response": [
+                    {
+                      "id": "76fbbe12-68c1-4012-a6b4-b954f194f399",
+                      "name": "A list of the SSH keys associated with the account.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"key\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"label\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"in_fa\": -74562470.95293018,\n          \"minim5c\": false\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"expires_on\": \"<dateTime>\",\n      \"fingerprint\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"uuid\": \"<string>\",\n      \"key\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"label\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"eiusmod5\": true,\n          \"in534\": true,\n          \"sitf_\": false,\n          \"ullamco_69\": 88704224\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"expires_on\": \"<dateTime>\",\n      \"fingerprint\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-76fbbe12-68c1-4012-a6b4-b954f194f399"
+                    },
+                    {
+                      "id": "1208695f-4f4e-41fc-b39d-a65e22d537ce",
+                      "name": "If the specified user's keys are not accessible to the current user",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-1208695f-4f4e-41fc-b39d-a65e22d537ce"
+                    },
+                    {
+                      "id": "8e28086c-98b9-43cb-ba1f-1d06e179a108",
+                      "name": "If the specified user does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-8e28086c-98b9-43cb-ba1f-1d06e179a108"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:14:58.000Z",
+                  "updatedAt": "2026-07-28T01:14:58.000Z",
+                  "uid": "35240-e4023860-46b4-4534-bf31-6866c48dfaa1"
+                },
+                {
+                  "name": "Add a new SSH key",
+                  "id": "f8e91eb2-1817-4550-9c93-b3cd7e0ba5cf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user/ssh-keys?expires_on=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user",
+                        "ssh-keys"
+                      ],
+                      "query": [
+                        {
+                          "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`",
+                          "key": "expires_on",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "aa78f5a6-2ce0-4f1e-92cc-2886268f4bed",
+                          "key": "selected_user",
+                          "value": "<string>",
+                          "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Adds a new SSH public key to the specified user account and returns the resulting key.\n\nExample:\n\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY user@myhost\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys\n```"
+                  },
+                  "response": [
+                    {
+                      "id": "bab84469-06c3-4a30-866f-296406b1317b",
+                      "name": "The newly created SSH key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys?expires_on=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`",
+                              "key": "expires_on",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-bab84469-06c3-4a30-866f-296406b1317b"
+                    },
+                    {
+                      "id": "c6d4df82-b218-4682-9815-73e962a6329c",
+                      "name": "If the submitted key or related value is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys?expires_on=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`",
+                              "key": "expires_on",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-c6d4df82-b218-4682-9815-73e962a6329c"
+                    },
+                    {
+                      "id": "c3271d1c-4c3e-42e7-a2d4-3d68e03b9729",
+                      "name": "If the current user does not have permission to add a key for the specified user",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys?expires_on=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`",
+                              "key": "expires_on",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-c3271d1c-4c3e-42e7-a2d4-3d68e03b9729"
+                    },
+                    {
+                      "id": "c34eef24-55b6-42c3-a001-2cf6fa7be0c7",
+                      "name": "If the specified user does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"id_798\": \"consectetur aute in magna\"\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/ssh-keys?expires_on=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "ssh-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`",
+                              "key": "expires_on",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"magna_9\": \"nisi veniam\",\n      \"pariatur7\": false,\n      \"qui__4\": \"ad proident commodo in\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:58.000Z",
+                      "updatedAt": "2026-07-28T01:14:58.000Z",
+                      "uid": "35240-c34eef24-55b6-42c3-a001-2cf6fa7be0c7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:14:58.000Z",
+                  "updatedAt": "2026-07-28T01:14:58.000Z",
+                  "uid": "35240-f8e91eb2-1817-4550-9c93-b3cd7e0ba5cf"
+                }
+              ],
+              "id": "2f77fb17-4d84-4f40-b8d6-469c20c61943",
+              "createdAt": "2026-07-28T01:14:58.000Z",
+              "updatedAt": "2026-07-28T01:14:58.000Z",
+              "uid": "35240-2f77fb17-4d84-4f40-b8d6-469c20c61943"
+            }
+          ],
+          "id": "b081ee7a-3109-41be-a154-12e844deaa3b",
+          "createdAt": "2026-07-28T01:14:58.000Z",
+          "updatedAt": "2026-07-28T01:14:58.000Z",
+          "uid": "35240-b081ee7a-3109-41be-a154-12e844deaa3b"
+        }
+      ],
+      "id": "151ab583-3c94-4aaa-bd5e-5b31dc613883",
+      "createdAt": "2026-07-28T01:14:58.000Z",
+      "updatedAt": "2026-07-28T01:14:58.000Z",
+      "uid": "35240-151ab583-3c94-4aaa-bd5e-5b31dc613883"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

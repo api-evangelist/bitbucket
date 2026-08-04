@@ -1,0 +1,2034 @@
+{
+  "info": {
+    "_postman_id": "c7791ab8-7336-45c9-b4d7-e6dce789548b",
+    "name": "Bitbucket Addon properties API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:14:27.000Z",
+    "updatedAt": "2026-07-28T01:14:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c7791ab8-7336-45c9-b4d7-e6dce789548b"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "commit",
+                  "item": [
+                    {
+                      "name": "{commit}",
+                      "item": [
+                        {
+                          "name": "properties",
+                          "item": [
+                            {
+                              "name": "{app_key}",
+                              "item": [
+                                {
+                                  "name": "{property_name}",
+                                  "item": [
+                                    {
+                                      "name": "Update a commit application property",
+                                      "id": "97ce8afd-707e-4472-9cb0-725c5ba39bef",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "0f0a72ce-1e3d-45b4-b3da-6c95d060b86f",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "1bc09325-5401-4caa-890d-2c85dd9f037d",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "e8492271-5872-4603-9b24-89d844a2698f",
+                                              "key": "commit",
+                                              "value": "<string>",
+                                              "description": "(Required) The commit."
+                                            },
+                                            {
+                                              "id": "ff18b9f6-486d-4e8c-96d1-8f3cec45043b",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "5a73aeb6-1a06-4cd1-add4-f68cd34a01f5",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "955f964e-7f75-4dfe-921e-5175ffa1ca92",
+                                          "name": "An empty response.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-955f964e-7f75-4dfe-921e-5175ffa1ca92"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-97ce8afd-707e-4472-9cb0-725c5ba39bef"
+                                    },
+                                    {
+                                      "name": "Delete a commit application property",
+                                      "id": "8232d96e-9c34-4639-ac2a-c0cf7764a027",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "ab45485e-bc26-4e9f-a46c-47eff1445160",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "a6caae4e-ff9a-4c3d-9558-92a86457950e",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "257208d1-7aac-40ad-9757-c9b6228c6fc4",
+                                              "key": "commit",
+                                              "value": "<string>",
+                                              "description": "(Required) The commit."
+                                            },
+                                            {
+                                              "id": "cc9bbbcd-2ab2-4132-8027-65604752b49c",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "6143b9bf-0a36-4a75-9920-a4dffeb4dbb4",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "d54a5786-5ecd-4930-bd01-5f32981c5183",
+                                          "name": "An empty response.",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-d54a5786-5ecd-4930-bd01-5f32981c5183"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-8232d96e-9c34-4639-ac2a-c0cf7764a027"
+                                    },
+                                    {
+                                      "name": "Get a commit application property",
+                                      "id": "284c2fc2-0389-484c-bc3b-a5976d3c882a",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "862ebd29-718a-4af0-b7f2-7d1b6afa84ec",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "5840c24c-46a3-4fc6-9b58-de44829948a5",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "0af2561a-23e7-404b-8ba5-19f5dc5f4c2b",
+                                              "key": "commit",
+                                              "value": "<string>",
+                                              "description": "(Required) The commit."
+                                            },
+                                            {
+                                              "id": "ca4e99c5-f656-4394-ac02-9909e25e5a9b",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "42432990-4348-43ca-96cd-202a36674cbe",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9327bbff-7255-4e37-bff6-2fe748adf6df",
+                                          "name": "The value of the property.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-9327bbff-7255-4e37-bff6-2fe748adf6df"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-284c2fc2-0389-484c-bc3b-a5976d3c882a"
+                                    }
+                                  ],
+                                  "id": "933f2b1b-4f0a-49d5-8cff-b79a8e992d87",
+                                  "createdAt": "2026-07-28T01:14:27.000Z",
+                                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                                  "uid": "35240-933f2b1b-4f0a-49d5-8cff-b79a8e992d87"
+                                }
+                              ],
+                              "id": "acb0d09c-39dd-4e54-9a09-b5fc8fe25145",
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-acb0d09c-39dd-4e54-9a09-b5fc8fe25145"
+                            }
+                          ],
+                          "id": "4b67f609-0b89-41c7-82dc-6199de6cfdec",
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-4b67f609-0b89-41c7-82dc-6199de6cfdec"
+                        }
+                      ],
+                      "id": "ec740d4f-4708-4386-a1a4-2bb2e22129d4",
+                      "createdAt": "2026-07-28T01:14:27.000Z",
+                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                      "uid": "35240-ec740d4f-4708-4386-a1a4-2bb2e22129d4"
+                    }
+                  ],
+                  "id": "7163a3d7-df0c-41d1-854c-9a6113a54643",
+                  "createdAt": "2026-07-28T01:14:27.000Z",
+                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                  "uid": "35240-7163a3d7-df0c-41d1-854c-9a6113a54643"
+                },
+                {
+                  "name": "properties",
+                  "item": [
+                    {
+                      "name": "{app_key}",
+                      "item": [
+                        {
+                          "name": "{property_name}",
+                          "item": [
+                            {
+                              "name": "Update a repository application property",
+                              "id": "ba6ec9b9-d7fb-447d-ad8b-0411782db77e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "784a11d0-ae55-456f-b486-6f4ef9e820d9",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                    },
+                                    {
+                                      "id": "7f1af9a7-9a85-404b-a33f-fff7885455c9",
+                                      "key": "repo_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository."
+                                    },
+                                    {
+                                      "id": "d82065c7-ef8e-474d-a04e-c225ef054ba1",
+                                      "key": "app_key",
+                                      "value": "<string>",
+                                      "description": "(Required) The key of the Connect app."
+                                    },
+                                    {
+                                      "id": "e7d4fe3a-e4d4-4e4c-b797-7c65ac66a4f1",
+                                      "key": "property_name",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the property."
+                                    }
+                                  ]
+                                },
+                                "description": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+                              },
+                              "response": [
+                                {
+                                  "id": "eead8ac1-eb0a-49fb-9a2c-1454d60ccf84",
+                                  "name": "An empty response.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "properties",
+                                        ":app_key",
+                                        ":property_name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "app_key"
+                                        },
+                                        {
+                                          "key": "property_name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:14:27.000Z",
+                                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                                  "uid": "35240-eead8ac1-eb0a-49fb-9a2c-1454d60ccf84"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-ba6ec9b9-d7fb-447d-ad8b-0411782db77e"
+                            },
+                            {
+                              "name": "Delete a repository application property",
+                              "id": "92108242-27e9-4899-b1f6-7a92bb471b73",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1f1f7360-4761-45a5-b9cb-23c66429fd7f",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                    },
+                                    {
+                                      "id": "97b5be97-0549-4017-849b-8b51a62155e0",
+                                      "key": "repo_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository."
+                                    },
+                                    {
+                                      "id": "0036cf78-22ac-427f-aca0-14f88fa177ba",
+                                      "key": "app_key",
+                                      "value": "<string>",
+                                      "description": "(Required) The key of the Connect app."
+                                    },
+                                    {
+                                      "id": "ec2d384b-74bc-4a0b-827b-fb47cc36a685",
+                                      "key": "property_name",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the property."
+                                    }
+                                  ]
+                                },
+                                "description": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+                              },
+                              "response": [
+                                {
+                                  "id": "6180def4-a18b-4596-b15b-dd455fd99855",
+                                  "name": "An empty response.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "properties",
+                                        ":app_key",
+                                        ":property_name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "app_key"
+                                        },
+                                        {
+                                          "key": "property_name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:14:27.000Z",
+                                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                                  "uid": "35240-6180def4-a18b-4596-b15b-dd455fd99855"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-92108242-27e9-4899-b1f6-7a92bb471b73"
+                            },
+                            {
+                              "name": "Get a repository application property",
+                              "id": "9721361c-d477-41ad-9ad0-8216719e8051",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "46dc4f1f-0b60-4f8b-b130-9dd81aa9163f",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                    },
+                                    {
+                                      "id": "66684c62-0b12-4877-8ea7-9d3276035c1a",
+                                      "key": "repo_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) The repository."
+                                    },
+                                    {
+                                      "id": "b37e7f00-74c4-4173-a44d-a5482bdd82cf",
+                                      "key": "app_key",
+                                      "value": "<string>",
+                                      "description": "(Required) The key of the Connect app."
+                                    },
+                                    {
+                                      "id": "60398a57-beb6-4efd-a5b5-507d29b5e978",
+                                      "key": "property_name",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the property."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+                              },
+                              "response": [
+                                {
+                                  "id": "78ca22dc-ea13-4a72-9b85-28bfe22194dd",
+                                  "name": "The value of the property.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "properties",
+                                        ":app_key",
+                                        ":property_name"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "app_key"
+                                        },
+                                        {
+                                          "key": "property_name"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                  "createdAt": "2026-07-28T01:14:27.000Z",
+                                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                                  "uid": "35240-78ca22dc-ea13-4a72-9b85-28bfe22194dd"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-9721361c-d477-41ad-9ad0-8216719e8051"
+                            }
+                          ],
+                          "id": "0a2a652b-fc95-4334-bafa-82c14325f39e",
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-0a2a652b-fc95-4334-bafa-82c14325f39e"
+                        }
+                      ],
+                      "id": "131fb9fd-bab0-4dea-9a60-858210f78ac3",
+                      "createdAt": "2026-07-28T01:14:27.000Z",
+                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                      "uid": "35240-131fb9fd-bab0-4dea-9a60-858210f78ac3"
+                    }
+                  ],
+                  "id": "b4fbb173-02e3-4af1-be66-663745d4e343",
+                  "createdAt": "2026-07-28T01:14:27.000Z",
+                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                  "uid": "35240-b4fbb173-02e3-4af1-be66-663745d4e343"
+                },
+                {
+                  "name": "pullrequests",
+                  "item": [
+                    {
+                      "name": "{pullrequest_id}",
+                      "item": [
+                        {
+                          "name": "properties",
+                          "item": [
+                            {
+                              "name": "{app_key}",
+                              "item": [
+                                {
+                                  "name": "{property_name}",
+                                  "item": [
+                                    {
+                                      "name": "Update a pull request application property",
+                                      "id": "bd34cb37-477a-4971-a19d-ff1cfa61375b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "pullrequests",
+                                            ":pullrequest_id",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "43f7d9a6-92ba-4bf4-ba43-68caa11de834",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "b01afff4-5d39-4442-b777-259e4cb93def",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "200282bc-a3ab-4e36-b8ce-59c9fb14b201",
+                                              "key": "pullrequest_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The pull request ID."
+                                            },
+                                            {
+                                              "id": "0188ed89-4ddb-4220-8e9f-bb7ee7eeda71",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "a0568ea2-dbd7-440b-8d90-5e78ff857b66",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "820a9cc1-6e84-4c6d-a6cb-4eadbafb1d4b",
+                                          "name": "An empty response.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "pullrequests",
+                                                ":pullrequest_id",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "pullrequest_id"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-820a9cc1-6e84-4c6d-a6cb-4eadbafb1d4b"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-bd34cb37-477a-4971-a19d-ff1cfa61375b"
+                                    },
+                                    {
+                                      "name": "Delete a pull request application property",
+                                      "id": "1791f55f-24c1-4a28-900e-47b88d9baf47",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "pullrequests",
+                                            ":pullrequest_id",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "b2398483-ebd1-4d01-96b2-6db3737b04ca",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "b8da4bf1-fca3-4948-b303-f330f798f680",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "e2b385e4-0067-41b2-b861-202184be398b",
+                                              "key": "pullrequest_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The pull request ID."
+                                            },
+                                            {
+                                              "id": "4f67b783-e5a1-4d9a-9d09-1355e4fc70e8",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "50254475-5743-4c2b-9461-4bfa33b59871",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "c8b5741e-c358-467c-959d-9c2693f58ef6",
+                                          "name": "An empty response.",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "pullrequests",
+                                                ":pullrequest_id",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "pullrequest_id"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "No Content",
+                                          "code": 204,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-c8b5741e-c358-467c-959d-9c2693f58ef6"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-1791f55f-24c1-4a28-900e-47b88d9baf47"
+                                    },
+                                    {
+                                      "name": "Get a pull request application property",
+                                      "id": "cf1d9053-6d07-4a73-b996-25a10e21fef9",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "pullrequests",
+                                            ":pullrequest_id",
+                                            "properties",
+                                            ":app_key",
+                                            ":property_name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "4ca8dc73-243f-473f-808d-ede3d00c0350",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository container; either the workspace slug or the UUID in curly braces."
+                                            },
+                                            {
+                                              "id": "70964640-782f-4d5e-8e60-bf73c6c1d95f",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) The repository."
+                                            },
+                                            {
+                                              "id": "efc824c2-8d5d-4969-8438-121aff991157",
+                                              "key": "pullrequest_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The pull request ID."
+                                            },
+                                            {
+                                              "id": "82c5350c-21cf-4d7c-a7c7-4c5127d82005",
+                                              "key": "app_key",
+                                              "value": "<string>",
+                                              "description": "(Required) The key of the Connect app."
+                                            },
+                                            {
+                                              "id": "0f1f5563-626c-4b30-8717-080e4b27d484",
+                                              "key": "property_name",
+                                              "value": "<string>",
+                                              "description": "(Required) The name of the property."
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "6dc94f70-2887-47fa-b82e-7378c0766d7b",
+                                          "name": "The value of the property.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "pullrequests",
+                                                ":pullrequest_id",
+                                                "properties",
+                                                ":app_key",
+                                                ":property_name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "pullrequest_id"
+                                                },
+                                                {
+                                                  "key": "app_key"
+                                                },
+                                                {
+                                                  "key": "property_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                          "createdAt": "2026-07-28T01:14:27.000Z",
+                                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                                          "uid": "35240-6dc94f70-2887-47fa-b82e-7378c0766d7b"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:14:27.000Z",
+                                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                                      "uid": "35240-cf1d9053-6d07-4a73-b996-25a10e21fef9"
+                                    }
+                                  ],
+                                  "id": "b3837f10-d6ef-4421-bab6-590b8181ae34",
+                                  "createdAt": "2026-07-28T01:14:27.000Z",
+                                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                                  "uid": "35240-b3837f10-d6ef-4421-bab6-590b8181ae34"
+                                }
+                              ],
+                              "id": "b0d97eb3-46c6-4ccf-952f-455bb3e3ecc5",
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-b0d97eb3-46c6-4ccf-952f-455bb3e3ecc5"
+                            }
+                          ],
+                          "id": "eba72ac5-d5ad-471b-b249-5e253bb8a7ed",
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-eba72ac5-d5ad-471b-b249-5e253bb8a7ed"
+                        }
+                      ],
+                      "id": "b94c7ebe-cb7a-4475-b8cd-b60a05db7910",
+                      "createdAt": "2026-07-28T01:14:27.000Z",
+                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                      "uid": "35240-b94c7ebe-cb7a-4475-b8cd-b60a05db7910"
+                    }
+                  ],
+                  "id": "a285433c-115a-4178-831a-a58c2a67a116",
+                  "createdAt": "2026-07-28T01:14:27.000Z",
+                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                  "uid": "35240-a285433c-115a-4178-831a-a58c2a67a116"
+                }
+              ],
+              "id": "784c7991-1085-4dc0-8840-635b527fbaf1",
+              "createdAt": "2026-07-28T01:14:27.000Z",
+              "updatedAt": "2026-07-28T01:14:27.000Z",
+              "uid": "35240-784c7991-1085-4dc0-8840-635b527fbaf1"
+            }
+          ],
+          "id": "83fb2c58-ac62-4e04-87c8-ddc15dfa40d5",
+          "createdAt": "2026-07-28T01:14:27.000Z",
+          "updatedAt": "2026-07-28T01:14:27.000Z",
+          "uid": "35240-83fb2c58-ac62-4e04-87c8-ddc15dfa40d5"
+        }
+      ],
+      "id": "acfeaf80-3a86-4a44-89f7-e6b571a4ec3a",
+      "createdAt": "2026-07-28T01:14:27.000Z",
+      "updatedAt": "2026-07-28T01:14:27.000Z",
+      "uid": "35240-acfeaf80-3a86-4a44-89f7-e6b571a4ec3a"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{selected_user}",
+          "item": [
+            {
+              "name": "properties",
+              "item": [
+                {
+                  "name": "{app_key}",
+                  "item": [
+                    {
+                      "name": "{property_name}",
+                      "item": [
+                        {
+                          "name": "Update a user application property",
+                          "id": "31ec2074-bfc3-4fe3-8c20-0c424fd8a685",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "properties",
+                                ":app_key",
+                                ":property_name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7048de38-b705-4872-b8cb-61efa5ccac15",
+                                  "key": "selected_user",
+                                  "value": "<string>",
+                                  "description": "(Required) Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+                                },
+                                {
+                                  "id": "5037a186-69fe-4258-9f14-c07a3eaa4967",
+                                  "key": "app_key",
+                                  "value": "<string>",
+                                  "description": "(Required) The key of the Connect app."
+                                },
+                                {
+                                  "id": "792c50e3-cbfb-4f7a-b02a-9dbcfa446952",
+                                  "key": "property_name",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the property."
+                                }
+                              ]
+                            },
+                            "description": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+                          },
+                          "response": [
+                            {
+                              "id": "98e95909-9e3a-4371-870d-8f25dff0e0b0",
+                              "name": "An empty response.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    ":selected_user",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "selected_user"
+                                    },
+                                    {
+                                      "key": "app_key"
+                                    },
+                                    {
+                                      "key": "property_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-98e95909-9e3a-4371-870d-8f25dff0e0b0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-31ec2074-bfc3-4fe3-8c20-0c424fd8a685"
+                        },
+                        {
+                          "name": "Delete a user application property",
+                          "id": "9a9df4f5-01c6-4392-b6a4-0c39d48ebfd9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "properties",
+                                ":app_key",
+                                ":property_name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c9c854db-0812-4fcb-a75f-f07f478a1980",
+                                  "key": "selected_user",
+                                  "value": "<string>",
+                                  "description": "(Required) Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+                                },
+                                {
+                                  "id": "e8fd976f-9f5c-44f0-b2b4-7b20523c7b69",
+                                  "key": "app_key",
+                                  "value": "<string>",
+                                  "description": "(Required) The key of the Connect app."
+                                },
+                                {
+                                  "id": "f39b4f73-11e8-4d17-ba63-d22d88cb2432",
+                                  "key": "property_name",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the property."
+                                }
+                              ]
+                            },
+                            "description": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+                          },
+                          "response": [
+                            {
+                              "id": "aed35366-1a0b-4bf1-acc3-4bed34fed041",
+                              "name": "An empty response.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    ":selected_user",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "selected_user"
+                                    },
+                                    {
+                                      "key": "app_key"
+                                    },
+                                    {
+                                      "key": "property_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-aed35366-1a0b-4bf1-acc3-4bed34fed041"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-9a9df4f5-01c6-4392-b6a4-0c39d48ebfd9"
+                        },
+                        {
+                          "name": "Get a user application property",
+                          "id": "556ba4ea-b7f6-4efd-93ba-beb3c1a77849",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "properties",
+                                ":app_key",
+                                ":property_name"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "89e2c81d-d822-4f7a-9092-b0a94a2143f4",
+                                  "key": "selected_user",
+                                  "value": "<string>",
+                                  "description": "(Required) Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+                                },
+                                {
+                                  "id": "62462497-0ba3-4e09-911a-cd0a15b9afb2",
+                                  "key": "app_key",
+                                  "value": "<string>",
+                                  "description": "(Required) The key of the Connect app."
+                                },
+                                {
+                                  "id": "4640479d-ce6c-4ece-98e5-0b22242287f0",
+                                  "key": "property_name",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the property."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+                          },
+                          "response": [
+                            {
+                              "id": "af5953f4-8f3d-442b-933c-3fe8d7beed13",
+                              "name": "The value of the property.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "users",
+                                    ":selected_user",
+                                    "properties",
+                                    ":app_key",
+                                    ":property_name"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "selected_user"
+                                    },
+                                    {
+                                      "key": "app_key"
+                                    },
+                                    {
+                                      "key": "property_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"_attributes\": [\n    \"public\",\n    \"read_only\"\n  ],\n  \"incididunt5\": false,\n  \"in__\": \"adipisicing Duis irure exercitation\"\n}",
+                              "createdAt": "2026-07-28T01:14:27.000Z",
+                              "updatedAt": "2026-07-28T01:14:27.000Z",
+                              "uid": "35240-af5953f4-8f3d-442b-933c-3fe8d7beed13"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:14:27.000Z",
+                          "updatedAt": "2026-07-28T01:14:27.000Z",
+                          "uid": "35240-556ba4ea-b7f6-4efd-93ba-beb3c1a77849"
+                        }
+                      ],
+                      "id": "f955166e-a955-41a9-aa3b-0d7dbb289c77",
+                      "createdAt": "2026-07-28T01:14:27.000Z",
+                      "updatedAt": "2026-07-28T01:14:27.000Z",
+                      "uid": "35240-f955166e-a955-41a9-aa3b-0d7dbb289c77"
+                    }
+                  ],
+                  "id": "55917cb5-2fb5-4ca6-9d0b-6bba90f7a400",
+                  "createdAt": "2026-07-28T01:14:27.000Z",
+                  "updatedAt": "2026-07-28T01:14:27.000Z",
+                  "uid": "35240-55917cb5-2fb5-4ca6-9d0b-6bba90f7a400"
+                }
+              ],
+              "id": "ce130603-8372-4a14-bb97-7bd8cfbdc846",
+              "createdAt": "2026-07-28T01:14:27.000Z",
+              "updatedAt": "2026-07-28T01:14:27.000Z",
+              "uid": "35240-ce130603-8372-4a14-bb97-7bd8cfbdc846"
+            }
+          ],
+          "id": "e6094cf3-a2c8-4c23-8c6d-d37447320d29",
+          "createdAt": "2026-07-28T01:14:27.000Z",
+          "updatedAt": "2026-07-28T01:14:27.000Z",
+          "uid": "35240-e6094cf3-a2c8-4c23-8c6d-d37447320d29"
+        }
+      ],
+      "id": "ba83db63-642e-4646-a0cf-e58b1880ea0e",
+      "createdAt": "2026-07-28T01:14:27.000Z",
+      "updatedAt": "2026-07-28T01:14:27.000Z",
+      "uid": "35240-ba83db63-642e-4646-a0cf-e58b1880ea0e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

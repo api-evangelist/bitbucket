@@ -1,0 +1,1627 @@
+{
+  "info": {
+    "_postman_id": "2a13f3f9-1fbc-4d38-9057-acf9e3a6594d",
+    "name": "Bitbucket Addon Commit statuses API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:50.000Z",
+    "updatedAt": "2026-07-28T01:13:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a13f3f9-1fbc-4d38-9057-acf9e3a6594d"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "commit",
+                  "item": [
+                    {
+                      "name": "{commit}",
+                      "item": [
+                        {
+                          "name": "statuses",
+                          "item": [
+                            {
+                              "name": "build",
+                              "item": [
+                                {
+                                  "name": "{key}",
+                                  "item": [
+                                    {
+                                      "name": "Get a build status for a commit",
+                                      "id": "ae1824be-725f-4654-9f90-9838f5043dd0",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "statuses",
+                                            "build",
+                                            ":key"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "bbfb7a2d-3457-4b77-94dd-e73872b12084",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                            },
+                                            {
+                                              "id": "af89c914-6360-4708-b3bd-60c12d5fe49f",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                            },
+                                            {
+                                              "id": "74ef59ff-d509-4f29-9451-d70fb95afbae",
+                                              "key": "commit",
+                                              "value": "<string>",
+                                              "description": "(Required) The commit's SHA1."
+                                            },
+                                            {
+                                              "id": "aa515eb7-dc25-4024-8838-e86b84e92cb9",
+                                              "key": "key",
+                                              "value": "<string>",
+                                              "description": "(Required) The build status' unique key"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Returns the specified build status for a commit."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "077d063b-29e3-4d1c-9da3-60f7c9f4af09",
+                                          "name": "The build status object with the specified key.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-077d063b-29e3-4d1c-9da3-60f7c9f4af09"
+                                        },
+                                        {
+                                          "id": "1fc73b3a-91ff-47c0-9b74-2f9dde4cb7a9",
+                                          "name": "If the repository is private and the request was not authenticated.",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-1fc73b3a-91ff-47c0-9b74-2f9dde4cb7a9"
+                                        },
+                                        {
+                                          "id": "8ee1b5ef-f5e8-4b3a-8d1f-3956d517b055",
+                                          "name": "If the repository, commit, or build status key does not exist",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"deserunt7e5\": \"eu consequat dolore\",\n      \"quis165\": \"pariatur ea\"\n    }\n  }\n}",
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-8ee1b5ef-f5e8-4b3a-8d1f-3956d517b055"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:13:51.000Z",
+                                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                                      "uid": "35240-ae1824be-725f-4654-9f90-9838f5043dd0"
+                                    },
+                                    {
+                                      "name": "Update a build status for a commit",
+                                      "id": "a7d04c64-aac8-4eeb-a00b-1107c5af3b84",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "oauth2",
+                                          "oauth2": [
+                                            {
+                                              "key": "scope",
+                                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "accessTokenUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "authUrl",
+                                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "grant_type",
+                                              "value": "authorization_code",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "statuses",
+                                            "build",
+                                            ":key"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "213428fb-fa03-4f01-9067-b702c612fc70",
+                                              "key": "workspace",
+                                              "value": "<string>",
+                                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                            },
+                                            {
+                                              "id": "0cd66b57-10d7-4262-8e4b-7e322c1022b0",
+                                              "key": "repo_slug",
+                                              "value": "<string>",
+                                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                            },
+                                            {
+                                              "id": "0cda0511-9052-40cc-b3af-d528bf7acd83",
+                                              "key": "commit",
+                                              "value": "<string>",
+                                              "description": "(Required) The commit's SHA1."
+                                            },
+                                            {
+                                              "id": "efcb2925-0f1e-4d28-aa90-33c29b026b3f",
+                                              "key": "key",
+                                              "value": "<string>",
+                                              "description": "(Required) The build status' unique key"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Used to update the current status of a build status object on the\nspecific commit.\n\nThis operation can also be used to change other properties of the\nbuild status:\n\n* `state`\n* `name`\n* `description`\n* `url`\n* `refname`\n\nThe `key` cannot be changed."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "e0a05778-c4e1-47bf-9f08-657711c1493a",
+                                          "name": "The updated build status object.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-e0a05778-c4e1-47bf-9f08-657711c1493a"
+                                        },
+                                        {
+                                          "id": "7bcdaa2a-59e2-4459-b8e7-3d555fcc2298",
+                                          "name": "If the repository is private and the request was not authenticated.",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-7bcdaa2a-59e2-4459-b8e7-3d555fcc2298"
+                                        },
+                                        {
+                                          "id": "1122eda8-de8a-41f0-a239-258722f86d8e",
+                                          "name": "If the repository or build does not exist",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: oauth2",
+                                                "key": "Authorization",
+                                                "value": "<token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                              "options": {
+                                                "raw": {
+                                                  "headerFamily": "json",
+                                                  "language": "json"
+                                                }
+                                              }
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build/:key",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "repositories",
+                                                ":workspace",
+                                                ":repo_slug",
+                                                "commit",
+                                                ":commit",
+                                                "statuses",
+                                                "build",
+                                                ":key"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace"
+                                                },
+                                                {
+                                                  "key": "repo_slug"
+                                                },
+                                                {
+                                                  "key": "commit"
+                                                },
+                                                {
+                                                  "key": "key"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"deserunt7e5\": \"eu consequat dolore\",\n      \"quis165\": \"pariatur ea\"\n    }\n  }\n}",
+                                          "createdAt": "2026-07-28T01:13:51.000Z",
+                                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                                          "uid": "35240-1122eda8-de8a-41f0-a239-258722f86d8e"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T01:13:51.000Z",
+                                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                                      "uid": "35240-a7d04c64-aac8-4eeb-a00b-1107c5af3b84"
+                                    }
+                                  ],
+                                  "id": "c1654acc-13a1-4695-a9b6-073579493642",
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-c1654acc-13a1-4695-a9b6-073579493642"
+                                },
+                                {
+                                  "name": "Create a build status for a commit",
+                                  "id": "f9885cc8-85a7-47ca-ab28-effba9613bb6",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "oauth2",
+                                      "oauth2": [
+                                        {
+                                          "key": "scope",
+                                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "accessTokenUrl",
+                                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "authUrl",
+                                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "grant_type",
+                                          "value": "authorization_code",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "commit",
+                                        ":commit",
+                                        "statuses",
+                                        "build"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "38749b24-ea05-40eb-b38b-844a1fb3b207",
+                                          "key": "workspace",
+                                          "value": "<string>",
+                                          "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                        },
+                                        {
+                                          "id": "7db2b1d5-fa3d-4620-931c-c6fe9e78c104",
+                                          "key": "repo_slug",
+                                          "value": "<string>",
+                                          "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                        },
+                                        {
+                                          "id": "4f4d7f07-bd5c-4dde-a17f-581900af7ab0",
+                                          "key": "commit",
+                                          "value": "<string>",
+                                          "description": "(Required) The commit's SHA1."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Creates a new build status against the specified commit.\n\nIf the specified key already exists, the existing status object will\nbe overwritten.\n\nExample:\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/           -X POST -u jdoe -H 'Content-Type: application/json'           -d '{\n    \"key\": \"MY-BUILD\",\n    \"state\": \"SUCCESSFUL\",\n    \"description\": \"42 tests passed\",\n    \"url\": \"https://www.example.org/my-build-result\"\n  }'\n```\n\nWhen creating a new commit status, you can use a URI template for the URL.\nTemplates are URLs that contain variable names that Bitbucket will\nevaluate at runtime whenever the URL is displayed anywhere similar to\nparameter substitution in\n[Bitbucket Connect](https://developer.atlassian.com/bitbucket/concepts/context-parameters.html).\nFor example, one could use `https://foo.com/builds/{repository.full_name}`\nwhich Bitbucket will turn into `https://foo.com/builds/foo/bar` at render time.\nThe context variables available are `repository` and `commit`.\n\nTo associate a commit status to a pull request, the refname field must be set to the source branch\nof the pull request.\n\nExample:\n```\ncurl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/           -X POST -u jdoe -H 'Content-Type: application/json'           -d '{\n    \"key\": \"MY-BUILD\",\n    \"state\": \"SUCCESSFUL\",\n    \"description\": \"42 tests passed\",\n    \"url\": \"https://www.example.org/my-build-result\",\n    \"refname\": \"my-pr-branch\"\n  }'\n```"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c09ef045-a858-47dc-8444-37185f1f6322",
+                                      "name": "The newly created build status object.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "statuses",
+                                            "build"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspace"
+                                            },
+                                            {
+                                              "key": "repo_slug"
+                                            },
+                                            {
+                                              "key": "commit"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                      "createdAt": "2026-07-28T01:13:51.000Z",
+                                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                                      "uid": "35240-c09ef045-a858-47dc-8444-37185f1f6322"
+                                    },
+                                    {
+                                      "id": "b5e266ef-c0b5-4704-a926-9908ac82fb2c",
+                                      "name": "If the repository is private and the request was not authenticated.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "statuses",
+                                            "build"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspace"
+                                            },
+                                            {
+                                              "key": "repo_slug"
+                                            },
+                                            {
+                                              "key": "commit"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T01:13:51.000Z",
+                                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                                      "uid": "35240-b5e266ef-c0b5-4704-a926-9908ac82fb2c"
+                                    },
+                                    {
+                                      "id": "06ff6ed1-a56b-4b3a-8638-0ea6f2493e06",
+                                      "name": "If the repository, commit, or build status key does not exist",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: oauth2",
+                                            "key": "Authorization",
+                                            "value": "<token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"key\": \"<string>\",\n  \"state\": \"STOPPED\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"commit\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"refname\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses/build",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "repositories",
+                                            ":workspace",
+                                            ":repo_slug",
+                                            "commit",
+                                            ":commit",
+                                            "statuses",
+                                            "build"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspace"
+                                            },
+                                            {
+                                              "key": "repo_slug"
+                                            },
+                                            {
+                                              "key": "commit"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"deserunt7e5\": \"eu consequat dolore\",\n      \"quis165\": \"pariatur ea\"\n    }\n  }\n}",
+                                      "createdAt": "2026-07-28T01:13:51.000Z",
+                                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                                      "uid": "35240-06ff6ed1-a56b-4b3a-8638-0ea6f2493e06"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-f9885cc8-85a7-47ca-ab28-effba9613bb6"
+                                }
+                              ],
+                              "id": "06b38e23-563c-458f-b337-581a3e37ef0a",
+                              "createdAt": "2026-07-28T01:13:51.000Z",
+                              "updatedAt": "2026-07-28T01:13:51.000Z",
+                              "uid": "35240-06b38e23-563c-458f-b337-581a3e37ef0a"
+                            },
+                            {
+                              "name": "List commit statuses for a commit",
+                              "id": "6373f8b2-c369-46bb-9652-c5d765587d27",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses?refname=<string>&q=<string>&sort=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "commit",
+                                    ":commit",
+                                    "statuses"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If specified, only return commit status objects that were either\ncreated without a refname, or were created with the specified refname\n",
+                                      "key": "refname",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                      "key": "q",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                      "key": "sort",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "54b8f85c-7c03-4c17-89d0-1342a8be14c6",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "7d9c5526-e932-4373-9444-b64c8871799d",
+                                      "key": "repo_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "6453f639-2f11-4d19-b715-1b0fe6db28e5",
+                                      "key": "commit",
+                                      "value": "<string>",
+                                      "description": "(Required) The commit's SHA1."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns all statuses (e.g. build results) for a specific commit."
+                              },
+                              "response": [
+                                {
+                                  "id": "0b403922-bde9-4319-a794-743c137e260a",
+                                  "name": "A paginated list of all commit statuses for this commit.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses?refname=<string>&q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "commit",
+                                        ":commit",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If specified, only return commit status objects that were either\ncreated without a refname, or were created with the specified refname\n",
+                                          "key": "refname",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "commit"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"key\": \"<string>\",\n      \"state\": \"SUCCESSFUL\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commit\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"refname\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"state\": \"INPROGRESS\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commit\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"refname\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-0b403922-bde9-4319-a794-743c137e260a"
+                                },
+                                {
+                                  "id": "329cac7c-371d-43a4-aa7b-fb176cc48ffb",
+                                  "name": "If the repository is private and the request was not authenticated.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses?refname=<string>&q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "commit",
+                                        ":commit",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If specified, only return commit status objects that were either\ncreated without a refname, or were created with the specified refname\n",
+                                          "key": "refname",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "commit"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-329cac7c-371d-43a4-aa7b-fb176cc48ffb"
+                                },
+                                {
+                                  "id": "ac5a84bb-5de8-44a1-867e-b431b6ae1d32",
+                                  "name": "If the repository or commit does not exist",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/statuses?refname=<string>&q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "commit",
+                                        ":commit",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "If specified, only return commit status objects that were either\ncreated without a refname, or were created with the specified refname\n",
+                                          "key": "refname",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "commit"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"deserunt7e5\": \"eu consequat dolore\",\n      \"quis165\": \"pariatur ea\"\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-ac5a84bb-5de8-44a1-867e-b431b6ae1d32"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:13:51.000Z",
+                              "updatedAt": "2026-07-28T01:13:51.000Z",
+                              "uid": "35240-6373f8b2-c369-46bb-9652-c5d765587d27"
+                            }
+                          ],
+                          "id": "00ccdf59-926e-445a-b61f-64d9fccaa83c",
+                          "createdAt": "2026-07-28T01:13:51.000Z",
+                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                          "uid": "35240-00ccdf59-926e-445a-b61f-64d9fccaa83c"
+                        }
+                      ],
+                      "id": "f16103cf-c320-442e-9613-6b082b6b25fa",
+                      "createdAt": "2026-07-28T01:13:51.000Z",
+                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                      "uid": "35240-f16103cf-c320-442e-9613-6b082b6b25fa"
+                    }
+                  ],
+                  "id": "9aea96ba-1e71-40fd-ba05-e0678af23129",
+                  "createdAt": "2026-07-28T01:13:51.000Z",
+                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                  "uid": "35240-9aea96ba-1e71-40fd-ba05-e0678af23129"
+                },
+                {
+                  "name": "pullrequests",
+                  "item": [
+                    {
+                      "name": "{pull_request_id}",
+                      "item": [
+                        {
+                          "name": "statuses",
+                          "item": [
+                            {
+                              "name": "List commit statuses for a pull request",
+                              "id": "83c7b1a9-8510-4ed1-9124-ce618ac2e29d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pull_request_id/statuses?q=<string>&sort=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "pullrequests",
+                                    ":pull_request_id",
+                                    "statuses"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                      "key": "q",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                      "key": "sort",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "936a6de2-000c-4564-99c0-455f4ce7517e",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "1e21b19f-2985-4acd-9b10-fbea1ba07280",
+                                      "key": "repo_slug",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "4e892025-c8a2-438c-b701-277680dc29b8",
+                                      "key": "pull_request_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) The id of the pull request."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns all statuses (e.g. build results) for the given pull\nrequest."
+                              },
+                              "response": [
+                                {
+                                  "id": "cd6412e0-7e2c-4ae7-95f6-758ecabfef47",
+                                  "name": "A paginated list of all commit statuses for this pull request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pull_request_id/statuses?q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "pullrequests",
+                                        ":pull_request_id",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "pull_request_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"key\": \"<string>\",\n      \"state\": \"SUCCESSFUL\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commit\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"refname\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"state\": \"INPROGRESS\",\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commit\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"refname\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_on\": \"<dateTime>\",\n      \"updated_on\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-cd6412e0-7e2c-4ae7-95f6-758ecabfef47"
+                                },
+                                {
+                                  "id": "3a0374a6-6ab6-4fb5-8a2d-2c6c1def639b",
+                                  "name": "If the repository is private and the request was not authenticated.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pull_request_id/statuses?q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "pullrequests",
+                                        ":pull_request_id",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "pull_request_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-3a0374a6-6ab6-4fb5-8a2d-2c6c1def639b"
+                                },
+                                {
+                                  "id": "a49b13a0-dca7-4471-85a9-7b5b15168117",
+                                  "name": "If the specified repository or pull request does not exist.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pull_request_id/statuses?q=<string>&sort=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "repositories",
+                                        ":workspace",
+                                        ":repo_slug",
+                                        "pullrequests",
+                                        ":pull_request_id",
+                                        "statuses"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Query string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\n",
+                                          "key": "q",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Field by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering).\nDefaults to `created_on`.\n",
+                                          "key": "sort",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "repo_slug"
+                                        },
+                                        {
+                                          "key": "pull_request_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"deserunt7e5\": \"eu consequat dolore\",\n      \"quis165\": \"pariatur ea\"\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:51.000Z",
+                                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                                  "uid": "35240-a49b13a0-dca7-4471-85a9-7b5b15168117"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:13:51.000Z",
+                              "updatedAt": "2026-07-28T01:13:51.000Z",
+                              "uid": "35240-83c7b1a9-8510-4ed1-9124-ce618ac2e29d"
+                            }
+                          ],
+                          "id": "6e0e25b0-2424-4c73-9918-d154eb8bfe6a",
+                          "createdAt": "2026-07-28T01:13:51.000Z",
+                          "updatedAt": "2026-07-28T01:13:51.000Z",
+                          "uid": "35240-6e0e25b0-2424-4c73-9918-d154eb8bfe6a"
+                        }
+                      ],
+                      "id": "4fd56a94-bc33-40aa-adf4-cd9ea00bc479",
+                      "createdAt": "2026-07-28T01:13:51.000Z",
+                      "updatedAt": "2026-07-28T01:13:51.000Z",
+                      "uid": "35240-4fd56a94-bc33-40aa-adf4-cd9ea00bc479"
+                    }
+                  ],
+                  "id": "263df498-c782-4f7d-9d00-2371d1c41d5a",
+                  "createdAt": "2026-07-28T01:13:51.000Z",
+                  "updatedAt": "2026-07-28T01:13:51.000Z",
+                  "uid": "35240-263df498-c782-4f7d-9d00-2371d1c41d5a"
+                }
+              ],
+              "id": "8373b8f1-096b-457f-a2bf-2ddd7045c363",
+              "createdAt": "2026-07-28T01:13:51.000Z",
+              "updatedAt": "2026-07-28T01:13:51.000Z",
+              "uid": "35240-8373b8f1-096b-457f-a2bf-2ddd7045c363"
+            }
+          ],
+          "id": "2d5b464d-a96d-403b-848b-22e9076c37c4",
+          "createdAt": "2026-07-28T01:13:51.000Z",
+          "updatedAt": "2026-07-28T01:13:51.000Z",
+          "uid": "35240-2d5b464d-a96d-403b-848b-22e9076c37c4"
+        }
+      ],
+      "id": "416718d7-19db-442a-8614-ca1afa2b3ac5",
+      "createdAt": "2026-07-28T01:13:51.000Z",
+      "updatedAt": "2026-07-28T01:13:51.000Z",
+      "uid": "35240-416718d7-19db-442a-8614-ca1afa2b3ac5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

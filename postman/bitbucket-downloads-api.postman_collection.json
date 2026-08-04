@@ -1,0 +1,995 @@
+{
+  "info": {
+    "_postman_id": "78e48391-d8f3-4245-9549-a7e2ee25742e",
+    "name": "Bitbucket Addon Downloads API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:14:16.000Z",
+    "updatedAt": "2026-07-28T01:14:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-78e48391-d8f3-4245-9549-a7e2ee25742e"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "downloads",
+                  "item": [
+                    {
+                      "name": "{filename}",
+                      "item": [
+                        {
+                          "name": "Delete a download artifact",
+                          "id": "05b8956e-6fbb-4180-a6af-fdc49506c749",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads",
+                                ":filename"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3f879a78-0935-41e1-87ed-df21bfd9e602",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "e008c432-771a-4442-a3b0-40e5b6aafa91",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "0a7d1084-c16f-41bf-9d3f-d9b8c7616671",
+                                  "key": "filename",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the file."
+                                }
+                              ]
+                            },
+                            "description": "Deletes the specified download artifact from the repository."
+                          },
+                          "response": [
+                            {
+                              "id": "dbffe5c4-8fcb-43da-ba1b-41c234d68c58",
+                              "name": "The specified download artifact was deleted.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-dbffe5c4-8fcb-43da-ba1b-41c234d68c58"
+                            },
+                            {
+                              "id": "556a1968-f476-4aad-9915-b91c53907ed6",
+                              "name": "User is not authorized to write to the repository.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-556a1968-f476-4aad-9915-b91c53907ed6"
+                            },
+                            {
+                              "id": "60f815df-2cd5-43c4-a033-e961ab21e265",
+                              "name": "The specified download does not exist.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-60f815df-2cd5-43c4-a033-e961ab21e265"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-05b8956e-6fbb-4180-a6af-fdc49506c749"
+                        },
+                        {
+                          "name": "Get a download artifact link",
+                          "id": "c00bd2ac-9da7-42ff-a6e5-71b31ed6adac",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads",
+                                ":filename"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6c51ce22-68b6-476a-a3db-0c568cdceeb3",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "5fae6a50-bfaf-4ea3-b29a-2235e2965b56",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                },
+                                {
+                                  "id": "e478d332-9e5a-4483-b608-13a7c0c3540e",
+                                  "key": "filename",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the file."
+                                }
+                              ]
+                            },
+                            "description": "Return a redirect to the contents of a download artifact.\n\nThis endpoint returns the actual file contents and not the artifact's\nmetadata.\n\n    $ curl -s -L https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads/hello.txt\n    Hello World"
+                          },
+                          "response": [
+                            {
+                              "id": "2c7b2c0f-fc8b-41bd-978b-ddf35334033a",
+                              "name": "Redirects to the url of the specified download artifact.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Found",
+                              "code": 302,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-2c7b2c0f-fc8b-41bd-978b-ddf35334033a"
+                            },
+                            {
+                              "id": "b513be18-8c9c-42b5-9d14-3f8a01f636bd",
+                              "name": "User is not authorized to read from the repository.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-b513be18-8c9c-42b5-9d14-3f8a01f636bd"
+                            },
+                            {
+                              "id": "763e8170-ded6-4de5-874f-f0b7f9ded269",
+                              "name": "The specified download artifact does not exist.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "downloads",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    },
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:14:17.000Z",
+                              "updatedAt": "2026-07-28T01:14:17.000Z",
+                              "uid": "35240-763e8170-ded6-4de5-874f-f0b7f9ded269"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-c00bd2ac-9da7-42ff-a6e5-71b31ed6adac"
+                        }
+                      ],
+                      "id": "5d93b955-29f8-48a2-b1b6-7a7f52e8c1f3",
+                      "createdAt": "2026-07-28T01:14:17.000Z",
+                      "updatedAt": "2026-07-28T01:14:17.000Z",
+                      "uid": "35240-5d93b955-29f8-48a2-b1b6-7a7f52e8c1f3"
+                    },
+                    {
+                      "name": "List download artifacts",
+                      "id": "9657c351-c781-4286-bcde-0d2e01194a3e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "downloads"
+                          ],
+                          "variable": [
+                            {
+                              "id": "87f5a024-b4a8-4627-ab0d-d7835454005f",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "0a182a32-65b8-4632-8ef6-fc8c4ce28643",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of download links associated with the repository."
+                      },
+                      "response": [
+                        {
+                          "id": "37b7b9da-3541-499e-b6b5-a5dd1a0cb9b4",
+                          "name": "Returns a paginated list of the downloads associated with the repository.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-37b7b9da-3541-499e-b6b5-a5dd1a0cb9b4"
+                        },
+                        {
+                          "id": "6861ab7a-84ab-4c1d-904c-188d82be2fb4",
+                          "name": "User is not authorized to read from the repository.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-6861ab7a-84ab-4c1d-904c-188d82be2fb4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:17.000Z",
+                      "updatedAt": "2026-07-28T01:14:17.000Z",
+                      "uid": "35240-9657c351-c781-4286-bcde-0d2e01194a3e"
+                    },
+                    {
+                      "name": "Upload a download artifact",
+                      "id": "351a112c-652b-4341-95b3-7fccc92f41dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "downloads"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d207738d-34f0-4ea9-887e-cfebae4ff895",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "67026374-2925-42c1-81fe-a0e7aa67977e",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Upload new download artifacts.\n\nTo upload files, perform a `multipart/form-data` POST containing one\nor more `files` fields:\n\n    $ echo Hello World > hello.txt\n    $ curl -s -u evzijst -X POST https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads -F files=@hello.txt\n\nWhen a file is uploaded with the same name as an existing artifact,\nthen the existing file will be replaced."
+                      },
+                      "response": [
+                        {
+                          "id": "e44f29cc-bc65-4050-bf02-5f3226731d4b",
+                          "name": "The artifact was uploaded sucessfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-e44f29cc-bc65-4050-bf02-5f3226731d4b"
+                        },
+                        {
+                          "id": "d920076e-bedd-4725-859c-ee1c1575ad62",
+                          "name": "Bad Request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-d920076e-bedd-4725-859c-ee1c1575ad62"
+                        },
+                        {
+                          "id": "4f1abd7b-16dc-4311-a1a8-5593a5f69aeb",
+                          "name": "User is not authorized to write to the repository.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-4f1abd7b-16dc-4311-a1a8-5593a5f69aeb"
+                        },
+                        {
+                          "id": "6bece82f-a95a-436d-b297-8dcde456b750",
+                          "name": "Unsupported Content-Type. Use multiplart/form-data.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/downloads",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "downloads"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Acceptable",
+                          "code": 406,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"sit394\": -66536174.90768742,\n      \"exercitationfc\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:17.000Z",
+                          "updatedAt": "2026-07-28T01:14:17.000Z",
+                          "uid": "35240-6bece82f-a95a-436d-b297-8dcde456b750"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:17.000Z",
+                      "updatedAt": "2026-07-28T01:14:17.000Z",
+                      "uid": "35240-351a112c-652b-4341-95b3-7fccc92f41dc"
+                    }
+                  ],
+                  "id": "e6a3572e-b650-4432-a3de-b249f27fae65",
+                  "createdAt": "2026-07-28T01:14:17.000Z",
+                  "updatedAt": "2026-07-28T01:14:17.000Z",
+                  "uid": "35240-e6a3572e-b650-4432-a3de-b249f27fae65"
+                }
+              ],
+              "id": "eb77d3d4-c34a-45d1-a197-06125a2a0570",
+              "createdAt": "2026-07-28T01:14:17.000Z",
+              "updatedAt": "2026-07-28T01:14:17.000Z",
+              "uid": "35240-eb77d3d4-c34a-45d1-a197-06125a2a0570"
+            }
+          ],
+          "id": "a890e8d8-e6f8-450f-8bba-3c4d2f7ea87a",
+          "createdAt": "2026-07-28T01:14:17.000Z",
+          "updatedAt": "2026-07-28T01:14:17.000Z",
+          "uid": "35240-a890e8d8-e6f8-450f-8bba-3c4d2f7ea87a"
+        }
+      ],
+      "id": "e19116dd-a6bc-40c4-9bd3-85a8bd0e6c1f",
+      "createdAt": "2026-07-28T01:14:17.000Z",
+      "updatedAt": "2026-07-28T01:14:17.000Z",
+      "uid": "35240-e19116dd-a6bc-40c4-9bd3-85a8bd0e6c1f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

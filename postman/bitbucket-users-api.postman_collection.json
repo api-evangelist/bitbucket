@@ -1,0 +1,581 @@
+{
+  "info": {
+    "_postman_id": "3dbc3f73-3ce8-47ff-9c8f-fb219925ba68",
+    "name": "Bitbucket Addon Users API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:14:58.000Z",
+    "updatedAt": "2026-07-28T01:14:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3dbc3f73-3ce8-47ff-9c8f-fb219925ba68"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "emails",
+          "item": [
+            {
+              "name": "{email}",
+              "item": [
+                {
+                  "name": "Get an email address for current user",
+                  "id": "09d0b01c-50ad-43b8-9a2d-4c4632401e5f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/emails/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "emails",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4d9f3753-9b41-4632-b001-dd68e64dc796",
+                          "key": "email",
+                          "value": "<string>",
+                          "description": "(Required) Email address of the user."
+                        }
+                      ]
+                    },
+                    "description": "Returns details about a specific one of the authenticated user's\nemail addresses.\n\nDetails describe whether the address has been confirmed by the user and\nwhether it is the user's primary address or not."
+                  },
+                  "response": [
+                    {
+                      "id": "837a0647-7836-4061-bd0e-15818fdc816d",
+                      "name": "Unexpected error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user/emails/:email",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user",
+                            "emails",
+                            ":email"
+                          ],
+                          "variable": [
+                            {
+                              "key": "email"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"exercitation_d\": \"magna ad m\",\n      \"mollit3\": true,\n      \"Duisb52\": 93150709.50018606\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:59.000Z",
+                      "updatedAt": "2026-07-28T01:14:59.000Z",
+                      "uid": "35240-837a0647-7836-4061-bd0e-15818fdc816d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:14:59.000Z",
+                  "updatedAt": "2026-07-28T01:14:59.000Z",
+                  "uid": "35240-09d0b01c-50ad-43b8-9a2d-4c4632401e5f"
+                }
+              ],
+              "id": "9ba3fdd9-b086-4fc1-b046-e9880c44dec2",
+              "createdAt": "2026-07-28T01:14:59.000Z",
+              "updatedAt": "2026-07-28T01:14:59.000Z",
+              "uid": "35240-9ba3fdd9-b086-4fc1-b046-e9880c44dec2"
+            },
+            {
+              "name": "List email addresses for current user",
+              "id": "586c1b47-9b92-449c-98cb-5e4aaa697248",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "emails"
+                  ]
+                },
+                "description": "Returns all the authenticated user's email addresses. Both\nconfirmed and unconfirmed."
+              },
+              "response": [
+                {
+                  "id": "c531c0e7-cb13-467b-a9d3-30152aad9ad3",
+                  "name": "Unexpected error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/emails",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "emails"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"exercitation_d\": \"magna ad m\",\n      \"mollit3\": true,\n      \"Duisb52\": 93150709.50018606\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:14:59.000Z",
+                  "updatedAt": "2026-07-28T01:14:59.000Z",
+                  "uid": "35240-c531c0e7-cb13-467b-a9d3-30152aad9ad3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:14:59.000Z",
+              "updatedAt": "2026-07-28T01:14:59.000Z",
+              "uid": "35240-586c1b47-9b92-449c-98cb-5e4aaa697248"
+            }
+          ],
+          "id": "8f4701d1-1a35-42a7-a80f-4217e59c16e6",
+          "createdAt": "2026-07-28T01:14:59.000Z",
+          "updatedAt": "2026-07-28T01:14:59.000Z",
+          "uid": "35240-8f4701d1-1a35-42a7-a80f-4217e59c16e6"
+        },
+        {
+          "name": "Get current user",
+          "id": "8cc988e2-ccb7-4475-8b32-1958ce59cc5d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                  "type": "string"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Returns the currently logged in user."
+          },
+          "response": [
+            {
+              "id": "1feed044-131a-4a67-86f3-1b722f107bdd",
+              "name": "The current user.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"avatar\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"ex0\": -84797075.34884048,\n    \"eu244\": -25109429.47520043,\n    \"consectetur_ba8\": \"deserunt exercitation non\"\n  },\n  \"created_on\": \"<dateTime>\",\n  \"display_name\": \"<string>\",\n  \"uuid\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:14:59.000Z",
+              "updatedAt": "2026-07-28T01:14:59.000Z",
+              "uid": "35240-1feed044-131a-4a67-86f3-1b722f107bdd"
+            },
+            {
+              "id": "c709a13f-b156-4fe8-baa9-805b58b1a35c",
+              "name": "When the request wasn't authenticated.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"exercitation_d\": \"magna ad m\",\n      \"mollit3\": true,\n      \"Duisb52\": 93150709.50018606\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:14:59.000Z",
+              "updatedAt": "2026-07-28T01:14:59.000Z",
+              "uid": "35240-c709a13f-b156-4fe8-baa9-805b58b1a35c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:14:59.000Z",
+          "updatedAt": "2026-07-28T01:14:59.000Z",
+          "uid": "35240-8cc988e2-ccb7-4475-8b32-1958ce59cc5d"
+        }
+      ],
+      "id": "4668fe78-eab6-4429-aee8-281181124704",
+      "createdAt": "2026-07-28T01:14:59.000Z",
+      "updatedAt": "2026-07-28T01:14:59.000Z",
+      "uid": "35240-4668fe78-eab6-4429-aee8-281181124704"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{selected_user}",
+          "item": [
+            {
+              "name": "Get a user",
+              "id": "0542944e-d0a9-4cbd-a91d-5f5d55f770bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:selected_user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":selected_user"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ee27e0a0-f4d8-4c95-a282-29bc14227316",
+                      "key": "selected_user",
+                      "value": "<string>",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "description": "Gets the public information associated with a user account.\n\nIf the user's profile is private, `location`, `website` and\n`created_on` elements are omitted.\n\nNote that the user object returned by this operation is changing significantly, due to privacy changes.\nSee the [announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-changes-gdpr/#changes-to-bitbucket-user-objects) for details."
+              },
+              "response": [
+                {
+                  "id": "f7e7ac14-6069-413f-ab1f-4bf41b7525fe",
+                  "name": "The user object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user"
+                      ],
+                      "variable": [
+                        {
+                          "key": "selected_user"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"avatar\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    },\n    \"ex0\": -84797075.34884048,\n    \"eu244\": -25109429.47520043,\n    \"consectetur_ba8\": \"deserunt exercitation non\"\n  },\n  \"created_on\": \"<dateTime>\",\n  \"display_name\": \"<string>\",\n  \"uuid\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:14:59.000Z",
+                  "updatedAt": "2026-07-28T01:14:59.000Z",
+                  "uid": "35240-f7e7ac14-6069-413f-ab1f-4bf41b7525fe"
+                },
+                {
+                  "id": "18024538-784c-4350-8211-5e23512c0134",
+                  "name": "If no user exists for the specified UUID, or if the specified account is a team account, not a personal account.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user"
+                      ],
+                      "variable": [
+                        {
+                          "key": "selected_user"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"exercitation_d\": \"magna ad m\",\n      \"mollit3\": true,\n      \"Duisb52\": 93150709.50018606\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:14:59.000Z",
+                  "updatedAt": "2026-07-28T01:14:59.000Z",
+                  "uid": "35240-18024538-784c-4350-8211-5e23512c0134"
+                }
+              ],
+              "createdAt": "2026-07-28T01:14:59.000Z",
+              "updatedAt": "2026-07-28T01:14:59.000Z",
+              "uid": "35240-0542944e-d0a9-4cbd-a91d-5f5d55f770bb"
+            }
+          ],
+          "id": "176dccb5-bf08-41aa-bc64-288474a53aa8",
+          "createdAt": "2026-07-28T01:14:59.000Z",
+          "updatedAt": "2026-07-28T01:14:59.000Z",
+          "uid": "35240-176dccb5-bf08-41aa-bc64-288474a53aa8"
+        }
+      ],
+      "id": "95c48241-cab0-4809-9091-622120ac7428",
+      "createdAt": "2026-07-28T01:14:59.000Z",
+      "updatedAt": "2026-07-28T01:14:59.000Z",
+      "uid": "35240-95c48241-cab0-4809-9091-622120ac7428"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

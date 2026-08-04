@@ -1,0 +1,2266 @@
+{
+  "info": {
+    "_postman_id": "dad82072-60fd-4538-9841-b4fddc4a1518",
+    "name": "Bitbucket Addon Branching model API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:13:49.000Z",
+    "updatedAt": "2026-07-28T01:13:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dad82072-60fd-4538-9841-b4fddc4a1518"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "{repo_slug}",
+              "item": [
+                {
+                  "name": "branching-model",
+                  "item": [
+                    {
+                      "name": "settings",
+                      "item": [
+                        {
+                          "name": "Get the branching model config for a repository",
+                          "id": "921459ba-6d0d-4d15-b446-456d3685ed37",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model",
+                                "settings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3aa5f639-9530-4937-a7f5-48ea05d34a44",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "5873bf80-eb93-4d06-9ffa-1b4916075c92",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                }
+                              ]
+                            },
+                            "description": "Return the branching model configuration for a repository. The returned\nobject:\n\n1. Always has a `development` property for the development branch.\n2. Always a `production` property for the production branch. The\n   production branch can be disabled.\n3. The `branch_types` contains all the branch types.\n4. `default_branch_deletion` indicates whether branches will be\n    deleted by default on merge.\n\nThis is the raw configuration for the branching model. A client\nwishing to see the branching model with its actual current branches may\nfind the [active model API](/cloud/bitbucket/rest/api-group-branching-model/#api-repositories-workspace-repo-slug-branching-model-get) more useful."
+                          },
+                          "response": [
+                            {
+                              "id": "4f476f3b-4e2e-4fff-8405-9c144dea9064",
+                              "name": "The branching model configuration",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"branch_types\": [\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  },\n  \"production\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-4f476f3b-4e2e-4fff-8405-9c144dea9064"
+                            },
+                            {
+                              "id": "dcbbe8c7-6739-47d1-b650-68ede6b4c6fb",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-dcbbe8c7-6739-47d1-b650-68ede6b4c6fb"
+                            },
+                            {
+                              "id": "de96ccac-57af-435b-8056-d51278e647c6",
+                              "name": "If the authenticated user does not have admin access to the repository",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-de96ccac-57af-435b-8056-d51278e647c6"
+                            },
+                            {
+                              "id": "8ff5f768-4ace-41d7-b7a9-046d52fea195",
+                              "name": "If the repository does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-8ff5f768-4ace-41d7-b7a9-046d52fea195"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-921459ba-6d0d-4d15-b446-456d3685ed37"
+                        },
+                        {
+                          "name": "Update the branching model config for a repository",
+                          "id": "3d650568-37aa-4be0-8747-20eabafa2e66",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model",
+                                "settings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8b844f02-38fb-4e95-bb9c-e526856617ee",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "30dd4d52-c5a4-4cfa-8582-7b26ac43b7ff",
+                                  "key": "repo_slug",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                                }
+                              ]
+                            },
+                            "description": "Update the branching model configuration for a repository.\n\nThe `development` branch can be configured to a specific branch or to\ntrack the main branch. When set to a specific branch it must\ncurrently exist. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`development` property will leave the development branch unchanged.\n\nIt is possible for the `development` branch to be invalid. This\nhappens when it points at a specific branch that has been\ndeleted. This is indicated in the `is_valid` field for the branch. It is\nnot possible to update the settings for `development` if that\nwould leave the branch in an invalid state. Such a request will be\nrejected.\n\nThe `production` branch can be a specific branch, the main\nbranch or disabled. When set to a specific branch it must currently\nexist. The `enabled` property can be used to enable (`true`) or\ndisable (`false`) it. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`production` property will leave the production branch unchanged.\n\nIt is possible for the `production` branch to be invalid. This\nhappens when it points at a specific branch that has been\ndeleted. This is indicated in the `is_valid` field for the branch. A\nrequest that would leave `production` enabled and invalid will be\nrejected. It is possible to update `production` and make it invalid if\nit would also be left disabled.\n\nThe `branch_types` property contains the branch types to be updated.\nOnly the branch types passed will be updated. All updates will be\nrejected if it would leave the branching model in an invalid state.\nFor branch types this means that:\n\n1. The prefixes for all enabled branch types are valid. For example,\n   it is not possible to use '*' inside a Git prefix.\n2. A prefix of an enabled branch type must not be a prefix of another\n   enabled branch type. This is to ensure that a branch can be easily\n   classified by its prefix unambiguously.\n\nIt is possible to store an invalid prefix if that branch type would be\nleft disabled. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. Each branch type must\nhave a `kind` property to identify it.\n\nThe `default_branch_deletion` property is a string. The value of `true`\nindicates to delete branches by default. The value of `false` indicates\nthat branches will not be deleted by default. A request without a\n`default_branch_deletion` property will leave it unchanged. Other values\nwould be ignored.\n\nThere is currently a side effect when using this API endpoint. If the\nrepository is inheriting branching model settings from its project,\nupdating the branching model for this repository will disable the\nproject setting inheritance.\n\n\nWe have deprecated this side effect and will remove it on 1 August 2022."
+                          },
+                          "response": [
+                            {
+                              "id": "a512929a-faff-441a-9112-25dd9193f1c1",
+                              "name": "The updated branching model configuration",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"branch_types\": [\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  },\n  \"production\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-a512929a-faff-441a-9112-25dd9193f1c1"
+                            },
+                            {
+                              "id": "63b16cb5-1ff5-422c-bf61-7289a81c19ea",
+                              "name": "If the request contains invalid branching model configuration",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-63b16cb5-1ff5-422c-bf61-7289a81c19ea"
+                            },
+                            {
+                              "id": "011cd6be-90e7-49ac-b1df-556ee9abdbce",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-011cd6be-90e7-49ac-b1df-556ee9abdbce"
+                            },
+                            {
+                              "id": "9a748973-c63c-4ad6-86c1-7f96ec45a5dd",
+                              "name": "If the authenticated user does not have admin access to the repository",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-9a748973-c63c-4ad6-86c1-7f96ec45a5dd"
+                            },
+                            {
+                              "id": "301d137c-0d07-41dc-a26b-da16e5aa3ae4",
+                              "name": "If the repository does not exist",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":workspace",
+                                    ":repo_slug",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "repo_slug"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-301d137c-0d07-41dc-a26b-da16e5aa3ae4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-3d650568-37aa-4be0-8747-20eabafa2e66"
+                        }
+                      ],
+                      "id": "fed2dab3-0d45-496a-96b8-b8175fa7bf40",
+                      "createdAt": "2026-07-28T01:13:49.000Z",
+                      "updatedAt": "2026-07-28T01:13:49.000Z",
+                      "uid": "35240-fed2dab3-0d45-496a-96b8-b8175fa7bf40"
+                    },
+                    {
+                      "name": "Get the branching model for a repository",
+                      "id": "18d0334e-3111-4c54-b305-c6275577ac88",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "branching-model"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5fee4728-5e8b-4798-b407-8cdfad945bd6",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "89d92594-b503-4e30-8182-710ad4d6f8f9",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        },
+                        "description": "Return the branching model as applied to the repository. This view is\nread-only. The branching model settings can be changed using the\n[settings](#api-repositories-workspace-repo-slug-branching-model-settings-get) API.\n\nThe returned object:\n\n1. Always has a `development` property. `development.branch` contains\n   the actual repository branch object that is considered to be the\n   `development` branch. `development.branch` will not be present\n   if it does not exist.\n2. Might have a `production` property. `production` will not\n   be present when `production` is disabled.\n   `production.branch` contains the actual branch object that is\n   considered to be the `production` branch. `production.branch` will\n   not be present if it does not exist.\n3. Always has a `branch_types` array which contains all enabled branch\n   types."
+                      },
+                      "response": [
+                        {
+                          "id": "0c03b262-a039-4ef9-b97d-83a176bf35ee",
+                          "name": "The branching model object",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"branch_types\": [\n    {\n      \"kind\": \"release\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"hotfix\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"branch\": {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commits\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"target\": {\n        \"type\": \"<string>\",\n        \"hash\": \"\",\n        \"date\": \"<dateTime>\",\n        \"author\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"laboris64\": true\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"committer\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"Ut_c0e\": -89266089.2814122,\n              \"adipisicing_e8\": true,\n              \"nulla_90\": false,\n              \"in_9f\": 21452713.41267532\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"summary\": {\n          \"raw\": \"<string>\",\n          \"markup\": \"creole\",\n          \"html\": \"<string>\"\n        },\n        \"parents\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          }\n        ],\n        \"repository\": {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"pullrequests\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"commits\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"forks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"watchers\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"downloads\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"clone\": [\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            ],\n            \"hooks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"uuid\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"is_private\": \"<boolean>\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/repository detected>\"\n          },\n          \"scm\": \"git\",\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"Ut220\": -63626255,\n              \"dolore_688\": false\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"size\": \"<integer>\",\n          \"language\": \"<string>\",\n          \"has_issues\": \"<boolean>\",\n          \"has_wiki\": \"<boolean>\",\n          \"fork_policy\": \"allow_forks\",\n          \"project\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"key\": \"<string>\",\n            \"owner\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"self\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"html\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"members\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"projects\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"repositories\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                }\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"has_publicly_visible_repos\": \"<boolean>\"\n          },\n          \"mainbranch\": {\n            \"value\": \"<Circular reference to #/components/schemas/branch detected>\"\n          }\n        },\n        \"participants\": [\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"dolored6\": false\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"undefined\",\n            \"participated_on\": \"<dateTime>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"commodoa84\": 95995917.37207076,\n                \"aliquip45\": false\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"approved\",\n            \"participated_on\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"merge_strategies\": [\n        \"squash\",\n        \"squash\"\n      ],\n      \"default_merge_strategy\": \"<string>\"\n    }\n  },\n  \"production\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"branch\": {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commits\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"target\": {\n        \"type\": \"<string>\",\n        \"hash\": \"\",\n        \"date\": \"<dateTime>\",\n        \"author\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"consectetur_2a\": false\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"committer\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"consectetur49\": true,\n              \"commodo_4\": 88439684\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"summary\": {\n          \"raw\": \"<string>\",\n          \"markup\": \"plaintext\",\n          \"html\": \"<string>\"\n        },\n        \"parents\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          }\n        ],\n        \"repository\": {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"pullrequests\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"commits\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"forks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"watchers\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"downloads\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"clone\": [\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            ],\n            \"hooks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"uuid\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"is_private\": \"<boolean>\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/repository detected>\"\n          },\n          \"scm\": \"git\",\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"qui4d\": -61873464,\n              \"in_f6\": 1292668,\n              \"ullamco18\": \"ullamco velit do dolor dolor\",\n              \"dolor_17\": 87530812.73966789\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"size\": \"<integer>\",\n          \"language\": \"<string>\",\n          \"has_issues\": \"<boolean>\",\n          \"has_wiki\": \"<boolean>\",\n          \"fork_policy\": \"no_public_forks\",\n          \"project\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"key\": \"<string>\",\n            \"owner\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"self\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"html\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"members\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"projects\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"repositories\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                }\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"has_publicly_visible_repos\": \"<boolean>\"\n          },\n          \"mainbranch\": {\n            \"value\": \"<Circular reference to #/components/schemas/branch detected>\"\n          }\n        },\n        \"participants\": [\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"fugiat__\": \"mollit deserunt\",\n                \"deserunt292\": \"anim ut\"\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"REVIEWER\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"approved\",\n            \"participated_on\": \"<dateTime>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"dod_\": 82476486.95377198,\n                \"cupidatata5\": -17827761.584161326\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"undefined\",\n            \"participated_on\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"merge_strategies\": [\n        \"rebase_fast_forward\",\n        \"merge_commit\"\n      ],\n      \"default_merge_strategy\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-0c03b262-a039-4ef9-b97d-83a176bf35ee"
+                        },
+                        {
+                          "id": "a00803ab-c5c2-4133-9ebf-4c6facf7993e",
+                          "name": "If the request was not authenticated",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-a00803ab-c5c2-4133-9ebf-4c6facf7993e"
+                        },
+                        {
+                          "id": "ebc11457-db28-490c-a4af-27f93615d68f",
+                          "name": "If the authenticated user does not have read access to the repository",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-ebc11457-db28-490c-a4af-27f93615d68f"
+                        },
+                        {
+                          "id": "dad3e4c3-5156-4960-a979-fd7d51edffb8",
+                          "name": "If the repository does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-dad3e4c3-5156-4960-a979-fd7d51edffb8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:13:49.000Z",
+                      "updatedAt": "2026-07-28T01:13:49.000Z",
+                      "uid": "35240-18d0334e-3111-4c54-b305-c6275577ac88"
+                    }
+                  ],
+                  "id": "b9f093b5-6059-458d-bddb-fe2063a5f6e3",
+                  "createdAt": "2026-07-28T01:13:49.000Z",
+                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                  "uid": "35240-b9f093b5-6059-458d-bddb-fe2063a5f6e3"
+                },
+                {
+                  "name": "effective-branching-model",
+                  "item": [
+                    {
+                      "name": "Get the effective, or currently applied, branching model for a repository",
+                      "id": "4d7f18aa-cb7e-4883-a4fb-7960b7794fb9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/effective-branching-model",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":workspace",
+                            ":repo_slug",
+                            "effective-branching-model"
+                          ],
+                          "variable": [
+                            {
+                              "id": "857e384c-8192-4936-8509-285e7cff4406",
+                              "key": "workspace",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                            },
+                            {
+                              "id": "cb237883-51cc-4fd1-94e9-bd936bd4a60f",
+                              "key": "repo_slug",
+                              "value": "<string>",
+                              "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8cb46ec1-266a-452c-9103-401dbeb25d5b",
+                          "name": "The effective branching model object",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/effective-branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "effective-branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"branch_types\": [\n    {\n      \"kind\": \"release\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"branch\": {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commits\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"target\": {\n        \"type\": \"<string>\",\n        \"hash\": \"dc664de6078\",\n        \"date\": \"<dateTime>\",\n        \"author\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"Ut_5d\": -44839180,\n              \"autef6\": false,\n              \"enim_cd\": false\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"committer\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"estb1\": \"occaecat ad\"\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"summary\": {\n          \"raw\": \"<string>\",\n          \"markup\": \"markdown\",\n          \"html\": \"<string>\"\n        },\n        \"parents\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          }\n        ],\n        \"repository\": {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"pullrequests\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"commits\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"forks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"watchers\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"downloads\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"clone\": [\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            ],\n            \"hooks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"uuid\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"is_private\": \"<boolean>\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/repository detected>\"\n          },\n          \"scm\": \"git\",\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"commodo1f3\": -62742037.75382916\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"size\": \"<integer>\",\n          \"language\": \"<string>\",\n          \"has_issues\": \"<boolean>\",\n          \"has_wiki\": \"<boolean>\",\n          \"fork_policy\": \"allow_forks\",\n          \"project\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"key\": \"<string>\",\n            \"owner\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"self\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"html\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"members\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"projects\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"repositories\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                }\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"has_publicly_visible_repos\": \"<boolean>\"\n          },\n          \"mainbranch\": {\n            \"value\": \"<Circular reference to #/components/schemas/branch detected>\"\n          }\n        },\n        \"participants\": [\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"sunt_cf3\": -62988503,\n                \"aliqua459\": true,\n                \"ex6c7\": 8976009,\n                \"doloref9\": -93647706.01045173,\n                \"elit_6__\": 48034804\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"approved\",\n            \"participated_on\": \"<dateTime>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"Excepteur6\": -6592996,\n                \"nisi_e09\": true,\n                \"mollit5\": \"commodo exercitation\"\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"undefined\",\n            \"participated_on\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"merge_strategies\": [\n        \"fast_forward\",\n        \"squash_fast_forward\"\n      ],\n      \"default_merge_strategy\": \"<string>\"\n    }\n  },\n  \"production\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"branch\": {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"commits\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"name\": \"<string>\",\n      \"target\": {\n        \"type\": \"<string>\",\n        \"hash\": \"10b91283457712361\",\n        \"date\": \"<dateTime>\",\n        \"author\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"committer\": {\n          \"type\": \"<string>\",\n          \"raw\": \"<string>\",\n          \"user\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"fugiat73\": -81690971.67466725,\n              \"doloreb\": -60788873,\n              \"Lorem_c7\": true,\n              \"consequat1e\": -27094278.40196836\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          }\n        },\n        \"message\": \"<string>\",\n        \"summary\": {\n          \"raw\": \"<string>\",\n          \"markup\": \"markdown\",\n          \"html\": \"<string>\"\n        },\n        \"parents\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/base_commit detected>\"\n          }\n        ],\n        \"repository\": {\n          \"type\": \"<string>\",\n          \"links\": {\n            \"self\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"html\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"avatar\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"pullrequests\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"commits\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"forks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"watchers\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"downloads\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            },\n            \"clone\": [\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            ],\n            \"hooks\": {\n              \"href\": \"<uri>\",\n              \"name\": \"<string>\"\n            }\n          },\n          \"uuid\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"is_private\": \"<boolean>\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/repository detected>\"\n          },\n          \"scm\": \"git\",\n          \"owner\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"velitf79\": false\n            },\n            \"created_on\": \"<dateTime>\",\n            \"display_name\": \"<string>\",\n            \"uuid\": \"<string>\"\n          },\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"created_on\": \"<dateTime>\",\n          \"updated_on\": \"<dateTime>\",\n          \"size\": \"<integer>\",\n          \"language\": \"<string>\",\n          \"has_issues\": \"<boolean>\",\n          \"has_wiki\": \"<boolean>\",\n          \"fork_policy\": \"allow_forks\",\n          \"project\": {\n            \"type\": \"<string>\",\n            \"links\": {\n              \"html\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              },\n              \"avatar\": {\n                \"href\": \"<uri>\",\n                \"name\": \"<string>\"\n              }\n            },\n            \"uuid\": \"<string>\",\n            \"key\": \"<string>\",\n            \"owner\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"self\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"html\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"members\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"projects\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"repositories\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                }\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"is_private\": \"<boolean>\",\n            \"created_on\": \"<dateTime>\",\n            \"updated_on\": \"<dateTime>\",\n            \"has_publicly_visible_repos\": \"<boolean>\"\n          },\n          \"mainbranch\": {\n            \"value\": \"<Circular reference to #/components/schemas/branch detected>\"\n          }\n        },\n        \"participants\": [\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"aute297\": false,\n                \"Duis_2\": \"ullamco\",\n                \"in__c\": 60211320.37032917\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"REVIEWER\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"approved\",\n            \"participated_on\": \"<dateTime>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"user\": {\n              \"type\": \"<string>\",\n              \"links\": {\n                \"avatar\": {\n                  \"href\": \"<uri>\",\n                  \"name\": \"<string>\"\n                },\n                \"ad__73\": -17517598,\n                \"laborumb\": 42075690.0395776,\n                \"in_7\": false,\n                \"sedda9\": true\n              },\n              \"created_on\": \"<dateTime>\",\n              \"display_name\": \"<string>\",\n              \"uuid\": \"<string>\"\n            },\n            \"role\": \"PARTICIPANT\",\n            \"approved\": \"<boolean>\",\n            \"state\": \"approved\",\n            \"participated_on\": \"<dateTime>\"\n          }\n        ]\n      },\n      \"merge_strategies\": [\n        \"squash_fast_forward\",\n        \"rebase_merge\"\n      ],\n      \"default_merge_strategy\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-8cb46ec1-266a-452c-9103-401dbeb25d5b"
+                        },
+                        {
+                          "id": "fd01cd66-f157-4493-b2dc-f178e675de4f",
+                          "name": "If the request was not authenticated",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/effective-branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "effective-branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-fd01cd66-f157-4493-b2dc-f178e675de4f"
+                        },
+                        {
+                          "id": "d36b0400-3d05-46e3-a529-81bfb1c04867",
+                          "name": "If the authenticated user does not have read access to the repository",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/effective-branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "effective-branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-d36b0400-3d05-46e3-a529-81bfb1c04867"
+                        },
+                        {
+                          "id": "093663a7-7f93-4956-9890-b7088c37be60",
+                          "name": "If the repository does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:workspace/:repo_slug/effective-branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":workspace",
+                                ":repo_slug",
+                                "effective-branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace"
+                                },
+                                {
+                                  "key": "repo_slug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-093663a7-7f93-4956-9890-b7088c37be60"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:13:49.000Z",
+                      "updatedAt": "2026-07-28T01:13:49.000Z",
+                      "uid": "35240-4d7f18aa-cb7e-4883-a4fb-7960b7794fb9"
+                    }
+                  ],
+                  "id": "6c50c733-e700-4d9f-bead-0d4c79ba6856",
+                  "createdAt": "2026-07-28T01:13:49.000Z",
+                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                  "uid": "35240-6c50c733-e700-4d9f-bead-0d4c79ba6856"
+                }
+              ],
+              "id": "e4f0fcb6-6ef2-42a7-a6d7-9a78dc28beea",
+              "createdAt": "2026-07-28T01:13:49.000Z",
+              "updatedAt": "2026-07-28T01:13:49.000Z",
+              "uid": "35240-e4f0fcb6-6ef2-42a7-a6d7-9a78dc28beea"
+            }
+          ],
+          "id": "2cb17395-b2cb-44e8-afc6-d3beaf0962a5",
+          "createdAt": "2026-07-28T01:13:49.000Z",
+          "updatedAt": "2026-07-28T01:13:49.000Z",
+          "uid": "35240-2cb17395-b2cb-44e8-afc6-d3beaf0962a5"
+        }
+      ],
+      "id": "b61a502a-1f43-4bb0-9998-8071606740a2",
+      "createdAt": "2026-07-28T01:13:49.000Z",
+      "updatedAt": "2026-07-28T01:13:49.000Z",
+      "uid": "35240-b61a502a-1f43-4bb0-9998-8071606740a2"
+    },
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace}",
+          "item": [
+            {
+              "name": "projects",
+              "item": [
+                {
+                  "name": "{project_key}",
+                  "item": [
+                    {
+                      "name": "branching-model",
+                      "item": [
+                        {
+                          "name": "settings",
+                          "item": [
+                            {
+                              "name": "Get the branching model config for a project",
+                              "id": "9a6a5fa2-976c-4746-b96c-cfc22d572daa",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7d50850c-49dc-44e2-84b4-d7846c0124fe",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "d65c5903-4c19-4e7d-b790-e0c0ee012677",
+                                      "key": "project_key",
+                                      "value": "<string>",
+                                      "description": "(Required) The project in question. This is the actual `key` assigned\nto the project.\n"
+                                    }
+                                  ]
+                                },
+                                "description": "Return the branching model configuration for a project. The returned\nobject:\n\n1. Always has a `development` property for the development branch.\n2. Always a `production` property for the production branch. The\n   production branch can be disabled.\n3. The `branch_types` contains all the branch types.\n4. `default_branch_deletion` indicates whether branches will be\n    deleted by default on merge.\n\n\nThis is the raw configuration for the branching model. A client\nwishing to see the branching model with its actual current branches may find the\n[active model API](#api-workspaces-workspace-projects-project-key-branching-model-get)\nmore useful."
+                              },
+                              "response": [
+                                {
+                                  "id": "eab5f4da-9aa0-4a45-9edc-5dc270f00032",
+                                  "name": "The branching model configuration",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"branch_types\": [\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  },\n  \"production\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-eab5f4da-9aa0-4a45-9edc-5dc270f00032"
+                                },
+                                {
+                                  "id": "c29f0cb6-b8b0-4c42-b965-1beb9e1973cf",
+                                  "name": "If the request was not authenticated",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-c29f0cb6-b8b0-4c42-b965-1beb9e1973cf"
+                                },
+                                {
+                                  "id": "2151116e-3ccb-4056-8410-9336548eb25f",
+                                  "name": "If the authenticated user does not have admin access to the project",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-2151116e-3ccb-4056-8410-9336548eb25f"
+                                },
+                                {
+                                  "id": "f91a4042-cacd-449b-b086-9c7d24db5093",
+                                  "name": "If the project does not exist",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-f91a4042-cacd-449b-b086-9c7d24db5093"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-9a6a5fa2-976c-4746-b96c-cfc22d572daa"
+                            },
+                            {
+                              "name": "Update the branching model config for a project",
+                              "id": "494192bd-377e-4789-a637-3a121ffe0e8e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "oauth2",
+                                  "oauth2": [
+                                    {
+                                      "key": "scope",
+                                      "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "accessTokenUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/access_token",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "authUrl",
+                                      "value": "https://bitbucket.org/site/oauth2/authorize",
+                                      "type": "string"
+                                    },
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model",
+                                    "settings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ba728b56-9a9d-43ac-90d3-d2ee4ed859d1",
+                                      "key": "workspace",
+                                      "value": "<string>",
+                                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                    },
+                                    {
+                                      "id": "053477cf-6dfb-466c-8754-d87056c64611",
+                                      "key": "project_key",
+                                      "value": "<string>",
+                                      "description": "(Required) The project in question. This is the actual `key` assigned\nto the project.\n"
+                                    }
+                                  ]
+                                },
+                                "description": "Update the branching model configuration for a project.\n\nThe `development` branch can be configured to a specific branch or to\ntrack the main branch. Any branch name can be supplied, but will only\nsuccessfully be applied to a repository via inheritance if that branch\nexists for that repository. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`development` property will leave the development branch unchanged.\n\nThe `production` branch can be a specific branch, the main\nbranch or disabled. Any branch name can be supplied, but will only\nsuccessfully be applied to a repository via inheritance if that branch\nexists for that repository. The `enabled` property can be used to enable (`true`)\nor disable (`false`) it. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`production` property will leave the production branch unchanged.\n\nThe `branch_types` property contains the branch types to be updated.\nOnly the branch types passed will be updated. All updates will be\nrejected if it would leave the branching model in an invalid state.\nFor branch types this means that:\n\n1. The prefixes for all enabled branch types are valid. For example,\n   it is not possible to use '*' inside a Git prefix.\n2. A prefix of an enabled branch type must not be a prefix of another\n   enabled branch type. This is to ensure that a branch can be easily\n   classified by its prefix unambiguously.\n\nIt is possible to store an invalid prefix if that branch type would be\nleft disabled. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. Each branch type must\nhave a `kind` property to identify it.\n\nThe `default_branch_deletion` property is a string. The value of `true`\nindicates to delete branches by default. The value of `false` indicates\nthat branches will not be deleted by default. A request without a\n`default_branch_deletion` property will leave it unchanged. Other values\nwould be ignored."
+                              },
+                              "response": [
+                                {
+                                  "id": "3124efc5-39af-481e-be06-c1511291cc6e",
+                                  "name": "The updated branching model configuration",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"branch_types\": [\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"feature\",\n      \"enabled\": \"<boolean>\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  },\n  \"production\": {\n    \"is_valid\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\",\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-3124efc5-39af-481e-be06-c1511291cc6e"
+                                },
+                                {
+                                  "id": "41d5acf9-c05e-4046-8fef-1229b9ac228a",
+                                  "name": "If the request contains an invalid branching model configuration",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-41d5acf9-c05e-4046-8fef-1229b9ac228a"
+                                },
+                                {
+                                  "id": "24731274-f0aa-4830-a69c-bb4ed4e9dd20",
+                                  "name": "If the request was not authenticated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-24731274-f0aa-4830-a69c-bb4ed4e9dd20"
+                                },
+                                {
+                                  "id": "892e0df1-1187-4285-b547-438f8ab1f7a4",
+                                  "name": "If the authenticated user does not have admin access to the project",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-892e0df1-1187-4285-b547-438f8ab1f7a4"
+                                },
+                                {
+                                  "id": "b591bc96-e8c7-4291-ab8c-f97610856ed8",
+                                  "name": "If the project does not exist",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model/settings",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace",
+                                        "projects",
+                                        ":project_key",
+                                        "branching-model",
+                                        "settings"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "workspace"
+                                        },
+                                        {
+                                          "key": "project_key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                                  "createdAt": "2026-07-28T01:13:49.000Z",
+                                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                                  "uid": "35240-b591bc96-e8c7-4291-ab8c-f97610856ed8"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-494192bd-377e-4789-a637-3a121ffe0e8e"
+                            }
+                          ],
+                          "id": "875be83b-78a2-43c4-8dad-8422cb31e424",
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-875be83b-78a2-43c4-8dad-8422cb31e424"
+                        },
+                        {
+                          "name": "Get the branching model for a project",
+                          "id": "049bb1de-697e-4550-83f1-e29360114260",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/access_token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "https://bitbucket.org/site/oauth2/authorize",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace",
+                                "projects",
+                                ":project_key",
+                                "branching-model"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7d38bfb3-b62e-4c6f-876f-a45b288e017f",
+                                  "key": "workspace",
+                                  "value": "<string>",
+                                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                                },
+                                {
+                                  "id": "92c54535-ffb9-4ffe-bdb2-b58db5bc4f57",
+                                  "key": "project_key",
+                                  "value": "<string>",
+                                  "description": "(Required) The project in question. This is the actual `key` assigned\nto the project.\n"
+                                }
+                              ]
+                            },
+                            "description": "Return the branching model set at the project level. This view is\nread-only. The branching model settings can be changed using the\n[settings](#api-workspaces-workspace-projects-project-key-branching-model-settings-get)\nAPI.\n\nThe returned object:\n\n1. Always has a `development` property. `development.name` is\n   the user-specified branch that can be inherited by an individual repository's\n   branching model.\n2. Might have a `production` property. `production` will not\n   be present when `production` is disabled.\n   `production.name` is the user-specified branch that can be\n   inherited by an individual repository's branching model.\n3. Always has a `branch_types` array which contains all enabled branch\n   types."
+                          },
+                          "response": [
+                            {
+                              "id": "eff84ee2-e575-45b6-9163-7452f2a69b3f",
+                              "name": "The branching model object",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "project_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"branch_types\": [\n    {\n      \"kind\": \"hotfix\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"prefix\": \"<string>\"\n    },\n    {\n      \"kind\": \"bugfix\",\n      \"prefix\": \"<string>\"\n    }\n  ],\n  \"development\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  },\n  \"production\": {\n    \"name\": \"<string>\",\n    \"use_mainbranch\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-eff84ee2-e575-45b6-9163-7452f2a69b3f"
+                            },
+                            {
+                              "id": "7bb16e0d-d68d-450a-8d65-4f3d1c32544f",
+                              "name": "If the request was not authenticated",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "project_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-7bb16e0d-d68d-450a-8d65-4f3d1c32544f"
+                            },
+                            {
+                              "id": "90be167e-128b-4123-8dba-579660e5f160",
+                              "name": "If the authenticated user does not have read access to the project",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "project_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-90be167e-128b-4123-8dba-579660e5f160"
+                            },
+                            {
+                              "id": "33ed7a32-6a08-4753-8905-e5029255913b",
+                              "name": "If the project does not exist",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/branching-model",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace",
+                                    "projects",
+                                    ":project_key",
+                                    "branching-model"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace"
+                                    },
+                                    {
+                                      "key": "project_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"Ut4\": \"laboris ex no\",\n      \"amet_1dd\": \"eiusmod labore\",\n      \"culpa_\": true\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:13:49.000Z",
+                              "updatedAt": "2026-07-28T01:13:49.000Z",
+                              "uid": "35240-33ed7a32-6a08-4753-8905-e5029255913b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:13:49.000Z",
+                          "updatedAt": "2026-07-28T01:13:49.000Z",
+                          "uid": "35240-049bb1de-697e-4550-83f1-e29360114260"
+                        }
+                      ],
+                      "id": "6b1b13b8-a1c4-4a26-a72c-7b7fb791d436",
+                      "createdAt": "2026-07-28T01:13:49.000Z",
+                      "updatedAt": "2026-07-28T01:13:49.000Z",
+                      "uid": "35240-6b1b13b8-a1c4-4a26-a72c-7b7fb791d436"
+                    }
+                  ],
+                  "id": "a2a770ef-9074-49aa-b2dd-4c8f01be3d9e",
+                  "createdAt": "2026-07-28T01:13:49.000Z",
+                  "updatedAt": "2026-07-28T01:13:49.000Z",
+                  "uid": "35240-a2a770ef-9074-49aa-b2dd-4c8f01be3d9e"
+                }
+              ],
+              "id": "e2bb67b9-df02-4765-8c79-090e7f9c5afe",
+              "createdAt": "2026-07-28T01:13:49.000Z",
+              "updatedAt": "2026-07-28T01:13:49.000Z",
+              "uid": "35240-e2bb67b9-df02-4765-8c79-090e7f9c5afe"
+            }
+          ],
+          "id": "d2622d42-0367-432d-a14b-42fadb34008b",
+          "createdAt": "2026-07-28T01:13:49.000Z",
+          "updatedAt": "2026-07-28T01:13:49.000Z",
+          "uid": "35240-d2622d42-0367-432d-a14b-42fadb34008b"
+        }
+      ],
+      "id": "1f749caf-49cf-46cb-8341-54efc44d6359",
+      "createdAt": "2026-07-28T01:13:49.000Z",
+      "updatedAt": "2026-07-28T01:13:49.000Z",
+      "uid": "35240-1f749caf-49cf-46cb-8341-54efc44d6359"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}

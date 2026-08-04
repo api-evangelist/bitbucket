@@ -1,0 +1,1073 @@
+{
+  "info": {
+    "_postman_id": "c65e2317-0182-4b97-824b-a4e57ebc2dcf",
+    "name": "Bitbucket Addon GPG API",
+    "description": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:14:18.000Z",
+    "updatedAt": "2026-07-28T01:14:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c65e2317-0182-4b97-824b-a4e57ebc2dcf"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{selected_user}",
+          "item": [
+            {
+              "name": "gpg-keys",
+              "item": [
+                {
+                  "name": "{fingerprint}",
+                  "item": [
+                    {
+                      "name": "Delete a GPG key",
+                      "id": "53ace786-3531-4d02-b7da-86ea16b8f436",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys",
+                            ":fingerprint"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8aeebeb7-6d4d-4b24-95c6-7e05431bbb39",
+                              "key": "selected_user",
+                              "value": "<string>",
+                              "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                            },
+                            {
+                              "id": "b26c40d4-92e8-4af4-9812-239e18544c4a",
+                              "key": "fingerprint",
+                              "value": "<string>",
+                              "description": "(Required) A GPG key fingerprint.\n"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a specific GPG public key from a user's account."
+                      },
+                      "response": [
+                        {
+                          "id": "ef8fe06f-ab01-4ff0-8a2c-b8f0ece23cd5",
+                          "name": "The key has been deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-ef8fe06f-ab01-4ff0-8a2c-b8f0ece23cd5"
+                        },
+                        {
+                          "id": "8665adb0-9682-4304-aeae-7ec8ca2630c4",
+                          "name": "If the submitted key or related value is invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-8665adb0-9682-4304-aeae-7ec8ca2630c4"
+                        },
+                        {
+                          "id": "d5c82c31-3f1d-491b-a886-6c822b4d82a3",
+                          "name": "If the current user does not have permission to delete a key for the specified user, or the submitted key is a subkey",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-d5c82c31-3f1d-491b-a886-6c822b4d82a3"
+                        },
+                        {
+                          "id": "3e2fe47e-50f1-41af-8363-125a52ad5780",
+                          "name": "If the specified key does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-3e2fe47e-50f1-41af-8363-125a52ad5780"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-53ace786-3531-4d02-b7da-86ea16b8f436"
+                    },
+                    {
+                      "name": "Get a GPG key",
+                      "id": "b8a7448e-09d4-4d6c-8ca5-bdf04059b0c8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://bitbucket.org/site/oauth2/access_token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://bitbucket.org/site/oauth2/authorize",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys",
+                            ":fingerprint"
+                          ],
+                          "variable": [
+                            {
+                              "id": "48544fb1-3d3a-4845-b94e-d99f77bbee48",
+                              "key": "selected_user",
+                              "value": "<string>",
+                              "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                            },
+                            {
+                              "id": "52f2974f-1132-4f7f-a908-1851e55315a2",
+                              "key": "fingerprint",
+                              "value": "<string>",
+                              "description": "(Required) A GPG key fingerprint.\n"
+                            }
+                          ]
+                        },
+                        "description": "Returns a specific GPG public key belonging to a user.\nThe `key` and `subkeys` fields can also be requested from the endpoint.\nSee [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details."
+                      },
+                      "response": [
+                        {
+                          "id": "99c3d674-8e6e-4119-a2fb-8a2ef6ac4280",
+                          "name": "The specific GPG key matching the user and fingerprint.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-99c3d674-8e6e-4119-a2fb-8a2ef6ac4280"
+                        },
+                        {
+                          "id": "46e1e864-81ff-4f0f-bd59-b71351d8d15e",
+                          "name": "If the specified user's keys are not accessible to the current user",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-46e1e864-81ff-4f0f-bd59-b71351d8d15e"
+                        },
+                        {
+                          "id": "707e3997-b13f-4b60-8029-e61411478bca",
+                          "name": "If the specified user does not exist",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/users/:selected_user/gpg-keys/:fingerprint",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "users",
+                                ":selected_user",
+                                "gpg-keys",
+                                ":fingerprint"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "selected_user"
+                                },
+                                {
+                                  "key": "fingerprint"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:14:18.000Z",
+                          "updatedAt": "2026-07-28T01:14:18.000Z",
+                          "uid": "35240-707e3997-b13f-4b60-8029-e61411478bca"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-b8a7448e-09d4-4d6c-8ca5-bdf04059b0c8"
+                    }
+                  ],
+                  "id": "62406369-43b6-4148-a6c3-eb7696ada8de",
+                  "createdAt": "2026-07-28T01:14:18.000Z",
+                  "updatedAt": "2026-07-28T01:14:18.000Z",
+                  "uid": "35240-62406369-43b6-4148-a6c3-eb7696ada8de"
+                },
+                {
+                  "name": "List GPG keys",
+                  "id": "f4322147-624a-4877-8019-fa0353f7e8e2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user",
+                        "gpg-keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "abd20620-5f6a-48a7-83bd-653109a9de72",
+                          "key": "selected_user",
+                          "value": "<string>",
+                          "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of the user's GPG public keys.\nThe `key` and `subkeys` fields can also be requested from the endpoint.\nSee [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details."
+                  },
+                  "response": [
+                    {
+                      "id": "474cdfb3-7b68-4470-b1d6-00a3aabf35a8",
+                      "name": "A list of the GPG keys associated with the account.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"size\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pagelen\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"values\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          },\n          \"velit_2\": false,\n          \"inbf_\": 17188156.970863312\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"<uri>\",\n            \"name\": \"<string>\"\n          }\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-474cdfb3-7b68-4470-b1d6-00a3aabf35a8"
+                    },
+                    {
+                      "id": "36f4523c-89c3-4bf1-9573-df283267d365",
+                      "name": "If the specified user's keys are not accessible to the current user",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-36f4523c-89c3-4bf1-9573-df283267d365"
+                    },
+                    {
+                      "id": "aa75a435-e615-43c6-87e5-6bbea0dd9ef3",
+                      "name": "If the specified user does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-aa75a435-e615-43c6-87e5-6bbea0dd9ef3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:14:18.000Z",
+                  "updatedAt": "2026-07-28T01:14:18.000Z",
+                  "uid": "35240-f4322147-624a-4877-8019-fa0353f7e8e2"
+                },
+                {
+                  "name": "Add a new GPG key",
+                  "id": "c2f48704-9f92-44d2-b9e6-dbe4f1770dba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://bitbucket.org/site/oauth2/access_token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://bitbucket.org/site/oauth2/authorize",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":selected_user",
+                        "gpg-keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b5c3bb0b-302b-4bcc-9ed2-1cceb9c837fd",
+                          "key": "selected_user",
+                          "value": "<string>",
+                          "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                        }
+                      ]
+                    },
+                    "description": "Adds a new GPG public key to the specified user account and returns the resulting key.\n\nExample:\n\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d\n'{\"key\": \"<insert GPG Key>\"}'\nhttps://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys\n```"
+                  },
+                  "response": [
+                    {
+                      "id": "492907b1-2d62-4d69-941b-e8832a630ca9",
+                      "name": "The newly created GPG key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-492907b1-2d62-4d69-941b-e8832a630ca9"
+                    },
+                    {
+                      "id": "47a333b7-0970-4fad-af3d-beaed338460c",
+                      "name": "If the submitted key or related value is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-47a333b7-0970-4fad-af3d-beaed338460c"
+                    },
+                    {
+                      "id": "6714aa32-df71-4162-b361-e808aa018aa5",
+                      "name": "If the current user does not have permission to add a key for the specified user",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-6714aa32-df71-4162-b361-e808aa018aa5"
+                    },
+                    {
+                      "id": "faaec940-7289-48c0-84e2-f0e21121fccb",
+                      "name": "If the specified user does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    },\n    {\n      \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:selected_user/gpg-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":selected_user",
+                            "gpg-keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "selected_user"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"error\": {\n    \"message\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"data\": {\n      \"in8\": false,\n      \"labore_44\": 77029023\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:14:18.000Z",
+                      "updatedAt": "2026-07-28T01:14:18.000Z",
+                      "uid": "35240-faaec940-7289-48c0-84e2-f0e21121fccb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:14:18.000Z",
+                  "updatedAt": "2026-07-28T01:14:18.000Z",
+                  "uid": "35240-c2f48704-9f92-44d2-b9e6-dbe4f1770dba"
+                }
+              ],
+              "id": "b2ad82a5-7051-4a7c-8284-73b09361437b",
+              "createdAt": "2026-07-28T01:14:18.000Z",
+              "updatedAt": "2026-07-28T01:14:18.000Z",
+              "uid": "35240-b2ad82a5-7051-4a7c-8284-73b09361437b"
+            }
+          ],
+          "id": "1a08fbdb-4590-4fea-b579-afb6d802089d",
+          "createdAt": "2026-07-28T01:14:18.000Z",
+          "updatedAt": "2026-07-28T01:14:18.000Z",
+          "uid": "35240-1a08fbdb-4590-4fea-b579-afb6d802089d"
+        }
+      ],
+      "id": "701285b2-1bd4-4078-858a-6473e4374773",
+      "createdAt": "2026-07-28T01:14:18.000Z",
+      "updatedAt": "2026-07-28T01:14:18.000Z",
+      "uid": "35240-701285b2-1bd4-4078-858a-6473e4374773"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bitbucket.org/2.0"
+    }
+  ]
+}
