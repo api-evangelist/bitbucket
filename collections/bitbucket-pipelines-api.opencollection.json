@@ -1,0 +1,1970 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Pipelines API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List variables for an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/deployments_config/environments/:environment_uuid/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "environment_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The environment."
+              }
+            ]
+          },
+          "docs": "Find deployment environment level variables."
+        },
+        {
+          "info": {
+            "name": "Create a variable for an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/deployments_config/environments/:environment_uuid/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "environment_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The environment."
+              }
+            ]
+          },
+          "docs": "Create a deployment environment level variable."
+        },
+        {
+          "info": {
+            "name": "Update a variable for an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/deployments_config/environments/:environment_uuid/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "environment_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The environment."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to update."
+              }
+            ]
+          },
+          "docs": "Update a deployment environment level variable."
+        },
+        {
+          "info": {
+            "name": "Delete a variable for an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/deployments_config/environments/:environment_uuid/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "environment_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The environment."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to delete."
+              }
+            ]
+          },
+          "docs": "Delete a deployment environment level variable."
+        },
+        {
+          "info": {
+            "name": "List pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "creator.uuid",
+                "value": "",
+                "type": "query",
+                "description": "The UUID of the creator of the pipeline to filter by."
+              },
+              {
+                "name": "target.ref_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the reference to filter by."
+              },
+              {
+                "name": "target.ref_name",
+                "value": "",
+                "type": "query",
+                "description": "The reference name to filter by."
+              },
+              {
+                "name": "target.branch",
+                "value": "",
+                "type": "query",
+                "description": "The name of the branch to filter by."
+              },
+              {
+                "name": "target.commit.hash",
+                "value": "",
+                "type": "query",
+                "description": "The revision to filter by."
+              },
+              {
+                "name": "target.selector.pattern",
+                "value": "",
+                "type": "query",
+                "description": "The pipeline pattern to filter by."
+              },
+              {
+                "name": "target.selector.type",
+                "value": "",
+                "type": "query",
+                "description": "The type of pipeline to filter by."
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "The creation date to filter by."
+              },
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query",
+                "description": "The trigger type to filter by."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The pipeline status to filter by."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "The attribute name to sort on."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number of elements to retrieve."
+              },
+              {
+                "name": "pagelen",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Find pipelines in a repository.\n\nNote that unlike other endpoints in the Bitbucket API, this endpoint utilizes query parameters to allow filtering\nand sorting of returned results. See [query parameters](#api-repositories-workspace-repo-slug-pipelines-get-request-Query%20parameters)\nfor specific details.\n"
+        },
+        {
+          "info": {
+            "name": "Run a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Endpoint to create and initiate a pipeline.\nThere are a number of different options to initiate a pipeline, where the payload of the request will determine which type of pipeline will be instantiated.\n\n## Trigger a pipeline for a branch\n\nOne way to trigger pipelines is by specifying the branch for which you want to trigger a pipeline.\nThe specified branch will be used to determine which pipeline definition from the `bitbucket-pipelines.yml` file will be applied to initiate the pipeline. The pipe"
+        },
+        {
+          "info": {
+            "name": "List caches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/caches",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Retrieve the repository pipelines caches."
+        },
+        {
+          "info": {
+            "name": "Delete caches",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/caches",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The cache name."
+              }
+            ]
+          },
+          "docs": "Delete repository cache versions by name."
+        },
+        {
+          "info": {
+            "name": "Delete a cache",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/caches/:cache_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "cache_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the cache to delete."
+              }
+            ]
+          },
+          "docs": "Delete a repository cache."
+        },
+        {
+          "info": {
+            "name": "Get cache content URI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/caches/:cache_uuid/content-uri",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "cache_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the cache."
+              }
+            ]
+          },
+          "docs": "Retrieve the URI of the content of the specified cache."
+        },
+        {
+          "info": {
+            "name": "Get repository runners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/runners",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Retrieve repository runners."
+        },
+        {
+          "info": {
+            "name": "Create repository runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/runners",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Create repository runner."
+        },
+        {
+          "info": {
+            "name": "Get repository runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Retrieve repository runner by uuid."
+        },
+        {
+          "info": {
+            "name": "Update repository runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Update repository runner."
+        },
+        {
+          "info": {
+            "name": "Delete repository runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Delete repository runner by uuid."
+        },
+        {
+          "info": {
+            "name": "Get a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The pipeline UUID."
+              }
+            ]
+          },
+          "docs": "Retrieve a specified pipeline"
+        },
+        {
+          "info": {
+            "name": "List steps for a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              }
+            ]
+          },
+          "docs": "Find steps for the given pipeline."
+        },
+        {
+          "info": {
+            "name": "Get a step of a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              }
+            ]
+          },
+          "docs": "Retrieve a given step of a pipeline."
+        },
+        {
+          "info": {
+            "name": "Get log file for a step",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid/log",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              }
+            ]
+          },
+          "docs": "Retrieve the log file for a given step of a pipeline.\n\nThis endpoint supports (and encourages!) the use of [HTTP Range requests](https://tools.ietf.org/html/rfc7233) to deal with potentially very large log files."
+        },
+        {
+          "info": {
+            "name": "Get the logs for the build container or a service container for a given step of a pipeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid/logs/:log_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              },
+              {
+                "name": "log_uuid",
+                "value": "",
+                "type": "path",
+                "description": "For the main build container specify the step UUID; for a service container specify the service container UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve the log file for a build container or service container.\n\nThis endpoint supports (and encourages!) the use of [HTTP Range requests](https://tools.ietf.org/html/rfc7233) to deal with potentially very large log files."
+        },
+        {
+          "info": {
+            "name": "Get a summary of test reports for a given step of a pipeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid/test_reports",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              }
+            ]
+          },
+          "docs": "Get a summary of test reports for a given step of a pipeline."
+        },
+        {
+          "info": {
+            "name": "Get test cases for a given step of a pipeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid/test_reports/test_cases",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              }
+            ]
+          },
+          "docs": "Get test cases for a given step of a pipeline."
+        },
+        {
+          "info": {
+            "name": "Get test case reasons (output) for a given test case in a step of a pipeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/steps/:step_uuid/test_reports/test_cases/:test_case_uuid/test_case_reasons",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              },
+              {
+                "name": "step_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the step."
+              },
+              {
+                "name": "test_case_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the test case."
+              }
+            ]
+          },
+          "docs": "Get test case reasons (output) for a given test case in a step of a pipeline."
+        },
+        {
+          "info": {
+            "name": "Stop a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines/:pipeline_uuid/stopPipeline",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pipeline_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the pipeline."
+              }
+            ]
+          },
+          "docs": "Signal the stop of a pipeline and all of its steps that not have completed yet."
+        },
+        {
+          "info": {
+            "name": "Get configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Retrieve the repository pipelines configuration."
+        },
+        {
+          "info": {
+            "name": "Update configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Update the pipelines configuration for a repository."
+        },
+        {
+          "info": {
+            "name": "Update the next build number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/build_number",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Update the next build number that should be assigned to a pipeline. The next build number that will be configured has to be strictly higher than the current latest build number for this repository."
+        },
+        {
+          "info": {
+            "name": "List schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Retrieve the configured schedules for the given repository."
+        },
+        {
+          "info": {
+            "name": "Create a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Create a schedule for the given repository."
+        },
+        {
+          "info": {
+            "name": "Get a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules/:schedule_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "schedule_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The uuid of the schedule."
+              }
+            ]
+          },
+          "docs": "Retrieve a schedule by its UUID."
+        },
+        {
+          "info": {
+            "name": "Update a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules/:schedule_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "schedule_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The uuid of the schedule."
+              }
+            ]
+          },
+          "docs": "Update a schedule."
+        },
+        {
+          "info": {
+            "name": "Delete a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules/:schedule_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "schedule_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The uuid of the schedule."
+              }
+            ]
+          },
+          "docs": "Delete a schedule."
+        },
+        {
+          "info": {
+            "name": "List executions of a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/schedules/:schedule_uuid/executions",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "schedule_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The uuid of the schedule."
+              }
+            ]
+          },
+          "docs": "Retrieve the executions of a given schedule."
+        },
+        {
+          "info": {
+            "name": "Get SSH key pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/key_pair",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Retrieve the repository SSH key pair excluding the SSH private key. The private key is a write only field and will never be exposed in the logs or the REST API."
+        },
+        {
+          "info": {
+            "name": "Update SSH key pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/key_pair",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Create or update the repository SSH key pair. The private key will be set as a default SSH identity in your build container."
+        },
+        {
+          "info": {
+            "name": "Delete SSH key pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/key_pair",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Delete the repository SSH key pair."
+        },
+        {
+          "info": {
+            "name": "List known hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/known_hosts",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Find repository level known hosts."
+        },
+        {
+          "info": {
+            "name": "Create a known host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/known_hosts",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Create a repository level known host."
+        },
+        {
+          "info": {
+            "name": "Get a known host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/known_hosts/:known_host_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "known_host_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the known host to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a repository level known host."
+        },
+        {
+          "info": {
+            "name": "Update a known host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/known_hosts/:known_host_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "known_host_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the known host to update."
+              }
+            ]
+          },
+          "docs": "Update a repository level known host."
+        },
+        {
+          "info": {
+            "name": "Delete a known host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/ssh/known_hosts/:known_host_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "known_host_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the known host to delete."
+              }
+            ]
+          },
+          "docs": "Delete a repository level known host."
+        },
+        {
+          "info": {
+            "name": "List variables for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Find repository level variables."
+        },
+        {
+          "info": {
+            "name": "Create a variable for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              }
+            ]
+          },
+          "docs": "Create a repository level variable."
+        },
+        {
+          "info": {
+            "name": "Get a variable for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a repository level variable."
+        },
+        {
+          "info": {
+            "name": "Update a variable for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to update."
+              }
+            ]
+          },
+          "docs": "Update a repository level variable."
+        },
+        {
+          "info": {
+            "name": "Delete a variable for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to delete."
+              }
+            ]
+          },
+          "docs": "Delete a repository level variable."
+        },
+        {
+          "info": {
+            "name": "List variables for an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:username/pipelines_config/variables",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              }
+            ]
+          },
+          "docs": "Find account level variables.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Create a variable for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/teams/:username/pipelines_config/variables",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              }
+            ]
+          },
+          "docs": "Create an account level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Get a variable for a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/teams/:username/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a team level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Update a variable for a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/teams/:username/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable."
+              }
+            ]
+          },
+          "docs": "Update a team level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Delete a variable for a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/teams/:username/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The account."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to delete."
+              }
+            ]
+          },
+          "docs": "Delete a team level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "List variables for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user/pipelines_config/variables",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              }
+            ]
+          },
+          "docs": "Find user level variables.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Create a variable for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/:selected_user/pipelines_config/variables",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              }
+            ]
+          },
+          "docs": "Create a user level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Get a variable for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a user level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Update a variable for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/:selected_user/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable."
+              }
+            ]
+          },
+          "docs": "Update a user level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Delete a variable for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:selected_user/pipelines_config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to delete."
+              }
+            ]
+          },
+          "docs": "Delete an account level variable.\nThis endpoint has been deprecated, and you should use the new workspaces endpoint. For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/)."
+        },
+        {
+          "info": {
+            "name": "Get OpenID configuration for OIDC in Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/identity/oidc/.well-known/openid-configuration",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "This is part of OpenID Connect for Pipelines, see https://support.atlassian.com/bitbucket-cloud/docs/integrate-pipelines-with-resource-servers-using-oidc/"
+        },
+        {
+          "info": {
+            "name": "Get keys for OIDC in Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/identity/oidc/keys.json",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "This is part of OpenID Connect for Pipelines, see https://support.atlassian.com/bitbucket-cloud/docs/integrate-pipelines-with-resource-servers-using-oidc/"
+        },
+        {
+          "info": {
+            "name": "Get workspace runners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/runners",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "Retrieve workspace runners."
+        },
+        {
+          "info": {
+            "name": "Create workspace runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/runners",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "Create workspace runner."
+        },
+        {
+          "info": {
+            "name": "Get workspace runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Get workspace runner by uuid."
+        },
+        {
+          "info": {
+            "name": "Update workspace runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Update workspace runner."
+        },
+        {
+          "info": {
+            "name": "Delete workspace runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/runners/:runner_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "runner_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The runner uuid."
+              }
+            ]
+          },
+          "docs": "Delete workspace runner by uuid."
+        },
+        {
+          "info": {
+            "name": "List variables for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "Find workspace level variables."
+        },
+        {
+          "info": {
+            "name": "Create a variable for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/variables",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              }
+            ]
+          },
+          "docs": "Create a workspace level variable."
+        },
+        {
+          "info": {
+            "name": "Get variable for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a workspace level variable."
+        },
+        {
+          "info": {
+            "name": "Update variable for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable."
+              }
+            ]
+          },
+          "docs": "Update a workspace level variable."
+        },
+        {
+          "info": {
+            "name": "Delete a variable for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/pipelines-config/variables/:variable_uuid",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "variable_uuid",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the variable to delete."
+              }
+            ]
+          },
+          "docs": "Delete a workspace level variable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

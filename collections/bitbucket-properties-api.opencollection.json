@@ -1,0 +1,480 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon properties API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a commit application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+        },
+        {
+          "info": {
+            "name": "Update a commit application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+        },
+        {
+          "info": {
+            "name": "Delete a commit application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a commit."
+        },
+        {
+          "info": {
+            "name": "Get a repository application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+        },
+        {
+          "info": {
+            "name": "Update a repository application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+        },
+        {
+          "info": {
+            "name": "Delete a repository application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a repository."
+        },
+        {
+          "info": {
+            "name": "Get a pull request application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pullrequest_id",
+                "value": "",
+                "type": "path",
+                "description": "The pull request ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+        },
+        {
+          "info": {
+            "name": "Update a pull request application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pullrequest_id",
+                "value": "",
+                "type": "path",
+                "description": "The pull request ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+        },
+        {
+          "info": {
+            "name": "Delete a pull request application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/pullrequests/:pullrequest_id/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "The repository container; either the workspace slug or the UUID in curly braces."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "pullrequest_id",
+                "value": "",
+                "type": "path",
+                "description": "The pull request ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request."
+        },
+        {
+          "info": {
+            "name": "Get a user application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+        },
+        {
+          "info": {
+            "name": "Update a user application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Update an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+        },
+        {
+          "info": {
+            "name": "Delete a user application property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:selected_user/properties/:app_key/:property_name",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "Either the UUID of the account surrounded by curly-braces, for example `{account UUID}`, OR an Atlassian Account ID."
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "path",
+                "description": "The key of the Connect app."
+              },
+              {
+                "name": "property_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the property."
+              }
+            ]
+          },
+          "docs": "Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

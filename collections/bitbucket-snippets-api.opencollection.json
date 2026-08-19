@@ -1,0 +1,695 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Snippets API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snippets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List snippets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Filter down the result based on the authenticated user's role (`owner`, `contributor`, or `member`)."
+              }
+            ]
+          },
+          "docs": "**This endpoint is deprecated. Please use the\n[workspace scoped alternative](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-workspace-get).**\n\nReturns all snippets. Like pull requests, repositories and workspaces, the\nfull set of snippets is defined by what the current user has access to.\n\nThis includes all snippets owned by any of the workspaces the user is a member of,\nor snippets by other users that the current user is either watching or has collaborated\non (for instance by commenting"
+        },
+        {
+          "info": {
+            "name": "Create a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/snippets"
+          },
+          "docs": "Creates a new snippet under the authenticated user's account.\n\nSnippets can contain multiple files. Both text and binary files are\nsupported.\n\nThe simplest way to create a new snippet from a local file:\n\n    $ curl -u username:password -X POST https://api.bitbucket.org/2.0/snippets               -F file=@image.png\n\nCreating snippets through curl has a few limitations and so let's look\nat a more complicated scenario.\n\nSnippets are created with a multipart POST. Both `multipart/form-data`\nand `mul"
+        },
+        {
+          "info": {
+            "name": "List snippets in a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Filter down the result based on the authenticated user's role (`owner`, `contributor`, or `member`)."
+              }
+            ]
+          },
+          "docs": "Identical to [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-get), except that the result is further filtered\nby the snippet owner and only those that are owned by `{workspace}` are\nreturned."
+        },
+        {
+          "info": {
+            "name": "Create a snippet for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/snippets/:workspace",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Identical to [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-post), except that the new snippet will be\ncreated under the workspace specified in the path parameter\n`{workspace}`."
+        },
+        {
+          "info": {
+            "name": "Get a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves a single snippet.\n\nSnippets support multiple content types:\n\n* application/json\n* multipart/related\n* multipart/form-data\n\n\napplication/json\n----------------\n\nThe default content type of the response is `application/json`.\nSince JSON is always `utf-8`, it cannot reliably contain file contents\nfor files that are not text. Therefore, JSON snippet documents only\ncontain the filename and links to the file contents.\n\nThis means that in order to retrieve all parts of a snippet, N+1\nrequests "
+        },
+        {
+          "info": {
+            "name": "Update a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Used to update a snippet. Use this to add and delete files and to\nchange a snippet's title.\n\nTo update a snippet, one can either PUT a full snapshot, or only the\nparts that need to be changed.\n\nThe contract for PUT on this API is that properties missing from the\nrequest remain untouched so that snippets can be efficiently\nmanipulated with differential payloads.\n\nTo delete a property (e.g. the title, or a file), include its name in\nthe request, but omit its value (use `null`).\n\nAs in Git, explici"
+        },
+        {
+          "info": {
+            "name": "Delete a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes a snippet and returns an empty response."
+        },
+        {
+          "info": {
+            "name": "List comments on a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/comments",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Used to retrieve a paginated list of all comments for a specific\nsnippet.\n\nThis resource works identical to commit and pull request comments.\n\nThe default sorting is oldest to newest and can be overridden with\nthe `sort` query parameter."
+        },
+        {
+          "info": {
+            "name": "Create a comment on a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/comments",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new comment.\n\nThe only required field in the body is `content.raw`.\n\nTo create a threaded reply to an existing comment, include `parent.id`."
+        },
+        {
+          "info": {
+            "name": "Get a comment on a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specific snippet comment."
+        },
+        {
+          "info": {
+            "name": "Update a comment on a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates a comment.\n\nThe only required field in the body is `content.raw`.\n\nComments can only be updated by their author."
+        },
+        {
+          "info": {
+            "name": "Delete a comment on a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes a snippet comment.\n\nComments can only be removed by the comment author, snippet creator, or workspace admin."
+        },
+        {
+          "info": {
+            "name": "List snippet changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/commits",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the changes (commits) made on this snippet."
+        },
+        {
+          "info": {
+            "name": "Get a previous snippet change",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/commits/:revision",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "path",
+                "description": "The commit's SHA1."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the changes made on this snippet in this commit."
+        },
+        {
+          "info": {
+            "name": "Get a snippet's raw file at HEAD",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/files/:path",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the file."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Convenience resource for getting to a snippet's raw files without the\nneed for first having to retrieve the snippet itself and having to pull\nout the versioned file links."
+        },
+        {
+          "info": {
+            "name": "Check if the current user is watching a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/watch",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Used to check if the current user is watching a specific snippet.\n\nReturns 204 (No Content) if the user is watching the snippet and 404 if\nnot.\n\nHitting this endpoint anonymously always returns a 404."
+        },
+        {
+          "info": {
+            "name": "Watch a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/watch",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Used to start watching a specific snippet. Returns 204 (No Content)."
+        },
+        {
+          "info": {
+            "name": "Stop watching a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/watch",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Used to stop watching a specific snippet. Returns 204 (No Content)\nto indicate success."
+        },
+        {
+          "info": {
+            "name": "List users watching a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/watchers",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all users watching a specific snippet."
+        },
+        {
+          "info": {
+            "name": "Get a previous revision of a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:node_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path",
+                "description": "A commit revision (SHA1)."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Identical to `GET /snippets/encoded_id`, except that this endpoint\ncan be used to retrieve the contents of the snippet as it was at an\nolder revision, while `/snippets/encoded_id` always returns the\nsnippet's current revision.\n\nNote that only the snippet's file contents are versioned, not its\nmeta data properties like the title.\n\nOther than that, the two endpoints are identical in behavior."
+        },
+        {
+          "info": {
+            "name": "Update a previous revision of a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:node_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path",
+                "description": "A commit revision (SHA1)."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Identical to `UPDATE /snippets/encoded_id`, except that this endpoint\ntakes an explicit commit revision. Only the snippet's \"HEAD\"/\"tip\"\n(most recent) version can be updated and requests on all other,\nolder revisions fail by returning a 405 status.\n\nUsage of this endpoint over the unrestricted `/snippets/encoded_id`\ncould be desired if the caller wants to be sure no concurrent\nmodifications have taken place between the moment of the UPDATE\nrequest and the original GET.\n\nThis can be considered a "
+        },
+        {
+          "info": {
+            "name": "Delete a previous revision of a snippet",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:node_id",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path",
+                "description": "A commit revision (SHA1)."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the snippet.\n\nNote that this only works for versioned URLs that point to the latest\ncommit of the snippet. Pointing to an older commit results in a 405\nstatus code.\n\nTo delete a snippet, regardless of whether or not concurrent changes\nare being made to it, use `DELETE /snippets/{encoded_id}` instead."
+        },
+        {
+          "info": {
+            "name": "Get a snippet's raw file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:node_id/files/:path",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "path",
+                "description": "A commit revision (SHA1)."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the file."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves the raw contents of a specific file in the snippet. The\n`Content-Disposition` header will be \"attachment\" to avoid issues with\nmalevolent executable files.\n\nThe file's mime type is derived from its filename and returned in the\n`Content-Type` header.\n\nNote that for text files, no character encoding is included as part of\nthe content type."
+        },
+        {
+          "info": {
+            "name": "Get snippet changes between versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:revision/diff",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "path",
+                "description": "A revspec expression. This can simply be a commit SHA1, a ref name, or a compare expression like `staging..production`."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "When used, only one the diff of the specified file will be returned."
+              }
+            ]
+          },
+          "docs": "Returns the diff of the specified commit against its first parent.\n\nNote that this resource is different in functionality from the `patch`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical t"
+        },
+        {
+          "info": {
+            "name": "Get snippet patch between versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/snippets/:workspace/:encoded_id/:revision/patch",
+            "params": [
+              {
+                "name": "encoded_id",
+                "value": "",
+                "type": "path",
+                "description": "The snippet id."
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "path",
+                "description": "A revspec expression. This can simply be a commit SHA1, a ref name, or a compare expression like `staging..production`."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the patch of the specified commit against its first\nparent.\n\nNote that this resource is different in functionality from the `diff`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical t"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

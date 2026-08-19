@@ -1,0 +1,462 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Workspaces API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workspaces for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/permissions/workspaces",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for details."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nName of a response property to sort results. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#sorting-query-results)\nfor details.\n"
+              }
+            ]
+          },
+          "docs": "**This endpoint is deprecated. Please use the supported alternatives:**\n* [List workspaces for user](/cloud/bitbucket/rest/api-group-workspaces/#api-user-workspaces-get)\n* [Get user permission on a workspace](/cloud/bitbucket/rest/api-group-workspaces/#api-user-workspaces-workspace-permission-get)\n\nReturns an object for each workspace the caller is a member of, and\ntheir effective role - the highest level of privilege the caller has.\nIf a user is a member of multiple groups with distinct roles, "
+        },
+        {
+          "info": {
+            "name": "List workspaces for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/workspaces",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of a response property to sort results (only slug is supported)."
+              },
+              {
+                "name": "administrator",
+                "value": "",
+                "type": "query",
+                "description": "Filter workspaces based on which ones the caller has admin permissions or not."
+              }
+            ]
+          },
+          "docs": "Returns an object for each workspace accessible to the caller. This object\nalso contains details on whether the caller has admin permissions on the workspace\n(`\"administrator\" = true`) or not (`\"administrator\" = false`).\n\nQueries support filtering based on administrator permissions,\n[sorting](/cloud/bitbucket/rest/intro/#sorting-query-results) or\n[filtering](/cloud/bitbucket/rest/intro/#filtering) by `slug`. Results can\nbe [paginated](/cloud/bitbucket/rest/intro/#pagination)."
+        },
+        {
+          "info": {
+            "name": "Get user permission on a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/workspaces/:workspace/permission",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the caller's effective role; as in, the highest level of privilege\nthe caller has for the workspace.\nIf the calling user is a member of multiple groups with distinct roles, only the\nhighest level is returned.\n\nPermissions can be:\n\n* `owner`\n* `create-project`\n* `collaborator` (deprecated; see this\n[deprecation announcement](/cloud/bitbucket/deprecation-notice-collaborator-role/) for more details)\n* `member`"
+        },
+        {
+          "info": {
+            "name": "List workspaces for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "\n            Filters the workspaces based on the authenticated user's role on each workspace.\n\n            * **member**: returns a list of all the workspaces which the caller is a member of\n                at least one workspace group or repository\n            * **collaborator**: returns a list of workspaces which the caller has write access\n                to at least one repository in the workspace\n            * **owner**: returns a list of workspaces which the caller has administrator access\n            "
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for details."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nName of a response property to sort results. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#sorting-query-results)\nfor details.\n"
+              }
+            ]
+          },
+          "docs": "**This endpoint is deprecated. Please use the\n[supported alternative](/cloud/bitbucket/rest/api-group-workspaces/#api-user-workspaces-get).**\n\nReturns a list of workspaces accessible by the authenticated user.\n\nResults may be further [filtered or sorted](/cloud/bitbucket/rest/intro/#filtering) by\nworkspace or permission by adding the following query string parameters:\n\n* `q=slug=\"bbworkspace1\"` or `q=is_private=true`\n* `sort=created_on`\n\nNote that the query parameter values need to be URL escape"
+        },
+        {
+          "info": {
+            "name": "Get a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the requested workspace."
+        },
+        {
+          "info": {
+            "name": "List webhooks for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/hooks",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of webhooks installed on this workspace."
+        },
+        {
+          "info": {
+            "name": "Create a webhook for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/workspaces/:workspace/hooks",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new webhook on the specified workspace.\n\nWorkspace webhooks are fired for events from all repositories contained\nby that workspace.\n\nExample:\n\n```\n$ curl -X POST -u credentials -H 'Content-Type: application/json'\n  https://api.bitbucket.org/2.0/workspaces/my-workspace/hooks\n  -d '\n    {\n      \"description\": \"Webhook Description\",\n      \"url\": \"https://example.com/\",\n      \"active\": true,\n      \"secret\": \"this is a really bad secret\",\n      \"events\": [\n        \"repo:push\",\n        \"issu"
+        },
+        {
+          "info": {
+            "name": "Get a webhook for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Installed webhook's ID"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the webhook with the specified id installed on the given\nworkspace."
+        },
+        {
+          "info": {
+            "name": "Update a webhook for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Installed webhook's ID"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates the specified webhook subscription.\n\nThe following properties can be mutated:\n\n* `description`\n* `url`\n* `secret`\n* `active`\n* `events`\n\nThe hook's secret is used as a key to generate the HMAC hex digest sent in the\n`X-Hub-Signature` header at delivery time. This signature is only generated\nwhen the hook has a secret.\n\nSet the hook's secret by passing the new value in the `secret` field. Passing a\n`null` value in the `secret` field will remove the secret from the hook. The\nhook's secret "
+        },
+        {
+          "info": {
+            "name": "Delete a webhook for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/hooks/:uid",
+            "params": [
+              {
+                "name": "uid",
+                "value": "",
+                "type": "path",
+                "description": "Installed webhook's ID"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the specified webhook subscription from the given workspace."
+        },
+        {
+          "info": {
+            "name": "List users in a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/members",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns all members of the requested workspace.\n\nThis endpoint additionally supports [filtering](/cloud/bitbucket/rest/intro/#filtering) by\nemail address, if called by a workspace administrator, integration or workspace access\ntoken. This is done by adding the following query string parameter:\n\n* `q=user.email IN (\"user1@org.com\",\"user2@org.com\")`\n\nWhen filtering by email, you can query up to 90 addresses at a time.\nNote that the query parameter values need to be URL escaped, so the final query "
+        },
+        {
+          "info": {
+            "name": "Get user membership for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/members/:member",
+            "params": [
+              {
+                "name": "member",
+                "value": "",
+                "type": "path",
+                "description": "Member's UUID or Atlassian ID."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the workspace membership, which includes\na `User` object for the member and a `Workspace` object\nfor the requested workspace."
+        },
+        {
+          "info": {
+            "name": "List user permissions in a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/permissions",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              }
+            ]
+          },
+          "docs": "Returns the list of members in a workspace\nand their permission levels.\nPermission can be:\n* `owner`\n* `collaborator`\n* `member`\n\n**The `collaborator` role is being removed from the Bitbucket Cloud API. For more information,\nsee the [deprecation announcement](/cloud/bitbucket/deprecation-notice-collaborator-role/).**\n\n**When you move your administration from Bitbucket Cloud to admin.atlassian.com, the following fields on\n`workspace_membership` will no longer be present: `last_accessed` and `adde"
+        },
+        {
+          "info": {
+            "name": "List all repository permissions for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/permissions/repositories",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nName of a response property sort the result by as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#sorting-query-results).\n"
+              }
+            ]
+          },
+          "docs": "Returns an object for each repository permission for all of a\nworkspace's repositories.\n\nPermissions returned are effective permissions: the highest level of\npermission the user has. This does not distinguish between direct and\nindirect (group) privileges.\n\nOnly users with admin permission for the team may access this resource.\n\nPermissions can be:\n\n* `admin`\n* `write`\n* `read`\n\nResults may be further [filtered or sorted](/cloud/bitbucket/rest/intro/#filtering)\nby repository, user, or permission"
+        },
+        {
+          "info": {
+            "name": "List a repository permissions for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/permissions/repositories/:repo_slug",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nName of a response property sort the result by as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#sorting-query-results).\n"
+              }
+            ]
+          },
+          "docs": "Returns an object for the repository permission of each user in the\nrequested repository.\n\nPermissions returned are effective permissions: the highest level of\npermission the user has. This does not distinguish between direct and\nindirect (group) privileges.\n\nOnly users with admin permission for the repository may access this resource.\n\nPermissions can be:\n\n* `admin`\n* `write`\n* `read`\n\nResults may be further [filtered or sorted](/cloud/bitbucket/rest/intro/#filtering)\nby user, or permission by "
+        },
+        {
+          "info": {
+            "name": "List projects in a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of projects in this workspace."
+        },
+        {
+          "info": {
+            "name": "Get a project for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual `key` assigned\nto the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the requested project."
+        },
+        {
+          "info": {
+            "name": "List workspace pull requests for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/pullrequests/:selected_user",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username of the pull request author, the author's UUID\nsurrounded by curly-braces, for example: `{account UUID}`, or the author's Atlassian ID.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Only return pull requests that are in this state. This parameter can be repeated."
+              }
+            ]
+          },
+          "docs": "Returns all workspace pull requests authored by the specified user.\n\nBy default only open pull requests are returned. This can be controlled\nusing the `state` query parameter. To retrieve pull requests that are\nin one of multiple states, repeat the `state` parameter for each\nindividual state.\n\nThis endpoint also supports filtering and sorting of the results. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

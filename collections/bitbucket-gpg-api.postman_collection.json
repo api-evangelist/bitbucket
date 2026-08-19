@@ -1,0 +1,1131 @@
+{
+  "item": [
+    {
+      "id": "be0481c9-0c56-4cf8-b907-9aa092e01dca",
+      "name": "GPG",
+      "description": {
+        "content": "The GPG resource allows you to manage GPG keys.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bacfd2d3-4985-4800-9a16-4cae4c425724",
+          "name": "List GPG keys",
+          "request": {
+            "name": "List GPG keys",
+            "description": {
+              "content": "Returns a paginated list of the user's GPG public keys.\nThe `key` and `subkeys` fields can also be requested from the endpoint.\nSee [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "gpg-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf7a1c11-1c47-4e49-b9d5-637bee234eb7",
+              "name": "A list of the GPG keys associated with the account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 1,\n  \"pagelen\": 10,\n  \"size\": 1,\n  \"values\": [\n    {\n      \"added_on\": \"2024-09-24T12:09:33.154081+00:00\",\n      \"created_on\": \"2018-03-20T13:09:04.207005+00:00\",\n      \"expires_on\": null,\n      \"fingerprint\": \"h4m26ppxrol7blr7spbc7lhyymokdbnkxd06kzrt\",\n      \"key_id\": \"ymokdbnkxd06kzrt\",\n      \"last_used\": \"2024-09-25T15:18:05.196003+00:00\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys/H4M26PPXROL7BLR7SPBC7LHYYMOKDBNKXD06KZRT\"\n        }\n      },\n      \"name\": \"Alice's OpenPGP key\",\n      \"owner\": {\n        \"display_name\": \"Mark Adams\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/markadams-atl/\"\n          },\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n          }\n        },\n        \"type\": \"user\",\n        \"username\": \"markadams-atl\",\n        \"nickname\": \"markadams-atl\",\n        \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n      },\n      \"parent_fingerprint\": null,\n      \"type\": \"gpg_key\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "640c96ee-11ff-45eb-b792-12358581cfdd",
+              "name": "If the specified user's keys are not accessible to the current user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85c033fc-7b2d-47ad-8833-48d37a1f66b9",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c05c0d5-a602-44a0-846a-3895e8dff43e",
+          "name": "Add a new GPG key",
+          "request": {
+            "name": "Add a new GPG key",
+            "description": {
+              "content": "Adds a new GPG public key to the specified user account and returns the resulting key.\n\nExample:\n\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d\n'{\"key\": \"<insert GPG Key>\"}'\nhttps://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "gpg-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 2871.9921978887055\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "116c031a-fc00-4c09-aaa0-4f1398e6a537",
+              "name": "The newly created GPG key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 8927,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"added_on\": \"2024-09-24T12:09:33.154081+00:00\",\n  \"created_on\": \"2018-03-20T13:09:04.207005+00:00\",\n  \"expires_on\": null,\n  \"fingerprint\": \"h4m26ppxrol7blr7spbc7lhyymokdbnkxd06kzrt\",\n  \"key_id\": \"ymokdbnkxd06kzrt\",\n  \"last_used\": \"2024-09-25T15:18:05.196003+00:00\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys/H4M26PPXROL7BLR7SPBC7LHYYMOKDBNKXD06KZRT\"\n    }\n  },\n  \"name\": \"Alice's OpenPGP key\",\n  \"owner\": {\n    \"display_name\": \"Mark Adams\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/markadams-atl/\"\n      },\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n      }\n    },\n    \"type\": \"user\",\n    \"username\": \"markadams-atl\",\n    \"nickname\": \"markadams-atl\",\n    \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n  },\n  \"parent_fingerprint\": null,\n  \"type\": \"gpg_key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ece586b-d8de-4f3f-9056-9efa6d6ae761",
+              "name": "If the submitted key or related value is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 8927,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cdc439a-4d78-4383-919b-a612a767fb7e",
+              "name": "If the current user does not have permission to add a key for the specified user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 8927,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08a702f4-6b4a-43d4-a2ca-434a65d0e62a",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 8927,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"key_id\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"parent_fingerprint\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expires_on\": \"<dateTime>\",\n  \"created_on\": \"<dateTime>\",\n  \"added_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"subkeys\": [\n    {\n      \"type\": \"<string>\",\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"key\": \"<string>\",\n      \"key_id\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"parent_fingerprint\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"name\": \"<string>\",\n      \"expires_on\": \"<dateTime>\",\n      \"created_on\": \"<dateTime>\",\n      \"added_on\": \"<dateTime>\",\n      \"last_used\": \"<dateTime>\",\n      \"subkeys\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GPG_account_key detected>\"\n        }\n      ],\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf2136b7-5dd1-4090-9dca-3d53ae35acaa",
+          "name": "Delete a GPG key",
+          "request": {
+            "name": "Delete a GPG key",
+            "description": {
+              "content": "Deletes a specific GPG public key from a user's account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "gpg-keys",
+                ":fingerprint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fingerprint",
+                  "description": "(Required) A GPG key fingerprint.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7d99ed49-fa9f-425f-a9ef-2d310538cf0b",
+              "name": "The key has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb3050c3-3c3e-4248-b825-9d091a8dc132",
+              "name": "If the submitted key or related value is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f01ed6e-6c85-4682-82ec-f05ab73c364d",
+              "name": "If the current user does not have permission to delete a key for the specified user, or the submitted key is a subkey",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eaf17e09-3cc7-4e0b-943b-4e2e7e394f73",
+              "name": "If the specified key does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaeb51d3-30ab-44db-baf3-49f056923e6f",
+          "name": "Get a GPG key",
+          "request": {
+            "name": "Get a GPG key",
+            "description": {
+              "content": "Returns a specific GPG public key belonging to a user.\nThe `key` and `subkeys` fields can also be requested from the endpoint.\nSee [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "gpg-keys",
+                ":fingerprint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fingerprint",
+                  "description": "(Required) A GPG key fingerprint.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d689f261-0c70-4b66-bfdc-a7fb33d29c31",
+              "name": "The specific GPG key matching the user and fingerprint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"added_on\": \"2024-09-24T12:09:33.154081+00:00\",\n  \"created_on\": \"2018-03-20T13:09:04.207005+00:00\",\n  \"expires_on\": null,\n  \"fingerprint\": \"h4m26ppxrol7blr7spbc7lhyymokdbnkxd06kzrt\",\n  \"key_id\": \"ymokdbnkxd06kzrt\",\n  \"last_used\": \"2024-09-25T15:18:05.196003+00:00\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys/H4M26PPXROL7BLR7SPBC7LHYYMOKDBNKXD06KZRT\"\n    }\n  },\n  \"name\": \"Alice's OpenPGP key\",\n  \"owner\": {\n    \"display_name\": \"Mark Adams\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/markadams-atl/\"\n      },\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n      }\n    },\n    \"type\": \"user\",\n    \"username\": \"markadams-atl\",\n    \"nickname\": \"markadams-atl\",\n    \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n  },\n  \"parent_fingerprint\": null,\n  \"type\": \"gpg_key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbc11513-24ae-4284-9778-e13dedb262c4",
+              "name": "If the specified user's keys are not accessible to the current user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4fa6b73-9d4f-4e5b-8b42-9252d0f1b4c4",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "gpg-keys",
+                    ":fingerprint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fingerprint",
+                      "description": "(Required) A GPG key fingerprint.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9516,\n      \"key_1\": 5257,\n      \"key_2\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitbucket.org/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c746806-d37e-4c95-862a-5bb463f13ec0",
+    "name": "Bitbucket Addon GPG API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,466 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Projects API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a project in a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new project.\n\nNote that the avatar has to be embedded as either a data-url\nor a URL to an external image as shown in the examples below:\n\n```\n$ body=$(cat << EOF\n{\n    \"name\": \"Mars Project\",\n    \"key\": \"MARS\",\n    \"description\": \"Software for colonizing mars.\",\n    \"links\": {\n        \"avatar\": {\n            \"href\": \"data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/...\"\n        }\n    },\n    \"is_private\": false\n}\nEOF\n)\n$ curl -H \"Content-Type: application/"
+        },
+        {
+          "info": {
+            "name": "Get a project for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual `key` assigned\nto the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the requested project."
+        },
+        {
+          "info": {
+            "name": "Update a project for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual `key` assigned\nto the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Since this endpoint can be used to both update and to create a\nproject, the request body depends on the intent.\n\n#### Creation\n\nSee the POST documentation for the project collection for an\nexample of the request body.\n\nNote: The `key` should not be specified in the body of request\n(since it is already present in the URL). The `name` is required,\neverything else is optional.\n\n#### Update\n\nSee the POST documentation for the project collection for an\nexample of the request body.\n\nNote: The key is n"
+        },
+        {
+          "info": {
+            "name": "Delete a project for a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual `key` assigned\nto the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes this project. This is an irreversible operation.\n\nYou cannot delete a project that still contains repositories.\nTo delete the project, [delete](/cloud/bitbucket/rest/api-group-repositories/#api-repositories-workspace-repo-slug-delete)\nor transfer the repositories first.\n\nExample:\n```\n$ curl -X DELETE https://api.bitbucket.org/2.0/workspaces/bbworkspace1/projects/PROJ\n```"
+        },
+        {
+          "info": {
+            "name": "List the default reviewers in a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/default-reviewers",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual `key` assigned\nto the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Return a list of all default reviewers for a project. This is a list of users that will be added as default\nreviewers to pull requests for any repository within the project."
+        },
+        {
+          "info": {
+            "name": "Get a default reviewer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/default-reviewers/:selected_user",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This can either be the actual `key` assigned\nto the project or the `UUID` (surrounded by curly-braces (`{}`)).\n"
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username or the UUID of the default reviewer,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified default reviewer."
+        },
+        {
+          "info": {
+            "name": "Add the specific user as a default reviewer for the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/default-reviewers/:selected_user",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This can either be the actual `key` assigned\nto the project or the `UUID` (surrounded by curly-braces (`{}`)).\n"
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username or the UUID of the default reviewer,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Adds the specified user to the project's list of default reviewers. The method is\nidempotent. Accepts an optional body containing the `uuid` of the user to be added."
+        },
+        {
+          "info": {
+            "name": "Remove the specific user from the project's default reviewers",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/default-reviewers/:selected_user",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This can either be the actual `key` assigned\nto the project or the `UUID` (surrounded by curly-braces (`{}`)).\n"
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username or the UUID of the default reviewer,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Removes a default reviewer from the project.\n\nExample:\n```\n$ curl https://api.bitbucket.org/2.0/.../default-reviewers/%7Bf0e0e8e9-66c1-4b85-a784-44a9eb9ef1a6%7D\n\nHTTP/1.1 204\n```"
+        },
+        {
+          "info": {
+            "name": "List explicit group permissions for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/groups",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of explicit group permissions for the given project.\nThis endpoint does not support BBQL features."
+        },
+        {
+          "info": {
+            "name": "Get an explicit group permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/groups/:group_slug",
+            "params": [
+              {
+                "name": "group_slug",
+                "value": "",
+                "type": "path",
+                "description": "Slug of the requested group."
+              },
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the group permission for a given group and project.\n\nOnly users with admin permission for the project may access this resource.\n\nPermissions can be:\n\n* `admin`\n* `create-repo`\n* `write`\n* `read`\n* `none`"
+        },
+        {
+          "info": {
+            "name": "Update an explicit group permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/groups/:group_slug",
+            "params": [
+              {
+                "name": "group_slug",
+                "value": "",
+                "type": "path",
+                "description": "Slug of the requested group."
+              },
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates the group permission, or grants a new permission if one does not already exist.\n\nOnly users with admin permission for the project may access this resource.\n\nDue to security concerns, the JWT and OAuth authentication methods are unsupported.\nThis is to ensure integrations and add-ons are not allowed to change permissions.\n\nPermissions can be:\n\n* `admin`\n* `create-repo`\n* `write`\n* `read`"
+        },
+        {
+          "info": {
+            "name": "Delete an explicit group permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/groups/:group_slug",
+            "params": [
+              {
+                "name": "group_slug",
+                "value": "",
+                "type": "path",
+                "description": "Slug of the requested group."
+              },
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the project group permission between the requested project and group, if one exists.\n\nOnly users with admin permission for the project may access this resource."
+        },
+        {
+          "info": {
+            "name": "List explicit user permissions for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/users",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of explicit user permissions for the given project.\nThis endpoint does not support BBQL features."
+        },
+        {
+          "info": {
+            "name": "Get an explicit user permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/users/:selected_user_id",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "selected_user_id",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username, the user's UUID surrounded by curly-braces,\nfor example: {account UUID}, or the user's Atlassian ID.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the explicit user permission for a given user and project.\n\nOnly users with admin permission for the project may access this resource.\n\nPermissions can be:\n\n* `admin`\n* `create-repo`\n* `write`\n* `read`\n* `none`"
+        },
+        {
+          "info": {
+            "name": "Update an explicit user permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/users/:selected_user_id",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "selected_user_id",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username, the user's UUID surrounded by curly-braces,\nfor example: {account UUID}, or the user's Atlassian ID.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates the explicit user permission for a given user and project. The selected\nuser must be a member of the workspace, and cannot be the workspace owner.\n\nOnly users with admin permission for the project may access this resource.\n\nDue to security concerns, the JWT and OAuth authentication methods are unsupported.\nThis is to ensure integrations and add-ons are not allowed to change permissions.\n\nPermissions can be:\n\n* `admin`\n* `create-repo`\n* `write`\n* `read`"
+        },
+        {
+          "info": {
+            "name": "Delete an explicit user permission for a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/workspaces/:workspace/projects/:project_key/permissions-config/users/:selected_user_id",
+            "params": [
+              {
+                "name": "project_key",
+                "value": "",
+                "type": "path",
+                "description": "The project in question. This is the actual key assigned to the project.\n"
+              },
+              {
+                "name": "selected_user_id",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the username, the user's UUID surrounded by curly-braces,\nfor example: {account UUID}, or the user's Atlassian ID.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the project user permission between the requested project and user, if one exists.\n\nOnly users with admin permission for the project may access this resource.\n\nDue to security concerns, the JWT and OAuth authentication methods are unsupported.\nThis is to ensure integrations and add-ons are not allowed to change permissions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

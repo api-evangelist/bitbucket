@@ -1,0 +1,1053 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Issue tracker API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issue tracker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/components",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the components that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled."
+        },
+        {
+          "info": {
+            "name": "Get a component for issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The component's id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue tracker component object."
+        },
+        {
+          "info": {
+            "name": "List issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the issues in the issue tracker."
+        },
+        {
+          "info": {
+            "name": "Create an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new issue.\n\nThis call requires authentication. Private repositories or private\nissue trackers require the caller to authenticate with an account that\nhas appropriate authorization.\n\nThe authenticated user is used for the issue's `reporter` field."
+        },
+        {
+          "info": {
+            "name": "Export issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/export",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "A POST request to this endpoint initiates a new background celery task that archives the repo's issues.\n\nWhen the job has been accepted, it will return a 202 (Accepted) along with a unique url to this job in the\n'Location' response header. This url is the endpoint for where the user can obtain their zip files.\""
+        },
+        {
+          "info": {
+            "name": "Check issue export status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/export/:repo_name-issues-:task_id.zip",
+            "params": [
+              {
+                "name": "repo_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the repo"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the export task"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "This endpoint is used to poll for the progress of an issue export\njob and return the zip file after the job is complete.\nAs long as the job is running, this will return a 202 response\nwith in the response body a description of the current status.\n\nAfter the job has been scheduled, but before it starts executing, the endpoint\nreturns a 202 response with status `ACCEPTED`.\n\nOnce it starts running, it is a 202 response with status `STARTED` and progress filled.\n\nAfter it is finished, it becomes a 2"
+        },
+        {
+          "info": {
+            "name": "Check issue import status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/import",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "When using GET, this endpoint reports the status of the current import task.\n\nAfter the job has been scheduled, but before it starts executing, the endpoint\nreturns a 202 response with status `ACCEPTED`.\n\nOnce it starts running, it is a 202 response with status `STARTED` and progress filled.\n\nAfter it is finished, it becomes a 200 response with status `SUCCESS` or `FAILURE`."
+        },
+        {
+          "info": {
+            "name": "Import issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/import",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "A POST request to this endpoint will import the zip file given by the archive parameter into the repository. All\nexisting issues will be deleted and replaced by the contents of the imported zip file.\n\nImports are done through a multipart/form-data POST. There is one valid and required form field, with the name\n\"archive,\" which needs to be a file field:\n\n```\n$ curl -u <username> -X POST -F archive=@/path/to/file.zip https://api.bitbucket.org/2.0/repositories/<owner_username>/<repo_slug>/issues/im"
+        },
+        {
+          "info": {
+            "name": "Get an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue."
+        },
+        {
+          "info": {
+            "name": "Update an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Modifies the issue.\n\n```\n$ curl https://api.bitbucket.org/2.0/repostories/evzijst/dogslow/issues/123 \\\n  -u evzijst -s -X PUT -H 'Content-Type: application/json' \\\n  -d '{\n  \"title\": \"Updated title\",\n  \"assignee\": {\n    \"account_id\": \"5d5355e8c6b9320d9ea5b28d\"\n  },\n  \"priority\": \"minor\",\n  \"version\": {\n    \"name\": \"1.0\"\n  },\n  \"component\": null\n}'\n```\n\nThis example changes the `title`, `assignee`, `priority` and the\n`version`. It also removes the value of the `component` from the issue\nby settin"
+        },
+        {
+          "info": {
+            "name": "Delete an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the specified issue. This requires write access to the\nrepository."
+        },
+        {
+          "info": {
+            "name": "List attachments for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/attachments",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns all attachments for this issue.\n\nThis returns the files' meta data. This does not return the files'\nactual contents.\n\nThe files are always ordered by their upload date."
+        },
+        {
+          "info": {
+            "name": "Upload an attachment to an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/attachments",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Upload new issue attachments.\n\nTo upload files, perform a `multipart/form-data` POST containing one\nor more file fields.\n\nWhen a file is uploaded with the same name as an existing attachment,\nthen the existing file will be replaced."
+        },
+        {
+          "info": {
+            "name": "Get attachment for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/attachments/:path",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the file."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the contents of the specified file attachment.\n\nNote that this endpoint does not return a JSON response, but instead\nreturns a redirect pointing to the actual file that in turn will return\nthe raw contents.\n\nThe redirect URL contains a one-time token that has a limited lifetime.\nAs a result, the link should not be persisted, stored, or shared."
+        },
+        {
+          "info": {
+            "name": "Delete an attachment for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/attachments/:path",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path to the file."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes an attachment."
+        },
+        {
+          "info": {
+            "name": "List changes on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/changes",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for details."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nName of a response property to sort results. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#sorting-query-results)\nfor details.\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all changes that have been made to the specified\nissue. Changes are returned in chronological order with the oldest\nchange first.\n\nEach time an issue is edited in the UI or through the API, an immutable\nchange record is created under the `/issues/123/changes` endpoint. It\nalso has a comment associated with the change.\n\nNote that this operation is changing significantly, due to privacy changes.\nSee the [announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-ap"
+        },
+        {
+          "info": {
+            "name": "Modify the state of an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/changes",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Makes a change to the specified issue.\n\nFor example, to change an issue's state and assignee, create a new\nchange object that modifies these fields:\n\n```\ncurl https://api.bitbucket.org/2.0/site/master/issues/1234/changes \\\n  -s -u evzijst -X POST -H \"Content-Type: application/json\" \\\n  -d '{\n    \"changes\": {\n      \"assignee_account_id\": {\n        \"new\": \"557058:c0b72ad0-1cb5-4018-9cdc-0cde8492c443\"\n      },\n      \"state\": {\n        \"new\": 'resolved\"\n      }\n    }\n    \"message\": {\n      \"raw\": \"T"
+        },
+        {
+          "info": {
+            "name": "Get issue change object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/changes/:change_id",
+            "params": [
+              {
+                "name": "change_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue change id"
+              },
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue change object.\n\nThis resource is only available on repositories that have the issue\ntracker enabled."
+        },
+        {
+          "info": {
+            "name": "List comments on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/comments",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all comments that were made on the\nspecified issue.\n\nThe default sorting is oldest to newest and can be overridden with\nthe `sort` query parameter.\n\nThis endpoint also supports filtering and sorting of the results. See\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more details."
+        },
+        {
+          "info": {
+            "name": "Create a comment on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/comments",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new issue comment.\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/issues/42/comments/ \\\n  -X POST -u evzijst \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"content\": {\"raw\": \"Lorem ipsum.\"}}'\n```"
+        },
+        {
+          "info": {
+            "name": "Get a comment on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue comment object."
+        },
+        {
+          "info": {
+            "name": "Update a comment on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates the content of the specified issue comment. Note that only\nthe `content.raw` field can be modified.\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/issues/42/comments/5728901 \\\n  -X PUT -u evzijst \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"content\": {\"raw\": \"Lorem ipsum.\"}'\n```"
+        },
+        {
+          "info": {
+            "name": "Delete a comment on an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/comments/:comment_id",
+            "params": [
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the comment."
+              },
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the specified comment."
+        },
+        {
+          "info": {
+            "name": "Check if current user voted for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/vote",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Check whether the authenticated user has voted for this issue.\nA 204 status code indicates that the user has voted, while a 404\nimplies they haven't."
+        },
+        {
+          "info": {
+            "name": "Vote for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/vote",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Vote for this issue.\n\nTo cast your vote, do an empty PUT. The 204 status code indicates that\nthe operation was successful."
+        },
+        {
+          "info": {
+            "name": "Remove vote for an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/vote",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Retract your vote."
+        },
+        {
+          "info": {
+            "name": "Check if current user is watching a issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/watch",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Indicated whether or not the authenticated user is watching this\nissue."
+        },
+        {
+          "info": {
+            "name": "Watch an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/watch",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Start watching this issue.\n\nTo start watching this issue, do an empty PUT. The 204 status code\nindicates that the operation was successful."
+        },
+        {
+          "info": {
+            "name": "Stop watching an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/issues/:issue_id/watch",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "The issue id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Stop watching this issue."
+        },
+        {
+          "info": {
+            "name": "List milestones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/milestones",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the milestones that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled."
+        },
+        {
+          "info": {
+            "name": "Get a milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/milestones/:milestone_id",
+            "params": [
+              {
+                "name": "milestone_id",
+                "value": "",
+                "type": "path",
+                "description": "The milestone's id"
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue tracker milestone object."
+        },
+        {
+          "info": {
+            "name": "List defined versions for issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/versions",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the versions that have been defined in the issue tracker.\n\nThis resource is only available on repositories that have the issue\ntracker enabled."
+        },
+        {
+          "info": {
+            "name": "Get a defined version for issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/versions/:version_id",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "The version's id"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified issue tracker version object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,363 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Reports API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit for which to retrieve reports."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of Reports linked to this commit."
+        },
+        {
+          "info": {
+            "name": "Get a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the report belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the report."
+              }
+            ]
+          },
+          "docs": "Returns a single Report matching the provided ID."
+        },
+        {
+          "info": {
+            "name": "Create or update a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the report belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the report."
+              }
+            ]
+          },
+          "docs": "Creates or updates a report for the specified commit.\nTo upload a report, make sure to generate an ID that is unique across all reports for that commit. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001' \\\n--header 'Content-Type: appl"
+        },
+        {
+          "info": {
+            "name": "Delete a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the report belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the report."
+              }
+            ]
+          },
+          "docs": "Deletes a single Report matching the provided ID."
+        },
+        {
+          "info": {
+            "name": "List annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId/annotations",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit for which to retrieve reports."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Uuid or external-if of the report for which to get annotations for."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of Annotations for a specified report."
+        },
+        {
+          "info": {
+            "name": "Bulk create or update annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId/annotations",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit for which to retrieve reports."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Uuid or external-if of the report for which to get annotations for."
+              }
+            ]
+          },
+          "docs": "Bulk upload of annotations.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nAdd the annotations you want to upload as objects in a JSON array and make sure each annotation has the external_id field set to "
+        },
+        {
+          "info": {
+            "name": "Get an annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId/annotations/:annotationId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the report belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the report."
+              },
+              {
+                "name": "annotationId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the annotation."
+              }
+            ]
+          },
+          "docs": "Returns a single Annotation matching the provided ID."
+        },
+        {
+          "info": {
+            "name": "Create or update an annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId/annotations/:annotationId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the report belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the report."
+              },
+              {
+                "name": "annotationId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the annotation."
+              }
+            ]
+          },
+          "docs": "Creates or updates an individual annotation for the specified report.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nJust as reports, annotation needs to be uploaded with a unique ID that can later be use"
+        },
+        {
+          "info": {
+            "name": "Delete an annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/commit/:commit/reports/:reportId/annotations/:annotationId",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "The repository."
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "path",
+                "description": "The commit the annotation belongs to."
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the annotation."
+              },
+              {
+                "name": "annotationId",
+                "value": "",
+                "type": "path",
+                "description": "Either the uuid or external-id of the annotation."
+              }
+            ]
+          },
+          "docs": "Deletes a single Annotation matching the provided ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

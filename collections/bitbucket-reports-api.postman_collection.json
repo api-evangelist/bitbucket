@@ -1,0 +1,1975 @@
+{
+  "item": [
+    {
+      "id": "ecc60cb3-3241-462a-a0a2-4f71ba2bb007",
+      "name": "Reports",
+      "description": {
+        "content": "Code insights provides reports, annotations, and metrics to help you\nand your team improve code quality in pull requests throughout the code\nreview process. Some of the available code insights are static analysis\nreports, security scan results, artifact links, unit tests, and build\nstatus.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48eea976-ccdc-4e98-ba45-bdcac2d044c6",
+          "name": "List reports",
+          "request": {
+            "name": "List reports",
+            "description": {
+              "content": "Returns a paginated list of Reports linked to this commit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit for which to retrieve reports."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ae4c1c9-79cf-4e6a-87ea-f0b1c5cb95f2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit for which to retrieve reports."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 2044,\n  \"values\": [\n    {\n      \"type\": \"string\",\n      \"uuid\": \"string\",\n      \"title\": \"string\",\n      \"details\": \"string\",\n      \"external_id\": \"string\",\n      \"reporter\": \"string\",\n      \"link\": \"http://Jx.dtoXiJBxTKYe+FbnUFKwPH650FS9FOqlIGEU\",\n      \"remote_link_enabled\": true,\n      \"logo_url\": \"https://a.meLvvyYtawD.\",\n      \"report_type\": \"SECURITY\",\n      \"result\": \"PASSED\",\n      \"data\": [\n        {\n          \"type\": \"DURATION\",\n          \"title\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"type\": \"NUMBER\",\n          \"title\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"created_on\": \"1961-07-03T08:17:13.093Z\",\n      \"updated_on\": \"2018-10-06T06:23:33.153Z\"\n    },\n    {\n      \"type\": \"string\",\n      \"uuid\": \"string\",\n      \"title\": \"string\",\n      \"details\": \"string\",\n      \"external_id\": \"string\",\n      \"reporter\": \"string\",\n      \"link\": \"http://jPYojEezKeKLCGr.ber.wjXTIvHyRK7blgDb7trV34B\",\n      \"remote_link_enabled\": true,\n      \"logo_url\": \"http://XpdtVoQgivpJwCxYwhl.qupdZMcNM7RvqXSScUvm5qwgfBD,RZATo+kDyNAblGR9k+f-08gkyx\",\n      \"report_type\": \"BUG\",\n      \"result\": \"PENDING\",\n      \"data\": [\n        {\n          \"type\": \"LINK\",\n          \"title\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"type\": \"TEXT\",\n          \"title\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"created_on\": \"1972-10-18T16:54:20.188Z\",\n      \"updated_on\": \"1991-08-20T09:01:32.458Z\"\n    }\n  ],\n  \"size\": 3326,\n  \"pagelen\": 9646,\n  \"next\": \"https://bZprbuOAlVAgltFbvqqwUhWVHMjDbbo.agC0CO5fqqtKJ.ZhBnleyAVND7dSmj9ont0jXXH3YpU8wrnM4-dtX2,\",\n  \"previous\": \"https://JgrGTjkjJgmDhOfcHGcOfYR.puiSqVLnVVIf,nXzdflHFegUTVbDzI83akCSr85.BPycwDqq+YUKKQ68Ju,i2k3BLiArh0vvN.m.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "745f42d6-1db4-4e29-82f3-70507125c6b3",
+          "name": "Create or update a report",
+          "request": {
+            "name": "Create or update a report",
+            "description": {
+              "content": "Creates or updates a report for the specified commit.\nTo upload a report, make sure to generate an ID that is unique across all reports for that commit. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"title\": \"Security scan report\",\n    \"details\": \"This pull request introduces 10 new dependency vulnerabilities.\",\n    \"report_type\": \"SECURITY\",\n    \"reporter\": \"mySystem\",\n    \"link\": \"http://www.mysystem.com/reports/001\",\n    \"result\": \"FAILED\",\n    \"data\": [\n        {\n            \"title\": \"Duration (seconds)\",\n            \"type\": \"DURATION\",\n            \"value\": 14\n        },\n        {\n            \"title\": \"Safe to merge?\",\n            \"type\": \"BOOLEAN\",\n            \"value\": false\n        }\n    ]\n}'\n```\n\n### Possible field values:\nreport_type: SECURITY, COVERAGE, TEST, BUG\nresult: PASSED, FAILED, PENDING\ndata.type: BOOLEAN, DATE, DURATION, LINK, NUMBER, PERCENTAGE, TEXT\n\n#### Data field formats\n| Type  Field   | Value Field Type  | Value Field Display |\n|:--------------|:------------------|:--------------------|\n| None/ Omitted | Number, String or Boolean (not an array or object) | Plain text |\n| BOOLEAN\t| Boolean | The value will be read as a JSON boolean and displayed as 'Yes' or 'No'. |\n| DATE  | Number | The value will be read as a JSON number in the form of a Unix timestamp (milliseconds) and will be displayed as a relative date if the date is less than one week ago, otherwise  it will be displayed as an absolute date. |\n| DURATION | Number | The value will be read as a JSON number in milliseconds and will be displayed in a human readable duration format. |\n| LINK | Object: `{\"text\": \"Link text here\", \"href\": \"https://link.to.annotation/in/external/tool\"}` | The value will be read as a JSON object containing the fields \"text\" and \"href\" and will be displayed as a clickable link on the report. |\n| NUMBER | Number | The value will be read as a JSON number and large numbers will be  displayed in a human readable format (e.g. 14.3k). |\n| PERCENTAGE | Number (between 0 and 100) | The value will be read as a JSON number between 0 and 100 and will be displayed with a percentage sign. |\n| TEXT | String | The value will be read as a JSON string and will be displayed as-is |\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the report belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the report."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"reporter\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"remote_link_enabled\": \"<boolean>\",\n  \"logo_url\": \"<uri>\",\n  \"report_type\": \"<string>\",\n  \"result\": \"<string>\",\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ],\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d3b6f83-d65c-4972-82e8-f383a65c5429",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"reporter\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"remote_link_enabled\": \"<boolean>\",\n  \"logo_url\": \"<uri>\",\n  \"report_type\": \"<string>\",\n  \"result\": \"<string>\",\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ],\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"reporter\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"remote_link_enabled\": \"<boolean>\",\n  \"logo_url\": \"<uri>\",\n  \"report_type\": \"<string>\",\n  \"result\": \"<string>\",\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ],\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee491c9f-ef48-449d-81f8-73ae6ff05b7f",
+              "name": "The provided Report object is malformed or incomplete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"reporter\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"remote_link_enabled\": \"<boolean>\",\n  \"logo_url\": \"<uri>\",\n  \"report_type\": \"<string>\",\n  \"result\": \"<string>\",\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ],\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 4390,\n      \"key_1\": false,\n      \"key_2\": 451\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4d6e948-d290-489b-aa36-5f60f2483db9",
+          "name": "Get a report",
+          "request": {
+            "name": "Get a report",
+            "description": {
+              "content": "Returns a single Report matching the provided ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the report belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the report."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d665f50d-f2ac-4800-8dcc-71d2edffb98f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"reporter\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"remote_link_enabled\": \"<boolean>\",\n  \"logo_url\": \"<uri>\",\n  \"report_type\": \"<string>\",\n  \"result\": \"<string>\",\n  \"data\": [\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ],\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79107b1-c149-401b-983f-8fd1d9b77a24",
+              "name": "The report with the given ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 4390,\n      \"key_1\": false,\n      \"key_2\": 451\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a588a8a-f68b-4694-b506-57edcb1c908a",
+          "name": "Delete a report",
+          "request": {
+            "name": "Delete a report",
+            "description": {
+              "content": "Deletes a single Report matching the provided ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the report belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the report."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6033a858-cf91-4e64-a18c-487e4ebf1dd9",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "406986a6-c077-4b3d-b355-3c7500a575fe",
+          "name": "List annotations",
+          "request": {
+            "name": "List annotations",
+            "description": {
+              "content": "Returns a paginated list of Annotations for a specified report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit for which to retrieve reports."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Uuid or external-if of the report for which to get annotations for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a51c70ef-3bdc-453b-8615-43eac1803455",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit for which to retrieve reports."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Uuid or external-if of the report for which to get annotations for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 7645,\n  \"values\": [\n    {\n      \"type\": \"<string>\",\n      \"external_id\": \"string\",\n      \"uuid\": \"string\",\n      \"annotation_type\": \"BUG\",\n      \"path\": \"string\",\n      \"line\": 8969,\n      \"summary\": \"string\",\n      \"details\": \"string\",\n      \"result\": \"FAILED\",\n      \"severity\": \"MEDIUM\",\n      \"link\": \"http://OeqbjimnPabMXaeoIOJbWvm.idwsD67Oex7qxtFEzGDd-MSXtof.Vz5-qwXqQtfZlZ9huW7,By63np1CStyd\",\n      \"created_on\": \"2023-12-25T21:20:33.867Z\",\n      \"updated_on\": \"1955-06-12T04:59:37.968Z\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"external_id\": \"string\",\n      \"uuid\": \"string\",\n      \"annotation_type\": \"BUG\",\n      \"path\": \"string\",\n      \"line\": 7940,\n      \"summary\": \"string\",\n      \"details\": \"string\",\n      \"result\": \"FAILED\",\n      \"severity\": \"CRITICAL\",\n      \"link\": \"http://mDwKRaWExuQefKHKydaPnQTbL.ysrqyXuHWyE,G1e\",\n      \"created_on\": \"2006-08-05T08:36:48.388Z\",\n      \"updated_on\": \"1951-05-01T09:51:34.169Z\"\n    }\n  ],\n  \"size\": 9556,\n  \"pagelen\": 3130,\n  \"next\": \"https://xFGqQmEZBAQfzBMKFVcSkT.mjWMLmzJ4EwsW0iYPZn1dM\",\n  \"previous\": \"http://OsvbkBHzXWJJHjRkMceud.uwEPhpf3+P5cGUPtNF5Q5BuifI2oOW+JB0wVuhv-D,BmicfelzAo\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23630e54-0ebc-4aec-a650-d378a3a99bf0",
+          "name": "Bulk create or update annotations",
+          "request": {
+            "name": "Bulk create or update annotations",
+            "description": {
+              "content": "Bulk upload of annotations.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nAdd the annotations you want to upload as objects in a JSON array and make sure each annotation has the external_id field set to a unique value. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-annotation001. The external id can later be used to identify the report as an alternative to the generated [UUID](https://developer.atlassian.com/bitbucket/api/2/reference/meta/uri-uuid#uuid). You can upload up to 100 annotations per POST request.\n\n### Sample cURL request:\n```\ncurl --location 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001/annotations' \\\n--header 'Content-Type: application/json' \\\n--data-raw '[\n  {\n        \"external_id\": \"mysystem-annotation001\",\n        \"title\": \"Security scan report\",\n        \"annotation_type\": \"VULNERABILITY\",\n        \"summary\": \"This line represents a security threat.\",\n        \"severity\": \"HIGH\",\n      \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Main.java\",\n        \"line\": 42\n  },\n  {\n        \"external_id\": \"mySystem-annotation002\",\n        \"title\": \"Bug report\",\n        \"annotation_type\": \"BUG\",\n        \"result\": \"FAILED\",\n        \"summary\": \"This line might introduce a bug.\",\n        \"severity\": \"MEDIUM\",\n      \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Helper.java\",\n        \"line\": 13\n  }\n]'\n```\n\n### Possible field values:\nannotation_type: VULNERABILITY, CODE_SMELL, BUG\nresult: PASSED, FAILED, IGNORED, SKIPPED\nseverity: HIGH, MEDIUM, LOW, CRITICAL\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit for which to retrieve reports."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Uuid or external-if of the report for which to get annotations for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"type\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"uuid\": \"<string>\",\n    \"annotation_type\": \"<string>\",\n    \"path\": \"<string>\",\n    \"line\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"details\": \"<string>\",\n    \"result\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"link\": \"<uri>\",\n    \"created_on\": \"<dateTime>\",\n    \"updated_on\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "526bed47-134c-470c-bcb0-e868cb9b4cc5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit for which to retrieve reports."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Uuid or external-if of the report for which to get annotations for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"type\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"uuid\": \"<string>\",\n    \"annotation_type\": \"<string>\",\n    \"path\": \"<string>\",\n    \"line\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"details\": \"<string>\",\n    \"result\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"link\": \"<uri>\",\n    \"created_on\": \"<dateTime>\",\n    \"updated_on\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"uuid\": \"<string>\",\n    \"annotation_type\": \"<string>\",\n    \"path\": \"<string>\",\n    \"line\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"details\": \"<string>\",\n    \"result\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"link\": \"<uri>\",\n    \"created_on\": \"<dateTime>\",\n    \"updated_on\": \"<dateTime>\"\n  },\n  {\n    \"type\": \"<string>\",\n    \"external_id\": \"<string>\",\n    \"uuid\": \"<string>\",\n    \"annotation_type\": \"<string>\",\n    \"path\": \"<string>\",\n    \"line\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"details\": \"<string>\",\n    \"result\": \"<string>\",\n    \"severity\": \"<string>\",\n    \"link\": \"<uri>\",\n    \"created_on\": \"<dateTime>\",\n    \"updated_on\": \"<dateTime>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f62be26e-070f-436f-ab9c-d542afdbe128",
+          "name": "Get an annotation",
+          "request": {
+            "name": "Get an annotation",
+            "description": {
+              "content": "Returns a single Annotation matching the provided ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId",
+                "annotations",
+                ":annotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the report belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the report."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "annotationId",
+                  "description": "(Required) Either the uuid or external-id of the annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "45526825-63b6-4718-b87b-85823d34a862",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations",
+                    ":annotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "annotationId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"annotation_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"summary\": \"<string>\",\n  \"details\": \"<string>\",\n  \"result\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "762d0740-26d0-4837-836d-ff6dd67a6ee4",
+              "name": "The annotation with the given ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations",
+                    ":annotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "annotationId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 4390,\n      \"key_1\": false,\n      \"key_2\": 451\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1d1ebbe-17d7-420a-9cb8-05a329cdd77f",
+          "name": "Create or update an annotation",
+          "request": {
+            "name": "Create or update an annotation",
+            "description": {
+              "content": "Creates or updates an individual annotation for the specified report.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nJust as reports, annotation needs to be uploaded with a unique ID that can later be used to identify the report as an alternative to the generated [UUID](https://developer.atlassian.com/bitbucket/api/2/reference/meta/uri-uuid#uuid). If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-annotation001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mySystem-001/annotations/mysystem-annotation001' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"title\": \"Security scan report\",\n    \"annotation_type\": \"VULNERABILITY\",\n    \"summary\": \"This line represents a security thread.\",\n    \"severity\": \"HIGH\",\n    \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Main.java\",\n    \"line\": 42\n}'\n```\n\n### Possible field values:\nannotation_type: VULNERABILITY, CODE_SMELL, BUG\nresult: PASSED, FAILED, IGNORED, SKIPPED\nseverity: HIGH, MEDIUM, LOW, CRITICAL\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId",
+                "annotations",
+                ":annotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the report belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the report."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "annotationId",
+                  "description": "(Required) Either the uuid or external-id of the annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"annotation_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"summary\": \"<string>\",\n  \"details\": \"<string>\",\n  \"result\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "540c6ffa-0a80-4710-bb32-c18401902c68",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations",
+                    ":annotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "annotationId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"annotation_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"summary\": \"<string>\",\n  \"details\": \"<string>\",\n  \"result\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"annotation_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"summary\": \"<string>\",\n  \"details\": \"<string>\",\n  \"result\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "846f9d7b-a472-4989-b931-b1dc2a8f120d",
+              "name": "The provided Annotation object is malformed or incomplete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations",
+                    ":annotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the report belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the report."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "annotationId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"annotation_type\": \"<string>\",\n  \"path\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"summary\": \"<string>\",\n  \"details\": \"<string>\",\n  \"result\": \"<string>\",\n  \"severity\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"created_on\": \"<dateTime>\",\n  \"updated_on\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 4390,\n      \"key_1\": false,\n      \"key_2\": 451\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4f56c56-5564-49f1-a150-687fb1e8ae20",
+          "name": "Delete an annotation",
+          "request": {
+            "name": "Delete an annotation",
+            "description": {
+              "content": "Deletes a single Annotation matching the provided ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "commit",
+                ":commit",
+                "reports",
+                ":reportId",
+                "annotations",
+                ":annotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) The repository."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commit",
+                  "description": "(Required) The commit the annotation belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Either the uuid or external-id of the annotation."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "annotationId",
+                  "description": "(Required) Either the uuid or external-id of the annotation."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83718586-a415-4cc8-ba7e-b5ce2aa5c59b",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "commit",
+                    ":commit",
+                    "reports",
+                    ":reportId",
+                    "annotations",
+                    ":annotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID surrounded by curly-braces, for example `{workspace UUID}`."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) The repository."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commit",
+                      "description": "(Required) The commit the annotation belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "annotationId",
+                      "description": "(Required) Either the uuid or external-id of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitbucket.org/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "02ed5414-8366-4868-b6a2-6018bad5064a",
+    "name": "Bitbucket Addon Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1871 @@
+{
+  "item": [
+    {
+      "id": "5afad97d-db4d-41d3-ae82-9425bf51003b",
+      "name": "Branch restrictions",
+      "description": {
+        "content": "Repository owners and administrators can set branch management\nrules on a repository that control what can be pushed by whom.\nThrough these rules, you can enforce a project or team\nworkflow. For example, owners or administrators can:\n\n* Limit push powers\n* Prevent branch deletion\n* Prevent history re-writes (Git only)\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a2ccadb-437b-480a-8f95-d31592c1d44a",
+          "name": "List branch restrictions",
+          "request": {
+            "name": "List branch restrictions",
+            "description": {
+              "content": "Returns a paginated list of all branch restrictions on the\nrepository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "branch-restrictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "<string>",
+                  "description": "Branch restrictions of this type"
+                },
+                {
+                  "disabled": false,
+                  "key": "pattern",
+                  "value": "<string>",
+                  "description": "Branch restrictions applied to branches of this pattern"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5c0c40e-5f56-4bf8-85ce-1fb8d878057d",
+              "name": "A paginated list of branch restrictions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pattern",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"size\": 4674,\n  \"page\": 8726,\n  \"pagelen\": 8966,\n  \"next\": \"http://thMhUJ.nvhaQF8JNIZMBGvMmvxgaIrQEZjbxzjDvi.bIFiTrI.eX\",\n  \"previous\": \"http://lvXYjMmYYFoGmBiLcAKFSOLTvSMelnxb.whojO4RUu2hNGkJqUTkWh7rhS9uPtgxr7\",\n  \"values\": [\n    {\n      \"branch_match_kind\": \"branching_model\",\n      \"kind\": \"delete\",\n      \"pattern\": \"string\",\n      \"type\": \"string\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://ZeTqPwdrSDFVammiBKoOwOniUyc.uquza2Qby+qYyqpGLHybmja2HvNQjZubAcUucy8bOroBOm4TU,AJ\",\n          \"name\": \"string\"\n        }\n      },\n      \"id\": 1639,\n      \"branch_type\": \"development\",\n      \"value\": 4837,\n      \"users\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_on\": \"1964-01-28T08:51:35.807Z\",\n          \"display_name\": \"string\",\n          \"uuid\": \"string\"\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_on\": \"1956-08-27T19:16:29.292Z\",\n          \"display_name\": \"string\",\n          \"uuid\": \"string\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"html\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"owner\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"workspace\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"full_slug\": \"string\"\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"html\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"owner\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"workspace\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"full_slug\": \"string\"\n        }\n      ]\n    },\n    {\n      \"branch_match_kind\": \"branching_model\",\n      \"kind\": \"delete\",\n      \"pattern\": \"string\",\n      \"type\": \"string\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"http://UUGyNvfNGYDzjfBM.hcajFOgwbOQB0yugDLPr1q3BWB+DL\",\n          \"name\": \"string\"\n        }\n      },\n      \"id\": 7309,\n      \"branch_type\": \"bugfix\",\n      \"value\": 4803,\n      \"users\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_on\": \"1995-02-01T16:59:03.925Z\",\n          \"display_name\": \"string\",\n          \"uuid\": \"string\"\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_on\": \"2003-01-01T12:31:48.338Z\",\n          \"display_name\": \"string\",\n          \"uuid\": \"string\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"html\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"owner\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"workspace\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"full_slug\": \"string\"\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"links\": {\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"html\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"owner\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"workspace\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"full_slug\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d30b3f43-5955-4340-8f15-eda4af8df954",
+              "name": "If the request was not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pattern",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42a983d3-e2e7-41a6-8f04-c4382d1c4e53",
+              "name": "If the authenticated user does not have admin access to the repository",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pattern",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2faa0365-c7b1-4abc-bd56-b66ac0b8e679",
+              "name": "If the repository does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pattern",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff990b73-a4f2-4c81-9f67-d01e0da9485f",
+          "name": "Create a branch restriction rule",
+          "request": {
+            "name": "Create a branch restriction rule",
+            "description": {
+              "content": "Creates a new branch restriction rule for a repository.\n\n`kind` describes what will be restricted. Allowed values include:\n`push`, `force`, `delete`, `restrict_merges`, `require_tasks_to_be_completed`,\n`require_approvals_to_merge`, `require_default_reviewer_approvals_to_merge`,\n`require_no_changes_requested`, `require_passing_builds_to_merge`, `require_commits_behind`,\n`reset_pullrequest_approvals_on_change`, `smart_reset_pullrequest_approvals`,\n`reset_pullrequest_changes_requested_on_change`, `require_all_dependencies_merged`,\n`enforce_merge_checks`, and `allow_auto_merge_when_builds_pass`.\n\nDifferent kinds of branch restrictions have different requirements:\n\n* `push` and `restrict_merges` require `users` and `groups` to be\n  specified. Empty lists are allowed, in which case permission is\n  denied for everybody.\n\nThe restriction applies to all branches that match. There are\ntwo ways to match a branch. It is configured in `branch_match_kind`:\n\n1. `glob`: Matches a branch against the `pattern`. A `'*'` in\n   `pattern` will expand to match zero or more characters, and every\n   other character matches itself. For example, `'foo*'` will match\n   `'foo'` and `'foobar'`, but not `'barfoo'`. `'*'` will match all\n   branches.\n2. `branching_model`: Matches a branch against the repository's\n   branching model. The `branch_type` controls the type of branch\n   to match. Allowed values include: `production`, `development`,\n   `bugfix`, `release`, `feature` and `hotfix`.\n\nThe combination of `kind` and match must be unique. This means that\ntwo `glob` restrictions in a repository cannot have the same `kind` and\n`pattern`. Additionally, two `branching_model` restrictions in a\nrepository cannot have the same `kind` and `branch_type`.\n\n`users` and `groups` are lists of users and groups that are except from\nthe restriction. They can only be configured in `push` and\n`restrict_merges` restrictions. The `push` restriction stops a user\npushing to matching branches unless that user is in `users` or is a\nmember of a group in `groups`. The `restrict_merges` stops a user\nmerging pull requests to matching branches unless that user is in\n`users` or is a member of a group in `groups`. Adding new users or\ngroups to an existing restriction should be done via `PUT`.\n\nNote that branch restrictions with overlapping matchers is allowed,\nbut the resulting behavior may be surprising.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "branch-restrictions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca30546c-5ead-4f83-8d35-4c9dcdc51b54",
+              "name": "A paginated list of branch restrictions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db15d0ad-8d7a-4605-9627-9b73b70c9ff9",
+              "name": "If the request was not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea59a4a9-4329-471e-a2b2-9a6bf8506aac",
+              "name": "If the authenticated user does not have admin access to the repository",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5f4b564-e748-4de9-8db9-d36f0975a2c5",
+              "name": "If the repository does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7832e1ae-5424-4066-8c7f-b1a4d143a855",
+          "name": "Delete a branch restriction rule",
+          "request": {
+            "name": "Delete a branch restriction rule",
+            "description": {
+              "content": "Deletes an existing branch restriction rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "branch-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The restriction rule's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98d5c3a1-758b-4a9a-8b07-acc850ff2543",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8ae727c-a6c0-4ece-84f8-ebce18a009dd",
+              "name": "If the request was not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f68fad56-51cd-4cf6-b1ac-4ef0483f9ed2",
+              "name": "If the authenticated user does not have admin access to the repository",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "657e618d-2313-4786-a27b-e5b024833c06",
+              "name": "If the repository or branch restriction id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9296a4f9-d323-469a-ba2b-0bd0b163d536",
+          "name": "Get a branch restriction rule",
+          "request": {
+            "name": "Get a branch restriction rule",
+            "description": {
+              "content": "Returns a specific branch restriction rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "branch-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The restriction rule's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e76097ba-b35b-469c-b781-77e860e7bee5",
+              "name": "The branch restriction rule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c840def0-f9c6-442a-9e1d-62e4e25d8d77",
+              "name": "If the request was not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d895964-c22d-4172-ac27-fe984bc5e1c3",
+              "name": "If the authenticated user does not have admin access to the repository",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e70a9d1f-8c86-4c63-8ac5-f16a4d71991d",
+              "name": "If the repository or branch restriction id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a55d79c7-e31e-41f6-a167-d536ab417db2",
+          "name": "Update a branch restriction rule",
+          "request": {
+            "name": "Update a branch restriction rule",
+            "description": {
+              "content": "Updates an existing branch restriction rule.\n\nFields not present in the request body are ignored.\n\nSee [`POST`](/cloud/bitbucket/rest/api-group-branch-restrictions/#api-repositories-workspace-repo-slug-branch-restrictions-post) for details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "repositories",
+                ":workspace",
+                ":repo_slug",
+                "branch-restrictions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The restriction rule's id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repo_slug",
+                  "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61d7772d-1c57-4fe2-88fc-a761af351b68",
+              "name": "The updated branch restriction rule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56d37ccc-b497-4261-a86c-034111b1aff3",
+              "name": "If the request was not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44e5804f-8d65-41c3-8975-389f3dc31027",
+              "name": "If the authenticated user does not have admin access to the repository",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a82bcb6-64d3-4994-9764-3b14e3ab74a3",
+              "name": "If the repository or branch restriction id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repositories",
+                    ":workspace",
+                    ":repo_slug",
+                    "branch-restrictions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The restriction rule's id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repo_slug",
+                      "description": "(Required) This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"branch_match_kind\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"pattern\": \"<string>\",\n  \"type\": \"<string>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"id\": \"<integer>\",\n  \"branch_type\": \"<string>\",\n  \"value\": \"<integer>\",\n  \"users\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": false\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"avatar\": {\n          \"href\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_0\": \"string\"\n      },\n      \"created_on\": \"<dateTime>\",\n      \"display_name\": \"<string>\",\n      \"uuid\": \"<string>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        },\n        \"html\": {\n          \"href\": \"<uri>\",\n          \"name\": \"<string>\"\n        }\n      },\n      \"owner\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"created_on\": \"<dateTime>\",\n        \"display_name\": \"<string>\",\n        \"uuid\": \"<string>\"\n      },\n      \"workspace\": {\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"links\": {\n          \"avatar\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"html\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"members\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"owners\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"projects\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"repositories\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"snippets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"self\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"uuid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"is_private\": \"<boolean>\",\n        \"is_privacy_enforced\": \"<boolean>\",\n        \"forking_mode\": \"<string>\",\n        \"created_on\": \"<dateTime>\",\n        \"updated_on\": \"<dateTime>\"\n      },\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"full_slug\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 9959.99019619907,\n      \"key_1\": 975.1506090231321,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitbucket.org/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0063470d-5461-44ac-978b-a82401e7c996",
+    "name": "Bitbucket Addon Branch restrictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+      "type": "text/plain"
+    }
+  }
+}

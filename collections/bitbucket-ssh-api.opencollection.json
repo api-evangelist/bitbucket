@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon SSH API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSH",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SSH keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user/ssh-keys",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of the user's SSH public keys."
+        },
+        {
+          "info": {
+            "name": "Add a new SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/:selected_user/ssh-keys",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              },
+              {
+                "name": "expires_on",
+                "value": "",
+                "type": "query",
+                "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`"
+              }
+            ]
+          },
+          "docs": "Adds a new SSH public key to the specified user account and returns the resulting key.\n\nExample:\n\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY user@myhost\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys\n```"
+        },
+        {
+          "info": {
+            "name": "Get a SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+            "params": [
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The SSH key's UUID value."
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a specific SSH public key belonging to a user."
+        },
+        {
+          "info": {
+            "name": "Update a SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+            "params": [
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The SSH key's UUID value."
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Updates a specific SSH public key on a user's account\n\nNote: Only the 'comment' field can be updated using this API. To modify the key or comment values, you must delete and add the key again.\n\nExample:\n\n```\n$ curl -X PUT -H \"Content-Type: application/json\" -d '{\"label\": \"Work key\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/{b15b6026-9c02-4626-b4ad-b905f99f763a}\n```"
+        },
+        {
+          "info": {
+            "name": "Delete a SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/:selected_user/ssh-keys/:key_id",
+            "params": [
+              {
+                "name": "key_id",
+                "value": "",
+                "type": "path",
+                "description": "The SSH key's UUID value."
+              },
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Deletes a specific SSH public key from a user's account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

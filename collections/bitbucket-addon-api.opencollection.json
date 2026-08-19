@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addon",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update an installed app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/addon"
+          },
+          "docs": "Updates the application installation for the user.\n\nThis endpoint is intended to be used by Bitbucket Connect apps\nand only supports JWT authentication -- that is how Bitbucket\nidentifies the particular installation of the app. Developers\nwith applications registered in the \"Develop Apps\" section\nof Bitbucket need not use this endpoint as updates for those\napplications can be sent out via the UI of that section.\n\nPassing an empty body will update the installation using the\nexisting descriptor UR"
+        },
+        {
+          "info": {
+            "name": "Delete an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/addon"
+          },
+          "docs": "Deletes the application for the user.\n\nThis endpoint is intended to be used by Bitbucket Connect apps\nand only supports JWT authentication -- that is how Bitbucket\nidentifies the particular installation of the app. Developers\nwith applications registered in the \"Develop Apps\" section\nof Bitbucket Marketplace need not use this endpoint as\nupdates for those applications can be sent out via the\nUI of that section.\n\n```\n$ curl -X DELETE https://api.bitbucket.org/2.0/addon \\\n  -H \"Authorization: JWT "
+        },
+        {
+          "info": {
+            "name": "List linkers for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/addon/linkers"
+          },
+          "docs": "Gets a list of all [linkers](/cloud/bitbucket/modules/linker/)\nfor the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026."
+        },
+        {
+          "info": {
+            "name": "Get a linker for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              }
+            ]
+          },
+          "docs": "Gets a [linker](/cloud/bitbucket/modules/linker/) specified by `linker_key`\nfor the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026."
+        },
+        {
+          "info": {
+            "name": "List linker values for a linker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              }
+            ]
+          },
+          "docs": "Gets a list of all [linker](/cloud/bitbucket/modules/linker/) values for the\nspecified linker of the authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and wil"
+        },
+        {
+          "info": {
+            "name": "Create a linker value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              }
+            ]
+          },
+          "docs": "Creates a [linker](/cloud/bitbucket/modules/linker/) value for the specified\nlinker of authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and will be removed b"
+        },
+        {
+          "info": {
+            "name": "Update a linker value",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              }
+            ]
+          },
+          "docs": "Bulk update [linker](/cloud/bitbucket/modules/linker/) values for the specified\nlinker of the authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and will be re"
+        },
+        {
+          "info": {
+            "name": "Delete all linker values",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              }
+            ]
+          },
+          "docs": "Delete all [linker](/cloud/bitbucket/modules/linker/) values for the\nspecified linker of the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026."
+        },
+        {
+          "info": {
+            "name": "Get a linker value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values/:value_id",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              },
+              {
+                "name": "value_id",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the linker value."
+              }
+            ]
+          },
+          "docs": "Get a single [linker](/cloud/bitbucket/modules/linker/) value\nof the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026."
+        },
+        {
+          "info": {
+            "name": "Delete a linker value",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/addon/linkers/:linker_key/values/:value_id",
+            "params": [
+              {
+                "name": "linker_key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+              },
+              {
+                "name": "value_id",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the linker value."
+              }
+            ]
+          },
+          "docs": "Delete a single [linker](/cloud/bitbucket/modules/linker/) value\nof the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

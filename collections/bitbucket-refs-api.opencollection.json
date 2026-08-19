@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Refs API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Refs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List branches and tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nField by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering). The `name`\nfield is handled specially for refs in that, if specified as the sort field, it\nuses a natural sort order instead of the default lexicographical sort order. For example,\nit will return ['1.1', '1.2', '1.10'] instead of ['1.1', '1.10', '1.2']."
+              }
+            ]
+          },
+          "docs": "Returns the branches and tags in the repository.\n\nBy default, results will be in the order the underlying source control system returns them and identical to\nthe ordering one sees when running \"$ git show-ref\". Note that this follows simple\nlexical ordering of the ref names.\n\nThis can be undesirable as it does apply any natural sorting semantics, meaning for instance that refs are\nsorted [\"branch1\", \"branch10\", \"branch2\", \"v10\", \"v11\", \"v9\"] instead of [\"branch1\", \"branch2\",\n\"branch10\", \"v9\", \"v"
+        },
+        {
+          "info": {
+            "name": "List open branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/branches",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nField by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering). The `name`\nfield is handled specially for branches in that, if specified as the sort field, it\nuses a natural sort order instead of the default lexicographical sort order. For example,\nit will return ['branch1', 'branch2', 'branch10'] instead of ['branch1', 'branch10', 'branch2']."
+              }
+            ]
+          },
+          "docs": "Returns a list of all open branches within the specified repository.\nResults will be in the order the source control manager returns them.\n\nBranches support [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)\nthat can be used to search for specific branches. For instance, to find\nall branches that have \"stab\" in their name:\n\n```\ncurl -s https://api.bitbucket.org/2.0/repositories/atlassian/aui/refs/branches -G --data-urlencode 'q=name ~ \"stab\"'\n```\n\nBy default, results will be in the "
+        },
+        {
+          "info": {
+            "name": "Create a branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/branches",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new branch in the specified repository.\n\nThe payload of the POST should consist of a JSON document that\ncontains the name of the tag and the target hash.\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/branches \\\n-s -u seanfarley -X POST -H \"Content-Type: application/json\" \\\n-d '{\n    \"name\" : \"smf/create-feature\",\n    \"target\" : {\n        \"hash\" : \"default\",\n    }\n}'\n```\n\nThis call requires authentication. Private repositories require the\ncaller to authenticate"
+        },
+        {
+          "info": {
+            "name": "Get a branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/branches/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the branch."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a branch object within the specified repository.\n\nThis call requires authentication. Private repositories require the\ncaller to authenticate with an account that has appropriate\nauthorization.\n\nFor Git, the branch name should not include any prefixes (e.g.\nrefs/heads)."
+        },
+        {
+          "info": {
+            "name": "Delete a branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/branches/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the branch."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Delete a branch in the specified repository.\n\nThe main branch is not allowed to be deleted and will return a 400\nresponse.\n\nThe branch name should not include any prefixes (e.g.\nrefs/heads)."
+        },
+        {
+          "info": {
+            "name": "List tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/tags",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "\nQuery string to narrow down the response as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "\nField by which the results should be sorted as per\n[filtering and sorting](/cloud/bitbucket/rest/intro/#filtering). The `name`\nfield is handled specially for tags in that, if specified as the sort field, it\nuses a natural sort order instead of the default lexicographical sort order. For example,\nit will return ['1.1', '1.2', '1.10'] instead of ['1.1', '1.10', '1.2']."
+              }
+            ]
+          },
+          "docs": "Returns the tags in the repository.\n\nBy default, results will be in the order the underlying source control system returns them and identical to\nthe ordering one sees when running \"$ git tag --list\". Note that this follows simple\nlexical ordering of the ref names.\n\nThis can be undesirable as it does apply any natural sorting semantics, meaning for instance that tags are\nsorted [\"v10\", \"v11\", \"v9\"] instead of [\"v9\", \"v10\", \"v11\"].\n\nSorting can be changed using the ?sort= query parameter. When usi"
+        },
+        {
+          "info": {
+            "name": "Create a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/tags",
+            "params": [
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Creates a new annotated tag in the specified repository.\n\nThe payload of the POST should consist of a JSON document that\ncontains the name of the tag and the target hash.\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/jdoe/myrepo/refs/tags \\\n-s -u jdoe -X POST -H \"Content-Type: application/json\" \\\n-d '{\n    \"name\" : \"new-tag-name\",\n    \"target\" : {\n        \"hash\" : \"a1b2c3d4e5f6\",\n    }\n}'\n```\n\nThis endpoint does support using short hash prefixes for the commit\nhash, but it may return a 40"
+        },
+        {
+          "info": {
+            "name": "Get a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/tags/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the tag."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified tag.\n\n```\n$ curl -s https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8 -G | jq .\n{\n  \"name\": \"3.8\",\n  \"links\": {\n    \"commits\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commits/3.8\"\n    },\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8\"\n    },\n    \"html\": {\n      \"href\": \"https://bitbucket.org/seanfarley/hg/commits/tag/3.8\"\n    }\n  },\n  \"tagger\": {\n    \"raw\": \"Matt Mack"
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/repositories/:workspace/:repo_slug/refs/tags/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the tag."
+              },
+              {
+                "name": "repo_slug",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the repository slug or the UUID of the repository,\nsurrounded by curly-braces, for example: `{repository UUID}`.\n"
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "This can either be the workspace ID (slug) or the workspace UUID\nsurrounded by curly-braces, for example: `{workspace UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Delete a tag in the specified repository.\n\nThe tag name should not include any prefixes (e.g. refs/tags)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

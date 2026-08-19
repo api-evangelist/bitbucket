@@ -1,0 +1,2311 @@
+{
+  "item": [
+    {
+      "id": "2074f18c-39dc-4524-8a48-9b9a6a90ccd2",
+      "name": "Addon",
+      "description": {
+        "content": "The addon resource is intended to use used by Bitbucket Cloud Connect\nApps, and only supports JWT authentication.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfe7dde2-e2b7-4c6f-b56a-86b368469d55",
+          "name": "Delete an app",
+          "request": {
+            "name": "Delete an app",
+            "description": {
+              "content": "Deletes the application for the user.\n\nThis endpoint is intended to be used by Bitbucket Connect apps\nand only supports JWT authentication -- that is how Bitbucket\nidentifies the particular installation of the app. Developers\nwith applications registered in the \"Develop Apps\" section\nof Bitbucket Marketplace need not use this endpoint as\nupdates for those applications can be sent out via the\nUI of that section.\n\n```\n$ curl -X DELETE https://api.bitbucket.org/2.0/addon \\\n  -H \"Authorization: JWT <JWT Token>\"\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc2d5e67-73b8-431d-a615-c416dbddca22",
+              "name": "Request has succeeded. The application has been deleted for the user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2a01f98-cdf8-407a-9923-47aa382db65b",
+              "name": "No authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b0e6f87-8111-4fd7-b714-6487c14152bf",
+              "name": "Improper authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df3bc140-6595-44d3-8115-8187482df677",
+          "name": "Update an installed app",
+          "request": {
+            "name": "Update an installed app",
+            "description": {
+              "content": "Updates the application installation for the user.\n\nThis endpoint is intended to be used by Bitbucket Connect apps\nand only supports JWT authentication -- that is how Bitbucket\nidentifies the particular installation of the app. Developers\nwith applications registered in the \"Develop Apps\" section\nof Bitbucket need not use this endpoint as updates for those\napplications can be sent out via the UI of that section.\n\nPassing an empty body will update the installation using the\nexisting descriptor URL.\n\n```\n$ curl -X PUT https://api.bitbucket.org/2.0/addon \\\n  -H \"Authorization: JWT <JWT Token>\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{}'\n```\n\nThe new `descriptor` for the installation can be also provided\nin the body directly.\n\n```\n$ curl -X PUT https://api.bitbucket.org/2.0/addon \\\n  -H \"Authorization: JWT <JWT Token>\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{\"descriptor\": $NEW_DESCRIPTOR}'\n```\n\nIn both these modes the URL of the descriptor cannot be changed. To\nchange the descriptor location and upgrade an installation\nthe request must be made exclusively with a `descriptor_url`.\n\n ```\n$ curl -X PUT https://api.bitbucket.org/2.0/addon \\\n  -H \"Authorization: JWT <JWT Token>\" \\\n  --header \"Content-Type: application/json\" \\\n  --data '{\"descriptor_url\": $NEW_URL}'\n```\n\nThe `descriptor_url` must exactly match the marketplace registration\nthat Atlassian has for the application. Contact your Atlassian\ndeveloper advocate to update this registration. Once the registration\nhas been updated you may call this resource for each installation.\n\nNote that the scopes of the application cannot be increased\nin the new descriptor nor reduced to none.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cfc3e2e0-669f-4fec-be05-dc88326dc679",
+              "name": "Request has succeeded. The installation has been updated to the new descriptor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02159a07-dad4-4ea0-9f78-8bc83a053f9f",
+              "name": "Scopes have increased or decreased to none.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "287d52a7-f8f4-4f6e-af82-22c114703687",
+              "name": "No authorization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "161e308d-03cf-47c8-8717-d92e294800b5",
+              "name": "Improper authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bab76815-af71-4b14-aff3-c3fc5a7646e1",
+          "name": "List linkers for an app",
+          "request": {
+            "name": "List linkers for an app",
+            "description": {
+              "content": "Gets a list of all [linkers](/cloud/bitbucket/modules/linker/)\nfor the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ae145505-2a20-4ecd-b63a-4bb7c031ef0a",
+              "name": "Successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26bace83-083d-4067-9bad-b95118bb3aff",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72e84b6f-d754-4927-97bc-b70b0be2014b",
+          "name": "Get a linker for an app",
+          "request": {
+            "name": "Get a linker for an app",
+            "description": {
+              "content": "Gets a [linker](/cloud/bitbucket/modules/linker/) specified by `linker_key`\nfor the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcf0f0ef-d4f2-4af3-8ad2-189a5c831829",
+              "name": "Successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a594128e-e133-4971-ba7f-f4c82e477c94",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c8d4833-2ac3-429f-a89c-5de4640de7f0",
+              "name": "The linker does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60a167f0-e90f-4577-825d-e6e1ffe1b221",
+          "name": "Delete all linker values",
+          "request": {
+            "name": "Delete all linker values",
+            "description": {
+              "content": "Delete all [linker](/cloud/bitbucket/modules/linker/) values for the\nspecified linker of the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d9cb8f9f-c71f-43fd-8493-f34a5bda948e",
+              "name": "Successfully deleted the linker values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc4dd229-3d0c-4604-8f62-e19e1a7ef087",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b6f4caa-9a54-4940-bd4c-9dd1aff8de46",
+              "name": "The linker does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2863ca51-6db5-42c3-aac4-3733df190bc9",
+          "name": "List linker values for a linker",
+          "request": {
+            "name": "List linker values for a linker",
+            "description": {
+              "content": "Gets a list of all [linker](/cloud/bitbucket/modules/linker/) values for the\nspecified linker of the authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c6aba854-8e1b-4dce-a0f3-220b1b08c648",
+              "name": "Successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8319cf8-cf6c-4099-a612-d6a57fe93a53",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f0f6255-2bb3-4284-a733-517ef367efe3",
+              "name": "The linker does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e26779a8-a807-4f2e-adb2-c34860ea0903",
+          "name": "Create a linker value",
+          "request": {
+            "name": "Create a linker value",
+            "description": {
+              "content": "Creates a [linker](/cloud/bitbucket/modules/linker/) value for the specified\nlinker of authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "10e988d0-6783-472f-953b-f814653b385f",
+              "name": "Successfully created the linker value.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "098c629d-11a5-41fb-be88-a56a1a571ee3",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ed106d2-4489-451a-a709-a1469019c481",
+              "name": "The linker does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "405ac6ab-6ff1-490f-81f6-e80a2ec45a98",
+              "name": "The linker already has the value being added.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d6db47d-2ff5-4572-ac74-46ac585817db",
+          "name": "Update a linker value",
+          "request": {
+            "name": "Update a linker value",
+            "description": {
+              "content": "Bulk update [linker](/cloud/bitbucket/modules/linker/) values for the specified\nlinker of the authenticated application.\n\nA linker value lets applications supply values to modify its regular expression.\n\nThe base regular expression must use a Bitbucket-specific match group `(?K)`\nwhich will be translated to `([\\w\\-]+)`. A value must match this pattern.\n\n[Read more about linker values](/cloud/bitbucket/modules/linker/#usingthebitbucketapitosupplyvalues)\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b9d845f2-8c11-4e28-9c73-c7fd3b4b4ff8",
+              "name": "Successfully updated the linker values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de6984b7-849d-46b4-af24-5a3b374f4be8",
+              "name": "Invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37136027-ba38-4dca-a5ec-d4afdc28eb49",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a93ee56-244d-43a9-a251-a2a03559370d",
+              "name": "The linker does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b832793f-2066-4035-bcb9-e6b204c8fe89",
+          "name": "Delete a linker value",
+          "request": {
+            "name": "Delete a linker value",
+            "description": {
+              "content": "Delete a single [linker](/cloud/bitbucket/modules/linker/) value\nof the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values",
+                ":value_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "value_id",
+                  "description": "(Required) The numeric ID of the linker value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2eb23d71-2b9b-41f0-8102-d0ee815de8fe",
+              "name": "Successfully deleted the linker value.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b989800f-ba9b-4f42-a9f6-ea3301809e3a",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94dc1ac6-d6d5-4fd0-95e3-a8a98de6ccae",
+              "name": "The linker value does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30aa4792-4937-4617-870c-4ed6da1e120f",
+          "name": "Get a linker value",
+          "request": {
+            "name": "Get a linker value",
+            "description": {
+              "content": "Get a single [linker](/cloud/bitbucket/modules/linker/) value\nof the authenticated application.\n\nThis endpoint is deprecated and will be removed by May 2026.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "addon",
+                "linkers",
+                ":linker_key",
+                "values",
+                ":value_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "linker_key",
+                  "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "value_id",
+                  "description": "(Required) The numeric ID of the linker value."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df0de6f8-82b6-42cd-a819-cd49c136a9e3",
+              "name": "Successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb84aa4c-3c64-40f8-8270-27ae110ea75a",
+              "name": "Authentication must use app JWT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f944aa7-1f3b-44ec-877b-8899a7d071ba",
+              "name": "The linker value does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "addon",
+                    "linkers",
+                    ":linker_key",
+                    "values",
+                    ":value_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "linker_key",
+                      "description": "(Required) The unique key of a [linker module](/cloud/bitbucket/modules/linker/)\nas defined in an application descriptor."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "value_id",
+                      "description": "(Required) The numeric ID of the linker value."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": 5105.044772729835,\n      \"key_1\": 1155,\n      \"key_2\": \"string\",\n      \"key_3\": 4199.86220748371,\n      \"key_4\": 9549\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitbucket.org/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5d21498e-c603-474a-9742-bd170f070dde",
+    "name": "Bitbucket Addon API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+      "type": "text/plain"
+    }
+  }
+}

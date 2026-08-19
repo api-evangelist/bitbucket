@@ -1,0 +1,1516 @@
+{
+  "item": [
+    {
+      "id": "da72e1ab-f2e4-435c-9eee-b5e1e8931497",
+      "name": "SSH",
+      "description": {
+        "content": "The SSH resource allows you to manage SSH keys.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3245b89a-fbb8-42b1-836a-b534e7914c43",
+          "name": "List SSH keys",
+          "request": {
+            "name": "List SSH keys",
+            "description": {
+              "content": "Returns a paginated list of the user's SSH public keys.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "ssh-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d8f7c955-5abd-41ab-a7aa-fd22e25363d6",
+              "name": "A list of the SSH keys associated with the account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 1,\n  \"pagelen\": 10,\n  \"size\": 1,\n  \"values\": [\n    {\n      \"comment\": \"user@myhost\",\n      \"created_on\": \"2018-03-14T13:17:05.196003+00:00\",\n      \"expires_on\": null,\n      \"fingerprint\": \"w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI\",\n      \"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY\",\n      \"label\": \"\",\n      \"last_used\": \"2018-03-20T13:18:05.196003+00:00\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a\"\n        }\n      },\n      \"owner\": {\n        \"display_name\": \"Mark Adams\",\n        \"links\": {\n          \"avatar\": {\n            \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/markadams-atl/\"\n          },\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}\"\n          }\n        },\n        \"type\": \"user\",\n        \"username\": \"markadams-atl\",\n        \"nickname\": \"markadams-atl\",\n        \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n      },\n      \"type\": \"ssh_key\",\n      \"uuid\": \"{b15b6026-9c02-4626-b4ad-b905f99f763a}\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43800e00-1ec3-4ae4-84bd-32a54b610fbf",
+              "name": "If the specified user's keys are not accessible to the current user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aade28f3-4a18-4120-820e-7f42c5d87d2f",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d510e7dc-680a-4a5c-9eb6-75b7a9986a8e",
+          "name": "Add a new SSH key",
+          "request": {
+            "name": "Add a new SSH key",
+            "description": {
+              "content": "Adds a new SSH public key to the specified user account and returns the resulting key.\n\nExample:\n\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY user@myhost\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "ssh-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expires_on",
+                  "value": "<string>",
+                  "description": "The date or date-time of when the key will expire,\nin [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format.\nExample: `YYYY-MM-DDTHH:mm:ss.sssZ`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 9245.927847912191\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ea5cf79-c34f-4680-8202-9d05e5b15da2",
+              "name": "The newly created SSH key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expires_on",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": \"user@myhost\",\n  \"created_on\": \"2018-03-14T13:17:05.196003+00:00\",\n  \"expires_on\": null,\n  \"fingerprint\": \"w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI\",\n  \"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY\",\n  \"label\": \"\",\n  \"last_used\": \"2018-03-20T13:18:05.196003+00:00\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a\"\n    }\n  },\n  \"owner\": {\n    \"display_name\": \"Mark Adams\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/markadams-atl/\"\n      },\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}\"\n      }\n    },\n    \"type\": \"user\",\n    \"username\": \"markadams-atl\",\n    \"nickname\": \"markadams-atl\",\n    \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n  },\n  \"type\": \"ssh_key\",\n  \"uuid\": \"{b15b6026-9c02-4626-b4ad-b905f99f763a}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "372074b9-8e75-4cec-811d-a8882c73ecc1",
+              "name": "If the submitted key or related value is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expires_on",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b30204fb-46d3-4067-90d0-f5f30ab9e2c7",
+              "name": "If the current user does not have permission to add a key for the specified user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expires_on",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0f32e2b-17f8-4869-921f-54628421906e",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expires_on",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "105177bc-e1b3-4491-bf99-289115e14501",
+          "name": "Delete a SSH key",
+          "request": {
+            "name": "Delete a SSH key",
+            "description": {
+              "content": "Deletes a specific SSH public key from a user's account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "ssh-keys",
+                ":key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key_id",
+                  "description": "(Required) The SSH key's UUID value."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9f3ccd3d-fa16-4ce2-8727-cbb6ca27ac56",
+              "name": "The key has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25c5288e-df3d-49b5-b4ff-2fff6ae9d4f6",
+              "name": "If the submitted key or related value is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5951264d-daf2-4786-98a5-2a84ad39a358",
+              "name": "If the current user does not have permission to add a key for the specified user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a90dd4b-e7b3-4845-97bd-a89b3dbf964f",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10a00f1e-6624-4fb4-a9a7-12884839139b",
+          "name": "Get a SSH key",
+          "request": {
+            "name": "Get a SSH key",
+            "description": {
+              "content": "Returns a specific SSH public key belonging to a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "ssh-keys",
+                ":key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key_id",
+                  "description": "(Required) The SSH key's UUID value."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a05b45b-0c35-403f-97d0-e8bbdba1f443",
+              "name": "The specific SSH key matching the user and UUID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": \"user@myhost\",\n  \"created_on\": \"2018-03-14T13:17:05.196003+00:00\",\n  \"expires_on\": null,\n  \"fingerprint\": \"w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI\",\n  \"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY\",\n  \"label\": \"\",\n  \"last_used\": \"2018-03-20T13:18:05.196003+00:00\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a\"\n    }\n  },\n  \"owner\": {\n    \"display_name\": \"Mark Adams\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/markadams-atl/\"\n      },\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}\"\n      }\n    },\n    \"type\": \"user\",\n    \"username\": \"markadams-atl\",\n    \"nickname\": \"markadams-atl\",\n    \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n  },\n  \"type\": \"ssh_key\",\n  \"uuid\": \"{b15b6026-9c02-4626-b4ad-b905f99f763a}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0321e06-2517-42f4-8b5e-c3f3ab06ff61",
+              "name": "If the specified user or key is not accessible to the current user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddb6cc9a-ed09-47da-8910-b963c7cc40db",
+              "name": "If the specified user or key does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "709b180b-05fe-40f6-926d-14d6bd20376c",
+          "name": "Update a SSH key",
+          "request": {
+            "name": "Update a SSH key",
+            "description": {
+              "content": "Updates a specific SSH public key on a user's account\n\nNote: Only the 'comment' field can be updated using this API. To modify the key or comment values, you must delete and add the key again.\n\nExample:\n\n```\n$ curl -X PUT -H \"Content-Type: application/json\" -d '{\"label\": \"Work key\"}' https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/{b15b6026-9c02-4626-b4ad-b905f99f763a}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":selected_user",
+                "ssh-keys",
+                ":key_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key_id",
+                  "description": "(Required) The SSH key's UUID value."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "selected_user",
+                  "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "repository repository:write repository:admin repository:delete project project:admin email account account:write team team:write pipeline pipeline:write pipeline:variable runner runner:write test test:write pullrequest pullrequest:write webhook issue issue:write snippet snippet:write wiki"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://bitbucket.org/site/oauth2/access_token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://bitbucket.org/site/oauth2/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      },\n      \"key_0\": 9245.927847912191\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07d48a94-f033-471d-af4f-428c02cd91db",
+              "name": "The newly updated SSH key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": \"\",\n  \"created_on\": \"2018-03-14T13:17:05.196003+00:00\",\n  \"expires_on\": null,\n  \"fingerprint\": \"w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI\",\n  \"key\": \"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY\",\n  \"label\": \"Work key\",\n  \"last_used\": \"2018-03-20T13:18:05.196003+00:00\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a\"\n    }\n  },\n  \"owner\": {\n    \"display_name\": \"Mark Adams\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"https://bitbucket.org/account/markadams-atl/avatar/32/\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/markadams-atl/\"\n      },\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}\"\n      }\n    },\n    \"type\": \"user\",\n    \"username\": \"markadams-atl\",\n    \"nickname\": \"markadams-atl\",\n    \"uuid\": \"{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}\"\n  },\n  \"type\": \"ssh_key\",\n  \"uuid\": \"{b15b6026-9c02-4626-b4ad-b905f99f763a}\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf33b43f-2f79-4fd5-945c-e707e9af6324",
+              "name": "If the submitted key or related value is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b86df19-9cfd-4d3d-8f5a-502ba0d8002d",
+              "name": "If the current user does not have permission to add a key for the specified user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc5eb73c-b91e-4bd6-9bc7-579cf69f5534",
+              "name": "If the specified user does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":selected_user",
+                    "ssh-keys",
+                    ":key_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key_id",
+                      "description": "(Required) The SSH key's UUID value."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "selected_user",
+                      "description": "(Required) This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"uuid\": \"<string>\",\n  \"key\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"label\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"last_used\": \"<dateTime>\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"<uri>\",\n      \"name\": \"<string>\"\n    }\n  },\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"links\": {\n      \"avatar\": {\n        \"href\": \"<uri>\",\n        \"name\": \"<string>\"\n      }\n    },\n    \"created_on\": \"<dateTime>\",\n    \"display_name\": \"<string>\",\n    \"uuid\": \"<string>\"\n  },\n  \"expires_on\": \"<dateTime>\",\n  \"fingerprint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"error\": {\n    \"message\": \"string\",\n    \"detail\": \"string\",\n    \"data\": {\n      \"key_0\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bitbucket.org/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d2819aa4-3a5c-4332-92fd-45d1b9608c13",
+    "name": "Bitbucket Addon SSH API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.\n\nContact Support:\n Name: Bitbucket Support\n Email: support@bitbucket.org",
+      "type": "text/plain"
+    }
+  }
+}

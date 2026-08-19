@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitbucket Addon Users API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user"
+          },
+          "docs": "Returns the currently logged in user."
+        },
+        {
+          "info": {
+            "name": "List email addresses for current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/emails"
+          },
+          "docs": "Returns all the authenticated user's email addresses. Both\nconfirmed and unconfirmed."
+        },
+        {
+          "info": {
+            "name": "Get an email address for current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/user/emails/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "Email address of the user."
+              }
+            ]
+          },
+          "docs": "Returns details about a specific one of the authenticated user's\nemail addresses.\n\nDetails describe whether the address has been confirmed by the user and\nwhether it is the user's primary address or not."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/:selected_user",
+            "params": [
+              {
+                "name": "selected_user",
+                "value": "",
+                "type": "path",
+                "description": "This can either be an Atlassian Account ID OR the UUID of the account,\nsurrounded by curly-braces, for example: `{account UUID}`.\n"
+              }
+            ]
+          },
+          "docs": "Gets the public information associated with a user account.\n\nIf the user's profile is private, `location`, `website` and\n`created_on` elements are omitted.\n\nNote that the user object returned by this operation is changing significantly, due to privacy changes.\nSee the [announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-changes-gdpr/#changes-to-bitbucket-user-objects) for details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
