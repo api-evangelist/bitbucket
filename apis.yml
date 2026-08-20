@@ -284,6 +284,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -507,6 +509,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -547,6 +551,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - Properties
+  tags_raw:
   - properties
   properties:
   - type: OpenAPI
@@ -594,6 +600,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - Pull Requests
+  tags_raw:
   - Pullrequests
   properties:
   - type: OpenAPI
@@ -958,6 +966,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -1044,6 +1054,8 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
