@@ -5,6 +5,18 @@ description: >-
   free accounts with unlimited private repositories, along with CI/CD pipelines, code reviews via pull requests, and
   code collaboration tools for development teams.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -1138,6 +1150,9 @@ apis:
   - type: AsyncAPI
     url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/bitbucket-capability-edges.yml
+    name: Bitbucket Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/bitbucket/overview
   - type: AgenticAccess
