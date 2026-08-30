@@ -612,7 +612,7 @@ apis:
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
   tags:
-  - Pull Requests
+  - Pullrequests
   tags_raw:
   - Pullrequests
   properties:
