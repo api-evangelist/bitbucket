@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   title: Bitbucket Addon Snippets API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
@@ -8,14 +8,8 @@ info:
     name: Bitbucket Support
     url: https://support.atlassian.com/bitbucket-cloud/
     email: support@bitbucket.org
-host: api.bitbucket.org
-basePath: /2.0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.bitbucket.org/2.0
 tags:
 - name: Snippets
   description: "Snippets allow you share code segments or files with yourself, members of\nyour workspace, or the world.\n\nLike pull requests, repositories and workspaces, the full set of snippets\nis defined by what the current user has access to. This includes all\nsnippets owned by any of the workspaces the user is a member of, or\nsnippets by other users that the current user is either watching or has\n collaborated on (for instance by commenting on it).\n"
@@ -72,22 +66,27 @@ paths:
       responses:
         '200':
           description: A paginated list of snippets.
-          schema:
-            $ref: '#/definitions/paginated_snippets'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_snippets'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       parameters:
       - name: role
         in: query
         description: Filter down the result based on the authenticated user's role (`owner`, `contributor`, or `member`).
         required: false
-        type: string
-        enum:
-        - owner
-        - contributor
-        - member
+        schema:
+          type: string
+          enum:
+          - owner
+          - contributor
+          - member
       security:
       - oauth2:
         - snippet
@@ -109,23 +108,21 @@ paths:
       responses:
         '201':
           description: The newly created snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
           headers:
             Location:
-              type: string
               description: The URL of the newly created snippet.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the request was not authenticated
-          schema:
-            $ref: '#/definitions/error'
-      parameters:
-      - name: _body
-        in: body
-        description: The new snippet object.
-        required: true
-        schema:
-          $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -139,6 +136,13 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/snippet'
+        description: The new snippet object.
+        required: true
   /snippets/{workspace}:
     parameters:
     - name: workspace
@@ -149,7 +153,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -162,22 +167,27 @@ paths:
       responses:
         '200':
           description: A paginated list of snippets.
-          schema:
-            $ref: '#/definitions/paginated_snippets'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_snippets'
         '404':
           description: If the user does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       parameters:
       - name: role
         in: query
         description: Filter down the result based on the authenticated user's role (`owner`, `contributor`, or `member`).
         required: false
-        type: string
-        enum:
-        - owner
-        - contributor
-        - member
+        schema:
+          type: string
+          enum:
+          - owner
+          - contributor
+          - member
       security:
       - oauth2:
         - snippet
@@ -202,27 +212,27 @@ paths:
       responses:
         '201':
           description: The newly created snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
           headers:
             Location:
-              type: string
               description: The URL of the newly created snippet.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the request was not authenticated
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If the authenticated user does not have permission to create snippets in the specified workspace.
-          schema:
-            $ref: '#/definitions/error'
-      parameters:
-      - name: _body
-        in: body
-        description: The new snippet object.
-        required: true
-        schema:
-          $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -236,13 +246,21 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/snippet'
+        description: The new snippet object.
+        required: true
   /snippets/{workspace}/{encoded_id}:
     parameters:
     - name: encoded_id
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -251,7 +269,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Snippets
@@ -262,17 +281,22 @@ paths:
           description: If the snippet was deleted successfully.
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have permission to delete the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -293,34 +317,69 @@ paths:
       responses:
         '200':
           description: The snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have access to the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '410':
           description: If the snippet marked as spam.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
       - basic: []
       - api_key: []
-      produces:
-      - application/json
-      - multipart/related
-      - multipart/form-data
       x-atlassian-oauth2-scopes:
       - state: Current
         scheme: oauth2
@@ -336,34 +395,57 @@ paths:
       responses:
         '200':
           description: The updated snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have permission to update the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
       - basic: []
       - api_key: []
-      consumes:
-      - application/json
-      - multipart/related
-      - multipart/form-data
-      produces:
-      - application/json
-      - multipart/related
-      - multipart/form-data
       x-atlassian-oauth2-scopes:
       - state: Current
         scheme: oauth2
@@ -378,7 +460,8 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -387,7 +470,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -406,17 +490,22 @@ paths:
       responses:
         '200':
           description: A paginated list of snippet comments, ordered by creation date.
-          schema:
-            $ref: '#/definitions/paginated_snippet_comments'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_snippet_comments'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -443,27 +532,27 @@ paths:
       responses:
         '201':
           description: The newly created comment.
-          schema:
-            $ref: '#/definitions/snippet_comment'
           headers:
             Location:
-              type: string
               description: The URL of the new comment
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet_comment'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters:
-      - name: _body
-        in: body
-        description: The contents of the new comment.
-        required: true
-        schema:
-          $ref: '#/definitions/snippet_comment'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -477,19 +566,28 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/snippet_comment'
+        description: The contents of the new comment.
+        required: true
   /snippets/{workspace}/{encoded_id}/comments/{comment_id}:
     parameters:
     - name: comment_id
       in: path
       description: The id of the comment.
       required: true
-      type: integer
-      format: int64
+      schema:
+        type: integer
+        format: int64
     - name: encoded_id
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -498,7 +596,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Snippets
@@ -512,13 +611,16 @@ paths:
           description: Indicates the comment was deleted successfully.
         '403':
           description: If the authenticated user is not the author of the comment.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the comment or the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -539,17 +641,22 @@ paths:
       responses:
         '200':
           description: The specified comment.
-          schema:
-            $ref: '#/definitions/snippet_comment'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet_comment'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the comment or snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -576,23 +683,22 @@ paths:
       responses:
         '200':
           description: The updated comment object.
-          schema:
-            $ref: '#/definitions/snippet_comment'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet_comment'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the comment or snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters:
-      - name: _body
-        in: body
-        description: The contents to update the comment to.
-        required: true
-        schema:
-          $ref: '#/definitions/snippet_comment'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -606,13 +712,21 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/snippet_comment'
+        description: The contents to update the comment to.
+        required: true
   /snippets/{workspace}/{encoded_id}/commits:
     parameters:
     - name: encoded_id
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -621,7 +735,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -630,17 +745,22 @@ paths:
       responses:
         '200':
           description: The paginated list of snippet commits.
-          schema:
-            $ref: '#/definitions/paginated_snippet_commit'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_snippet_commit'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -659,12 +779,14 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: revision
       in: path
       description: The commit's SHA1.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -673,7 +795,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -682,17 +805,22 @@ paths:
       responses:
         '200':
           description: The specified snippet commit.
-          schema:
-            $ref: '#/definitions/snippet_commit'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet_commit'
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the commit or the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -711,12 +839,14 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: path
       in: path
       description: Path to the file.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -725,7 +855,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -740,17 +871,21 @@ paths:
           description: A redirect to the most recent revision of the specified file.
           headers:
             Location:
-              type: string
               description: The URL of the most recent file revision.
+              schema:
+                type: string
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -769,7 +904,8 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -778,7 +914,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Snippets
@@ -791,13 +928,16 @@ paths:
           description: Indicates the user stopped watching the snippet successfully.
         '401':
           description: If the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -828,9 +968,10 @@ paths:
           description: If the authenticated user is watching the snippet.
         '404':
           description: If the snippet does not exist, or if the authenticated user is not watching the snippet.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -853,13 +994,16 @@ paths:
           description: Indicates the authenticated user is now watching the snippet.
         '401':
           description: If the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -878,7 +1022,8 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -887,7 +1032,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -896,13 +1042,16 @@ paths:
       responses:
         '200':
           description: The paginated list of users watching this snippet
-          schema:
-            $ref: '#/definitions/paginated_accounts'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_accounts'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -915,12 +1064,14 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: node_id
       in: path
       description: A commit revision (SHA1).
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -929,7 +1080,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Snippets
@@ -952,21 +1104,28 @@ paths:
           description: If the snippet was deleted successfully.
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have permission to delete the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '405':
           description: If `{node_id}` is not the latest revision.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
@@ -1001,30 +1160,57 @@ paths:
       responses:
         '200':
           description: The snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have access to the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet, or the revision does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
       - basic: []
       - api_key: []
-      produces:
-      - application/json
-      - multipart/related
-      - multipart/form-data
       x-atlassian-oauth2-scopes:
       - state: Current
         scheme: oauth2
@@ -1063,38 +1249,69 @@ paths:
       responses:
         '200':
           description: The updated snippet object.
-          schema:
-            $ref: '#/definitions/snippet'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/snippet'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/snippet'
         '401':
           description: If the snippet is private and the request was not authenticated.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If authenticated user does not have permission to update the private snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet or the revision does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
         '405':
           description: If `{node_id}` is not the latest revision.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/related:
+              schema:
+                $ref: '#/components/schemas/error'
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet:write
       - basic: []
       - api_key: []
-      consumes:
-      - application/json
-      - multipart/related
-      - multipart/form-data
-      produces:
-      - application/json
-      - multipart/related
-      - multipart/form-data
       x-atlassian-oauth2-scopes:
       - state: Current
         scheme: oauth2
@@ -1109,17 +1326,20 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: node_id
       in: path
       description: A commit revision (SHA1).
       required: true
-      type: string
+      schema:
+        type: string
     - name: path
       in: path
       description: Path to the file.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -1128,7 +1348,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -1153,20 +1374,25 @@ paths:
           description: Returns the contents of the specified file.
           headers:
             Content-Type:
-              type: string
               description: The mime type as derived from the filename
+              schema:
+                type: string
             Content-Disposition:
-              type: string
               description: attachment
+              schema:
+                type: string
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the file or snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -1185,12 +1411,14 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: revision
       in: path
       description: A revspec expression. This can simply be a commit SHA1, a ref name, or a compare expression like `staging..production`.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -1199,7 +1427,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -1210,17 +1439,22 @@ paths:
           description: The raw diff contents.
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       parameters:
       - name: path
         in: query
         description: When used, only one the diff of the specified file will be returned.
-        type: string
+        schema:
+          type: string
       security:
       - oauth2:
         - snippet
@@ -1239,12 +1473,14 @@ paths:
       in: path
       description: The snippet id.
       required: true
-      type: string
+      schema:
+        type: string
     - name: revision
       in: path
       description: A revspec expression. This can simply be a commit SHA1, a ref name, or a compare expression like `staging..production`.
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -1253,7 +1489,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Snippets
@@ -1264,13 +1501,16 @@ paths:
           description: The raw patch contents.
         '403':
           description: If the authenticated user does not have access to the snippet.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the snippet does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - snippet
@@ -1283,428 +1523,432 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
-definitions:
-  base_commit:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Base Commit
-      description: The common base type for both repository and snippet commits.
+components:
+  schemas:
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
       properties:
-        hash:
+        href:
           type: string
-          pattern: '[0-9a-f]{7,}?'
-        date:
+          format: uri
+        name:
           type: string
-          format: date-time
-        author:
-          $ref: '#/definitions/author'
-        committer:
-          $ref: '#/definitions/committer'
-        message:
-          type: string
-        summary:
-          type: object
-          properties:
-            raw:
-              type: string
-              description: The text as it was typed by a user.
-            markup:
-              type: string
-              description: The type of markup language the raw content is to be interpreted in.
-              enum:
-              - markdown
-              - creole
-              - plaintext
-            html:
-              type: string
-              description: The user's content rendered as HTML.
-          additionalProperties: false
-        parents:
-          type: array
-          items:
-            $ref: '#/definitions/base_commit'
-          minItems: 0
+      additionalProperties: false
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
       additionalProperties: true
-  error:
-    type: object
-    title: Error
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-      error:
-        type: object
+    base_commit:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Base Commit
+        description: The common base type for both repository and snippet commits.
         properties:
+          hash:
+            type: string
+            pattern: '[0-9a-f]{7,}?'
+          date:
+            type: string
+            format: date-time
+          author:
+            $ref: '#/components/schemas/author'
+          committer:
+            $ref: '#/components/schemas/committer'
           message:
             type: string
-          detail:
-            type: string
-          data:
+          summary:
             type: object
-            description: Optional structured data that is endpoint-specific.
-            properties: {}
-            additionalProperties: true
-        required:
-        - message
-        additionalProperties: false
-    required:
-    - type
-    additionalProperties: true
-  link:
-    type: object
-    title: Link
-    description: A link to a resource related to this object.
-    properties:
-      href:
-        type: string
-        format: uri
-      name:
-        type: string
-    additionalProperties: false
-  snippet_commit:
-    allOf:
-    - $ref: '#/definitions/base_commit'
-    - type: object
-      title: Snippet Commit
-      description: ''
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          parents:
+            type: array
+            items:
+              $ref: '#/components/schemas/base_commit'
+            minItems: 0
+        additionalProperties: true
+    author:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Author
+        description: The author of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    paginated_accounts:
+      type: object
+      title: Paginated Accounts
+      description: A paginated list of accounts.
       properties:
-        links:
-          type: object
-          properties:
-            self:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-            html:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-            diff:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-          additionalProperties: false
-        snippet:
-          $ref: '#/definitions/snippet'
-      additionalProperties: true
-  object:
-    type: object
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-    required:
-    - type
-    additionalProperties: true
-    discriminator: type
-  paginated_snippet_comments:
-    type: object
-    title: Paginated Snippet Comments
-    description: A paginated list of snippet comments.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/snippet_comment'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-  snippet_comment:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Snippet Comment
-      description: A comment on a snippet.
-      properties:
-        links:
-          type: object
-          properties:
-            self:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-            html:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-          additionalProperties: false
-        snippet:
-          $ref: '#/definitions/snippet'
-      additionalProperties: true
-  paginated_snippet_commit:
-    type: object
-    title: Paginated Snippet Commits
-    description: A paginated list of snippet commits.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/snippet_commit'
-        minItems: 0
-    additionalProperties: false
-  committer:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Committer
-      description: The committer of a change in a repository
-      properties:
-        raw:
-          type: string
-          description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-        user:
-          $ref: '#/definitions/account'
-      additionalProperties: true
-  snippet:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Snippet
-      description: A snippet object.
-      properties:
-        id:
+        size:
           type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
           minimum: 0
-        title:
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
           type: string
-        scm:
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
           type: string
-          description: The DVCS used to store the snippet.
-          enum:
-          - git
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        owner:
-          $ref: '#/definitions/account'
-        creator:
-          $ref: '#/definitions/account'
-        is_private:
-          type: boolean
-      additionalProperties: true
-  author:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Author
-      description: The author of a change in a repository
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/account'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        raw:
+        type:
           type: string
-          description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-        user:
-          $ref: '#/definitions/account'
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
       additionalProperties: true
-  account:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Account
-      description: An account object.
+    committer:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Committer
+        description: The committer of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        links:
-          $ref: '#/definitions/account_links'
-        created_on:
+        type:
           type: string
-          format: date-time
-        display_name:
-          type: string
-        uuid:
-          type: string
+      required:
+      - type
       additionalProperties: true
-  paginated_accounts:
-    type: object
-    title: Paginated Accounts
-    description: A paginated list of accounts.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/account'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-  paginated_snippets:
-    type: object
-    title: Paginated Snippets
-    description: A paginated list of snippets.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/snippet'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-  account_links:
-    type: object
-    title: Account Links
-    description: Links related to an Account.
-    properties:
-      avatar:
-        $ref: '#/definitions/link'
-    additionalProperties: true
-securityDefinitions:
-  basic:
-    type: basic
-    description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
-  oauth2:
-    type: oauth2
-    description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
-    flow: accessCode
-    authorizationUrl: https://bitbucket.org/site/oauth2/authorize
-    tokenUrl: https://bitbucket.org/site/oauth2/access_token
-    scopes:
-      repository: Read your repositories
-      repository:write: Read and modify your repositories
-      repository:admin: Administer your repositories
-      repository:delete: Delete your repositories
-      project: Read your workspace's project settings and read repositories contained within your workspace's projects
-      project:admin: Read and modify settings for projects in your workspace
-      email: Read your account's primary email address
-      account: Read your account information
-      account:write: Read and modify your account information
-      team: Read your team membership information
-      team:write: Read and modify your team membership information
-      pipeline: Access your repositories' build pipelines
-      pipeline:write: Access and rerun your repositories' build pipelines
-      pipeline:variable: Access your repositories' build pipelines and configure their variables
-      runner: Access your workspaces/repositories' runners
-      runner:write: Access and edit your workspaces/repositories' runners
-      test: Access your workspaces/repositories' test
-      test:write: Access and edit your workspaces/repositories' test
-      pullrequest: Read your repositories and their pull requests
-      pullrequest:write: Read and modify your repositories and their pull requests
-      webhook: Read and modify your repositories' webhooks
-      issue: Read your repositories' issues
-      issue:write: Read and modify your repositories' issues
-      snippet: Read your snippets
-      snippet:write: Read and modify your snippets
-      wiki: Read and modify your repositories' wikis
-  api_key:
-    name: Authorization
-    type: apiKey
-    description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
-    in: header
+      discriminator:
+        propertyName: type
+    snippet_commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Snippet Commit
+        description: ''
+        properties:
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              diff:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+          snippet:
+            $ref: '#/components/schemas/snippet'
+        additionalProperties: true
+    snippet_comment:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Snippet Comment
+        description: A comment on a snippet.
+        properties:
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+          snippet:
+            $ref: '#/components/schemas/snippet'
+        additionalProperties: true
+    paginated_snippet_comments:
+      type: object
+      title: Paginated Snippet Comments
+      description: A paginated list of snippet comments.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet_comment'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    paginated_snippets:
+      type: object
+      title: Paginated Snippets
+      description: A paginated list of snippets.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    paginated_snippet_commit:
+      type: object
+      title: Paginated Snippet Commits
+      description: A paginated list of snippet commits.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet_commit'
+          minItems: 0
+      additionalProperties: false
+    snippet:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Snippet
+        description: A snippet object.
+        properties:
+          id:
+            type: integer
+            minimum: 0
+          title:
+            type: string
+          scm:
+            type: string
+            description: The DVCS used to store the snippet.
+            enum:
+            - git
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+          owner:
+            $ref: '#/components/schemas/account'
+          creator:
+            $ref: '#/components/schemas/account'
+          is_private:
+            type: boolean
+        additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            repository: Read your repositories
+            repository:write: Read and modify your repositories
+            repository:admin: Administer your repositories
+            repository:delete: Delete your repositories
+            project: Read your workspace's project settings and read repositories contained within your workspace's projects
+            project:admin: Read and modify settings for projects in your workspace
+            email: Read your account's primary email address
+            account: Read your account information
+            account:write: Read and modify your account information
+            team: Read your team membership information
+            team:write: Read and modify your team membership information
+            pipeline: Access your repositories' build pipelines
+            pipeline:write: Access and rerun your repositories' build pipelines
+            pipeline:variable: Access your repositories' build pipelines and configure their variables
+            runner: Access your workspaces/repositories' runners
+            runner:write: Access and edit your workspaces/repositories' runners
+            test: Access your workspaces/repositories' test
+            test:write: Access and edit your workspaces/repositories' test
+            pullrequest: Read your repositories and their pull requests
+            pullrequest:write: Read and modify your repositories and their pull requests
+            webhook: Read and modify your repositories' webhooks
+            issue: Read your repositories' issues
+            issue:write: Read and modify your repositories' issues
+            snippet: Read your snippets
+            snippet:write: Read and modify your snippets
+            wiki: Read and modify your repositories' wikis
+          authorizationUrl: https://bitbucket.org/site/oauth2/authorize
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+      description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+    api_key:
+      name: Authorization
+      type: apiKey
+      description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
+      in: header
 x-revision: 84a5dd73aa83
 x-atlassian-narrative:
   documents:

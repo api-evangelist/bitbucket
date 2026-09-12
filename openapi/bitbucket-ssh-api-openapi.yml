@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   title: Bitbucket Addon SSH API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
@@ -8,14 +8,8 @@ info:
     name: Bitbucket Support
     url: https://support.atlassian.com/bitbucket-cloud/
     email: support@bitbucket.org
-host: api.bitbucket.org
-basePath: /2.0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.bitbucket.org/2.0
 tags:
 - name: SSH
   description: 'The SSH resource allows you to manage SSH keys.
@@ -32,7 +26,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - SSH
@@ -41,46 +36,48 @@ paths:
       responses:
         '200':
           description: A list of the SSH keys associated with the account.
-          schema:
-            $ref: '#/definitions/paginated_ssh_user_keys'
-          examples:
+          content:
             application/json:
-              page: 1
-              pagelen: 10
-              size: 1
-              values:
-              - comment: user@myhost
-                created_on: '2018-03-14T13:17:05.196003+00:00'
-                expires_on: null
-                fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
-                key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
-                label: ''
-                last_used: '2018-03-20T13:18:05.196003+00:00'
-                links:
-                  self:
-                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
-                owner:
-                  display_name: Mark Adams
+              schema:
+                $ref: '#/components/schemas/paginated_ssh_user_keys'
+              example:
+                page: 1
+                pagelen: 10
+                size: 1
+                values:
+                - comment: user@myhost
+                  created_on: '2018-03-14T13:17:05.196003+00:00'
+                  expires_on: null
+                  fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
+                  key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
+                  label: ''
+                  last_used: '2018-03-20T13:18:05.196003+00:00'
                   links:
-                    avatar:
-                      href: https://bitbucket.org/account/markadams-atl/avatar/32/
-                    html:
-                      href: https://bitbucket.org/markadams-atl/
                     self:
-                      href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
-                  type: user
-                  username: markadams-atl
-                  nickname: markadams-atl
-                  uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
-                type: ssh_key
-                uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
+                      href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
+                  owner:
+                    display_name: Mark Adams
+                    links:
+                      avatar:
+                        href: https://bitbucket.org/account/markadams-atl/avatar/32/
+                      html:
+                        href: https://bitbucket.org/markadams-atl/
+                      self:
+                        href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
+                    type: user
+                    username: markadams-atl
+                    nickname: markadams-atl
+                    uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
+                  type: ssh_key
+                  uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
         '403':
           description: If the specified user's keys are not accessible to the current user
         '404':
           description: If the specified user does not exist
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - account
@@ -111,52 +108,51 @@ paths:
       responses:
         '201':
           description: The newly created SSH key.
-          schema:
-            $ref: '#/definitions/ssh_account_key'
-          examples:
+          content:
             application/json:
-              comment: user@myhost
-              created_on: '2018-03-14T13:17:05.196003+00:00'
-              expires_on: null
-              fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
-              key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
-              label: ''
-              last_used: '2018-03-20T13:18:05.196003+00:00'
-              links:
-                self:
-                  href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
-              owner:
-                display_name: Mark Adams
+              schema:
+                $ref: '#/components/schemas/ssh_account_key'
+              example:
+                comment: user@myhost
+                created_on: '2018-03-14T13:17:05.196003+00:00'
+                expires_on: null
+                fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
+                key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
+                label: ''
+                last_used: '2018-03-20T13:18:05.196003+00:00'
                 links:
-                  avatar:
-                    href: https://bitbucket.org/account/markadams-atl/avatar/32/
-                  html:
-                    href: https://bitbucket.org/markadams-atl/
                   self:
-                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
-                type: user
-                username: markadams-atl
-                nickname: markadams-atl
-                uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
-              type: ssh_key
-              uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
+                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
+                owner:
+                  display_name: Mark Adams
+                  links:
+                    avatar:
+                      href: https://bitbucket.org/account/markadams-atl/avatar/32/
+                    html:
+                      href: https://bitbucket.org/markadams-atl/
+                    self:
+                      href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
+                  type: user
+                  username: markadams-atl
+                  nickname: markadams-atl
+                  uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
+                type: ssh_key
+                uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
         '400':
           description: If the submitted key or related value is invalid
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If the current user does not have permission to add a key for the specified user
         '404':
           description: If the specified user does not exist
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       parameters:
-      - name: _body
-        in: body
-        description: The new SSH key object. Note that the username property has been deprecated due to [privacy changes](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-changes-gdpr/#removal-of-usernames-from-user-referencing-apis).
-        required: false
-        schema:
-          $ref: '#/definitions/ssh_account_key'
       - name: expires_on
         in: query
         description: 'The date or date-time of when the key will expire,
@@ -165,7 +161,8 @@ paths:
 
           Example: `YYYY-MM-DDTHH:mm:ss.sssZ`'
         required: false
-        type: string
+        schema:
+          type: string
       security:
       - oauth2:
         - account:write
@@ -179,13 +176,20 @@ paths:
         - write:ssh-key:bitbucket
       x-atlassian-auth-types:
       - api-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ssh_account_key'
+        description: The new SSH key object. Note that the username property has been deprecated due to [privacy changes](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-changes-gdpr/#removal-of-usernames-from-user-referencing-apis).
   /users/{selected_user}/ssh-keys/{key_id}:
     parameters:
     - name: key_id
       in: path
       description: The SSH key's UUID value.
       required: true
-      type: string
+      schema:
+        type: string
     - name: selected_user
       in: path
       description: 'This can either be an Atlassian Account ID OR the UUID of the account,
@@ -194,7 +198,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - SSH
@@ -205,15 +210,18 @@ paths:
           description: The key has been deleted
         '400':
           description: If the submitted key or related value is invalid
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If the current user does not have permission to add a key for the specified user
         '404':
           description: If the specified user does not exist
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - account:write
@@ -234,42 +242,44 @@ paths:
       responses:
         '200':
           description: The specific SSH key matching the user and UUID
-          schema:
-            $ref: '#/definitions/ssh_account_key'
-          examples:
+          content:
             application/json:
-              comment: user@myhost
-              created_on: '2018-03-14T13:17:05.196003+00:00'
-              expires_on: null
-              fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
-              key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
-              label: ''
-              last_used: '2018-03-20T13:18:05.196003+00:00'
-              links:
-                self:
-                  href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
-              owner:
-                display_name: Mark Adams
+              schema:
+                $ref: '#/components/schemas/ssh_account_key'
+              example:
+                comment: user@myhost
+                created_on: '2018-03-14T13:17:05.196003+00:00'
+                expires_on: null
+                fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
+                key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
+                label: ''
+                last_used: '2018-03-20T13:18:05.196003+00:00'
                 links:
-                  avatar:
-                    href: https://bitbucket.org/account/markadams-atl/avatar/32/
-                  html:
-                    href: https://bitbucket.org/markadams-atl/
                   self:
-                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
-                type: user
-                username: markadams-atl
-                nickname: markadams-atl
-                uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
-              type: ssh_key
-              uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
+                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
+                owner:
+                  display_name: Mark Adams
+                  links:
+                    avatar:
+                      href: https://bitbucket.org/account/markadams-atl/avatar/32/
+                    html:
+                      href: https://bitbucket.org/markadams-atl/
+                    self:
+                      href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
+                  type: user
+                  username: markadams-atl
+                  nickname: markadams-atl
+                  uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
+                type: ssh_key
+                uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
         '403':
           description: If the specified user or key is not accessible to the current user
         '404':
           description: If the specified user or key does not exist
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - account
@@ -303,52 +313,50 @@ paths:
       responses:
         '200':
           description: The newly updated SSH key.
-          schema:
-            $ref: '#/definitions/ssh_account_key'
-          examples:
+          content:
             application/json:
-              comment: ''
-              created_on: '2018-03-14T13:17:05.196003+00:00'
-              expires_on: null
-              fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
-              key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
-              label: Work key
-              last_used: '2018-03-20T13:18:05.196003+00:00'
-              links:
-                self:
-                  href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
-              owner:
-                display_name: Mark Adams
+              schema:
+                $ref: '#/components/schemas/ssh_account_key'
+              example:
+                comment: ''
+                created_on: '2018-03-14T13:17:05.196003+00:00'
+                expires_on: null
+                fingerprint: w9tZSiFoZ8oXwS4ZSWrJopGxwvnPIewA6Mo4owAHPrI
+                key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY
+                label: Work key
+                last_used: '2018-03-20T13:18:05.196003+00:00'
                 links:
-                  avatar:
-                    href: https://bitbucket.org/account/markadams-atl/avatar/32/
-                  html:
-                    href: https://bitbucket.org/markadams-atl/
                   self:
-                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
-                type: user
-                username: markadams-atl
-                nickname: markadams-atl
-                uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
-              type: ssh_key
-              uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
+                    href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}/ssh-keys/b15b6026-9c02-4626-b4ad-b905f99f763a
+                owner:
+                  display_name: Mark Adams
+                  links:
+                    avatar:
+                      href: https://bitbucket.org/account/markadams-atl/avatar/32/
+                    html:
+                      href: https://bitbucket.org/markadams-atl/
+                    self:
+                      href: https://api.bitbucket.org/2.0/users/{ed08f5e1-605b-4f4a-aee4-6c97628a673e}
+                  type: user
+                  username: markadams-atl
+                  nickname: markadams-atl
+                  uuid: '{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}'
+                type: ssh_key
+                uuid: '{b15b6026-9c02-4626-b4ad-b905f99f763a}'
         '400':
           description: If the submitted key or related value is invalid
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: If the current user does not have permission to add a key for the specified user
         '404':
           description: If the specified user does not exist
-          schema:
-            $ref: '#/definitions/error'
-      parameters:
-      - name: _body
-        in: body
-        description: The updated SSH key object
-        required: false
-        schema:
-          $ref: '#/definitions/ssh_account_key'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - account:write
@@ -362,209 +370,219 @@ paths:
         - write:ssh-key:bitbucket
       x-atlassian-auth-types:
       - api-token
-definitions:
-  error:
-    type: object
-    title: Error
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-      error:
-        type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ssh_account_key'
+        description: The updated SSH key object
+components:
+  schemas:
+    ssh_account_key:
+      allOf:
+      - $ref: '#/components/schemas/ssh_key'
+      - type: object
+        title: SSH Account Key
+        description: Represents an SSH public key for a user.
         properties:
-          message:
+          owner:
+            $ref: '#/components/schemas/account'
+          expires_on:
             type: string
-          detail:
+            format: date-time
+          fingerprint:
             type: string
-          data:
-            type: object
-            description: Optional structured data that is endpoint-specific.
-            properties: {}
-            additionalProperties: true
-        required:
-        - message
-        additionalProperties: false
-    required:
-    - type
-    additionalProperties: true
-  ssh_account_key:
-    allOf:
-    - $ref: '#/definitions/ssh_key'
-    - type: object
-      title: SSH Account Key
-      description: Represents an SSH public key for a user.
+            description: The SSH key fingerprint in SHA-256 format.
+        additionalProperties: true
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
       properties:
-        owner:
-          $ref: '#/definitions/account'
-        expires_on:
+        href:
           type: string
-          format: date-time
-        fingerprint:
+          format: uri
+        name:
           type: string
-          description: The SSH key fingerprint in SHA-256 format.
+      additionalProperties: false
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
       additionalProperties: true
-  link:
-    type: object
-    title: Link
-    description: A link to a resource related to this object.
-    properties:
-      href:
-        type: string
-        format: uri
-      name:
-        type: string
-    additionalProperties: false
-  object:
-    type: object
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-    required:
-    - type
-    additionalProperties: true
-    discriminator: type
-  paginated_ssh_user_keys:
-    type: object
-    title: Paginated SSH User Keys
-    description: A paginated list of SSH keys.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/ssh_account_key'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-  account:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Account
-      description: An account object.
+    paginated_ssh_user_keys:
+      type: object
+      title: Paginated SSH User Keys
+      description: A paginated list of SSH keys.
       properties:
-        links:
-          $ref: '#/definitions/account_links'
-        created_on:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
           type: string
-          format: date-time
-        display_name:
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
           type: string
-        uuid:
-          type: string
-      additionalProperties: true
-  ssh_key:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: SSH Key
-      description: Base type for representing SSH public keys.
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ssh_account_key'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        uuid:
+        type:
           type: string
-          description: The SSH key's immutable ID.
-        key:
-          type: string
-          description: The SSH public key value in OpenSSH format.
-        comment:
-          type: string
-          description: The comment parsed from the SSH key (if present)
-        label:
-          type: string
-          description: The user-defined label for the SSH key
-        created_on:
-          type: string
-          format: date-time
-        last_used:
-          type: string
-          format: date-time
-        links:
+        error:
           type: object
           properties:
-            self:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
               type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
           additionalProperties: false
+      required:
+      - type
       additionalProperties: true
-  account_links:
-    type: object
-    title: Account Links
-    description: Links related to an Account.
-    properties:
-      avatar:
-        $ref: '#/definitions/link'
-    additionalProperties: true
-securityDefinitions:
-  basic:
-    type: basic
-    description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
-  oauth2:
-    type: oauth2
-    description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
-    flow: accessCode
-    authorizationUrl: https://bitbucket.org/site/oauth2/authorize
-    tokenUrl: https://bitbucket.org/site/oauth2/access_token
-    scopes:
-      repository: Read your repositories
-      repository:write: Read and modify your repositories
-      repository:admin: Administer your repositories
-      repository:delete: Delete your repositories
-      project: Read your workspace's project settings and read repositories contained within your workspace's projects
-      project:admin: Read and modify settings for projects in your workspace
-      email: Read your account's primary email address
-      account: Read your account information
-      account:write: Read and modify your account information
-      team: Read your team membership information
-      team:write: Read and modify your team membership information
-      pipeline: Access your repositories' build pipelines
-      pipeline:write: Access and rerun your repositories' build pipelines
-      pipeline:variable: Access your repositories' build pipelines and configure their variables
-      runner: Access your workspaces/repositories' runners
-      runner:write: Access and edit your workspaces/repositories' runners
-      test: Access your workspaces/repositories' test
-      test:write: Access and edit your workspaces/repositories' test
-      pullrequest: Read your repositories and their pull requests
-      pullrequest:write: Read and modify your repositories and their pull requests
-      webhook: Read and modify your repositories' webhooks
-      issue: Read your repositories' issues
-      issue:write: Read and modify your repositories' issues
-      snippet: Read your snippets
-      snippet:write: Read and modify your snippets
-      wiki: Read and modify your repositories' wikis
-  api_key:
-    name: Authorization
-    type: apiKey
-    description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
-    in: header
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    ssh_key:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: SSH Key
+        description: Base type for representing SSH public keys.
+        properties:
+          uuid:
+            type: string
+            description: The SSH key's immutable ID.
+          key:
+            type: string
+            description: The SSH public key value in OpenSSH format.
+          comment:
+            type: string
+            description: The comment parsed from the SSH key (if present)
+          label:
+            type: string
+            description: The user-defined label for the SSH key
+          created_on:
+            type: string
+            format: date-time
+          last_used:
+            type: string
+            format: date-time
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+        additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            repository: Read your repositories
+            repository:write: Read and modify your repositories
+            repository:admin: Administer your repositories
+            repository:delete: Delete your repositories
+            project: Read your workspace's project settings and read repositories contained within your workspace's projects
+            project:admin: Read and modify settings for projects in your workspace
+            email: Read your account's primary email address
+            account: Read your account information
+            account:write: Read and modify your account information
+            team: Read your team membership information
+            team:write: Read and modify your team membership information
+            pipeline: Access your repositories' build pipelines
+            pipeline:write: Access and rerun your repositories' build pipelines
+            pipeline:variable: Access your repositories' build pipelines and configure their variables
+            runner: Access your workspaces/repositories' runners
+            runner:write: Access and edit your workspaces/repositories' runners
+            test: Access your workspaces/repositories' test
+            test:write: Access and edit your workspaces/repositories' test
+            pullrequest: Read your repositories and their pull requests
+            pullrequest:write: Read and modify your repositories and their pull requests
+            webhook: Read and modify your repositories' webhooks
+            issue: Read your repositories' issues
+            issue:write: Read and modify your repositories' issues
+            snippet: Read your snippets
+            snippet:write: Read and modify your snippets
+            wiki: Read and modify your repositories' wikis
+          authorizationUrl: https://bitbucket.org/site/oauth2/authorize
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+      description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+    api_key:
+      name: Authorization
+      type: apiKey
+      description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
+      in: header
 x-revision: 84a5dd73aa83
 x-atlassian-narrative:
   documents:

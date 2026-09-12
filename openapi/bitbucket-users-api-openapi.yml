@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   title: Bitbucket Addon Users API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
@@ -8,14 +8,8 @@ info:
     name: Bitbucket Support
     url: https://support.atlassian.com/bitbucket-cloud/
     email: support@bitbucket.org
-host: api.bitbucket.org
-basePath: /2.0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.bitbucket.org/2.0
 tags:
 - name: Users
   description: 'The users resource allows you to access public information
@@ -36,13 +30,16 @@ paths:
       responses:
         '200':
           description: The current user.
-          schema:
-            $ref: '#/definitions/account'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account'
         '401':
           description: When the request wasn't authenticated.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - account
@@ -67,9 +64,10 @@ paths:
       responses:
         default:
           description: Unexpected error.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - email
@@ -88,7 +86,8 @@ paths:
       in: path
       description: Email address of the user.
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Users
@@ -104,9 +103,10 @@ paths:
       responses:
         default:
           description: Unexpected error.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - email
@@ -129,7 +129,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Users
@@ -148,13 +149,16 @@ paths:
       responses:
         '200':
           description: The user object
-          schema:
-            $ref: '#/definitions/account'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account'
         '404':
           description: If no user exists for the specified UUID, or if the specified account is a team account, not a personal account.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2: []
       - basic: []
@@ -167,120 +171,124 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
-definitions:
-  error:
-    type: object
-    title: Error
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-      error:
-        type: object
-        properties:
-          message:
-            type: string
-          detail:
-            type: string
-          data:
-            type: object
-            description: Optional structured data that is endpoint-specific.
-            properties: {}
-            additionalProperties: true
-        required:
-        - message
-        additionalProperties: false
-    required:
-    - type
-    additionalProperties: true
-  link:
-    type: object
-    title: Link
-    description: A link to a resource related to this object.
-    properties:
-      href:
-        type: string
-        format: uri
-      name:
-        type: string
-    additionalProperties: false
-  object:
-    type: object
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-    required:
-    - type
-    additionalProperties: true
-    discriminator: type
-  account:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Account
-      description: An account object.
+components:
+  schemas:
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
       properties:
-        links:
-          $ref: '#/definitions/account_links'
-        created_on:
+        href:
           type: string
-          format: date-time
-        display_name:
+          format: uri
+        name:
           type: string
-        uuid:
-          type: string
+      additionalProperties: false
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
       additionalProperties: true
-  account_links:
-    type: object
-    title: Account Links
-    description: Links related to an Account.
-    properties:
-      avatar:
-        $ref: '#/definitions/link'
-    additionalProperties: true
-securityDefinitions:
-  basic:
-    type: basic
-    description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
-  oauth2:
-    type: oauth2
-    description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
-    flow: accessCode
-    authorizationUrl: https://bitbucket.org/site/oauth2/authorize
-    tokenUrl: https://bitbucket.org/site/oauth2/access_token
-    scopes:
-      repository: Read your repositories
-      repository:write: Read and modify your repositories
-      repository:admin: Administer your repositories
-      repository:delete: Delete your repositories
-      project: Read your workspace's project settings and read repositories contained within your workspace's projects
-      project:admin: Read and modify settings for projects in your workspace
-      email: Read your account's primary email address
-      account: Read your account information
-      account:write: Read and modify your account information
-      team: Read your team membership information
-      team:write: Read and modify your team membership information
-      pipeline: Access your repositories' build pipelines
-      pipeline:write: Access and rerun your repositories' build pipelines
-      pipeline:variable: Access your repositories' build pipelines and configure their variables
-      runner: Access your workspaces/repositories' runners
-      runner:write: Access and edit your workspaces/repositories' runners
-      test: Access your workspaces/repositories' test
-      test:write: Access and edit your workspaces/repositories' test
-      pullrequest: Read your repositories and their pull requests
-      pullrequest:write: Read and modify your repositories and their pull requests
-      webhook: Read and modify your repositories' webhooks
-      issue: Read your repositories' issues
-      issue:write: Read and modify your repositories' issues
-      snippet: Read your snippets
-      snippet:write: Read and modify your snippets
-      wiki: Read and modify your repositories' wikis
-  api_key:
-    name: Authorization
-    type: apiKey
-    description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
-    in: header
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            repository: Read your repositories
+            repository:write: Read and modify your repositories
+            repository:admin: Administer your repositories
+            repository:delete: Delete your repositories
+            project: Read your workspace's project settings and read repositories contained within your workspace's projects
+            project:admin: Read and modify settings for projects in your workspace
+            email: Read your account's primary email address
+            account: Read your account information
+            account:write: Read and modify your account information
+            team: Read your team membership information
+            team:write: Read and modify your team membership information
+            pipeline: Access your repositories' build pipelines
+            pipeline:write: Access and rerun your repositories' build pipelines
+            pipeline:variable: Access your repositories' build pipelines and configure their variables
+            runner: Access your workspaces/repositories' runners
+            runner:write: Access and edit your workspaces/repositories' runners
+            test: Access your workspaces/repositories' test
+            test:write: Access and edit your workspaces/repositories' test
+            pullrequest: Read your repositories and their pull requests
+            pullrequest:write: Read and modify your repositories and their pull requests
+            webhook: Read and modify your repositories' webhooks
+            issue: Read your repositories' issues
+            issue:write: Read and modify your repositories' issues
+            snippet: Read your snippets
+            snippet:write: Read and modify your snippets
+            wiki: Read and modify your repositories' wikis
+          authorizationUrl: https://bitbucket.org/site/oauth2/authorize
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+      description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+    api_key:
+      name: Authorization
+      type: apiKey
+      description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
+      in: header
 x-revision: 84a5dd73aa83
 x-atlassian-narrative:
   documents:

@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   title: Bitbucket Addon Webhooks API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
@@ -8,14 +8,8 @@ info:
     name: Bitbucket Support
     url: https://support.atlassian.com/bitbucket-cloud/
     email: support@bitbucket.org
-host: api.bitbucket.org
-basePath: /2.0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://api.bitbucket.org/2.0
 tags:
 - name: Webhooks
   description: 'Webhooks provide a way to configure Bitbucket Cloud to make requests to
@@ -91,19 +85,19 @@ paths:
       responses:
         '200':
           description: A mapping of resource/subject types pointing to their individual event types.
-          schema:
-            $ref: '#/definitions/subject_types'
-          examples:
+          content:
             application/json:
-              repository:
-                links:
-                  events:
-                    href: https://api.bitbucket.org/2.0/hook_events/repository
-              workspace:
-                links:
-                  events:
-                    href: https://api.bitbucket.org/2.0/hook_events/workspace
-      parameters: []
+              schema:
+                $ref: '#/components/schemas/subject_types'
+              example:
+                repository:
+                  links:
+                    events:
+                      href: https://api.bitbucket.org/2.0/hook_events/repository
+                workspace:
+                  links:
+                    events:
+                      href: https://api.bitbucket.org/2.0/hook_events/workspace
       security:
       - oauth2: []
       - basic: []
@@ -114,10 +108,11 @@ paths:
       in: path
       description: A resource or subject type.
       required: true
-      type: string
-      enum:
-      - repository
-      - workspace
+      schema:
+        type: string
+        enum:
+        - repository
+        - workspace
     get:
       tags:
       - Webhooks
@@ -140,35 +135,37 @@ paths:
       responses:
         '200':
           description: A paginated list of webhook types available to subscribe on.
-          schema:
-            $ref: '#/definitions/paginated_hook_events'
-          examples:
+          content:
             application/json:
-              page: 1
-              pagelen: 30
-              size: 4
-              values:
-              - category: Repository
-                description: Whenever a repository push occurs
-                event: repo:push
-                label: Push
-              - category: Repository
-                description: Whenever a repository fork occurs
-                event: repo:fork
-                label: Fork
-              - category: Repository
-                description: Whenever a repository import occurs
-                event: repo:imported
-                label: Import
-              - category: Pull Request
-                label: Approved
-                description: When someone has approved a pull request
-                event: pullrequest:approved
+              schema:
+                $ref: '#/components/schemas/paginated_hook_events'
+              example:
+                page: 1
+                pagelen: 30
+                size: 4
+                values:
+                - category: Repository
+                  description: Whenever a repository push occurs
+                  event: repo:push
+                  label: Push
+                - category: Repository
+                  description: Whenever a repository fork occurs
+                  event: repo:fork
+                  label: Fork
+                - category: Repository
+                  description: Whenever a repository import occurs
+                  event: repo:imported
+                  label: Import
+                - category: Pull Request
+                  label: Approved
+                  description: When someone has approved a pull request
+                  event: pullrequest:approved
         '404':
           description: If an invalid `{subject_type}` value was specified.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2: []
       - basic: []
@@ -183,7 +180,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -192,7 +190,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Webhooks
@@ -201,17 +200,22 @@ paths:
       responses:
         '200':
           description: The paginated list of installed webhooks.
-          schema:
-            $ref: '#/definitions/paginated_webhook_subscriptions'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_webhook_subscriptions'
         '403':
           description: If the authenticated user does not have permission to access the webhooks.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the repository does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -232,21 +236,27 @@ paths:
       responses:
         '201':
           description: If the webhook was registered successfully.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
           headers:
             Location:
-              type: string
               description: The URL of new newly created webhook.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '403':
           description: If the authenticated user does not have permission to install webhooks on the specified repository.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the repository does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -270,12 +280,14 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     - name: uid
       in: path
       description: Installed webhook's ID
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -284,7 +296,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Webhooks
@@ -297,13 +310,16 @@ paths:
           description: When the webhook was deleted successfully
         '403':
           description: If the authenticated user does not have permission to delete the webhook.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the webhook or repository does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -326,13 +342,16 @@ paths:
       responses:
         '200':
           description: The webhook subscription object.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '404':
           description: If the webhook or repository does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -383,17 +402,22 @@ paths:
       responses:
         '200':
           description: The webhook subscription object.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '403':
           description: If the authenticated user does not have permission to update the webhook.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the webhook or repository does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -417,7 +441,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     get:
       tags:
       - Webhooks
@@ -426,17 +451,22 @@ paths:
       responses:
         '200':
           description: The paginated list of installed webhooks.
-          schema:
-            $ref: '#/definitions/paginated_webhook_subscriptions'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_webhook_subscriptions'
         '403':
           description: If the authenticated user is not an owner on the specified workspace.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the specified workspace does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -457,21 +487,27 @@ paths:
       responses:
         '201':
           description: If the webhook was registered successfully.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
           headers:
             Location:
-              type: string
               description: The URL of new newly created webhook.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '403':
           description: If the authenticated user does not have permission to install webhooks on the specified workspace.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the specified workspace does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -491,7 +527,8 @@ paths:
       in: path
       description: Installed webhook's ID
       required: true
-      type: string
+      schema:
+        type: string
     - name: workspace
       in: path
       description: 'This can either be the workspace ID (slug) or the workspace UUID
@@ -500,7 +537,8 @@ paths:
 
         '
       required: true
-      type: string
+      schema:
+        type: string
     delete:
       tags:
       - Webhooks
@@ -511,13 +549,16 @@ paths:
           description: When the webhook was deleted successfully
         '403':
           description: If the authenticated user does not have permission to delete the webhook.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the webhook or workspace does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -540,13 +581,16 @@ paths:
       responses:
         '200':
           description: The webhook subscription object.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '404':
           description: If the webhook or workspace does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -597,17 +641,22 @@ paths:
       responses:
         '200':
           description: The webhook subscription object.
-          schema:
-            $ref: '#/definitions/webhook_subscription'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_subscription'
         '403':
           description: If the authenticated user does not have permission to update the webhook.
-          schema:
-            $ref: '#/definitions/error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
         '404':
           description: If the webhook or workspace does not exist.
-          schema:
-            $ref: '#/definitions/error'
-      parameters: []
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
       security:
       - oauth2:
         - webhook
@@ -621,308 +670,312 @@ paths:
         - write:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
-definitions:
-  error:
-    type: object
-    title: Error
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-      error:
-        type: object
-        properties:
-          message:
-            type: string
-          detail:
-            type: string
-          data:
-            type: object
-            description: Optional structured data that is endpoint-specific.
-            properties: {}
-            additionalProperties: true
-        required:
-        - message
-        additionalProperties: false
-    required:
-    - type
-    additionalProperties: true
-  object:
-    type: object
-    description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-    properties:
-      type:
-        type: string
-    required:
-    - type
-    additionalProperties: true
-    discriminator: type
-  subject_types:
-    type: object
-    title: Subject Types
-    description: The mapping of resource/subject types pointing to their individual event types.
-    properties:
-      repository:
-        type: object
-        properties:
-          events:
-            type: object
-            title: Link
-            description: A link to a resource related to this object.
-            properties:
-              href:
-                type: string
-                format: uri
-              name:
-                type: string
-            additionalProperties: false
-        additionalProperties: false
-      workspace:
-        type: object
-        properties:
-          events:
-            type: object
-            title: Link
-            description: A link to a resource related to this object.
-            properties:
-              href:
-                type: string
-                format: uri
-              name:
-                type: string
-            additionalProperties: false
-        additionalProperties: false
-    additionalProperties: false
-  paginated_webhook_subscriptions:
-    type: object
-    title: Paginated Webhook Subscriptions
-    description: A paginated list of webhook subscriptions
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/webhook_subscription'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-  hook_event:
-    type: object
-    title: Hook Event
-    description: An event, associated with a resource or subject type.
-    properties:
-      event:
-        type: string
-        description: The event identifier.
-        enum:
-        - issue:comment_created
-        - issue:created
-        - issue:updated
-        - pipeline:span_created
-        - project:updated
-        - pullrequest:approved
-        - pullrequest:changes_request_created
-        - pullrequest:changes_request_removed
-        - pullrequest:comment_created
-        - pullrequest:comment_deleted
-        - pullrequest:comment_reopened
-        - pullrequest:comment_resolved
-        - pullrequest:comment_updated
-        - pullrequest:created
-        - pullrequest:fulfilled
-        - pullrequest:push
-        - pullrequest:rejected
-        - pullrequest:unapproved
-        - pullrequest:updated
-        - repo:commit_comment_created
-        - repo:commit_status_created
-        - repo:commit_status_updated
-        - repo:created
-        - repo:deleted
-        - repo:fork
-        - repo:imported
-        - repo:push
-        - repo:transfer
-        - repo:updated
-      category:
-        type: string
-        description: The category this event belongs to.
-      label:
-        type: string
-        description: Summary of the webhook event type.
-      description:
-        type: string
-        description: More detailed description of the webhook event type.
-    additionalProperties: false
-  webhook_subscription:
-    allOf:
-    - $ref: '#/definitions/object'
-    - type: object
-      title: Webhook Subscription
-      description: A Webhook subscription.
+components:
+  schemas:
+    paginated_webhook_subscriptions:
+      type: object
+      title: Paginated Webhook Subscriptions
+      description: A paginated list of webhook subscriptions
       properties:
-        uuid:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
           type: string
-          description: The webhook's id
-        url:
-          type: string
-          description: The URL events get delivered to.
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
           format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/webhook_subscription'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    paginated_hook_events:
+      type: object
+      title: Paginated Hook Events
+      description: A paginated list of webhook types available to subscribe on.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/hook_event'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    subject_types:
+      type: object
+      title: Subject Types
+      description: The mapping of resource/subject types pointing to their individual event types.
+      properties:
+        repository:
+          type: object
+          properties:
+            events:
+              type: object
+              title: Link
+              description: A link to a resource related to this object.
+              properties:
+                href:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+              additionalProperties: false
+          additionalProperties: false
+        workspace:
+          type: object
+          properties:
+            events:
+              type: object
+              title: Link
+              description: A link to a resource related to this object.
+              properties:
+                href:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+              additionalProperties: false
+          additionalProperties: false
+      additionalProperties: false
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    webhook_subscription:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Webhook Subscription
+        description: A Webhook subscription.
+        properties:
+          uuid:
+            type: string
+            description: The webhook's id
+          url:
+            type: string
+            description: The URL events get delivered to.
+            format: uri
+          description:
+            type: string
+            description: A user-defined description of the webhook.
+          subject_type:
+            type: string
+            description: The type of entity. Set to either `repository` or `workspace` based on where the subscription is defined.
+            enum:
+            - repository
+            - workspace
+          subject:
+            $ref: '#/components/schemas/object'
+          active:
+            type: boolean
+          created_at:
+            type: string
+            format: date-time
+          events:
+            type: array
+            description: The events this webhook is subscribed to.
+            items:
+              type: string
+              enum:
+              - issue:comment_created
+              - issue:created
+              - issue:updated
+              - pipeline:span_created
+              - project:updated
+              - pullrequest:approved
+              - pullrequest:changes_request_created
+              - pullrequest:changes_request_removed
+              - pullrequest:comment_created
+              - pullrequest:comment_deleted
+              - pullrequest:comment_reopened
+              - pullrequest:comment_resolved
+              - pullrequest:comment_updated
+              - pullrequest:created
+              - pullrequest:fulfilled
+              - pullrequest:push
+              - pullrequest:rejected
+              - pullrequest:unapproved
+              - pullrequest:updated
+              - repo:commit_comment_created
+              - repo:commit_status_created
+              - repo:commit_status_updated
+              - repo:created
+              - repo:deleted
+              - repo:fork
+              - repo:imported
+              - repo:push
+              - repo:transfer
+              - repo:updated
+            minItems: 1
+            uniqueItems: true
+          secret_set:
+            type: boolean
+            description: Indicates whether or not the hook has an associated secret. It is not possible to see the hook's secret. This field is ignored during updates.
+          secret:
+            type: string
+            description: The secret to associate with the hook. The secret is never returned via the API. As such, this field is only used during updates. The secret can be set to `null` or "" to remove the secret (or create a hook with no secret). Leaving out the secret field during updates will leave the secret unchanged. Leaving out the secret during creation will create a hook with no secret.
+            minLength: 0
+            maxLength: 128
+        additionalProperties: true
+    hook_event:
+      type: object
+      title: Hook Event
+      description: An event, associated with a resource or subject type.
+      properties:
+        event:
+          type: string
+          description: The event identifier.
+          enum:
+          - issue:comment_created
+          - issue:created
+          - issue:updated
+          - pipeline:span_created
+          - project:updated
+          - pullrequest:approved
+          - pullrequest:changes_request_created
+          - pullrequest:changes_request_removed
+          - pullrequest:comment_created
+          - pullrequest:comment_deleted
+          - pullrequest:comment_reopened
+          - pullrequest:comment_resolved
+          - pullrequest:comment_updated
+          - pullrequest:created
+          - pullrequest:fulfilled
+          - pullrequest:push
+          - pullrequest:rejected
+          - pullrequest:unapproved
+          - pullrequest:updated
+          - repo:commit_comment_created
+          - repo:commit_status_created
+          - repo:commit_status_updated
+          - repo:created
+          - repo:deleted
+          - repo:fork
+          - repo:imported
+          - repo:push
+          - repo:transfer
+          - repo:updated
+        category:
+          type: string
+          description: The category this event belongs to.
+        label:
+          type: string
+          description: Summary of the webhook event type.
         description:
           type: string
-          description: A user-defined description of the webhook.
-        subject_type:
-          type: string
-          description: The type of entity. Set to either `repository` or `workspace` based on where the subscription is defined.
-          enum:
-          - repository
-          - workspace
-        subject:
-          $ref: '#/definitions/object'
-        active:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        events:
-          type: array
-          description: The events this webhook is subscribed to.
-          items:
-            type: string
-            enum:
-            - issue:comment_created
-            - issue:created
-            - issue:updated
-            - pipeline:span_created
-            - project:updated
-            - pullrequest:approved
-            - pullrequest:changes_request_created
-            - pullrequest:changes_request_removed
-            - pullrequest:comment_created
-            - pullrequest:comment_deleted
-            - pullrequest:comment_reopened
-            - pullrequest:comment_resolved
-            - pullrequest:comment_updated
-            - pullrequest:created
-            - pullrequest:fulfilled
-            - pullrequest:push
-            - pullrequest:rejected
-            - pullrequest:unapproved
-            - pullrequest:updated
-            - repo:commit_comment_created
-            - repo:commit_status_created
-            - repo:commit_status_updated
-            - repo:created
-            - repo:deleted
-            - repo:fork
-            - repo:imported
-            - repo:push
-            - repo:transfer
-            - repo:updated
-          minItems: 1
-          uniqueItems: true
-        secret_set:
-          type: boolean
-          description: Indicates whether or not the hook has an associated secret. It is not possible to see the hook's secret. This field is ignored during updates.
-        secret:
-          type: string
-          description: The secret to associate with the hook. The secret is never returned via the API. As such, this field is only used during updates. The secret can be set to `null` or "" to remove the secret (or create a hook with no secret). Leaving out the secret field during updates will leave the secret unchanged. Leaving out the secret during creation will create a hook with no secret.
-          minLength: 0
-          maxLength: 128
-      additionalProperties: true
-  paginated_hook_events:
-    type: object
-    title: Paginated Hook Events
-    description: A paginated list of webhook types available to subscribe on.
-    properties:
-      size:
-        type: integer
-        description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        minimum: 0
-      page:
-        type: integer
-        description: Page number of the current results. This is an optional element that is not provided in all responses.
-        minimum: 1
-      pagelen:
-        type: integer
-        description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        minimum: 1
-      next:
-        type: string
-        description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      previous:
-        type: string
-        description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-        format: uri
-      values:
-        type: array
-        items:
-          $ref: '#/definitions/hook_event'
-        minItems: 0
-        uniqueItems: true
-    additionalProperties: false
-securityDefinitions:
-  basic:
-    type: basic
-    description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
-  oauth2:
-    type: oauth2
-    description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
-    flow: accessCode
-    authorizationUrl: https://bitbucket.org/site/oauth2/authorize
-    tokenUrl: https://bitbucket.org/site/oauth2/access_token
-    scopes:
-      repository: Read your repositories
-      repository:write: Read and modify your repositories
-      repository:admin: Administer your repositories
-      repository:delete: Delete your repositories
-      project: Read your workspace's project settings and read repositories contained within your workspace's projects
-      project:admin: Read and modify settings for projects in your workspace
-      email: Read your account's primary email address
-      account: Read your account information
-      account:write: Read and modify your account information
-      team: Read your team membership information
-      team:write: Read and modify your team membership information
-      pipeline: Access your repositories' build pipelines
-      pipeline:write: Access and rerun your repositories' build pipelines
-      pipeline:variable: Access your repositories' build pipelines and configure their variables
-      runner: Access your workspaces/repositories' runners
-      runner:write: Access and edit your workspaces/repositories' runners
-      test: Access your workspaces/repositories' test
-      test:write: Access and edit your workspaces/repositories' test
-      pullrequest: Read your repositories and their pull requests
-      pullrequest:write: Read and modify your repositories and their pull requests
-      webhook: Read and modify your repositories' webhooks
-      issue: Read your repositories' issues
-      issue:write: Read and modify your repositories' issues
-      snippet: Read your snippets
-      snippet:write: Read and modify your snippets
-      wiki: Read and modify your repositories' wikis
-  api_key:
-    name: Authorization
-    type: apiKey
-    description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
-    in: header
+          description: More detailed description of the webhook event type.
+      additionalProperties: false
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+      description: Basic HTTP Authentication as per [RFC-2617](https://tools.ietf.org/html/rfc2617) (Digest not supported). Note that Basic Auth is available only with username and app password as credentials.
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            repository: Read your repositories
+            repository:write: Read and modify your repositories
+            repository:admin: Administer your repositories
+            repository:delete: Delete your repositories
+            project: Read your workspace's project settings and read repositories contained within your workspace's projects
+            project:admin: Read and modify settings for projects in your workspace
+            email: Read your account's primary email address
+            account: Read your account information
+            account:write: Read and modify your account information
+            team: Read your team membership information
+            team:write: Read and modify your team membership information
+            pipeline: Access your repositories' build pipelines
+            pipeline:write: Access and rerun your repositories' build pipelines
+            pipeline:variable: Access your repositories' build pipelines and configure their variables
+            runner: Access your workspaces/repositories' runners
+            runner:write: Access and edit your workspaces/repositories' runners
+            test: Access your workspaces/repositories' test
+            test:write: Access and edit your workspaces/repositories' test
+            pullrequest: Read your repositories and their pull requests
+            pullrequest:write: Read and modify your repositories and their pull requests
+            webhook: Read and modify your repositories' webhooks
+            issue: Read your repositories' issues
+            issue:write: Read and modify your repositories' issues
+            snippet: Read your snippets
+            snippet:write: Read and modify your snippets
+            wiki: Read and modify your repositories' wikis
+          authorizationUrl: https://bitbucket.org/site/oauth2/authorize
+          tokenUrl: https://bitbucket.org/site/oauth2/access_token
+      description: OAuth 2 as per [RFC-6749](https://tools.ietf.org/html/rfc6749).
+    api_key:
+      name: Authorization
+      type: apiKey
+      description: API Keys can be used as Basic HTTP Authentication credentials and provide a substitute for the account's actual username and password. API Keys are only available to team accounts and there is only 1 key per account. API Keys do not support scopes and have therefore access to all contents of the account.
+      in: header
 x-revision: 84a5dd73aa83
 x-atlassian-narrative:
   documents:

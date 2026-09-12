@@ -1150,6 +1150,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 common:
+  - type: Website
+    url: https://bitbucket.org/
   - type: CapabilityMap
     url: capabilities/bitbucket-capability-edges.yml
     name: Bitbucket Business Capability Map
@@ -1245,3 +1247,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-parent: atlassian
+x-relationship: acquisition
