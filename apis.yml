@@ -600,55 +600,6 @@ apis:
     url: examples/bitbucket-cloud-rest-api-commit-example.json
   - type: AsyncAPI
     url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
-- aid: bitbucket:bitbucket-pullrequests-api
-  name: Bitbucket Pullrequests API
-  description: >-
-    Pull requests are a feature that makes it easier for developers
-
-    to collaborate using Bitbucket. They provide a user-friendly web
-
-    interface for discussing proposed changes before integrating them
-
-    into the official project.
-  humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
-  baseURL: https://api.bitbucket.org/2.0
-  tags:
-  - Pull Requests
-  tags_raw:
-  - Pullrequests
-  properties:
-  - type: OpenAPI
-    url: openapi/bitbucket-pullrequests-api-openapi.yml
-  - type: Documentation
-    url: https://developer.atlassian.com/bitbucket/api/2/reference/
-  - type: Authentication
-    url: https://developer.atlassian.com/cloud/bitbucket/rest/intro/#authentication
-  - type: JSONSchema
-    url: json-schema/bitbucket-cloud-rest-api-repository-schema.json
-  - type: JSONSchema
-    url: json-schema/bitbucket-cloud-rest-api-pullrequest-schema.json
-  - type: JSONSchema
-    url: json-schema/bitbucket-cloud-rest-api-pipeline-schema.json
-  - type: JSONSchema
-    url: json-schema/bitbucket-cloud-rest-api-commit-schema.json
-  - type: JSONStructure
-    url: json-structure/bitbucket-cloud-rest-api-repository-structure.json
-  - type: JSONStructure
-    url: json-structure/bitbucket-cloud-rest-api-pullrequest-structure.json
-  - type: JSONStructure
-    url: json-structure/bitbucket-cloud-rest-api-pipeline-structure.json
-  - type: JSONStructure
-    url: json-structure/bitbucket-cloud-rest-api-commit-structure.json
-  - type: Examples
-    url: examples/bitbucket-cloud-rest-api-repository-example.json
-  - type: Examples
-    url: examples/bitbucket-cloud-rest-api-pullrequest-example.json
-  - type: Examples
-    url: examples/bitbucket-cloud-rest-api-pipeline-example.json
-  - type: Examples
-    url: examples/bitbucket-cloud-rest-api-commit-example.json
-  - type: AsyncAPI
-    url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 - aid: bitbucket:bitbucket-refs-api
   name: Bitbucket Refs API
   description: >-
@@ -1120,6 +1071,53 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/bitbucket-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://developer.atlassian.com/bitbucket/api/2/reference/
+  - type: Authentication
+    url: https://developer.atlassian.com/cloud/bitbucket/rest/intro/#authentication
+  - type: JSONSchema
+    url: json-schema/bitbucket-cloud-rest-api-repository-schema.json
+  - type: JSONSchema
+    url: json-schema/bitbucket-cloud-rest-api-pullrequest-schema.json
+  - type: JSONSchema
+    url: json-schema/bitbucket-cloud-rest-api-pipeline-schema.json
+  - type: JSONSchema
+    url: json-schema/bitbucket-cloud-rest-api-commit-schema.json
+  - type: JSONStructure
+    url: json-structure/bitbucket-cloud-rest-api-repository-structure.json
+  - type: JSONStructure
+    url: json-structure/bitbucket-cloud-rest-api-pullrequest-structure.json
+  - type: JSONStructure
+    url: json-structure/bitbucket-cloud-rest-api-pipeline-structure.json
+  - type: JSONStructure
+    url: json-structure/bitbucket-cloud-rest-api-commit-structure.json
+  - type: Examples
+    url: examples/bitbucket-cloud-rest-api-repository-example.json
+  - type: Examples
+    url: examples/bitbucket-cloud-rest-api-pullrequest-example.json
+  - type: Examples
+    url: examples/bitbucket-cloud-rest-api-pipeline-example.json
+  - type: Examples
+    url: examples/bitbucket-cloud-rest-api-commit-example.json
+  - type: AsyncAPI
+    url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
+- aid: bitbucket:bitbucket-pull-requests-api
+  name: Bitbucket Pull Requests API
+  description: >-
+    Pull requests are a feature that makes it easier for developers
+
+    to collaborate using Bitbucket. They provide a user-friendly web
+
+    interface for discussing proposed changes before integrating them
+
+    into the official project.
+  humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
+  baseURL: https://api.bitbucket.org/2.0
+  tags:
+  - Pull Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/bitbucket-pull-requests-api-openapi.yml
   - type: Documentation
     url: https://developer.atlassian.com/bitbucket/api/2/reference/
   - type: Authentication
