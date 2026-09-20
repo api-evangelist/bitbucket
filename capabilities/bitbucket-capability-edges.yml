@@ -1,0 +1,128 @@
+slug: bitbucket
+provider: Bitbucket
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 11
+edges:
+- tag: Pullrequests
+  spec_file: bitbucket-pullrequests-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.9
+  evidence: POST /repositories/{workspace}/{repo_slug}/pullrequests "Create a pull request"; "List default
+    reviewers"; schema pullrequest_task
+  reason: Pull request creation, reviewers, comments and tasks are the code review discipline explicitly
+    covered by Software Construction Management.
+- tag: Commits
+  spec_file: bitbucket-commits-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.85
+  evidence: GET /repositories/{workspace}/{repo_slug}/commit/{commit} "Get a commit"; "Approve a commit";
+    "Create comment for a commit"
+  reason: Operations manage Git commits, commit approvals and commit comments — source control and code
+    review practice, i.e. software construction, not any business-domain 'commitment'.
+- tag: Deployments
+  spec_file: bitbucket-deployments-api-openapi.yml
+  capability_id: BC-4210
+  capability_id_l1: BC-4210
+  capability_name: Software Release & Deployment Management
+  confidence: 0.85
+  evidence: getDeploymentsForRepository "List deployments"; createEnvironment "Create an environment";
+    schema deployment_state
+  reason: Surface covers deployments, deployment environments and deploy keys — release & deployment management
+    for software; evidence spans both environment management and deployment orchestration so no single
+    L2 is named.
+- tag: Pipelines
+  spec_file: bitbucket-pipelines-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: createPipelineForRepository "Run a pipeline"; getRepositoryRunners "Get repository runners";
+    getRepositoryPipelineCaches "List caches"
+  reason: CI pipeline execution, runners, caches and build variables — continuous integration management
+    for software builds.
+- tag: Repositories
+  spec_file: bitbucket-repositories-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.85
+  evidence: POST /repositories/{workspace}/{repo_slug} "Create a repository"; "Fork a repository"; "List
+    commits that modified a file"
+  reason: Git repository lifecycle, forks and file/commit history — source control stewardship, the core
+    of software construction management.
+- tag: Source
+  spec_file: bitbucket-source-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.85
+  evidence: POST /repositories/{workspace}/{repo_slug}/src    Create a commit by uploading a file; GET
+    ... /filehistory/{commit}/{path}    List commits that modified a file
+  reason: Directly manipulates repository source contents and commit history — source control practice,
+    the core of Software Construction Management.
+- tag: Branch restrictions
+  spec_file: bitbucket-branch-restrictions-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.72
+  evidence: POST /repositories/{workspace}/{repo_slug}/branch-restrictions 'Create a branch restriction
+    rule'; schema branchrestriction
+  reason: Rules controlling who may write/merge to repository branches are source-control and code-review
+    discipline, i.e. Software Construction Management.
+- tag: Commit statuses
+  spec_file: bitbucket-commit-statuses-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.72
+  evidence: POST /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build 'Create a build
+    status for a commit'; schema commitstatus
+  reason: Reporting and retrieving build statuses against commits and pull requests is continuous-integration
+    pipeline signalling.
+- tag: Issue tracker
+  spec_file: bitbucket-issue-tracker-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.7
+  evidence: POST /repositories/{workspace}/{repo_slug}/issues "Create an issue"; schemas paginated_milestones,
+    version, component
+  reason: Repository issue/bug tracker with components, milestones and versions — defect management within
+    software quality engineering. Some ambiguity with backlog management, hence moderate confidence.
+- tag: Refs
+  spec_file: bitbucket-refs-api-openapi.yml
+  capability_id: BC-4200.40
+  capability_id_l1: BC-4200
+  capability_name: Software Construction Management
+  confidence: 0.7
+  evidence: GET /repositories/{workspace}/{repo_slug}/refs "List branches and tags"; POST .../refs/branches
+    "Create a branch"
+  reason: Git branch and tag lifecycle — source control practice under software construction; could arguably
+    sit under release branching/versioning, hence moderate confidence.
+- tag: Webhooks
+  spec_file: bitbucket-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: POST /repositories/{workspace}/{repo_slug}/hooks    Create a webhook for a repository; GET
+    /hook_events/{subject_type}    List subscribable webhook types
+  reason: Full lifecycle of outbound webhook subscriptions and discovery of subscribable event types,
+    which matches Webhook & Event Subscription Management explicitly; still fundamentally integration
+    plumbing, hence moderate confidence.
