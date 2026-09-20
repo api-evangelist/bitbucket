@@ -1152,6 +1152,10 @@ apis:
   - type: AsyncAPI
     url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 common:
+  - type: Pricing
+    url: https://www.atlassian.com/software/bitbucket/pricing
+  - type: Plans
+    url: plans/bitbucket-plans-pricing.yml
   - type: Website
     url: https://bitbucket.org/
   - type: CapabilityMap
