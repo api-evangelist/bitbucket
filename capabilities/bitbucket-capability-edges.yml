@@ -15,7 +15,8 @@ capability_model:
 edge_count: 11
 edges:
 - tag: Pullrequests
-  spec_file: bitbucket-pullrequests-api-openapi.yml
+  spec_file: bitbucket-pull-requests-api-openapi.yml
+  reanchored_from: bitbucket-pullrequests-api-openapi.yml
   capability_id: BC-4200.40
   capability_id_l1: BC-4200
   capability_name: Software Construction Management
