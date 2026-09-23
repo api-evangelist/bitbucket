@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Commits API
+  title: Bitbucket Commits API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -14,9 +14,7 @@ tags:
 - name: Commits
   description: 'These are the repository''s commits. They are paginated and returned in
 
-    reverse chronological order, similar to the output of git log.
-
-    '
+    reverse chronological order, similar to the output of git log.'
 paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}:
     parameters:
@@ -145,6 +143,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommit
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/approve:
     parameters:
     - name: commit
@@ -209,6 +209,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugCommitByCommitApprove
+      x-operation-id-source: derived
     post:
       tags:
       - Commits
@@ -250,6 +252,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitApprove
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/comments:
     parameters:
     - name: commit
@@ -332,10 +336,30 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitComments
+      x-operation-id-source: derived
     post:
       tags:
       - Commits
-      description: "Creates new comment on the specified commit.\n\nTo post a reply to an existing comment, include the `parent.id` field:\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/commit/db9ba1e031d07a02603eae0e559a7adc010257fc/comments/ \\\n  -X POST -u evzijst \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"content\": {\"raw\": \"One more thing!\"},\n       \"parent\": {\"id\": 5728901}}'\n```"
+      description: 'Creates new comment on the specified commit.
+
+
+        To post a reply to an existing comment, include the `parent.id` field:
+
+
+        ```
+
+        $ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/commit/db9ba1e031d07a02603eae0e559a7adc010257fc/comments/ \
+
+        -X POST -u evzijst \
+
+        -H ''Content-Type: application/json'' \
+
+        -d ''{"content": {"raw": "One more thing!"},
+
+        "parent": {"id": 5728901}}''
+
+        ```'
       summary: Create comment for a commit
       responses:
         '201':
@@ -369,6 +393,8 @@ paths:
               $ref: '#/components/schemas/commit_comment'
         description: The specified comment.
         required: true
+      operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitComments
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}:
     parameters:
     - name: comment_id
@@ -438,6 +464,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+      x-operation-id-source: derived
     get:
       tags:
       - Commits
@@ -463,10 +491,25 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+      x-operation-id-source: derived
     put:
       tags:
       - Commits
-      description: "Used to update the contents of a comment. Only the content of the comment can be updated.\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/commit/7f71b5/comments/5728901 \\\n  -X PUT -u evzijst \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"content\": {\"raw\": \"One more thing!\"}'\n```"
+      description: 'Used to update the contents of a comment. Only the content of the comment can be updated.
+
+
+        ```
+
+        $ curl https://api.bitbucket.org/2.0/repositories/atlassian/prlinks/commit/7f71b5/comments/5728901 \
+
+        -X PUT -u evzijst \
+
+        -H ''Content-Type: application/json'' \
+
+        -d ''{"content": {"raw": "One more thing!"}''
+
+        ```'
       summary: Update a commit comment
       responses:
         '201':
@@ -498,6 +541,8 @@ paths:
               $ref: '#/components/schemas/commit_comment'
         description: The updated comment.
         required: true
+      operationId: putRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/reports:
     get:
       tags:
@@ -548,7 +593,95 @@ paths:
     put:
       tags:
       - Commits
-      description: "Creates or updates a report for the specified commit.\nTo upload a report, make sure to generate an ID that is unique across all reports for that commit. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"title\": \"Security scan report\",\n    \"details\": \"This pull request introduces 10 new dependency vulnerabilities.\",\n    \"report_type\": \"SECURITY\",\n    \"reporter\": \"mySystem\",\n    \"link\": \"http://www.mysystem.com/reports/001\",\n    \"result\": \"FAILED\",\n    \"data\": [\n        {\n            \"title\": \"Duration (seconds)\",\n            \"type\": \"DURATION\",\n            \"value\": 14\n        },\n        {\n            \"title\": \"Safe to merge?\",\n            \"type\": \"BOOLEAN\",\n            \"value\": false\n        }\n    ]\n}'\n```\n\n### Possible field values:\nreport_type: SECURITY, COVERAGE, TEST, BUG\nresult: PASSED, FAILED, PENDING\ndata.type: BOOLEAN, DATE, DURATION, LINK, NUMBER, PERCENTAGE, TEXT\n\n#### Data field formats\n| Type  Field   | Value Field Type  | Value Field Display |\n|:--------------|:------------------|:--------------------|\n| None/ Omitted | Number, String or Boolean (not an array or object) | Plain text |\n| BOOLEAN\t| Boolean | The value will be read as a JSON boolean and displayed as 'Yes' or 'No'. |\n| DATE  | Number | The value will be read as a JSON number in the form of a Unix timestamp (milliseconds) and will be displayed as a relative date if the date is less than one week ago, otherwise  it will be displayed as an absolute date. |\n| DURATION | Number | The value will be read as a JSON number in milliseconds and will be displayed in a human readable duration format. |\n| LINK | Object: `{\"text\": \"Link text here\", \"href\": \"https://link.to.annotation/in/external/tool\"}` | The value will be read as a JSON object containing the fields \"text\" and \"href\" and will be displayed as a clickable link on the report. |\n| NUMBER | Number | The value will be read as a JSON number and large numbers will be  displayed in a human readable format (e.g. 14.3k). |\n| PERCENTAGE | Number (between 0 and 100) | The value will be read as a JSON number between 0 and 100 and will be displayed with a percentage sign. |\n| TEXT | String | The value will be read as a JSON string and will be displayed as-is |\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n"
+      description: 'Creates or updates a report for the specified commit.
+
+        To upload a report, make sure to generate an ID that is unique across all reports for that commit. If you want to use an existing id from your own system, we recommend prefixing it with your system''s name to avoid collisions, for example, mySystem-001.
+
+
+        ### Sample cURL request:
+
+        ```
+
+        curl --request PUT ''https://api.bitbucket.org/2.0/repositories///commit//reports/mysystem-001'' \
+
+        --header ''Content-Type: application/json'' \
+
+        --data-raw ''{
+
+        "title": "Security scan report",
+
+        "details": "This pull request introduces 10 new dependency vulnerabilities.",
+
+        "report_type": "SECURITY",
+
+        "reporter": "mySystem",
+
+        "link": "http://www.mysystem.com/reports/001",
+
+        "result": "FAILED",
+
+        "data": [
+
+        {
+
+        "title": "Duration (seconds)",
+
+        "type": "DURATION",
+
+        "value": 14
+
+        },
+
+        {
+
+        "title": "Safe to merge?",
+
+        "type": "BOOLEAN",
+
+        "value": false
+
+        }
+
+        ]
+
+        }''
+
+        ```
+
+
+        ### Possible field values:
+
+        report_type: SECURITY, COVERAGE, TEST, BUG
+
+        result: PASSED, FAILED, PENDING
+
+        data.type: BOOLEAN, DATE, DURATION, LINK, NUMBER, PERCENTAGE, TEXT
+
+
+        #### Data field formats
+
+        | Type Field | Value Field Type | Value Field Display |
+
+        |:--------------|:------------------|:--------------------|
+
+        | None/ Omitted | Number, String or Boolean (not an array or object) | Plain text |
+
+        | BOOLEAN | Boolean | The value will be read as a JSON boolean and displayed as ''Yes'' or ''No''. |
+
+        | DATE | Number | The value will be read as a JSON number in the form of a Unix timestamp (milliseconds) and will be displayed as a relative date if the date is less than one week ago, otherwise it will be displayed as an absolute date. |
+
+        | DURATION | Number | The value will be read as a JSON number in milliseconds and will be displayed in a human readable duration format. |
+
+        | LINK | Object: `{"text": "Link text here", "href": "https://link.to.annotation/in/external/tool"}` | The value will be read as a JSON object containing the fields "text" and "href" and will be displayed as a clickable link on the report. |
+
+        | NUMBER | Number | The value will be read as a JSON number and large numbers will be displayed in a human readable format (e.g. 14.3k). |
+
+        | PERCENTAGE | Number (between 0 and 100) | The value will be read as a JSON number between 0 and 100 and will be displayed with a percentage sign. |
+
+        | TEXT | String | The value will be read as a JSON string and will be displayed as-is |
+
+
+        Please refer to the Code Insights documentation for more information.'
       operationId: createOrUpdateReport
       summary: Create or update a report
       parameters:
@@ -768,7 +901,77 @@ paths:
     post:
       tags:
       - Commits
-      description: "Bulk upload of annotations.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nAdd the annotations you want to upload as objects in a JSON array and make sure each annotation has the external_id field set to a unique value. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-annotation001. The external id can later be used to identify the report as an alternative to the generated [UUID](https://developer.atlassian.com/bitbucket/api/2/reference/meta/uri-uuid#uuid). You can upload up to 100 annotations per POST request.\n\n### Sample cURL request:\n```\ncurl --location 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001/annotations' \\\n--header 'Content-Type: application/json' \\\n--data-raw '[\n  {\n        \"external_id\": \"mysystem-annotation001\",\n        \"title\": \"Security scan report\",\n        \"annotation_type\": \"VULNERABILITY\",\n        \"summary\": \"This line represents a security threat.\",\n        \"severity\": \"HIGH\",\n      \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Main.java\",\n        \"line\": 42\n  },\n  {\n        \"external_id\": \"mySystem-annotation002\",\n        \"title\": \"Bug report\",\n        \"annotation_type\": \"BUG\",\n        \"result\": \"FAILED\",\n        \"summary\": \"This line might introduce a bug.\",\n        \"severity\": \"MEDIUM\",\n      \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Helper.java\",\n        \"line\": 13\n  }\n]'\n```\n\n### Possible field values:\nannotation_type: VULNERABILITY, CODE_SMELL, BUG\nresult: PASSED, FAILED, IGNORED, SKIPPED\nseverity: HIGH, MEDIUM, LOW, CRITICAL\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n"
+      description: 'Bulk upload of annotations.
+
+        Annotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.
+
+
+        Add the annotations you want to upload as objects in a JSON array and make sure each annotation has the external_id field set to a unique value. If you want to use an existing id from your own system, we recommend prefixing it with your system''s name to avoid collisions, for example, mySystem-annotation001. The external id can later be used to identify the report as an alternative to the generated UUID. You can upload up to 100 annotations per POST request.
+
+
+        ### Sample cURL request:
+
+        ```
+
+        curl --location ''https://api.bitbucket.org/2.0/repositories///commit//reports/mysystem-001/annotations'' \
+
+        --header ''Content-Type: application/json'' \
+
+        --data-raw ''[
+
+        {
+
+        "external_id": "mysystem-annotation001",
+
+        "title": "Security scan report",
+
+        "annotation_type": "VULNERABILITY",
+
+        "summary": "This line represents a security threat.",
+
+        "severity": "HIGH",
+
+        "path": "my-service/src/main/java/com/myCompany/mysystem/logic/Main.java",
+
+        "line": 42
+
+        },
+
+        {
+
+        "external_id": "mySystem-annotation002",
+
+        "title": "Bug report",
+
+        "annotation_type": "BUG",
+
+        "result": "FAILED",
+
+        "summary": "This line might introduce a bug.",
+
+        "severity": "MEDIUM",
+
+        "path": "my-service/src/main/java/com/myCompany/mysystem/logic/Helper.java",
+
+        "line": 13
+
+        }
+
+        ]''
+
+        ```
+
+
+        ### Possible field values:
+
+        annotation_type: VULNERABILITY, CODE_SMELL, BUG
+
+        result: PASSED, FAILED, IGNORED, SKIPPED
+
+        severity: HIGH, MEDIUM, LOW, CRITICAL
+
+
+        Please refer to the Code Insights documentation for more information.'
       operationId: bulkCreateOrUpdateAnnotations
       summary: Bulk create or update annotations
       parameters:
@@ -896,7 +1099,51 @@ paths:
     put:
       tags:
       - Commits
-      description: "Creates or updates an individual annotation for the specified report.\nAnnotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.\n\nJust as reports, annotation needs to be uploaded with a unique ID that can later be used to identify the report as an alternative to the generated [UUID](https://developer.atlassian.com/bitbucket/api/2/reference/meta/uri-uuid#uuid). If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-annotation001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mySystem-001/annotations/mysystem-annotation001' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"title\": \"Security scan report\",\n    \"annotation_type\": \"VULNERABILITY\",\n    \"summary\": \"This line represents a security thread.\",\n    \"severity\": \"HIGH\",\n    \"path\": \"my-service/src/main/java/com/myCompany/mysystem/logic/Main.java\",\n    \"line\": 42\n}'\n```\n\n### Possible field values:\nannotation_type: VULNERABILITY, CODE_SMELL, BUG\nresult: PASSED, FAILED, IGNORED, SKIPPED\nseverity: HIGH, MEDIUM, LOW, CRITICAL\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n"
+      description: 'Creates or updates an individual annotation for the specified report.
+
+        Annotations are individual findings that have been identified as part of a report, for example, a line of code that represents a vulnerability. These annotations can be attached to a specific file and even a specific line in that file, however, that is optional. Annotations are not mandatory and a report can contain up to 1000 annotations.
+
+
+        Just as reports, annotation needs to be uploaded with a unique ID that can later be used to identify the report as an alternative to the generated UUID. If you want to use an existing id from your own system, we recommend prefixing it with your system''s name to avoid collisions, for example, mySystem-annotation001.
+
+
+        ### Sample cURL request:
+
+        ```
+
+        curl --request PUT ''https://api.bitbucket.org/2.0/repositories///commit//reports/mySystem-001/annotations/mysystem-annotation001'' \
+
+        --header ''Content-Type: application/json'' \
+
+        --data-raw ''{
+
+        "title": "Security scan report",
+
+        "annotation_type": "VULNERABILITY",
+
+        "summary": "This line represents a security thread.",
+
+        "severity": "HIGH",
+
+        "path": "my-service/src/main/java/com/myCompany/mysystem/logic/Main.java",
+
+        "line": 42
+
+        }''
+
+        ```
+
+
+        ### Possible field values:
+
+        annotation_type: VULNERABILITY, CODE_SMELL, BUG
+
+        result: PASSED, FAILED, IGNORED, SKIPPED
+
+        severity: HIGH, MEDIUM, LOW, CRITICAL
+
+
+        Please refer to the Code Insights documentation for more information.'
       operationId: createOrUpdateAnnotation
       summary: Create or update an annotation
       parameters:
@@ -1144,6 +1391,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommits
+      x-operation-id-source: derived
     post:
       tags:
       - Commits
@@ -1182,6 +1431,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugCommits
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commits/{revision}:
     parameters:
     - name: repo_slug
@@ -1304,6 +1555,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitsByRevision
+      x-operation-id-source: derived
     post:
       tags:
       - Commits
@@ -1342,6 +1595,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugCommitsByRevision
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/diff/{spec}:
     parameters:
     - name: repo_slug
@@ -1377,7 +1632,66 @@ paths:
     get:
       tags:
       - Commits
-      description: "Produces a raw git-style diff.\n\n#### Single commit spec\n\nIf the `spec` argument to this API is a single commit, the diff is\nproduced against the first parent of the specified commit.\n\n#### Two commit spec\n\nTwo commits separated by `..` may be provided as the `spec`, e.g.,\n`3a8b42..9ff173`. When two commits are provided and the `topic` query\nparameter is true, this API produces a 2-way three dot diff.\nThis is the diff between source commit and the merge base of the source\ncommit and the destination commit. When the `topic` query param is false,\na simple git-style diff is produced.\n\nThe two commits are interpreted as follows:\n\n* First commit: the commit containing the changes we wish to preview\n* Second commit: the commit representing the state to which we want to\n  compare the first commit\n* **Note**: This is the opposite of the order used in `git diff`.\n\n#### Comparison to patches\n\nWhile similar to patches, diffs:\n\n* Don't have a commit header (username, commit message, etc)\n* Support the optional `path=foo/bar.py` query param to filter\n  the diff to just that one file diff\n\n#### Response\n\nThe raw diff is returned as-is, in whatever encoding the files in the\nrepository use. It is not decoded into unicode. As such, the\ncontent-type is `text/plain`."
+      description: 'Produces a raw git-style diff.
+
+
+        #### Single commit spec
+
+
+        If the `spec` argument to this API is a single commit, the diff is
+
+        produced against the first parent of the specified commit.
+
+
+        #### Two commit spec
+
+
+        Two commits separated by `..` may be provided as the `spec`, e.g.,
+
+        `3a8b42..9ff173`. When two commits are provided and the `topic` query
+
+        parameter is true, this API produces a 2-way three dot diff.
+
+        This is the diff between source commit and the merge base of the source
+
+        commit and the destination commit. When the `topic` query param is false,
+
+        a simple git-style diff is produced.
+
+
+        The two commits are interpreted as follows:
+
+
+        * First commit: the commit containing the changes we wish to preview
+
+        * Second commit: the commit representing the state to which we want to
+
+        compare the first commit
+
+        * **Note**: This is the opposite of the order used in `git diff`.
+
+
+        #### Comparison to patches
+
+
+        While similar to patches, diffs:
+
+
+        * Don''t have a commit header (username, commit message, etc)
+
+        * Support the optional `path=foo/bar.py` query param to filter
+
+        the diff to just that one file diff
+
+
+        #### Response
+
+
+        The raw diff is returned as-is, in whatever encoding the files in the
+
+        repository use. It is not decoded into unicode. As such, the
+
+        content-type is `text/plain`.'
       summary: Compare two commits
       responses:
         '200':
@@ -1485,6 +1799,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDiffBySpec
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/diffstat/{spec}:
     parameters:
     - name: ignore_whitespace
@@ -1575,7 +1891,47 @@ paths:
     get:
       tags:
       - Commits
-      description: "Produces a response in JSON format with a record for every path\nmodified, including information on the type of the change and the\nnumber of lines added and removed.\n\n#### Single commit spec\n\nIf the `spec` argument to this API is a single commit, the diff is\nproduced against the first parent of the specified commit.\n\n#### Two commit spec\n\nTwo commits separated by `..` may be provided as the `spec`, e.g.,\n`3a8b42..9ff173`. When two commits are provided and the `topic` query\nparameter is true, this API produces a 2-way three dot diff.\nThis is the diff between source commit and the merge base of the source\ncommit and the destination commit. When the `topic` query param is false,\na simple git-style diff is produced.\n\nThe two commits are interpreted as follows:\n\n* First commit: the commit containing the changes we wish to preview\n* Second commit: the commit representing the state to which we want to\n  compare the first commit\n* **Note**: This is the opposite of the order used in `git diff`."
+      description: 'Produces a response in JSON format with a record for every path
+
+        modified, including information on the type of the change and the
+
+        number of lines added and removed.
+
+
+        #### Single commit spec
+
+
+        If the `spec` argument to this API is a single commit, the diff is
+
+        produced against the first parent of the specified commit.
+
+
+        #### Two commit spec
+
+
+        Two commits separated by `..` may be provided as the `spec`, e.g.,
+
+        `3a8b42..9ff173`. When two commits are provided and the `topic` query
+
+        parameter is true, this API produces a 2-way three dot diff.
+
+        This is the diff between source commit and the merge base of the source
+
+        commit and the destination commit. When the `topic` query param is false,
+
+        a simple git-style diff is produced.
+
+
+        The two commits are interpreted as follows:
+
+
+        * First commit: the commit containing the changes we wish to preview
+
+        * Second commit: the commit representing the state to which we want to
+
+        compare the first commit
+
+        * **Note**: This is the opposite of the order used in `git diff`.'
       summary: Compare two commit diff stats
       responses:
         '200':
@@ -1626,6 +1982,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDiffstatBySpec
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/merge-base/{revspec}:
     parameters:
     - name: repo_slug
@@ -1706,6 +2064,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugMergeBaseByRevspec
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/patch/{spec}:
     parameters:
     - name: repo_slug
@@ -1802,6 +2162,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPatchBySpec
+      x-operation-id-source: derived
 components:
   schemas:
     ref:
@@ -1856,294 +2218,19 @@ components:
       required:
       - type
       additionalProperties: true
-    commit:
-      allOf:
-      - $ref: '#/components/schemas/base_commit'
-      - type: object
-        title: Commit
-        description: A repository commit object.
-        properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
-        additionalProperties: true
-    comment:
+    author:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Comment
-        description: The base type for all comments. This type should be considered abstract. Each of the "commentable" resources defines its own subtypes (e.g. `issue_comment`).
+        title: Author
+        description: The author of a change in a repository
         properties:
-          id:
-            type: integer
-            format: int64
-          created_on:
+          raw:
             type: string
-            format: date-time
-          updated_on:
-            type: string
-            format: date-time
-          content:
-            type: object
-            properties:
-              raw:
-                type: string
-                description: The text as it was typed by a user.
-              markup:
-                type: string
-                description: The type of markup language the raw content is to be interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-              html:
-                type: string
-                description: The user's content rendered as HTML.
-            additionalProperties: false
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          deleted:
-            type: boolean
-          parent:
-            $ref: '#/components/schemas/comment'
-          inline:
-            type: object
-            properties:
-              from:
-                type: integer
-                description: The comment's anchor line in the old version of the file. If the comment is a multi-line comment, this is the ending line number in the old version of the file.
-                minimum: 1
-              to:
-                type: integer
-                description: The comment's anchor line in the new version of the file. If the comment is a multi-line comment, this is the ending line number in the new version of the file.
-                minimum: 1
-              start_from:
-                type: integer
-                description: The starting line number in the old version of the file, if the comment is a multi-line comment. This is null otherwise.
-                minimum: 1
-              start_to:
-                type: integer
-                description: The starting line number in the new version of the file, if the comment is a multi-line comment. This is null otherwise.
-                minimum: 1
-              path:
-                type: string
-                description: The path of the file this comment is anchored to.
-            required:
-            - path
-            additionalProperties: false
-          links:
-            type: object
-            properties:
-              self:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              html:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              code:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
         additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
-    report:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - additionalProperties: true
-        type: object
-        title: Commit Report
-        description: A report for a commit.
-        properties:
-          uuid:
-            type: string
-            description: The UUID that can be used to identify the report.
-          title:
-            type: string
-            description: The title of the report.
-          details:
-            type: string
-            description: A string to describe the purpose of the report.
-          external_id:
-            type: string
-            description: ID of the report provided by the report creator. It can be used to identify the report as an alternative to it's generated uuid. It is not used by Bitbucket, but only by the report creator for updating or deleting this specific report. Needs to be unique.
-          reporter:
-            type: string
-            description: A string to describe the tool or company who created the report.
-          link:
-            type: string
-            format: uri
-            description: A URL linking to the results of the report in an external tool.
-          remote_link_enabled:
-            type: boolean
-            description: If enabled, a remote link is created in Jira for the work item associated with the commit the report belongs to.
-          logo_url:
-            type: string
-            format: uri
-            description: A URL to the report logo. If none is provided, the default insights logo will be used.
-          report_type:
-            enum:
-            - SECURITY
-            - COVERAGE
-            - TEST
-            - BUG
-            type: string
-            description: The type of the report.
-          result:
-            enum:
-            - PASSED
-            - FAILED
-            - PENDING
-            type: string
-            description: The state of the report. May be set to PENDING and later updated.
-          data:
-            type: array
-            items:
-              $ref: '#/components/schemas/report_data'
-            description: An array of data fields to display information on the report. Maximum 10.
-          created_on:
-            type: string
-            format: date-time
-            description: The timestamp when the report was created.
-          updated_on:
-            type: string
-            format: date-time
-            description: The timestamp when the report was updated.
-      x-bb-default-fields:
-      - uuid
-      - commitHash
-      x-bb-url: /rest/2.0/accounts/{target_user.uuid}/repositories/{repository.uuid}/commits/{commitHash}/reports/{uuid}
-    commit_file:
-      type: object
-      title: Commit File
-      description: A file object, representing a file at a commit in a repository
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-          description: The path in the repository
-        commit:
-          $ref: '#/components/schemas/commit'
-        attributes:
-          type: string
-          enum:
-          - link
-          - executable
-          - subrepository
-          - binary
-          - lfs
-        escaped_path:
-          type: string
-          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
-      required:
-      - type
-      additionalProperties: true
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    paginated_annotations:
-      type: object
-      title: Paginated Annotations
-      description: A paginated list of annotations.
-      properties:
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-        values:
-          type: array
-          minItems: 0
-          items:
-            $ref: '#/components/schemas/report_annotation'
-          description: The values of the current page.
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-        next:
-          type: string
-          format: uri
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-        previous:
-          type: string
-          format: uri
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-    paginated_diffstats:
-      type: object
-      title: Paginated Diff Stat
-      description: A paginated list of diffstats.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 500 with 5000 being the maximum allowed value.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/diffstat'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
     repository:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -2331,23 +2418,201 @@ components:
           mainbranch:
             $ref: '#/components/schemas/branch'
         additionalProperties: true
-    team_links:
+    diffstat:
+      type: object
+      title: Diff Stat
+      description: A diffstat object that includes a summary of changes made to a file between two commits.
+      properties:
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - added
+          - removed
+          - modified
+          - renamed
+        lines_added:
+          type: integer
+        lines_removed:
+          type: integer
+        old:
+          $ref: '#/components/schemas/commit_file'
+        new:
+          $ref: '#/components/schemas/commit_file'
+      required:
+      - type
+      additionalProperties: true
+    comment:
       allOf:
-      - $ref: '#/components/schemas/account_links'
+      - $ref: '#/components/schemas/object'
       - type: object
-        title: Team Links
-        description: Links related to a Team.
+        title: Comment
+        description: The base type for all comments. This type should be considered abstract. Each of the "commentable" resources defines its own subtypes (e.g. `issue_comment`).
         properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
+          id:
+            type: integer
+            format: int64
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+          content:
+            type: object
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          user:
+            $ref: '#/components/schemas/account'
+          deleted:
+            type: boolean
+          parent:
+            $ref: '#/components/schemas/comment'
+          inline:
+            type: object
+            properties:
+              from:
+                type: integer
+                description: The comment's anchor line in the old version of the file. If the comment is a multi-line comment, this is the ending line number in the old version of the file.
+                minimum: 1
+              to:
+                type: integer
+                description: The comment's anchor line in the new version of the file. If the comment is a multi-line comment, this is the ending line number in the new version of the file.
+                minimum: 1
+              start_from:
+                type: integer
+                description: The starting line number in the old version of the file, if the comment is a multi-line comment. This is null otherwise.
+                minimum: 1
+              start_to:
+                type: integer
+                description: The starting line number in the new version of the file, if the comment is a multi-line comment. This is null otherwise.
+                minimum: 1
+              path:
+                type: string
+                description: The path of the file this comment is anchored to.
+            required:
+            - path
+            additionalProperties: false
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              code:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+        additionalProperties: true
+    team:
+      allOf:
+      - $ref: '#/components/schemas/account'
+      - type: object
+        title: Team
+        description: A team object.
+        properties:
+          links:
+            $ref: '#/components/schemas/team_links'
+        additionalProperties: true
+    paginated_diffstats:
+      type: object
+      title: Paginated Diff Stat
+      description: A paginated list of diffstats.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 500 with 5000 being the maximum allowed value.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/diffstat'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
         additionalProperties: true
     project:
       allOf:
@@ -2418,68 +2683,6 @@ components:
 
               Note that private projects cannot contain public repositories.'
         additionalProperties: true
-    team:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: Team
-        description: A team object.
-        properties:
-          links:
-            $ref: '#/components/schemas/team_links'
-        additionalProperties: true
-    commit_comment:
-      allOf:
-      - $ref: '#/components/schemas/comment'
-      - type: object
-        title: Commit Comment
-        description: A commit comment.
-        properties:
-          commit:
-            $ref: '#/components/schemas/commit'
-        additionalProperties: true
-    diffstat:
-      type: object
-      title: Diff Stat
-      description: A diffstat object that includes a summary of changes made to a file between two commits.
-      properties:
-        type:
-          type: string
-        status:
-          type: string
-          enum:
-          - added
-          - removed
-          - modified
-          - renamed
-        lines_added:
-          type: integer
-        lines_removed:
-          type: integer
-        old:
-          $ref: '#/components/schemas/commit_file'
-        new:
-          $ref: '#/components/schemas/commit_file'
-      required:
-      - type
-      additionalProperties: true
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
     link:
       type: object
       title: Link
@@ -2533,106 +2736,100 @@ components:
               $ref: '#/components/schemas/base_commit'
             minItems: 0
         additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    report_data:
+    commit_file:
       type: object
-      title: Report Data
-      description: A key-value element that will be displayed along with the report.
+      title: Commit File
+      description: A file object, representing a file at a commit in a repository
       properties:
         type:
+          type: string
+        path:
+          type: string
+          description: The path in the repository
+        commit:
+          $ref: '#/components/schemas/commit'
+        attributes:
+          type: string
           enum:
-          - BOOLEAN
-          - DATE
-          - DURATION
-          - LINK
-          - NUMBER
-          - PERCENTAGE
-          - TEXT
+          - link
+          - executable
+          - subrepository
+          - binary
+          - lfs
+        escaped_path:
           type: string
-          description: The type of data contained in the value field. If not provided, then the value will be detected as a boolean, number or string.
-        title:
-          type: string
-          description: A string describing what this data field represents.
-        value:
-          type: object
-          description: The value of the data element.
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
+          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
       required:
       - type
       additionalProperties: true
-    committer:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Committer
-        description: The committer of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    branch:
-      allOf:
-      - $ref: '#/components/schemas/ref'
-      - type: object
-        title: Branch
-        description: A branch object, representing a branch in a repository.
-        properties:
-          merge_strategies:
-            type: array
-            description: Available merge strategies for pull requests targeting this branch.
-            items:
-              type: string
-              enum:
-              - merge_commit
-              - squash
-              - fast_forward
-              - squash_fast_forward
-              - rebase_fast_forward
-              - rebase_merge
-          default_merge_strategy:
-            type: string
-            description: The default merge strategy for pull requests targeting this branch.
-        additionalProperties: true
-    paginated_reports:
+    paginated_commit_comments:
       type: object
-      title: Paginated Reports
-      description: A paginated list of reports.
+      title: Paginated Commit Comments
+      description: A paginated list of commit comments.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/commit_comment'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    paginated_changeset:
+      type: object
+      title: Page
+      description: A paginated list of commits.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/base_commit'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    paginated_annotations:
+      type: object
+      title: Paginated Annotations
+      description: A paginated list of annotations.
       properties:
         page:
           type: integer
@@ -2641,7 +2838,7 @@ components:
           type: array
           minItems: 0
           items:
-            $ref: '#/components/schemas/report'
+            $ref: '#/components/schemas/report_annotation'
           description: The values of the current page.
         size:
           type: integer
@@ -2657,6 +2854,108 @@ components:
           type: string
           format: uri
           description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+    report:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - additionalProperties: true
+        type: object
+        title: Commit Report
+        description: A report for a commit.
+        properties:
+          uuid:
+            type: string
+            description: The UUID that can be used to identify the report.
+          title:
+            type: string
+            description: The title of the report.
+          details:
+            type: string
+            description: A string to describe the purpose of the report.
+          external_id:
+            type: string
+            description: ID of the report provided by the report creator. It can be used to identify the report as an alternative to it's generated uuid. It is not used by Bitbucket, but only by the report creator for updating or deleting this specific report. Needs to be unique.
+          reporter:
+            type: string
+            description: A string to describe the tool or company who created the report.
+          link:
+            type: string
+            format: uri
+            description: A URL linking to the results of the report in an external tool.
+          remote_link_enabled:
+            type: boolean
+            description: If enabled, a remote link is created in Jira for the work item associated with the commit the report belongs to.
+          logo_url:
+            type: string
+            format: uri
+            description: A URL to the report logo. If none is provided, the default insights logo will be used.
+          report_type:
+            enum:
+            - SECURITY
+            - COVERAGE
+            - TEST
+            - BUG
+            type: string
+            description: The type of the report.
+          result:
+            enum:
+            - PASSED
+            - FAILED
+            - PENDING
+            type: string
+            description: The state of the report. May be set to PENDING and later updated.
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/report_data'
+            description: An array of data fields to display information on the report. Maximum 10.
+          created_on:
+            type: string
+            format: date-time
+            description: The timestamp when the report was created.
+          updated_on:
+            type: string
+            format: date-time
+            description: The timestamp when the report was updated.
+      x-bb-default-fields:
+      - uuid
+      - commitHash
+      x-bb-url: /rest/2.0/accounts/{target_user.uuid}/repositories/{repository.uuid}/commits/{commitHash}/reports/{uuid}
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
     report_annotation:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -2722,96 +3021,159 @@ components:
       x-bb-default-fields:
       - uuid
       x-bb-url: /rest/2.0/accounts/{target_user.uuid}/repositories/{repository.uuid}/commits/{commit.hash}/reports/{reportUuid}/annotations/{uuid}
-    paginated_changeset:
+    error:
       type: object
-      title: Page
-      description: A paginated list of commits.
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    report_data:
+      type: object
+      title: Report Data
+      description: A key-value element that will be displayed along with the report.
+      properties:
+        type:
+          enum:
+          - BOOLEAN
+          - DATE
+          - DURATION
+          - LINK
+          - NUMBER
+          - PERCENTAGE
+          - TEXT
+          type: string
+          description: The type of data contained in the value field. If not provided, then the value will be detected as a boolean, number or string.
+        title:
+          type: string
+          description: A string describing what this data field represents.
+        value:
+          type: object
+          description: The value of the data element.
+    team_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: Team Links
+        description: Links related to a Team.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
+    commit_comment:
+      allOf:
+      - $ref: '#/components/schemas/comment'
+      - type: object
+        title: Commit Comment
+        description: A commit comment.
+        properties:
+          commit:
+            $ref: '#/components/schemas/commit'
+        additionalProperties: true
+    branch:
+      allOf:
+      - $ref: '#/components/schemas/ref'
+      - type: object
+        title: Branch
+        description: A branch object, representing a branch in a repository.
+        properties:
+          merge_strategies:
+            type: array
+            description: Available merge strategies for pull requests targeting this branch.
+            items:
+              type: string
+              enum:
+              - merge_commit
+              - squash
+              - fast_forward
+              - squash_fast_forward
+              - rebase_fast_forward
+              - rebase_merge
+          default_merge_strategy:
+            type: string
+            description: The default merge strategy for pull requests targeting this branch.
+        additionalProperties: true
+    paginated_reports:
+      type: object
+      title: Paginated Reports
+      description: A paginated list of reports.
+      properties:
         page:
           type: integer
           description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
         values:
           type: array
-          items:
-            $ref: '#/components/schemas/base_commit'
           minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    paginated_commit_comments:
-      type: object
-      title: Paginated Commit Comments
-      description: A paginated list of commit comments.
-      properties:
+          items:
+            $ref: '#/components/schemas/report'
+          description: The values of the current page.
         size:
           type: integer
           description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
         pagelen:
           type: integer
           description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
         next:
           type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
           format: uri
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
         previous:
           type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
           format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/commit_comment'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    participant:
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+    committer:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
+        title: Committer
+        description: The committer of a change in a repository
         properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
         additionalProperties: true
   securitySchemes:
     basic:

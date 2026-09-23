@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Properties API
+  title: Bitbucket Properties API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -11,7 +11,7 @@ info:
 servers:
 - url: https://api.bitbucket.org/2.0
 tags:
-- name: properties
+- name: Properties
 paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}:
     put:
@@ -20,7 +20,7 @@ paths:
           description: An empty response.
       operationId: updateCommitHostedPropertyValue
       summary: Update a commit application property
-      description: Update an [application property](/cloud/bitbucket/application-properties/) value stored against a commit.
+      description: Update an application property value stored against a commit.
       parameters:
       - required: true
         in: path
@@ -53,7 +53,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -71,7 +71,7 @@ paths:
           description: An empty response.
       operationId: deleteCommitHostedPropertyValue
       summary: Delete a commit application property
-      description: Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a commit.
+      description: Delete an application property value stored against a commit.
       parameters:
       - required: true
         in: path
@@ -104,7 +104,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -119,7 +119,7 @@ paths:
                 $ref: '#/components/schemas/application_property'
       operationId: getCommitHostedPropertyValue
       summary: Get a commit application property
-      description: Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a commit.
+      description: Retrieve an application property value stored against a commit.
       parameters:
       - required: true
         in: path
@@ -152,7 +152,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -164,7 +164,7 @@ paths:
           description: An empty response.
       operationId: updateRepositoryHostedPropertyValue
       summary: Update a repository application property
-      description: Update an [application property](/cloud/bitbucket/application-properties/) value stored against a repository.
+      description: Update an application property value stored against a repository.
       parameters:
       - required: true
         in: path
@@ -191,7 +191,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -209,7 +209,7 @@ paths:
           description: An empty response.
       operationId: deleteRepositoryHostedPropertyValue
       summary: Delete a repository application property
-      description: Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a repository.
+      description: Delete an application property value stored against a repository.
       parameters:
       - required: true
         in: path
@@ -236,7 +236,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -251,7 +251,7 @@ paths:
                 $ref: '#/components/schemas/application_property'
       operationId: getRepositoryHostedPropertyValue
       summary: Get a repository application property
-      description: Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a repository.
+      description: Retrieve an application property value stored against a repository.
       parameters:
       - required: true
         in: path
@@ -278,7 +278,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -290,7 +290,7 @@ paths:
           description: An empty response.
       operationId: updatePullRequestHostedPropertyValue
       summary: Update a pull request application property
-      description: Update an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request.
+      description: Update an application property value stored against a pull request.
       parameters:
       - required: true
         in: path
@@ -323,7 +323,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -341,7 +341,7 @@ paths:
           description: An empty response.
       operationId: deletePullRequestHostedPropertyValue
       summary: Delete a pull request application property
-      description: Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request.
+      description: Delete an application property value stored against a pull request.
       parameters:
       - required: true
         in: path
@@ -374,7 +374,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -389,7 +389,7 @@ paths:
                 $ref: '#/components/schemas/application_property'
       operationId: getPullRequestHostedPropertyValue
       summary: Get a pull request application property
-      description: Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a pull request.
+      description: Retrieve an application property value stored against a pull request.
       parameters:
       - required: true
         in: path
@@ -422,7 +422,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -434,7 +434,7 @@ paths:
           description: An empty response.
       operationId: updateUserHostedPropertyValue
       summary: Update a user application property
-      description: Update an [application property](/cloud/bitbucket/application-properties/) value stored against a user.
+      description: Update an application property value stored against a user.
       parameters:
       - required: true
         in: path
@@ -455,7 +455,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -473,7 +473,7 @@ paths:
           description: An empty response.
       operationId: deleteUserHostedPropertyValue
       summary: Delete a user application property
-      description: Delete an [application property](/cloud/bitbucket/application-properties/) value stored against a user.
+      description: Delete an application property value stored against a user.
       parameters:
       - required: true
         in: path
@@ -494,7 +494,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []
@@ -509,7 +509,7 @@ paths:
                 $ref: '#/components/schemas/application_property'
       operationId: retrieveUserHostedPropertyValue
       summary: Get a user application property
-      description: Retrieve an [application property](/cloud/bitbucket/application-properties/) value stored against a user.
+      description: Retrieve an application property value stored against a user.
       parameters:
       - required: true
         in: path
@@ -530,7 +530,7 @@ paths:
         schema:
           type: string
       tags:
-      - properties
+      - Properties
       security:
       - oauth2: []
       - basic: []

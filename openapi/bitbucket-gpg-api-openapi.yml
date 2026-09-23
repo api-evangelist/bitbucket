@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon GPG API
+  title: Bitbucket GPG API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -12,9 +12,7 @@ servers:
 - url: https://api.bitbucket.org/2.0
 tags:
 - name: GPG
-  description: 'The GPG resource allows you to manage GPG keys.
-
-    '
+  description: The GPG resource allows you to manage GPG keys.
 paths:
   /users/{selected_user}/gpg-keys:
     parameters:
@@ -35,7 +33,7 @@ paths:
 
         The `key` and `subkeys` fields can also be requested from the endpoint.
 
-        See [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details.'
+        See Partial Responses for more details.'
       summary: List GPG keys
       responses:
         '200':
@@ -94,6 +92,8 @@ paths:
         - read:gpg-key:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getUsersBySelectedUserGpgKeys
+      x-operation-id-source: derived
     post:
       tags:
       - GPG
@@ -107,7 +107,7 @@ paths:
 
         $ curl -X POST -H "Content-Type: application/json" -d
 
-        ''{"key": "<insert GPG Key>"}''
+        ''{"key": ""}''
 
         https://api.bitbucket.org/2.0/users/{d7dd0e2d-3994-4a50-a9ee-d260b6cefdab}/gpg-keys
 
@@ -179,6 +179,8 @@ paths:
             schema:
               $ref: '#/components/schemas/GPG_account_key'
         description: The new GPG key object.
+      operationId: postUsersBySelectedUserGpgKeys
+      x-operation-id-source: derived
   /users/{selected_user}/gpg-keys/{fingerprint}:
     parameters:
     - name: fingerprint
@@ -233,6 +235,8 @@ paths:
         - delete:gpg-key:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteUsersBySelectedUserGpgKeysByFingerprint
+      x-operation-id-source: derived
     get:
       tags:
       - GPG
@@ -240,7 +244,7 @@ paths:
 
         The `key` and `subkeys` fields can also be requested from the endpoint.
 
-        See [Partial Responses](/cloud/bitbucket/rest/intro/#partial-response) for more details.'
+        See Partial Responses for more details.'
       summary: Get a GPG key
       responses:
         '200':
@@ -295,52 +299,27 @@ paths:
         - read:gpg-key:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getUsersBySelectedUserGpgKeysByFingerprint
+      x-operation-id-source: derived
 components:
   schemas:
-    link:
-      type: object
-      title: Link
-      description: A link to a resource related to this object.
-      properties:
-        href:
-          type: string
-          format: uri
-        name:
-          type: string
-      additionalProperties: false
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
     object:
       type: object
       description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
@@ -352,6 +331,14 @@ components:
       additionalProperties: true
       discriminator:
         propertyName: type
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
     GPG_account_key:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -413,6 +400,42 @@ components:
                 additionalProperties: false
             additionalProperties: false
         additionalProperties: true
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
+      properties:
+        href:
+          type: string
+          format: uri
+        name:
+          type: string
+      additionalProperties: false
     paginated_gpg_user_keys:
       type: object
       title: Paginated GPG User Keys
@@ -445,23 +468,6 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
   securitySchemes:
     basic:
       type: http

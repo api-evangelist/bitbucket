@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Pullrequests API
+  title: Bitbucket Pullrequests API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -11,21 +11,19 @@ info:
 servers:
 - url: https://api.bitbucket.org/2.0
 tags:
-- name: Pullrequests
+- name: Pull Requests
   description: 'Pull requests are a feature that makes it easier for developers
 
     to collaborate using Bitbucket. They provide a user-friendly web
 
     interface for discussing proposed changes before integrating them
 
-    into the official project.
-
-    '
+    into the official project.'
 paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests:
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       summary: List pull requests that contain a commit
       description: Returns a paginated list of all pull requests as part of which this commit was reviewed. Pull Request Commit Links app must be installed first before using this API; installation automatically occurs when 'Go to pull request' is clicked from the web interface for a commit's details.
       operationId: getPullrequestsForCommit
@@ -120,7 +118,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns the repository''s default reviewers.
 
 
@@ -130,7 +128,7 @@ paths:
 
         as well as the default reviewers inherited from the project, use the
 
-        [effective-default-reveiwers](#api-repositories-workspace-repo-slug-effective-default-reviewers-get) endpoint.'
+        effective-default-reveiwers endpoint.'
       summary: List default reviewers
       responses:
         '200':
@@ -158,6 +156,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDefaultReviewers
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}:
     parameters:
     - name: repo_slug
@@ -192,7 +192,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Removes a default reviewer from the repository.
       summary: Remove a user from the default reviewers
       responses:
@@ -223,9 +223,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+      x-operation-id-source: derived
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns the specified reviewer.
 
 
@@ -267,9 +269,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+      x-operation-id-source: derived
     put:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Adds the specified user to the repository''s list of default
 
         reviewers.
@@ -315,6 +319,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: putRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/effective-default-reviewers:
     parameters:
     - name: repo_slug
@@ -339,7 +345,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns the repository''s effective default reviewers. This includes both default
 
         reviewers defined at the repository level as well as those inherited from its project.
@@ -390,6 +396,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugEffectiveDefaultReviewers
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests:
     parameters:
     - name: repo_slug
@@ -414,7 +422,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns all pull requests on the specified repository.
 
 
@@ -429,7 +437,7 @@ paths:
 
         This endpoint also supports filtering and sorting of the results. See
 
-        [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more details.'
+        filtering and sorting for more details.'
       summary: List pull requests
       responses:
         '200':
@@ -470,10 +478,134 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequests
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
-      description: "Creates a new pull request where the destination repository is\nthis repository and the author is the authenticated user.\n\nThe minimum required fields to create a pull request are `title` and\n`source`, specified by a branch name.\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repository/pullrequests \\\n    -u my-username:my-password \\\n    --request POST \\\n    --header 'Content-Type: application/json' \\\n    --data '{\n        \"title\": \"My Title\",\n        \"source\": {\n            \"branch\": {\n                \"name\": \"staging\"\n            }\n        }\n    }'\n```\n\nIf the pull request's `destination` is not specified, it will default\nto the `repository.mainbranch`. To open a pull request to a\ndifferent branch, say from a feature branch to a staging branch,\nspecify a `destination` (same format as the `source`):\n\n```\n{\n    \"title\": \"My Title\",\n    \"source\": {\n        \"branch\": {\n            \"name\": \"my-feature-branch\"\n        }\n    },\n    \"destination\": {\n        \"branch\": {\n            \"name\": \"staging\"\n        }\n    }\n}\n```\n\nReviewers can be specified by adding an array of user objects as the\n`reviewers` property.\n\n```\n{\n    \"title\": \"My Title\",\n    \"source\": {\n        \"branch\": {\n            \"name\": \"my-feature-branch\"\n        }\n    },\n    \"reviewers\": [\n        {\n            \"uuid\": \"{504c3b62-8120-4f0c-a7bc-87800b9d6f70}\"\n        }\n    ]\n}\n```\n\nOther fields:\n\n* `description` - a string\n* `close_source_branch` - boolean that specifies if the source branch should be closed upon merging\n* `draft` - boolean that specifies whether the pull request is a draft"
+      - Pull Requests
+      description: 'Creates a new pull request where the destination repository is
+
+        this repository and the author is the authenticated user.
+
+
+        The minimum required fields to create a pull request are `title` and
+
+        `source`, specified by a branch name.
+
+
+        ```
+
+        curl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repository/pullrequests \
+
+        -u my-username:my-password \
+
+        --request POST \
+
+        --header ''Content-Type: application/json'' \
+
+        --data ''{
+
+        "title": "My Title",
+
+        "source": {
+
+        "branch": {
+
+        "name": "staging"
+
+        }
+
+        }
+
+        }''
+
+        ```
+
+
+        If the pull request''s `destination` is not specified, it will default
+
+        to the `repository.mainbranch`. To open a pull request to a
+
+        different branch, say from a feature branch to a staging branch,
+
+        specify a `destination` (same format as the `source`):
+
+
+        ```
+
+        {
+
+        "title": "My Title",
+
+        "source": {
+
+        "branch": {
+
+        "name": "my-feature-branch"
+
+        }
+
+        },
+
+        "destination": {
+
+        "branch": {
+
+        "name": "staging"
+
+        }
+
+        }
+
+        }
+
+        ```
+
+
+        Reviewers can be specified by adding an array of user objects as the
+
+        `reviewers` property.
+
+
+        ```
+
+        {
+
+        "title": "My Title",
+
+        "source": {
+
+        "branch": {
+
+        "name": "my-feature-branch"
+
+        }
+
+        },
+
+        "reviewers": [
+
+        {
+
+        "uuid": "{504c3b62-8120-4f0c-a7bc-87800b9d6f70}"
+
+        }
+
+        ]
+
+        }
+
+        ```
+
+
+        Other fields:
+
+
+        * `description` - a string
+
+        * `close_source_branch` - boolean that specifies if the source branch should be closed upon merging
+
+        * `draft` - boolean that specifies whether the pull request is a draft'
       summary: Create a pull request
       responses:
         '201':
@@ -525,6 +657,8 @@ paths:
 
 
           Since not all elements are required or even mutable, you only need to include the elements you want to initialize, such as the source branch and the title.'
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequests
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/activity:
     parameters:
     - name: repo_slug
@@ -549,8 +683,8 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: "Returns a paginated list of the pull request's activity log.\n\nThis handler serves both a v20 and internal endpoint. The v20 endpoint\nreturns reviewer comments, updates, approvals and request changes. The internal\nendpoint includes those plus tasks and attachments.\n\nComments created on a file or a line of code have an inline property.\n\nComment example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"comment\": {\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695/comments/118571088\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695/_/diff#comment-118571088\"\n                    }\n                },\n                \"deleted\": false,\n                \"pullrequest\": {\n                    \"type\": \"pullrequest\",\n                    \"id\": 5695,\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                        }\n                    },\n                    \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n                },\n                \"content\": {\n                    \"raw\": \"inline with to a dn from lines\",\n                    \"markup\": \"markdown\",\n                    \"html\": \"<p>inline with to a dn from lines</p>\",\n                    \"type\": \"rendered\"\n                },\n                \"created_on\": \"2019-09-27T00:33:46.039178+00:00\",\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"created_on\": \"2019-09-27T00:33:46.039178+00:00\",\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"updated_on\": \"2019-09-27T00:33:46.055384+00:00\",\n                \"inline\": {\n                    \"context_lines\": \"\",\n                    \"to\": null,\n                    \"path\": \"\",\n                    \"outdated\": false,\n                    \"from\": 211\n                },\n                \"type\": \"pullrequest_comment\",\n                \"id\": 118571088\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```\n\nUpdates include a state property of OPEN, MERGED, or DECLINED.\n\nUpdate example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"update\": {\n                \"description\": \"\",\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\",\n                \"destination\": {\n                    \"commit\": {\n                        \"type\": \"commit\",\n                        \"hash\": \"6a2c16e4a152\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/commit/6a2c16e4a152\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/commits/6a2c16e4a152\"\n                            }\n                        }\n                    },\n                    \"branch\": {\n                        \"name\": \"master\"\n                    },\n                    \"repository\": {\n                        \"name\": \"Atlaskit-MK-2\",\n                        \"type\": \"repository\",\n                        \"full_name\": \"atlassian/atlaskit-mk-2\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2\"\n                            },\n                            \"avatar\": {\n                                \"href\": \"https://bytebucket.org/ravatar/%7B%7D?ts=js\"\n                            }\n                        },\n                        \"uuid\": \"{}\"\n                    }\n                },\n                \"reason\": \"\",\n                \"source\": {\n                    \"commit\": {\n                        \"type\": \"commit\",\n                        \"hash\": \"728c8bad1813\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/commit/728c8bad1813\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/commits/728c8bad1813\"\n                            }\n                        }\n                    },\n                    \"branch\": {\n                        \"name\": \"username/NONE-add-onClick-prop-for-accessibility\"\n                    },\n                    \"repository\": {\n                        \"name\": \"Atlaskit-MK-2\",\n                        \"type\": \"repository\",\n                        \"full_name\": \"atlassian/atlaskit-mk-2\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2\"\n                            },\n                            \"avatar\": {\n                                \"href\": \"https://bytebucket.org/ravatar/%7B%7D?ts=js\"\n                            }\n                        },\n                        \"uuid\": \"{}\"\n                    }\n                },\n                \"state\": \"OPEN\",\n                \"author\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"date\": \"2019-05-10T06:48:25.305565+00:00\"\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```\n\nApproval example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"approval\": {\n                \"date\": \"2019-09-27T00:37:19.849534+00:00\",\n                \"pullrequest\": {\n                    \"type\": \"pullrequest\",\n                    \"id\": 5695,\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                        }\n                    },\n                    \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n                },\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                }\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```"
+      - Pull Requests
+      description: Returns a paginated list of the pull request's activity log.
       summary: List a pull request activity log
       responses:
         '200':
@@ -576,6 +710,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsActivity
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}:
     parameters:
     - name: pull_request_id
@@ -606,7 +742,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Returns the specified pull request.
       summary: Get a pull request
       responses:
@@ -637,9 +773,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestId
+      x-operation-id-source: derived
     put:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Mutates the specified pull request.
 
 
@@ -693,6 +831,8 @@ paths:
             schema:
               $ref: '#/components/schemas/pullrequest'
         description: The pull request that is to be updated.
+      operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestId
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity:
     parameters:
     - name: pull_request_id
@@ -723,8 +863,8 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: "Returns a paginated list of the pull request's activity log.\n\nThis handler serves both a v20 and internal endpoint. The v20 endpoint\nreturns reviewer comments, updates, approvals and request changes. The internal\nendpoint includes those plus tasks and attachments.\n\nComments created on a file or a line of code have an inline property.\n\nComment example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"comment\": {\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695/comments/118571088\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695/_/diff#comment-118571088\"\n                    }\n                },\n                \"deleted\": false,\n                \"pullrequest\": {\n                    \"type\": \"pullrequest\",\n                    \"id\": 5695,\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                        }\n                    },\n                    \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n                },\n                \"content\": {\n                    \"raw\": \"inline with to a dn from lines\",\n                    \"markup\": \"markdown\",\n                    \"html\": \"<p>inline with to a dn from lines</p>\",\n                    \"type\": \"rendered\"\n                },\n                \"created_on\": \"2019-09-27T00:33:46.039178+00:00\",\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"created_on\": \"2019-09-27T00:33:46.039178+00:00\",\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"updated_on\": \"2019-09-27T00:33:46.055384+00:00\",\n                \"inline\": {\n                    \"context_lines\": \"\",\n                    \"to\": null,\n                    \"path\": \"\",\n                    \"outdated\": false,\n                    \"from\": 211\n                },\n                \"type\": \"pullrequest_comment\",\n                \"id\": 118571088\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```\n\nUpdates include a state property of OPEN, MERGED, or DECLINED.\n\nUpdate example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"update\": {\n                \"description\": \"\",\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\",\n                \"destination\": {\n                    \"commit\": {\n                        \"type\": \"commit\",\n                        \"hash\": \"6a2c16e4a152\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/commit/6a2c16e4a152\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/commits/6a2c16e4a152\"\n                            }\n                        }\n                    },\n                    \"branch\": {\n                        \"name\": \"master\"\n                    },\n                    \"repository\": {\n                        \"name\": \"Atlaskit-MK-2\",\n                        \"type\": \"repository\",\n                        \"full_name\": \"atlassian/atlaskit-mk-2\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2\"\n                            },\n                            \"avatar\": {\n                                \"href\": \"https://bytebucket.org/ravatar/%7B%7D?ts=js\"\n                            }\n                        },\n                        \"uuid\": \"{}\"\n                    }\n                },\n                \"reason\": \"\",\n                \"source\": {\n                    \"commit\": {\n                        \"type\": \"commit\",\n                        \"hash\": \"728c8bad1813\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/commit/728c8bad1813\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/commits/728c8bad1813\"\n                            }\n                        }\n                    },\n                    \"branch\": {\n                        \"name\": \"username/NONE-add-onClick-prop-for-accessibility\"\n                    },\n                    \"repository\": {\n                        \"name\": \"Atlaskit-MK-2\",\n                        \"type\": \"repository\",\n                        \"full_name\": \"atlassian/atlaskit-mk-2\",\n                        \"links\": {\n                            \"self\": {\n                                \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2\"\n                            },\n                            \"html\": {\n                                \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2\"\n                            },\n                            \"avatar\": {\n                                \"href\": \"https://bytebucket.org/ravatar/%7B%7D?ts=js\"\n                            }\n                        },\n                        \"uuid\": \"{}\"\n                    }\n                },\n                \"state\": \"OPEN\",\n                \"author\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                },\n                \"date\": \"2019-05-10T06:48:25.305565+00:00\"\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```\n\nApproval example:\n```\n{\n    \"pagelen\": 20,\n    \"values\": [\n        {\n            \"approval\": {\n                \"date\": \"2019-09-27T00:37:19.849534+00:00\",\n                \"pullrequest\": {\n                    \"type\": \"pullrequest\",\n                    \"id\": 5695,\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                        }\n                    },\n                    \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n                },\n                \"user\": {\n                    \"display_name\": \"Name Lastname\",\n                    \"uuid\": \"{}\",\n                    \"links\": {\n                        \"self\": {\n                            \"href\": \"https://api.bitbucket.org/2.0/users/%7B%7D\"\n                        },\n                        \"html\": {\n                            \"href\": \"https://bitbucket.org/%7B%7D/\"\n                        },\n                        \"avatar\": {\n                            \"href\": \"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/:/128\"\n                        }\n                    },\n                    \"type\": \"user\",\n                    \"nickname\": \"Name\",\n                    \"account_id\": \"\"\n                }\n            },\n            \"pull_request\": {\n                \"type\": \"pullrequest\",\n                \"id\": 5695,\n                \"links\": {\n                    \"self\": {\n                        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/atlaskit-mk-2/pullrequests/5695\"\n                    },\n                    \"html\": {\n                        \"href\": \"https://bitbucket.org/atlassian/atlaskit-mk-2/pull-requests/5695\"\n                    }\n                },\n                \"title\": \"username/NONE: small change from onFocus to onClick to handle tabbing through the page and not expand the editor unless a click event triggers it\"\n            }\n        }\n    ]\n}\n```"
+      - Pull Requests
+      description: Returns a paginated list of the pull request's activity log.
       summary: List a pull request activity log
       responses:
         '200':
@@ -750,6 +890,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdActivity
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve:
     parameters:
     - name: pull_request_id
@@ -780,7 +922,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Redact the authenticated user''s approval of the specified pull
 
         request.'
@@ -819,9 +961,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdApprove
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Approve the specified pull request as the authenticated user.
       summary: Approve a pull request
       responses:
@@ -857,6 +1001,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdApprove
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments:
     parameters:
     - name: pull_request_id
@@ -887,7 +1033,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns a paginated list of the pull request''s comments.
 
 
@@ -901,7 +1047,7 @@ paths:
 
         This endpoint also supports filtering and sorting of the results. See
 
-        [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more
+        filtering and sorting for more
 
         details.'
       summary: List comments on a pull request
@@ -937,9 +1083,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdComments
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Creates a new pull request comment.
 
 
@@ -989,6 +1137,8 @@ paths:
               $ref: '#/components/schemas/pullrequest_comment'
         description: The comment object.
         required: true
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdComments
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}:
     parameters:
     - name: comment_id
@@ -1026,7 +1176,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Deletes a specific pull request comment.
       summary: Delete a comment on a pull request
       responses:
@@ -1057,9 +1207,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+      x-operation-id-source: derived
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Returns a specific pull request comment.
       summary: Get a comment on a pull request
       responses:
@@ -1094,9 +1246,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+      x-operation-id-source: derived
     put:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Updates a specific pull request comment.
       summary: Update a comment on a pull request
       responses:
@@ -1138,6 +1292,8 @@ paths:
               $ref: '#/components/schemas/pullrequest_comment'
         description: The contents of the updated comment.
         required: true
+      operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve:
     parameters:
     - name: comment_id
@@ -1175,7 +1331,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: ''
       summary: Reopen a comment thread
       responses:
@@ -1208,9 +1364,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentIdResolve
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: ''
       summary: Resolve a comment thread
       responses:
@@ -1255,6 +1413,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentIdResolve
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits:
     parameters:
     - name: pull_request_id
@@ -1285,7 +1445,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns a paginated list of the pull request''s commits.
 
 
@@ -1321,6 +1481,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommits
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline:
     parameters:
     - name: pull_request_id
@@ -1351,7 +1513,7 @@ paths:
         type: string
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Declines the pull request.
       summary: Decline a pull request
       responses:
@@ -1383,6 +1545,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDecline
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff:
     parameters:
     - name: pull_request_id
@@ -1413,8 +1577,8 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: 'Redirects to the [repository diff](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-diff-spec-get)
+      - Pull Requests
+      description: 'Redirects to the repository diff
 
         with the revspec that corresponds to the pull request.'
       summary: List changes in a pull request
@@ -1438,6 +1602,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDiff
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat:
     parameters:
     - name: pull_request_id
@@ -1468,8 +1634,8 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: 'Redirects to the [repository diffstat](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-diffstat-spec-get)
+      - Pull Requests
+      description: 'Redirects to the repository diffstat
 
         with the revspec that corresponds to the pull request.'
       summary: Get the diff stat for a pull request
@@ -1493,6 +1659,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDiffstat
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge:
     parameters:
     - name: pull_request_id
@@ -1523,7 +1691,7 @@ paths:
         type: string
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Merges the pull request.
       summary: Merge a pull request
       responses:
@@ -1591,6 +1759,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/pullrequest_merge_parameters'
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdMerge
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge/task-status/{task_id}:
     parameters:
     - name: pull_request_id
@@ -1627,8 +1797,93 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: "When merging a pull request takes too long, the client receives a\ntask ID along with a 202 status code. The task ID can be used in a call\nto this endpoint to check the status of a merge task.\n\n```\ncurl -X GET https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/<task_id>\n```\n\nIf the merge task is not yet finished, a PENDING status will be returned.\n\n```\nHTTP/2 200\n{\n    \"task_status\": \"PENDING\",\n    \"links\": {\n        \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/<task_id>\"\n        }\n    }\n}\n```\n\nIf the merge was successful, a SUCCESS status will be returned.\n\n```\nHTTP/2 200\n{\n    \"task_status\": \"SUCCESS\",\n    \"links\": {\n        \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/<task_id>\"\n        }\n    },\n    \"merge_result\": <the merged pull request object>\n}\n```\n\nIf the merge task failed, an error will be returned.\n\n```\n{\n    \"type\": \"error\",\n    \"error\": {\n        \"message\": \"<error message>\"\n    }\n}\n```"
+      - Pull Requests
+      description: 'When merging a pull request takes too long, the client receives a
+
+        task ID along with a 202 status code. The task ID can be used in a call
+
+        to this endpoint to check the status of a merge task.
+
+
+        ```
+
+        curl -X GET https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/
+
+        ```
+
+
+        If the merge task is not yet finished, a PENDING status will be returned.
+
+
+        ```
+
+        HTTP/2 200
+
+        {
+
+        "task_status": "PENDING",
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/"
+
+        }
+
+        }
+
+        }
+
+        ```
+
+
+        If the merge was successful, a SUCCESS status will be returned.
+
+
+        ```
+
+        HTTP/2 200
+
+        {
+
+        "task_status": "SUCCESS",
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/atlassian/bitbucket/pullrequests/2286/merge/task-status/"
+
+        }
+
+        },
+
+        "merge_result":
+
+        }
+
+        ```
+
+
+        If the merge task failed, an error will be returned.
+
+
+        ```
+
+        {
+
+        "type": "error",
+
+        "error": {
+
+        "message": ""
+
+        }
+
+        }
+
+        ```'
       summary: Get the merge task status for a pull request
       responses:
         '200':
@@ -1652,6 +1907,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdMergeTaskStatusByTaskId
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch:
     parameters:
     - name: pull_request_id
@@ -1682,8 +1939,8 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
-      description: 'Redirects to the [repository patch](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-patch-spec-get)
+      - Pull Requests
+      description: 'Redirects to the repository patch
 
         with the revspec that corresponds to pull request.'
       summary: Get the patch for a pull request
@@ -1707,6 +1964,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdPatch
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes:
     parameters:
     - name: pull_request_id
@@ -1737,7 +1996,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: ''
       summary: Remove change request for a pull request
       responses:
@@ -1774,9 +2033,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdRequestChanges
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: ''
       summary: Request changes for a pull request
       responses:
@@ -1818,6 +2079,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdRequestChanges
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
     parameters:
     - name: pull_request_id
@@ -1848,7 +2111,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns all statuses (e.g. build results) for the given pull
 
         request.'
@@ -1904,6 +2167,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdStatuses
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks:
     parameters:
     - name: pull_request_id
@@ -1934,13 +2199,13 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns a paginated list of the pull request''s tasks.
 
 
         This endpoint supports filtering and sorting of the results by the ''task'' field.
 
-        See [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more details.'
+        See filtering and sorting for more details.'
       summary: List tasks on a pull request
       responses:
         '200':
@@ -2019,9 +2284,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasks
+      x-operation-id-source: derived
     post:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Creates a new pull request task.
 
 
@@ -2082,6 +2349,8 @@ paths:
               $ref: '#/components/schemas/pullrequest_task_create'
         description: The contents of the task
         required: true
+      operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasks
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}:
     parameters:
     - name: pull_request_id
@@ -2119,7 +2388,7 @@ paths:
         type: string
     delete:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Deletes a specific pull request task.
       summary: Delete a task on a pull request
       responses:
@@ -2150,9 +2419,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+      x-operation-id-source: derived
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Returns a specific pull request task.
       summary: Get a task on a pull request
       responses:
@@ -2187,9 +2458,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+      x-operation-id-source: derived
     put:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: Updates a specific pull request task.
       summary: Update a task on a pull request
       responses:
@@ -2237,6 +2510,8 @@ paths:
               $ref: '#/components/schemas/pullrequest_task_update'
         description: The updated state and content of the task.
         required: true
+      operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+      x-operation-id-source: derived
   /workspaces/{workspace}/pullrequests/{selected_user}:
     parameters:
     - name: selected_user
@@ -2261,7 +2536,7 @@ paths:
         type: string
     get:
       tags:
-      - Pullrequests
+      - Pull Requests
       description: 'Returns all workspace pull requests authored by the specified user.
 
 
@@ -2276,7 +2551,7 @@ paths:
 
         This endpoint also supports filtering and sorting of the results. See
 
-        [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more details.'
+        filtering and sorting for more details.'
       summary: List workspace pull requests for a user
       responses:
         '200':
@@ -2314,8 +2589,32 @@ paths:
         - read:pullrequest:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getWorkspacesByWorkspacePullrequestsBySelectedUser
+      x-operation-id-source: derived
 components:
   schemas:
+    pullrequest_task_update:
+      type: object
+      title: Pull Request Task Update
+      description: A pullrequest task update
+      properties:
+        content:
+          type: object
+          title: Task Raw Content
+          description: task raw content
+          properties:
+            raw:
+              type: string
+              description: The task contents
+          required:
+          - raw
+          additionalProperties: false
+        state:
+          type: string
+          enum:
+          - RESOLVED
+          - UNRESOLVED
+      additionalProperties: false
     ref:
       type: object
       title: Ref
@@ -2368,471 +2667,6 @@ components:
       required:
       - type
       additionalProperties: true
-    commit:
-      allOf:
-      - $ref: '#/components/schemas/base_commit'
-      - type: object
-        title: Commit
-        description: A repository commit object.
-        properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
-        additionalProperties: true
-    comment:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Comment
-        description: The base type for all comments. This type should be considered abstract. Each of the "commentable" resources defines its own subtypes (e.g. `issue_comment`).
-        properties:
-          id:
-            type: integer
-            format: int64
-          created_on:
-            type: string
-            format: date-time
-          updated_on:
-            type: string
-            format: date-time
-          content:
-            type: object
-            properties:
-              raw:
-                type: string
-                description: The text as it was typed by a user.
-              markup:
-                type: string
-                description: The type of markup language the raw content is to be interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-              html:
-                type: string
-                description: The user's content rendered as HTML.
-            additionalProperties: false
-          user:
-            $ref: '#/components/schemas/account'
-          deleted:
-            type: boolean
-          parent:
-            $ref: '#/components/schemas/comment'
-          inline:
-            type: object
-            properties:
-              from:
-                type: integer
-                description: The comment's anchor line in the old version of the file. If the comment is a multi-line comment, this is the ending line number in the old version of the file.
-                minimum: 1
-              to:
-                type: integer
-                description: The comment's anchor line in the new version of the file. If the comment is a multi-line comment, this is the ending line number in the new version of the file.
-                minimum: 1
-              start_from:
-                type: integer
-                description: The starting line number in the old version of the file, if the comment is a multi-line comment. This is null otherwise.
-                minimum: 1
-              start_to:
-                type: integer
-                description: The starting line number in the new version of the file, if the comment is a multi-line comment. This is null otherwise.
-                minimum: 1
-              path:
-                type: string
-                description: The path of the file this comment is anchored to.
-            required:
-            - path
-            additionalProperties: false
-          links:
-            type: object
-            properties:
-              self:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              html:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              code:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
-        additionalProperties: true
-    paginated_pullrequest_comments:
-      type: object
-      title: Paginated Pull Request Comments
-      description: A paginated list of pullrequest comments.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/pullrequest_comment'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
-    paginated_accounts:
-      type: object
-      title: Paginated Accounts
-      description: A paginated list of accounts.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/account'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    paginated_commitstatuses:
-      type: object
-      title: Paginated Commit Statuses
-      description: A paginated list of commit status objects.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/commitstatus'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    pullrequest_task_update:
-      type: object
-      title: Pull Request Task Update
-      description: A pullrequest task update
-      properties:
-        content:
-          type: object
-          title: Task Raw Content
-          description: task raw content
-          properties:
-            raw:
-              type: string
-              description: The task contents
-          required:
-          - raw
-          additionalProperties: false
-        state:
-          type: string
-          enum:
-          - RESOLVED
-          - UNRESOLVED
-      additionalProperties: false
-    pullrequest_task:
-      allOf:
-      - $ref: '#/components/schemas/task'
-      - type: object
-        title: Pull Request Task
-        description: A pull request task.
-        properties:
-          links:
-            type: object
-            properties:
-              self:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              html:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
-        additionalProperties: false
-    user_links:
-      allOf:
-      - $ref: '#/components/schemas/account_links'
-      - type: object
-        title: User Links
-        description: Links related to a User.
-        properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
-        additionalProperties: true
-    paginated_default_reviewer_and_type:
-      type: object
-      title: Paginated Default Reviewer and Type
-      description: A paginated list of default reviewers with reviewer type.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/default_reviewer_and_type'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    pullrequest_task_create:
-      type: object
-      title: Pull Request Task Create
-      description: A pullrequest task create
-      properties:
-        content:
-          type: object
-          title: Task Raw Content
-          description: task raw content
-          properties:
-            raw:
-              type: string
-              description: The task contents
-          required:
-          - raw
-          additionalProperties: false
-        comment:
-          $ref: '#/components/schemas/comment'
-        pending:
-          type: boolean
-      required:
-      - content
-      additionalProperties: false
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    user:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: User
-        description: A user object.
-        properties:
-          links:
-            $ref: '#/components/schemas/user_links'
-          account_id:
-            type: string
-            description: The user's Atlassian account ID.
-          account_status:
-            type: string
-            description: The status of the account. Currently the only possible value is "active", but more values may be added in the future.
-          has_2fa_enabled:
-            type: boolean
-          nickname:
-            type: string
-            description: Account name defined by the owner. Should be used instead of the "username" field. Note that "nickname" cannot be used in place of "username" in URLs and queries, as "nickname" is not guaranteed to be unique.
-          is_staff:
-            type: boolean
-        additionalProperties: true
-    paginated_tasks:
-      type: object
-      title: Paginated Tasks
-      description: A paginated list of tasks.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/pullrequest_comment_task'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    task:
-      type: object
-      title: Task
-      description: A task object.
-      properties:
-        id:
-          type: integer
-          format: int64
-        created_on:
-          type: string
-          format: date-time
-        updated_on:
-          type: string
-          format: date-time
-        state:
-          type: string
-          enum:
-          - RESOLVED
-          - UNRESOLVED
-        content:
-          type: object
-          properties:
-            raw:
-              type: string
-              description: The text as it was typed by a user.
-            markup:
-              type: string
-              description: The type of markup language the raw content is to be interpreted in.
-              enum:
-              - markdown
-              - creole
-              - plaintext
-            html:
-              type: string
-              description: The user's content rendered as HTML.
-          additionalProperties: false
-        creator:
-          $ref: '#/components/schemas/account'
-        pending:
-          type: boolean
-        resolved_on:
-          type: string
-          description: The ISO8601 timestamp for when the task was resolved.
-          format: date-time
-        resolved_by:
-          $ref: '#/components/schemas/account'
-      required:
-      - created_on
-      - updated_on
-      - state
-      - content
-      - creator
-      additionalProperties: false
     repository:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -3019,6 +2853,903 @@ components:
             $ref: '#/components/schemas/project'
           mainbranch:
             $ref: '#/components/schemas/branch'
+        additionalProperties: true
+    author:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Author
+        description: The author of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    comment:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Comment
+        description: The base type for all comments. This type should be considered abstract. Each of the "commentable" resources defines its own subtypes (e.g. `issue_comment`).
+        properties:
+          id:
+            type: integer
+            format: int64
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+          content:
+            type: object
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          user:
+            $ref: '#/components/schemas/account'
+          deleted:
+            type: boolean
+          parent:
+            $ref: '#/components/schemas/comment'
+          inline:
+            type: object
+            properties:
+              from:
+                type: integer
+                description: The comment's anchor line in the old version of the file. If the comment is a multi-line comment, this is the ending line number in the old version of the file.
+                minimum: 1
+              to:
+                type: integer
+                description: The comment's anchor line in the new version of the file. If the comment is a multi-line comment, this is the ending line number in the new version of the file.
+                minimum: 1
+              start_from:
+                type: integer
+                description: The starting line number in the old version of the file, if the comment is a multi-line comment. This is null otherwise.
+                minimum: 1
+              start_to:
+                type: integer
+                description: The starting line number in the new version of the file, if the comment is a multi-line comment. This is null otherwise.
+                minimum: 1
+              path:
+                type: string
+                description: The path of the file this comment is anchored to.
+            required:
+            - path
+            additionalProperties: false
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              code:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+        additionalProperties: true
+    team:
+      allOf:
+      - $ref: '#/components/schemas/account'
+      - type: object
+        title: Team
+        description: A team object.
+        properties:
+          links:
+            $ref: '#/components/schemas/team_links'
+        additionalProperties: true
+    pullrequest_task_create:
+      type: object
+      title: Pull Request Task Create
+      description: A pullrequest task create
+      properties:
+        content:
+          type: object
+          title: Task Raw Content
+          description: task raw content
+          properties:
+            raw:
+              type: string
+              description: The task contents
+          required:
+          - raw
+          additionalProperties: false
+        comment:
+          $ref: '#/components/schemas/comment'
+        pending:
+          type: boolean
+      required:
+      - content
+      additionalProperties: false
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
+        additionalProperties: true
+    pullrequest_comment_task:
+      allOf:
+      - $ref: '#/components/schemas/pullrequest_task'
+      - type: object
+        title: Pull Request Comment Task
+        description: A pullrequest comment task
+        properties:
+          comment:
+            $ref: '#/components/schemas/comment'
+        additionalProperties: false
+    project:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Project
+        description: "A Bitbucket project.\n            Projects are used by teams to organize repositories."
+        properties:
+          links:
+            type: object
+            properties:
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              avatar:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+          uuid:
+            type: string
+            description: The project's immutable id.
+          key:
+            type: string
+            description: The project's key.
+          owner:
+            $ref: '#/components/schemas/team'
+          name:
+            type: string
+            description: The name of the project.
+          description:
+            type: string
+          is_private:
+            type: boolean
+            description: '
+
+              Indicates whether the project is publicly accessible, or whether it is
+
+              private to the team and consequently only visible to team members.
+
+              Note that private projects cannot contain public repositories.'
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+          has_publicly_visible_repos:
+            type: boolean
+            description: '
+
+              Indicates whether the project contains publicly visible repositories.
+
+              Note that private projects cannot contain public repositories.'
+        additionalProperties: true
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
+      properties:
+        href:
+          type: string
+          format: uri
+        name:
+          type: string
+      additionalProperties: false
+    base_commit:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Base Commit
+        description: The common base type for both repository and snippet commits.
+        properties:
+          hash:
+            type: string
+            pattern: '[0-9a-f]{7,}?'
+          date:
+            type: string
+            format: date-time
+          author:
+            $ref: '#/components/schemas/author'
+          committer:
+            $ref: '#/components/schemas/committer'
+          message:
+            type: string
+          summary:
+            type: object
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          parents:
+            type: array
+            items:
+              $ref: '#/components/schemas/base_commit'
+            minItems: 0
+        additionalProperties: true
+    paginated_accounts:
+      type: object
+      title: Paginated Accounts
+      description: A paginated list of accounts.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/account'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    pullrequest_task:
+      allOf:
+      - $ref: '#/components/schemas/task'
+      - type: object
+        title: Pull Request Task
+        description: A pull request task.
+        properties:
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              html:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+        additionalProperties: false
+    paginated_default_reviewer_and_type:
+      type: object
+      title: Paginated Default Reviewer and Type
+      description: A paginated list of default reviewers with reviewer type.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/default_reviewer_and_type'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    task:
+      type: object
+      title: Task
+      description: A task object.
+      properties:
+        id:
+          type: integer
+          format: int64
+        created_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        state:
+          type: string
+          enum:
+          - RESOLVED
+          - UNRESOLVED
+        content:
+          type: object
+          properties:
+            raw:
+              type: string
+              description: The text as it was typed by a user.
+            markup:
+              type: string
+              description: The type of markup language the raw content is to be interpreted in.
+              enum:
+              - markdown
+              - creole
+              - plaintext
+            html:
+              type: string
+              description: The user's content rendered as HTML.
+          additionalProperties: false
+        creator:
+          $ref: '#/components/schemas/account'
+        pending:
+          type: boolean
+        resolved_on:
+          type: string
+          description: The ISO8601 timestamp for when the task was resolved.
+          format: date-time
+        resolved_by:
+          $ref: '#/components/schemas/account'
+      required:
+      - created_on
+      - updated_on
+      - state
+      - content
+      - creator
+      additionalProperties: false
+    paginated_commitstatuses:
+      type: object
+      title: Paginated Commit Statuses
+      description: A paginated list of commit status objects.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/commitstatus'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    default_reviewer_and_type:
+      type: object
+      title: Default Reviewer and Type
+      description: Object containing a user that is a default reviewer and the type of reviewer
+      properties:
+        type:
+          type: string
+        reviewer_type:
+          type: string
+        user:
+          $ref: '#/components/schemas/user'
+      required:
+      - type
+      additionalProperties: true
+    user_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: User Links
+        description: Links related to a User.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
+    pullrequest_endpoint:
+      type: object
+      title: Pull Request Endpoint
+      properties:
+        repository:
+          $ref: '#/components/schemas/repository'
+        branch:
+          type: object
+          title: Pull Request Branch
+          properties:
+            name:
+              type: string
+            merge_strategies:
+              type: array
+              description: Available merge strategies, when this endpoint is the destination of the pull request.
+              items:
+                type: string
+                enum:
+                - merge_commit
+                - squash
+                - fast_forward
+                - squash_fast_forward
+                - rebase_fast_forward
+                - rebase_merge
+            default_merge_strategy:
+              type: string
+              description: The default merge strategy, when this endpoint is the destination of the pull request.
+          additionalProperties: false
+        commit:
+          type: object
+          title: Pull Request Commit
+          properties:
+            hash:
+              type: string
+              pattern: '[0-9a-f]{7,}?'
+          additionalProperties: false
+      additionalProperties: false
+    paginated_tasks:
+      type: object
+      title: Paginated Tasks
+      description: A paginated list of tasks.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/pullrequest_comment_task'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    paginated_pullrequests:
+      type: object
+      title: Paginated Pull Requests
+      description: A paginated list of pullrequests.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/pullrequest'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    commitstatus:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Commit Status
+        description: A commit status object.
+        properties:
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+              commit:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+          key:
+            type: string
+            description: "An identifier for the status that's unique to\n        its type (current \"build\" is the only supported type) and the vendor,\n        e.g. BB-DEPLOY"
+          refname:
+            type: string
+            description: '
+
+              The name of the ref that pointed to this commit at the time the status
+
+              object was created. Note that this the ref may since have moved off of
+
+              the commit. This optional field can be useful for build systems whose
+
+              build triggers and configuration are branch-dependent (e.g. a Pipeline
+
+              build).
+
+              It is legitimate for this field to not be set, or even apply (e.g. a
+
+              static linting job).'
+          url:
+            type: string
+            description: A URL linking back to the vendor or build system, for providing more information about whatever process produced this status. Accepts context variables `repository` and `commit` that Bitbucket will evaluate at runtime whenever at runtime. For example, one could use https://foo.com/builds/{repository.full_name} which Bitbucket will turn into https://foo.com/builds/foo/bar at render time.
+          state:
+            type: string
+            description: Provides some indication of the status of this commit
+            enum:
+            - FAILED
+            - INPROGRESS
+            - STOPPED
+            - SUCCESSFUL
+          name:
+            type: string
+            description: An identifier for the build itself, e.g. BB-DEPLOY-1
+          description:
+            type: string
+            description: A description of the build (e.g. "Unit tests in Bamboo")
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+        required:
+        - key
+        - state
+        additionalProperties: true
+    user:
+      allOf:
+      - $ref: '#/components/schemas/account'
+      - type: object
+        title: User
+        description: A user object.
+        properties:
+          links:
+            $ref: '#/components/schemas/user_links'
+          account_id:
+            type: string
+            description: The user's Atlassian account ID.
+          account_status:
+            type: string
+            description: The status of the account. Currently the only possible value is "active", but more values may be added in the future.
+          has_2fa_enabled:
+            type: boolean
+          nickname:
+            type: string
+            description: Account name defined by the owner. Should be used instead of the "username" field. Note that "nickname" cannot be used in place of "username" in URLs and queries, as "nickname" is not guaranteed to be unique.
+          is_staff:
+            type: boolean
+        additionalProperties: true
+    pullrequest_merge_parameters:
+      type: object
+      title: Pull Request Merge Parameters
+      description: The metadata that describes a pull request merge.
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+          description: The commit message that will be used on the resulting commit. Note that the size of the message is limited to 128 KiB.
+        close_source_branch:
+          type: boolean
+          description: Whether the source branch should be deleted. If this is not provided, we fallback to the value used when the pull request was created, which defaults to False
+        merge_strategy:
+          type: string
+          description: The merge strategy that will be used to merge the pull request.
+          enum:
+          - merge_commit
+          - squash
+          - fast_forward
+          - squash_fast_forward
+          - rebase_fast_forward
+          - rebase_merge
+          default: merge_commit
+      required:
+      - type
+      additionalProperties: true
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    team_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: Team Links
+        description: Links related to a Team.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
+    paginated_pullrequest_comments:
+      type: object
+      title: Paginated Pull Request Comments
+      description: A paginated list of pullrequest comments.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/pullrequest_comment'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    pullrequest_comment:
+      allOf:
+      - $ref: '#/components/schemas/comment'
+      - type: object
+        title: Pull Request Comment
+        description: A pullrequest comment.
+        properties:
+          pullrequest:
+            $ref: '#/components/schemas/pullrequest'
+          resolution:
+            $ref: '#/components/schemas/comment_resolution'
+          pending:
+            type: boolean
+        additionalProperties: true
+    branch:
+      allOf:
+      - $ref: '#/components/schemas/ref'
+      - type: object
+        title: Branch
+        description: A branch object, representing a branch in a repository.
+        properties:
+          merge_strategies:
+            type: array
+            description: Available merge strategies for pull requests targeting this branch.
+            items:
+              type: string
+              enum:
+              - merge_commit
+              - squash
+              - fast_forward
+              - squash_fast_forward
+              - rebase_fast_forward
+              - rebase_merge
+          default_merge_strategy:
+            type: string
+            description: The default merge strategy for pull requests targeting this branch.
         additionalProperties: true
     pullrequest:
       allOf:
@@ -3286,414 +4017,6 @@ components:
             type: boolean
             description: A boolean flag indicating whether the pull request is queued
         additionalProperties: true
-    team_links:
-      allOf:
-      - $ref: '#/components/schemas/account_links'
-      - type: object
-        title: Team Links
-        description: Links related to a Team.
-        properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
-        additionalProperties: true
-    project:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Project
-        description: "A Bitbucket project.\n            Projects are used by teams to organize repositories."
-        properties:
-          links:
-            type: object
-            properties:
-              html:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              avatar:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
-          uuid:
-            type: string
-            description: The project's immutable id.
-          key:
-            type: string
-            description: The project's key.
-          owner:
-            $ref: '#/components/schemas/team'
-          name:
-            type: string
-            description: The name of the project.
-          description:
-            type: string
-          is_private:
-            type: boolean
-            description: '
-
-              Indicates whether the project is publicly accessible, or whether it is
-
-              private to the team and consequently only visible to team members.
-
-              Note that private projects cannot contain public repositories.'
-          created_on:
-            type: string
-            format: date-time
-          updated_on:
-            type: string
-            format: date-time
-          has_publicly_visible_repos:
-            type: boolean
-            description: '
-
-              Indicates whether the project contains publicly visible repositories.
-
-              Note that private projects cannot contain public repositories.'
-        additionalProperties: true
-    team:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: Team
-        description: A team object.
-        properties:
-          links:
-            $ref: '#/components/schemas/team_links'
-        additionalProperties: true
-    commitstatus:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Commit Status
-        description: A commit status object.
-        properties:
-          links:
-            type: object
-            properties:
-              self:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-              commit:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
-          key:
-            type: string
-            description: "An identifier for the status that's unique to\n        its type (current \"build\" is the only supported type) and the vendor,\n        e.g. BB-DEPLOY"
-          refname:
-            type: string
-            description: '
-
-              The name of the ref that pointed to this commit at the time the status
-
-              object was created. Note that this the ref may since have moved off of
-
-              the commit. This optional field can be useful for build systems whose
-
-              build triggers and configuration are branch-dependent (e.g. a Pipeline
-
-              build).
-
-              It is legitimate for this field to not be set, or even apply (e.g. a
-
-              static linting job).'
-          url:
-            type: string
-            description: A URL linking back to the vendor or build system, for providing more information about whatever process produced this status. Accepts context variables `repository` and `commit` that Bitbucket will evaluate at runtime whenever at runtime. For example, one could use https://foo.com/builds/{repository.full_name} which Bitbucket will turn into https://foo.com/builds/foo/bar at render time.
-          state:
-            type: string
-            description: Provides some indication of the status of this commit
-            enum:
-            - FAILED
-            - INPROGRESS
-            - STOPPED
-            - SUCCESSFUL
-          name:
-            type: string
-            description: An identifier for the build itself, e.g. BB-DEPLOY-1
-          description:
-            type: string
-            description: A description of the build (e.g. "Unit tests in Bamboo")
-          created_on:
-            type: string
-            format: date-time
-          updated_on:
-            type: string
-            format: date-time
-        required:
-        - key
-        - state
-        additionalProperties: true
-    pullrequest_comment:
-      allOf:
-      - $ref: '#/components/schemas/comment'
-      - type: object
-        title: Pull Request Comment
-        description: A pullrequest comment.
-        properties:
-          pullrequest:
-            $ref: '#/components/schemas/pullrequest'
-          resolution:
-            $ref: '#/components/schemas/comment_resolution'
-          pending:
-            type: boolean
-        additionalProperties: true
-    pullrequest_merge_parameters:
-      type: object
-      title: Pull Request Merge Parameters
-      description: The metadata that describes a pull request merge.
-      properties:
-        type:
-          type: string
-        message:
-          type: string
-          description: The commit message that will be used on the resulting commit. Note that the size of the message is limited to 128 KiB.
-        close_source_branch:
-          type: boolean
-          description: Whether the source branch should be deleted. If this is not provided, we fallback to the value used when the pull request was created, which defaults to False
-        merge_strategy:
-          type: string
-          description: The merge strategy that will be used to merge the pull request.
-          enum:
-          - merge_commit
-          - squash
-          - fast_forward
-          - squash_fast_forward
-          - rebase_fast_forward
-          - rebase_merge
-          default: merge_commit
-      required:
-      - type
-      additionalProperties: true
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
-    link:
-      type: object
-      title: Link
-      description: A link to a resource related to this object.
-      properties:
-        href:
-          type: string
-          format: uri
-        name:
-          type: string
-      additionalProperties: false
-    default_reviewer_and_type:
-      type: object
-      title: Default Reviewer and Type
-      description: Object containing a user that is a default reviewer and the type of reviewer
-      properties:
-        type:
-          type: string
-        reviewer_type:
-          type: string
-        user:
-          $ref: '#/components/schemas/user'
-      required:
-      - type
-      additionalProperties: true
-    paginated_pullrequests:
-      type: object
-      title: Paginated Pull Requests
-      description: A paginated list of pullrequests.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/pullrequest'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    base_commit:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Base Commit
-        description: The common base type for both repository and snippet commits.
-        properties:
-          hash:
-            type: string
-            pattern: '[0-9a-f]{7,}?'
-          date:
-            type: string
-            format: date-time
-          author:
-            $ref: '#/components/schemas/author'
-          committer:
-            $ref: '#/components/schemas/committer'
-          message:
-            type: string
-          summary:
-            type: object
-            properties:
-              raw:
-                type: string
-                description: The text as it was typed by a user.
-              markup:
-                type: string
-                description: The type of markup language the raw content is to be interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-              html:
-                type: string
-                description: The user's content rendered as HTML.
-            additionalProperties: false
-          parents:
-            type: array
-            items:
-              $ref: '#/components/schemas/base_commit'
-            minItems: 0
-        additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
-    committer:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Committer
-        description: The committer of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    branch:
-      allOf:
-      - $ref: '#/components/schemas/ref'
-      - type: object
-        title: Branch
-        description: A branch object, representing a branch in a repository.
-        properties:
-          merge_strategies:
-            type: array
-            description: Available merge strategies for pull requests targeting this branch.
-            items:
-              type: string
-              enum:
-              - merge_commit
-              - squash
-              - fast_forward
-              - squash_fast_forward
-              - rebase_fast_forward
-              - rebase_merge
-          default_merge_strategy:
-            type: string
-            description: The default merge strategy for pull requests targeting this branch.
-        additionalProperties: true
     comment_resolution:
       type: object
       title: Comment Resolution
@@ -3710,79 +4033,33 @@ components:
       required:
       - type
       additionalProperties: true
-    pullrequest_comment_task:
-      allOf:
-      - $ref: '#/components/schemas/pullrequest_task'
-      - type: object
-        title: Pull Request Comment Task
-        description: A pullrequest comment task
-        properties:
-          comment:
-            $ref: '#/components/schemas/comment'
-        additionalProperties: false
-    pullrequest_endpoint:
-      type: object
-      title: Pull Request Endpoint
-      properties:
-        repository:
-          $ref: '#/components/schemas/repository'
-        branch:
-          type: object
-          title: Pull Request Branch
-          properties:
-            name:
-              type: string
-            merge_strategies:
-              type: array
-              description: Available merge strategies, when this endpoint is the destination of the pull request.
-              items:
-                type: string
-                enum:
-                - merge_commit
-                - squash
-                - fast_forward
-                - squash_fast_forward
-                - rebase_fast_forward
-                - rebase_merge
-            default_merge_strategy:
-              type: string
-              description: The default merge strategy, when this endpoint is the destination of the pull request.
-          additionalProperties: false
-        commit:
-          type: object
-          title: Pull Request Commit
-          properties:
-            hash:
-              type: string
-              pattern: '[0-9a-f]{7,}?'
-          additionalProperties: false
-      additionalProperties: false
-    participant:
+    committer:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
+        title: Committer
+        description: The committer of a change in a repository
         properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
         additionalProperties: true
   securitySchemes:
     basic:

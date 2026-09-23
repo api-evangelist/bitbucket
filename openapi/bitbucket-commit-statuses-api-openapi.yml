@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Commit statuses API
+  title: Bitbucket Commit statuses API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -11,12 +11,10 @@ info:
 servers:
 - url: https://api.bitbucket.org/2.0
 tags:
-- name: Commit statuses
+- name: Commit Statuses
   description: 'Commit statuses provide a way to tag commits with meta data,
 
-    like automated build results.
-
-    '
+    like automated build results.'
 paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses:
     parameters:
@@ -48,7 +46,7 @@ paths:
         type: string
     get:
       tags:
-      - Commit statuses
+      - Commit Statuses
       description: Returns all statuses (e.g. build results) for a specific commit.
       summary: List commit statuses for a commit
       responses:
@@ -112,6 +110,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitStatuses
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build:
     parameters:
     - name: commit
@@ -142,8 +142,76 @@ paths:
         type: string
     post:
       tags:
-      - Commit statuses
-      description: "Creates a new build status against the specified commit.\n\nIf the specified key already exists, the existing status object will\nbe overwritten.\n\nExample:\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/           -X POST -u jdoe -H 'Content-Type: application/json'           -d '{\n    \"key\": \"MY-BUILD\",\n    \"state\": \"SUCCESSFUL\",\n    \"description\": \"42 tests passed\",\n    \"url\": \"https://www.example.org/my-build-result\"\n  }'\n```\n\nWhen creating a new commit status, you can use a URI template for the URL.\nTemplates are URLs that contain variable names that Bitbucket will\nevaluate at runtime whenever the URL is displayed anywhere similar to\nparameter substitution in\n[Bitbucket Connect](https://developer.atlassian.com/bitbucket/concepts/context-parameters.html).\nFor example, one could use `https://foo.com/builds/{repository.full_name}`\nwhich Bitbucket will turn into `https://foo.com/builds/foo/bar` at render time.\nThe context variables available are `repository` and `commit`.\n\nTo associate a commit status to a pull request, the refname field must be set to the source branch\nof the pull request.\n\nExample:\n```\ncurl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/           -X POST -u jdoe -H 'Content-Type: application/json'           -d '{\n    \"key\": \"MY-BUILD\",\n    \"state\": \"SUCCESSFUL\",\n    \"description\": \"42 tests passed\",\n    \"url\": \"https://www.example.org/my-build-result\",\n    \"refname\": \"my-pr-branch\"\n  }'\n```"
+      - Commit Statuses
+      description: 'Creates a new build status against the specified commit.
+
+
+        If the specified key already exists, the existing status object will
+
+        be overwritten.
+
+
+        Example:
+
+
+        ```
+
+        curl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/ -X POST -u jdoe -H ''Content-Type: application/json'' -d ''{
+
+        "key": "MY-BUILD",
+
+        "state": "SUCCESSFUL",
+
+        "description": "42 tests passed",
+
+        "url": "https://www.example.org/my-build-result"
+
+        }''
+
+        ```
+
+
+        When creating a new commit status, you can use a URI template for the URL.
+
+        Templates are URLs that contain variable names that Bitbucket will
+
+        evaluate at runtime whenever the URL is displayed anywhere similar to
+
+        parameter substitution in
+
+        Bitbucket Connect.
+
+        For example, one could use `https://foo.com/builds/{repository.full_name}`
+
+        which Bitbucket will turn into `https://foo.com/builds/foo/bar` at render time.
+
+        The context variables available are `repository` and `commit`.
+
+
+        To associate a commit status to a pull request, the refname field must be set to the source branch
+
+        of the pull request.
+
+
+        Example:
+
+        ```
+
+        curl https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo/commit/e10dae226959c2194f2b07b077c07762d93821cf/statuses/build/ -X POST -u jdoe -H ''Content-Type: application/json'' -d ''{
+
+        "key": "MY-BUILD",
+
+        "state": "SUCCESSFUL",
+
+        "description": "42 tests passed",
+
+        "url": "https://www.example.org/my-build-result",
+
+        "refname": "my-pr-branch"
+
+        }''
+
+        ```'
       summary: Create a build status for a commit
       responses:
         '201':
@@ -179,6 +247,8 @@ paths:
             schema:
               $ref: '#/components/schemas/commitstatus'
         description: The new commit status object.
+      operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuild
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}:
     parameters:
     - name: commit
@@ -215,7 +285,7 @@ paths:
         type: string
     get:
       tags:
-      - Commit statuses
+      - Commit Statuses
       description: Returns the specified build status for a commit.
       summary: Get a build status for a commit
       responses:
@@ -246,9 +316,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuildByKey
+      x-operation-id-source: derived
     put:
       tags:
-      - Commit statuses
+      - Commit Statuses
       description: 'Used to update the current status of a build status object on the
 
         specific commit.
@@ -306,6 +378,8 @@ paths:
             schema:
               $ref: '#/components/schemas/commitstatus'
         description: The updated build status object
+      operationId: putRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuildByKey
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
     parameters:
     - name: pull_request_id
@@ -336,7 +410,7 @@ paths:
         type: string
     get:
       tags:
-      - Commit statuses
+      - Commit Statuses
       description: 'Returns all statuses (e.g. build results) for the given pull
 
         request.'
@@ -392,8 +466,46 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdStatuses
+      x-operation-id-source: derived
 components:
   schemas:
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
     commitstatus:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -474,17 +586,6 @@ components:
         - key
         - state
         additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
     paginated_commitstatuses:
       type: object
       title: Paginated Commit Statuses
@@ -517,31 +618,6 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
   securitySchemes:
     basic:
       type: http

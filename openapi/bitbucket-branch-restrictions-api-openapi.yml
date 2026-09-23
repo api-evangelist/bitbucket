@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Branch restrictions API
+  title: Bitbucket Branch restrictions API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -11,7 +11,7 @@ info:
 servers:
 - url: https://api.bitbucket.org/2.0
 tags:
-- name: Branch restrictions
+- name: Branch Restrictions
   description: 'Repository owners and administrators can set branch management
 
     rules on a repository that control what can be pushed by whom.
@@ -25,9 +25,7 @@ tags:
 
     * Prevent branch deletion
 
-    * Prevent history re-writes (Git only)
-
-    '
+    * Prevent history re-writes (Git only)'
 paths:
   /repositories/{workspace}/{repo_slug}/branch-restrictions:
     parameters:
@@ -53,7 +51,7 @@ paths:
         type: string
     get:
       tags:
-      - Branch restrictions
+      - Branch Restrictions
       description: 'Returns a paginated list of all branch restrictions on the
 
         repository.'
@@ -109,10 +107,92 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugBranchRestrictions
+      x-operation-id-source: derived
     post:
       tags:
-      - Branch restrictions
-      description: "Creates a new branch restriction rule for a repository.\n\n`kind` describes what will be restricted. Allowed values include:\n`push`, `force`, `delete`, `restrict_merges`, `require_tasks_to_be_completed`,\n`require_approvals_to_merge`, `require_default_reviewer_approvals_to_merge`,\n`require_no_changes_requested`, `require_passing_builds_to_merge`, `require_commits_behind`,\n`reset_pullrequest_approvals_on_change`, `smart_reset_pullrequest_approvals`,\n`reset_pullrequest_changes_requested_on_change`, `require_all_dependencies_merged`,\n`enforce_merge_checks`, and `allow_auto_merge_when_builds_pass`.\n\nDifferent kinds of branch restrictions have different requirements:\n\n* `push` and `restrict_merges` require `users` and `groups` to be\n  specified. Empty lists are allowed, in which case permission is\n  denied for everybody.\n\nThe restriction applies to all branches that match. There are\ntwo ways to match a branch. It is configured in `branch_match_kind`:\n\n1. `glob`: Matches a branch against the `pattern`. A `'*'` in\n   `pattern` will expand to match zero or more characters, and every\n   other character matches itself. For example, `'foo*'` will match\n   `'foo'` and `'foobar'`, but not `'barfoo'`. `'*'` will match all\n   branches.\n2. `branching_model`: Matches a branch against the repository's\n   branching model. The `branch_type` controls the type of branch\n   to match. Allowed values include: `production`, `development`,\n   `bugfix`, `release`, `feature` and `hotfix`.\n\nThe combination of `kind` and match must be unique. This means that\ntwo `glob` restrictions in a repository cannot have the same `kind` and\n`pattern`. Additionally, two `branching_model` restrictions in a\nrepository cannot have the same `kind` and `branch_type`.\n\n`users` and `groups` are lists of users and groups that are except from\nthe restriction. They can only be configured in `push` and\n`restrict_merges` restrictions. The `push` restriction stops a user\npushing to matching branches unless that user is in `users` or is a\nmember of a group in `groups`. The `restrict_merges` stops a user\nmerging pull requests to matching branches unless that user is in\n`users` or is a member of a group in `groups`. Adding new users or\ngroups to an existing restriction should be done via `PUT`.\n\nNote that branch restrictions with overlapping matchers is allowed,\nbut the resulting behavior may be surprising."
+      - Branch Restrictions
+      description: 'Creates a new branch restriction rule for a repository.
+
+
+        `kind` describes what will be restricted. Allowed values include:
+
+        `push`, `force`, `delete`, `restrict_merges`, `require_tasks_to_be_completed`,
+
+        `require_approvals_to_merge`, `require_default_reviewer_approvals_to_merge`,
+
+        `require_no_changes_requested`, `require_passing_builds_to_merge`, `require_commits_behind`,
+
+        `reset_pullrequest_approvals_on_change`, `smart_reset_pullrequest_approvals`,
+
+        `reset_pullrequest_changes_requested_on_change`, `require_all_dependencies_merged`,
+
+        `enforce_merge_checks`, and `allow_auto_merge_when_builds_pass`.
+
+
+        Different kinds of branch restrictions have different requirements:
+
+
+        * `push` and `restrict_merges` require `users` and `groups` to be
+
+        specified. Empty lists are allowed, in which case permission is
+
+        denied for everybody.
+
+
+        The restriction applies to all branches that match. There are
+
+        two ways to match a branch. It is configured in `branch_match_kind`:
+
+
+        1. `glob`: Matches a branch against the `pattern`. A `''*''` in
+
+        `pattern` will expand to match zero or more characters, and every
+
+        other character matches itself. For example, `''foo*''` will match
+
+        `''foo''` and `''foobar''`, but not `''barfoo''`. `''*''` will match all
+
+        branches.
+
+        2. `branching_model`: Matches a branch against the repository''s
+
+        branching model. The `branch_type` controls the type of branch
+
+        to match. Allowed values include: `production`, `development`,
+
+        `bugfix`, `release`, `feature` and `hotfix`.
+
+
+        The combination of `kind` and match must be unique. This means that
+
+        two `glob` restrictions in a repository cannot have the same `kind` and
+
+        `pattern`. Additionally, two `branching_model` restrictions in a
+
+        repository cannot have the same `kind` and `branch_type`.
+
+
+        `users` and `groups` are lists of users and groups that are except from
+
+        the restriction. They can only be configured in `push` and
+
+        `restrict_merges` restrictions. The `push` restriction stops a user
+
+        pushing to matching branches unless that user is in `users` or is a
+
+        member of a group in `groups`. The `restrict_merges` stops a user
+
+        merging pull requests to matching branches unless that user is in
+
+        `users` or is a member of a group in `groups`. Adding new users or
+
+        groups to an existing restriction should be done via `PUT`.
+
+
+        Note that branch restrictions with overlapping matchers is allowed,
+
+        but the resulting behavior may be surprising.'
       summary: Create a branch restriction rule
       responses:
         '201':
@@ -159,6 +239,8 @@ paths:
               $ref: '#/components/schemas/branchrestriction'
         description: The new rule
         required: true
+      operationId: postRepositoriesByWorkspaceByRepoSlugBranchRestrictions
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}:
     parameters:
     - name: id
@@ -189,7 +271,7 @@ paths:
         type: string
     delete:
       tags:
-      - Branch restrictions
+      - Branch Restrictions
       description: Deletes an existing branch restriction rule.
       summary: Delete a branch restriction rule
       responses:
@@ -226,9 +308,11 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
+      x-operation-id-source: derived
     get:
       tags:
-      - Branch restrictions
+      - Branch Restrictions
       description: Returns a specific branch restriction rule.
       summary: Get a branch restriction rule
       responses:
@@ -269,16 +353,18 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
+      x-operation-id-source: derived
     put:
       tags:
-      - Branch restrictions
+      - Branch Restrictions
       description: 'Updates an existing branch restriction rule.
 
 
         Fields not present in the request body are ignored.
 
 
-        See [`POST`](/cloud/bitbucket/rest/api-group-branch-restrictions/#api-repositories-workspace-repo-slug-branch-restrictions-post) for details.'
+        See `POST` for details.'
       summary: Update a branch restriction rule
       responses:
         '200':
@@ -325,27 +411,38 @@ paths:
               $ref: '#/components/schemas/branchrestriction'
         description: The new version of the existing rule
         required: true
+      operationId: putRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
+      x-operation-id-source: derived
 components:
   schemas:
-    link:
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+    object:
       type: object
-      title: Link
-      description: A link to a resource related to this object.
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        href:
+        type:
           type: string
-          format: uri
-        name:
-          type: string
-      additionalProperties: false
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
+      required:
+      - type
       additionalProperties: true
+      discriminator:
+        propertyName: type
     paginated_branchrestrictions:
       type: object
       title: Paginated Branch Restrictions
@@ -378,42 +475,6 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
     workspace:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -646,6 +707,42 @@ components:
         - branch_match_kind
         - pattern
         additionalProperties: true
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
+      properties:
+        href:
+          type: string
+          format: uri
+        name:
+          type: string
+      additionalProperties: false
     group:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -698,23 +795,14 @@ components:
 
               '
         additionalProperties: true
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
   securitySchemes:
     basic:
       type: http

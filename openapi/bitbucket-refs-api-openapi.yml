@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Refs API
+  title: Bitbucket Refs API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -12,7 +12,15 @@ servers:
 - url: https://api.bitbucket.org/2.0
 tags:
 - name: Refs
-  description: "The refs resource allows you access branches and tags in a repository.\nBy default, results will be in the order the underlying source control\nsystem returns them and identical to the ordering one sees when running\n\"$ git show-ref\". Note that this follows simple lexical ordering of the\n ref names.\n"
+  description: 'The refs resource allows you access branches and tags in a repository.
+
+    By default, results will be in the order the underlying source control
+
+    system returns them and identical to the ordering one sees when running
+
+    "$ git show-ref". Note that this follows simple lexical ordering of the
+
+    ref names.'
 paths:
   /repositories/{workspace}/{repo_slug}/refs:
     parameters:
@@ -121,6 +129,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugRefs
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/refs/branches:
     parameters:
     - name: repo_slug
@@ -151,7 +161,7 @@ paths:
         Results will be in the order the source control manager returns them.
 
 
-        Branches support [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering)
+        Branches support filtering and sorting
 
         that can be used to search for specific branches. For instance, to find
 
@@ -323,10 +333,56 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugRefsBranches
+      x-operation-id-source: derived
     post:
       tags:
       - Refs
-      description: "Creates a new branch in the specified repository.\n\nThe payload of the POST should consist of a JSON document that\ncontains the name of the tag and the target hash.\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/branches \\\n-s -u seanfarley -X POST -H \"Content-Type: application/json\" \\\n-d '{\n    \"name\" : \"smf/create-feature\",\n    \"target\" : {\n        \"hash\" : \"default\",\n    }\n}'\n```\n\nThis call requires authentication. Private repositories require the\ncaller to authenticate with an account that has appropriate\nauthorization.\n\nThe branch name should not include any prefixes (e.g.\nrefs/heads). This endpoint does support using short hash prefixes for\nthe commit hash, but it may return a 400 response if the provided\nprefix is ambiguous. Using a full commit hash is the preferred\napproach."
+      description: 'Creates a new branch in the specified repository.
+
+
+        The payload of the POST should consist of a JSON document that
+
+        contains the name of the tag and the target hash.
+
+
+        ```
+
+        curl https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/branches \
+
+        -s -u seanfarley -X POST -H "Content-Type: application/json" \
+
+        -d ''{
+
+        "name" : "smf/create-feature",
+
+        "target" : {
+
+        "hash" : "default",
+
+        }
+
+        }''
+
+        ```
+
+
+        This call requires authentication. Private repositories require the
+
+        caller to authenticate with an account that has appropriate
+
+        authorization.
+
+
+        The branch name should not include any prefixes (e.g.
+
+        refs/heads). This endpoint does support using short hash prefixes for
+
+        the commit hash, but it may return a 400 response if the provided
+
+        prefix is ambiguous. Using a full commit hash is the preferred
+
+        approach.'
       summary: Create a branch
       responses:
         '201':
@@ -365,6 +421,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugRefsBranches
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/refs/branches/{name}:
     parameters:
     - name: name
@@ -440,6 +498,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugRefsBranchesByName
+      x-operation-id-source: derived
     get:
       tags:
       - Refs
@@ -575,6 +635,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugRefsBranchesByName
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/refs/tags:
     parameters:
     - name: repo_slug
@@ -680,10 +742,52 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugRefsTags
+      x-operation-id-source: derived
     post:
       tags:
       - Refs
-      description: "Creates a new annotated tag in the specified repository.\n\nThe payload of the POST should consist of a JSON document that\ncontains the name of the tag and the target hash.\n\n```\ncurl https://api.bitbucket.org/2.0/repositories/jdoe/myrepo/refs/tags \\\n-s -u jdoe -X POST -H \"Content-Type: application/json\" \\\n-d '{\n    \"name\" : \"new-tag-name\",\n    \"target\" : {\n        \"hash\" : \"a1b2c3d4e5f6\",\n    }\n}'\n```\n\nThis endpoint does support using short hash prefixes for the commit\nhash, but it may return a 400 response if the provided prefix is\nambiguous. Using a full commit hash is the preferred approach.\n\nA message for the tag object may optionally be provided. If it is\nomitted or the provided message is empty, a default message of\n\"Added tag <tagname> for changeset <shorthash>\" will be used."
+      description: 'Creates a new annotated tag in the specified repository.
+
+
+        The payload of the POST should consist of a JSON document that
+
+        contains the name of the tag and the target hash.
+
+
+        ```
+
+        curl https://api.bitbucket.org/2.0/repositories/jdoe/myrepo/refs/tags \
+
+        -s -u jdoe -X POST -H "Content-Type: application/json" \
+
+        -d ''{
+
+        "name" : "new-tag-name",
+
+        "target" : {
+
+        "hash" : "a1b2c3d4e5f6",
+
+        }
+
+        }''
+
+        ```
+
+
+        This endpoint does support using short hash prefixes for the commit
+
+        hash, but it may return a 400 response if the provided prefix is
+
+        ambiguous. Using a full commit hash is the preferred approach.
+
+
+        A message for the tag object may optionally be provided. If it is
+
+        omitted or the provided message is empty, a default message of
+
+        "Added tag for changeset " will be used.'
       summary: Create a tag
       responses:
         '201':
@@ -718,6 +822,8 @@ paths:
             schema:
               $ref: '#/components/schemas/tag'
         required: true
+      operationId: postRepositoriesByWorkspaceByRepoSlugRefsTags
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/refs/tags/{name}:
     parameters:
     - name: name
@@ -786,10 +892,261 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugRefsTagsByName
+      x-operation-id-source: derived
     get:
       tags:
       - Refs
-      description: "Returns the specified tag.\n\n```\n$ curl -s https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8 -G | jq .\n{\n  \"name\": \"3.8\",\n  \"links\": {\n    \"commits\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commits/3.8\"\n    },\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8\"\n    },\n    \"html\": {\n      \"href\": \"https://bitbucket.org/seanfarley/hg/commits/tag/3.8\"\n    }\n  },\n  \"tagger\": {\n    \"raw\": \"Matt Mackall <mpm@selenic.com>\",\n    \"type\": \"author\",\n    \"user\": {\n      \"username\": \"mpmselenic\",\n      \"nickname\": \"mpmselenic\",\n      \"display_name\": \"Matt Mackall\",\n      \"type\": \"user\",\n      \"uuid\": \"{a4934530-db4c-419c-a478-9ab4964c2ee7}\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/users/mpmselenic\"\n        },\n        \"html\": {\n          \"href\": \"https://bitbucket.org/mpmselenic/\"\n        },\n        \"avatar\": {\n          \"href\": \"https://bitbucket.org/account/mpmselenic/avatar/32/\"\n        }\n      }\n    }\n  },\n  \"date\": \"2016-05-01T18:52:25+00:00\",\n  \"message\": \"Added tag 3.8 for changeset f85de28eae32\",\n  \"type\": \"tag\",\n  \"target\": {\n    \"hash\": \"f85de28eae32e7d3064b1a1321309071bbaaa069\",\n    \"repository\": {\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg\"\n        },\n        \"html\": {\n          \"href\": \"https://bitbucket.org/seanfarley/hg\"\n        },\n        \"avatar\": {\n          \"href\": \"https://bitbucket.org/seanfarley/hg/avatar/32/\"\n        }\n      },\n      \"type\": \"repository\",\n      \"name\": \"hg\",\n      \"full_name\": \"seanfarley/hg\",\n      \"uuid\": \"{c75687fb-e99d-4579-9087-190dbd406d30}\"\n    },\n    \"links\": {\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069\"\n      },\n      \"comments\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/comments\"\n      },\n      \"patch\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/patch/f85de28eae32e7d3064b1a1321309071bbaaa069\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/seanfarley/hg/commits/f85de28eae32e7d3064b1a1321309071bbaaa069\"\n      },\n      \"diff\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/diff/f85de28eae32e7d3064b1a1321309071bbaaa069\"\n      },\n      \"approve\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/approve\"\n      },\n      \"statuses\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/statuses\"\n      }\n    },\n    \"author\": {\n      \"raw\": \"Sean Farley <sean@farley.io>\",\n      \"type\": \"author\",\n      \"user\": {\n        \"username\": \"seanfarley\",\n        \"nickname\": \"seanfarley\",\n        \"display_name\": \"Sean Farley\",\n        \"type\": \"user\",\n        \"uuid\": \"{a295f8a8-5876-4d43-89b5-3ad8c6c3c51d}\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/users/seanfarley\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/seanfarley/\"\n          },\n          \"avatar\": {\n            \"href\": \"https://bitbucket.org/account/seanfarley/avatar/32/\"\n          }\n        }\n      }\n    },\n    \"parents\": [\n      {\n        \"hash\": \"9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2\",\n        \"type\": \"commit\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/seanfarley/hg/commits/9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2\"\n          }\n        }\n      }\n    ],\n    \"date\": \"2016-05-01T04:21:17+00:00\",\n    \"message\": \"debian: alphabetize build deps\",\n    \"type\": \"commit\"\n  }\n}\n```"
+      description: 'Returns the specified tag.
+
+
+        ```
+
+        $ curl -s https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8 -G | jq .
+
+        {
+
+        "name": "3.8",
+
+        "links": {
+
+        "commits": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commits/3.8"
+
+        },
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/refs/tags/3.8"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/seanfarley/hg/commits/tag/3.8"
+
+        }
+
+        },
+
+        "tagger": {
+
+        "raw": "Matt Mackall ",
+
+        "type": "author",
+
+        "user": {
+
+        "username": "mpmselenic",
+
+        "nickname": "mpmselenic",
+
+        "display_name": "Matt Mackall",
+
+        "type": "user",
+
+        "uuid": "{a4934530-db4c-419c-a478-9ab4964c2ee7}",
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/users/mpmselenic"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/mpmselenic/"
+
+        },
+
+        "avatar": {
+
+        "href": "https://bitbucket.org/account/mpmselenic/avatar/32/"
+
+        }
+
+        }
+
+        }
+
+        },
+
+        "date": "2016-05-01T18:52:25+00:00",
+
+        "message": "Added tag 3.8 for changeset f85de28eae32",
+
+        "type": "tag",
+
+        "target": {
+
+        "hash": "f85de28eae32e7d3064b1a1321309071bbaaa069",
+
+        "repository": {
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/seanfarley/hg"
+
+        },
+
+        "avatar": {
+
+        "href": "https://bitbucket.org/seanfarley/hg/avatar/32/"
+
+        }
+
+        },
+
+        "type": "repository",
+
+        "name": "hg",
+
+        "full_name": "seanfarley/hg",
+
+        "uuid": "{c75687fb-e99d-4579-9087-190dbd406d30}"
+
+        },
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069"
+
+        },
+
+        "comments": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/comments"
+
+        },
+
+        "patch": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/patch/f85de28eae32e7d3064b1a1321309071bbaaa069"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/seanfarley/hg/commits/f85de28eae32e7d3064b1a1321309071bbaaa069"
+
+        },
+
+        "diff": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/diff/f85de28eae32e7d3064b1a1321309071bbaaa069"
+
+        },
+
+        "approve": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/approve"
+
+        },
+
+        "statuses": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/f85de28eae32e7d3064b1a1321309071bbaaa069/statuses"
+
+        }
+
+        },
+
+        "author": {
+
+        "raw": "Sean Farley ",
+
+        "type": "author",
+
+        "user": {
+
+        "username": "seanfarley",
+
+        "nickname": "seanfarley",
+
+        "display_name": "Sean Farley",
+
+        "type": "user",
+
+        "uuid": "{a295f8a8-5876-4d43-89b5-3ad8c6c3c51d}",
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/users/seanfarley"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/seanfarley/"
+
+        },
+
+        "avatar": {
+
+        "href": "https://bitbucket.org/account/seanfarley/avatar/32/"
+
+        }
+
+        }
+
+        }
+
+        },
+
+        "parents": [
+
+        {
+
+        "hash": "9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2",
+
+        "type": "commit",
+
+        "links": {
+
+        "self": {
+
+        "href": "https://api.bitbucket.org/2.0/repositories/seanfarley/hg/commit/9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2"
+
+        },
+
+        "html": {
+
+        "href": "https://bitbucket.org/seanfarley/hg/commits/9a98d0e5b07fc60887f9d3d34d9ac7d536f470d2"
+
+        }
+
+        }
+
+        }
+
+        ],
+
+        "date": "2016-05-01T04:21:17+00:00",
+
+        "message": "debian: alphabetize build deps",
+
+        "type": "commit"
+
+        }
+
+        }
+
+        ```'
       summary: Get a tag
       responses:
         '200':
@@ -827,40 +1184,10 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugRefsTagsByName
+      x-operation-id-source: derived
 components:
   schemas:
-    paginated_tags:
-      type: object
-      title: Paginated Tags
-      description: A paginated list of tags.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/tag'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
     ref:
       type: object
       title: Ref
@@ -913,72 +1240,19 @@ components:
       required:
       - type
       additionalProperties: true
-    commit:
+    author:
       allOf:
-      - $ref: '#/components/schemas/base_commit'
+      - $ref: '#/components/schemas/object'
       - type: object
-        title: Commit
-        description: A repository commit object.
+        title: Author
+        description: The author of a change in a repository
         properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
         additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    paginated_refs:
-      type: object
-      title: Paginated Refs
-      description: A paginated list of refs.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/ref'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
     repository:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -1166,23 +1440,42 @@ components:
           mainbranch:
             $ref: '#/components/schemas/branch'
         additionalProperties: true
-    team_links:
+    team:
       allOf:
-      - $ref: '#/components/schemas/account_links'
+      - $ref: '#/components/schemas/account'
       - type: object
-        title: Team Links
-        description: Links related to a Team.
+        title: Team
+        description: A team object.
         properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
+          links:
+            $ref: '#/components/schemas/team_links'
+        additionalProperties: true
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
         additionalProperties: true
     project:
       allOf:
@@ -1253,33 +1546,6 @@ components:
 
               Note that private projects cannot contain public repositories.'
         additionalProperties: true
-    team:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: Team
-        description: A team object.
-        properties:
-          links:
-            $ref: '#/components/schemas/team_links'
-        additionalProperties: true
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
     link:
       type: object
       title: Link
@@ -1333,19 +1599,38 @@ components:
               $ref: '#/components/schemas/base_commit'
             minItems: 0
         additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
+    paginated_tags:
+      type: object
+      title: Paginated Tags
+      description: A paginated list of tags.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/tag'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
     tag:
       allOf:
       - $ref: '#/components/schemas/ref'
@@ -1363,19 +1648,74 @@ components:
           tagger:
             $ref: '#/components/schemas/author'
         additionalProperties: true
-    committer:
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
+    account:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Committer
-        description: The committer of a change in a repository
+        title: Account
+        description: An account object.
         properties:
-          raw:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
             type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
         additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    paginated_refs:
+      type: object
+      title: Paginated Refs
+      description: A paginated list of refs.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ref'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
     error:
       type: object
       title: Error
@@ -1401,6 +1741,24 @@ components:
       required:
       - type
       additionalProperties: true
+    team_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: Team Links
+        description: Links related to a Team.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
     branch:
       allOf:
       - $ref: '#/components/schemas/ref'
@@ -1456,32 +1814,33 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
-    participant:
+    committer:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
+        title: Committer
+        description: The committer of a change in a repository
         properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
         additionalProperties: true
   securitySchemes:
     basic:

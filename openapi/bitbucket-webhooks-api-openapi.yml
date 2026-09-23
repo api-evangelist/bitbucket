@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Webhooks API
+  title: Bitbucket Webhooks API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -16,50 +16,7 @@ tags:
 
     your server (or another external service) whenever certain events occur in
 
-    Bitbucket Cloud.
-
-
-    A webhook consists of:
-
-
-    * A subject -- The resource that generates the events. Currently, this resource
-
-    is the repository, user account, or team where you create the webhook.
-
-    * One or more event -- The default event is a repository push, but you can
-
-    select multiple events that can trigger the webhook.
-
-    * A URL -- The endpoint where you want Bitbucket to send the event payloads
-
-    when a matching event happens.
-
-
-    There are two parts to getting a webhook to work: creating the webhook and
-
-    triggering the webhook. After you create a webhook for an event, every time
-
-    that event occurs, Bitbucket sends a payload request that describes the event
-
-    to the specified URL. Thus, you can think of webhooks as a kind of
-
-    notification system.
-
-
-    Use webhooks to integrate applications with Bitbucket Cloud. The following
-
-    use cases provides examples of when you would want to use webhooks:
-
-
-    * Every time a user pushes commits in a repository, you may want to notify
-
-    your CI server to start a build.
-
-    * Every time a user pushes commits or creates a pull request, you may want to
-
-    display a notification in your application.
-
-    '
+    Bitbucket Cloud.'
 paths:
   /hook_events:
     parameters: []
@@ -102,6 +59,8 @@ paths:
       - oauth2: []
       - basic: []
       - api_key: []
+      operationId: getHookEvents
+      x-operation-id-source: derived
   /hook_events/{subject_type}:
     parameters:
     - name: subject_type
@@ -122,7 +81,7 @@ paths:
 
         **The team and user webhooks are deprecated, and you should use workspace instead.
 
-        For more information, see [the announcement](https://developer.atlassian.com/cloud/bitbucket/bitbucket-api-teams-deprecation/).**
+        For more information, see the announcement.**
 
 
         This is public data that does not require any scopes or authentication.
@@ -170,6 +129,8 @@ paths:
       - oauth2: []
       - basic: []
       - api_key: []
+      operationId: getHookEventsBySubjectType
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/hooks:
     parameters:
     - name: repo_slug
@@ -228,10 +189,71 @@ paths:
         - read:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugHooks
+      x-operation-id-source: derived
     post:
       tags:
       - Webhooks
-      description: "Creates a new webhook on the specified repository.\n\nExample:\n\n```\n$ curl -X POST -u credentials -H 'Content-Type: application/json'\n  https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo-slug/hooks\n  -d '\n    {\n      \"description\": \"Webhook Description\",\n      \"url\": \"https://example.com/\",\n      \"active\": true,\n      \"secret\": \"this is a really bad secret\",\n      \"events\": [\n        \"repo:push\",\n        \"issue:created\",\n        \"issue:updated\"\n      ]\n    }'\n```\n\nWhen the `secret` is provided it will be used as the key to generate a HMAC\ndigest value sent in the `X-Hub-Signature` header at delivery time. Passing\na `null` or empty `secret` or not passing a `secret` will leave the webhook's\nsecret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook's\nsecret is set.\n\nNote that this call requires the webhook scope, as well as any scope\nthat applies to the events that the webhook subscribes to. In the\nexample above that means: `webhook`, `repository` and `issue`.\n\nAlso note that the `url` must properly resolve and cannot be an\ninternal, non-routed address."
+      description: 'Creates a new webhook on the specified repository.
+
+
+        Example:
+
+
+        ```
+
+        $ curl -X POST -u credentials -H ''Content-Type: application/json''
+
+        https://api.bitbucket.org/2.0/repositories/my-workspace/my-repo-slug/hooks
+
+        -d ''
+
+        {
+
+        "description": "Webhook Description",
+
+        "url": "https://example.com/",
+
+        "active": true,
+
+        "secret": "this is a really bad secret",
+
+        "events": [
+
+        "repo:push",
+
+        "issue:created",
+
+        "issue:updated"
+
+        ]
+
+        }''
+
+        ```
+
+
+        When the `secret` is provided it will be used as the key to generate a HMAC
+
+        digest value sent in the `X-Hub-Signature` header at delivery time. Passing
+
+        a `null` or empty `secret` or not passing a `secret` will leave the webhook''s
+
+        secret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook''s
+
+        secret is set.
+
+
+        Note that this call requires the webhook scope, as well as any scope
+
+        that applies to the events that the webhook subscribes to. In the
+
+        example above that means: `webhook`, `repository` and `issue`.
+
+
+        Also note that the `url` must properly resolve and cannot be an
+
+        internal, non-routed address.'
       summary: Create a webhook for a repository
       responses:
         '201':
@@ -270,6 +292,8 @@ paths:
         - write:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugHooks
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/hooks/{uid}:
     parameters:
     - name: repo_slug
@@ -332,6 +356,8 @@ paths:
         - delete:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugHooksByUid
+      x-operation-id-source: derived
     get:
       tags:
       - Webhooks
@@ -364,6 +390,8 @@ paths:
         - read:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugHooksByUid
+      x-operation-id-source: derived
     put:
       tags:
       - Webhooks
@@ -431,6 +459,8 @@ paths:
         - write:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: putRepositoriesByWorkspaceByRepoSlugHooksByUid
+      x-operation-id-source: derived
   /workspaces/{workspace}/hooks:
     parameters:
     - name: workspace
@@ -479,10 +509,77 @@ paths:
         - read:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getWorkspacesByWorkspaceHooks
+      x-operation-id-source: derived
     post:
       tags:
       - Webhooks
-      description: "Creates a new webhook on the specified workspace.\n\nWorkspace webhooks are fired for events from all repositories contained\nby that workspace.\n\nExample:\n\n```\n$ curl -X POST -u credentials -H 'Content-Type: application/json'\n  https://api.bitbucket.org/2.0/workspaces/my-workspace/hooks\n  -d '\n    {\n      \"description\": \"Webhook Description\",\n      \"url\": \"https://example.com/\",\n      \"active\": true,\n      \"secret\": \"this is a really bad secret\",\n      \"events\": [\n        \"repo:push\",\n        \"issue:created\",\n        \"issue:updated\"\n      ]\n    }'\n```\n\nWhen the `secret` is provided it will be used as the key to generate a HMAC\ndigest value sent in the `X-Hub-Signature` header at delivery time. Passing\na `null` or empty `secret` or not passing a `secret` will leave the webhook's\nsecret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook's\nsecret is set.\n\nThis call requires the webhook scope, as well as any scope\nthat applies to the events that the webhook subscribes to. In the\nexample above that means: `webhook`, `repository` and `issue`.\n\nThe `url` must properly resolve and cannot be an internal, non-routed address.\n\nOnly workspace owners can install webhooks on workspaces."
+      description: 'Creates a new webhook on the specified workspace.
+
+
+        Workspace webhooks are fired for events from all repositories contained
+
+        by that workspace.
+
+
+        Example:
+
+
+        ```
+
+        $ curl -X POST -u credentials -H ''Content-Type: application/json''
+
+        https://api.bitbucket.org/2.0/workspaces/my-workspace/hooks
+
+        -d ''
+
+        {
+
+        "description": "Webhook Description",
+
+        "url": "https://example.com/",
+
+        "active": true,
+
+        "secret": "this is a really bad secret",
+
+        "events": [
+
+        "repo:push",
+
+        "issue:created",
+
+        "issue:updated"
+
+        ]
+
+        }''
+
+        ```
+
+
+        When the `secret` is provided it will be used as the key to generate a HMAC
+
+        digest value sent in the `X-Hub-Signature` header at delivery time. Passing
+
+        a `null` or empty `secret` or not passing a `secret` will leave the webhook''s
+
+        secret unset. Bitbucket only generates the `X-Hub-Signature` when the webhook''s
+
+        secret is set.
+
+
+        This call requires the webhook scope, as well as any scope
+
+        that applies to the events that the webhook subscribes to. In the
+
+        example above that means: `webhook`, `repository` and `issue`.
+
+
+        The `url` must properly resolve and cannot be an internal, non-routed address.
+
+
+        Only workspace owners can install webhooks on workspaces.'
       summary: Create a webhook for a workspace
       responses:
         '201':
@@ -521,6 +618,8 @@ paths:
         - write:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: postWorkspacesByWorkspaceHooks
+      x-operation-id-source: derived
   /workspaces/{workspace}/hooks/{uid}:
     parameters:
     - name: uid
@@ -571,6 +670,8 @@ paths:
         - delete:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteWorkspacesByWorkspaceHooksByUid
+      x-operation-id-source: derived
     get:
       tags:
       - Webhooks
@@ -603,6 +704,8 @@ paths:
         - read:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getWorkspacesByWorkspaceHooksByUid
+      x-operation-id-source: derived
     put:
       tags:
       - Webhooks
@@ -670,8 +773,105 @@ paths:
         - write:webhook:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: putWorkspacesByWorkspaceHooksByUid
+      x-operation-id-source: derived
 components:
   schemas:
+    subject_types:
+      type: object
+      title: Subject Types
+      description: The mapping of resource/subject types pointing to their individual event types.
+      properties:
+        repository:
+          type: object
+          properties:
+            events:
+              type: object
+              title: Link
+              description: A link to a resource related to this object.
+              properties:
+                href:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+              additionalProperties: false
+          additionalProperties: false
+        workspace:
+          type: object
+          properties:
+            events:
+              type: object
+              title: Link
+              description: A link to a resource related to this object.
+              properties:
+                href:
+                  type: string
+                  format: uri
+                name:
+                  type: string
+              additionalProperties: false
+          additionalProperties: false
+      additionalProperties: false
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    hook_event:
+      type: object
+      title: Hook Event
+      description: An event, associated with a resource or subject type.
+      properties:
+        event:
+          type: string
+          description: The event identifier.
+          enum:
+          - issue:comment_created
+          - issue:created
+          - issue:updated
+          - pipeline:span_created
+          - project:updated
+          - pullrequest:approved
+          - pullrequest:changes_request_created
+          - pullrequest:changes_request_removed
+          - pullrequest:comment_created
+          - pullrequest:comment_deleted
+          - pullrequest:comment_reopened
+          - pullrequest:comment_resolved
+          - pullrequest:comment_updated
+          - pullrequest:created
+          - pullrequest:fulfilled
+          - pullrequest:push
+          - pullrequest:rejected
+          - pullrequest:unapproved
+          - pullrequest:updated
+          - repo:commit_comment_created
+          - repo:commit_status_created
+          - repo:commit_status_updated
+          - repo:created
+          - repo:deleted
+          - repo:fork
+          - repo:imported
+          - repo:push
+          - repo:transfer
+          - repo:updated
+        category:
+          type: string
+          description: The category this event belongs to.
+        label:
+          type: string
+          description: Summary of the webhook event type.
+        description:
+          type: string
+          description: More detailed description of the webhook event type.
+      additionalProperties: false
     paginated_webhook_subscriptions:
       type: object
       title: Paginated Webhook Subscriptions
@@ -736,78 +936,6 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
-    subject_types:
-      type: object
-      title: Subject Types
-      description: The mapping of resource/subject types pointing to their individual event types.
-      properties:
-        repository:
-          type: object
-          properties:
-            events:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-          additionalProperties: false
-        workspace:
-          type: object
-          properties:
-            events:
-              type: object
-              title: Link
-              description: A link to a resource related to this object.
-              properties:
-                href:
-                  type: string
-                  format: uri
-                name:
-                  type: string
-              additionalProperties: false
-          additionalProperties: false
-      additionalProperties: false
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
     webhook_subscription:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -884,54 +1012,31 @@ components:
             minLength: 0
             maxLength: 128
         additionalProperties: true
-    hook_event:
+    error:
       type: object
-      title: Hook Event
-      description: An event, associated with a resource or subject type.
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        event:
+        type:
           type: string
-          description: The event identifier.
-          enum:
-          - issue:comment_created
-          - issue:created
-          - issue:updated
-          - pipeline:span_created
-          - project:updated
-          - pullrequest:approved
-          - pullrequest:changes_request_created
-          - pullrequest:changes_request_removed
-          - pullrequest:comment_created
-          - pullrequest:comment_deleted
-          - pullrequest:comment_reopened
-          - pullrequest:comment_resolved
-          - pullrequest:comment_updated
-          - pullrequest:created
-          - pullrequest:fulfilled
-          - pullrequest:push
-          - pullrequest:rejected
-          - pullrequest:unapproved
-          - pullrequest:updated
-          - repo:commit_comment_created
-          - repo:commit_status_created
-          - repo:commit_status_updated
-          - repo:created
-          - repo:deleted
-          - repo:fork
-          - repo:imported
-          - repo:push
-          - repo:transfer
-          - repo:updated
-        category:
-          type: string
-          description: The category this event belongs to.
-        label:
-          type: string
-          description: Summary of the webhook event type.
-        description:
-          type: string
-          description: More detailed description of the webhook event type.
-      additionalProperties: false
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
   securitySchemes:
     basic:
       type: http

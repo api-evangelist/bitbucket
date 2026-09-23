@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Snippets API
+  title: Bitbucket Snippets API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -12,7 +12,20 @@ servers:
 - url: https://api.bitbucket.org/2.0
 tags:
 - name: Snippets
-  description: "Snippets allow you share code segments or files with yourself, members of\nyour workspace, or the world.\n\nLike pull requests, repositories and workspaces, the full set of snippets\nis defined by what the current user has access to. This includes all\nsnippets owned by any of the workspaces the user is a member of, or\nsnippets by other users that the current user is either watching or has\n collaborated on (for instance by commenting on it).\n"
+  description: 'Snippets allow you share code segments or files with yourself, members of
+
+    your workspace, or the world.
+
+
+    Like pull requests, repositories and workspaces, the full set of snippets
+
+    is defined by what the current user has access to. This includes all
+
+    snippets owned by any of the workspaces the user is a member of, or
+
+    snippets by other users that the current user is either watching or has
+
+    collaborated on (for instance by commenting on it).'
 paths:
   /snippets:
     parameters: []
@@ -21,7 +34,7 @@ paths:
       - Snippets
       description: '**This endpoint is deprecated. Please use the
 
-        [workspace scoped alternative](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-workspace-get).**
+        workspace scoped alternative.**
 
 
         Returns all snippets. Like pull requests, repositories and workspaces, the
@@ -100,10 +113,12 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippets
+      x-operation-id-source: derived
     post:
       tags:
       - Snippets
-      description: "Creates a new snippet under the authenticated user's account.\n\nSnippets can contain multiple files. Both text and binary files are\nsupported.\n\nThe simplest way to create a new snippet from a local file:\n\n    $ curl -u username:password -X POST https://api.bitbucket.org/2.0/snippets               -F file=@image.png\n\nCreating snippets through curl has a few limitations and so let's look\nat a more complicated scenario.\n\nSnippets are created with a multipart POST. Both `multipart/form-data`\nand `multipart/related` are supported. Both allow the creation of\nsnippets with both meta data (title, etc), as well as multiple text\nand binary files.\n\nThe main difference is that `multipart/related` can use rich encoding\nfor the meta data (currently JSON).\n\n\nmultipart/related (RFC-2387)\n----------------------------\n\nThis is the most advanced and efficient way to create a paste.\n\n    POST /2.0/snippets/evzijst HTTP/1.1\n    Content-Length: 1188\n    Content-Type: multipart/related; start=\"snippet\"; boundary=\"===============1438169132528273974==\"\n    MIME-Version: 1.0\n\n    --===============1438169132528273974==\n    Content-Type: application/json; charset=\"utf-8\"\n    MIME-Version: 1.0\n    Content-ID: snippet\n\n    {\n      \"title\": \"My snippet\",\n      \"is_private\": true,\n      \"scm\": \"git\",\n      \"files\": {\n          \"foo.txt\": {},\n          \"image.png\": {}\n        }\n    }\n\n    --===============1438169132528273974==\n    Content-Type: text/plain; charset=\"us-ascii\"\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: 7bit\n    Content-ID: \"foo.txt\"\n    Content-Disposition: attachment; filename=\"foo.txt\"\n\n    foo\n\n    --===============1438169132528273974==\n    Content-Type: image/png\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: base64\n    Content-ID: \"image.png\"\n    Content-Disposition: attachment; filename=\"image.png\"\n\n    iVBORw0KGgoAAAANSUhEUgAAABQAAAAoCAYAAAD+MdrbAAABD0lEQVR4Ae3VMUoDQRTG8ccUaW2m\n    TKONFxArJYJamCvkCnZTaa+VnQdJSBFl2SMsLFrEWNjZBZs0JgiL/+KrhhVmJRbCLPx4O+/DT2TB\n    cbblJxf+UWFVVRNsEGAtgvJxnLm2H+A5RQ93uIl+3632PZyl/skjfOn9Gvdwmlcw5aPUwimG+NT5\n    EnNN036IaZePUuIcK533NVfal7/5yjWeot2z9ta1cAczHEf7I+3J0ws9Cgx0fsOFpmlfwKcWPuBQ\n    73Oc4FHzBaZ8llq4q1mr5B2mOUCt815qYR8eB1hG2VJ7j35q4RofaH7IG+Xrf/PfJhfmwtfFYoIN\n    AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==\n    --===============1438169132528273974==--\n\nThe request contains multiple parts and is structured as follows.\n\nThe first part is the JSON document that describes the snippet's\nproperties or meta data. It either has to be the first part, or the\nrequest's `Content-Type` header must contain the `start` parameter to\npoint to it.\n\nThe remaining parts are the files of which there can be zero or more.\nEach file part should contain the `Content-ID` MIME header through\nwhich the JSON meta data's `files` element addresses it. The value\nshould be the name of the file.\n\n`Content-Disposition` is an optional MIME header. The header's\noptional `filename` parameter can be used to specify the file name\nthat Bitbucket should use when writing the file to disk. When present,\n`filename` takes precedence over the value of `Content-ID`.\n\nWhen the JSON body omits the `files` element, the remaining parts are\nnot ignored. Instead, each file is added to the new snippet as if its\nname was explicitly linked (the use of the `files` elements is\nmandatory for some operations like deleting or renaming files).\n\n\nmultipart/form-data\n-------------------\n\nThe use of JSON for the snippet's meta data is optional. Meta data can\nalso be supplied as regular form fields in a more conventional\n`multipart/form-data` request:\n\n    $ curl -X POST -u credentials https://api.bitbucket.org/2.0/snippets               -F title=\"My snippet\"               -F file=@foo.txt -F file=@image.png\n\n    POST /2.0/snippets HTTP/1.1\n    Content-Length: 951\n    Content-Type: multipart/form-data; boundary=----------------------------63a4b224c59f\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"file\"; filename=\"foo.txt\"\n    Content-Type: text/plain\n\n    foo\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"file\"; filename=\"image.png\"\n    Content-Type: application/octet-stream\n\n    ?PNG\n\n    IHDR?1??I.....\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"title\"\n\n    My snippet\n    ------------------------------63a4b224c59f--\n\nHere the meta data properties are included as flat, top-level form\nfields. The file attachments use the `file` field name. To attach\nmultiple files, simply repeat the field.\n\nThe advantage of `multipart/form-data` over `multipart/related` is\nthat it can be easier to build clients.\n\nEssentially all properties are optional, `title` and `files` included.\n\n\nSharing and Visibility\n----------------------\n\nSnippets can be either public (visible to anyone on Bitbucket, as well\nas anonymous users), or private (visible only to members of the workspace).\nThis is controlled through the snippet's `is_private` element:\n\n* **is_private=false** -- everyone, including anonymous users can view\n  the snippet\n* **is_private=true** -- only workspace members can view the snippet\n\nTo create the snippet under a workspace, just append the workspace ID\nto the URL. See [`/2.0/snippets/{workspace}`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-workspace-post)."
+      description: Creates a new snippet under the authenticated user's account.
       summary: Create a snippet
       responses:
         '201':
@@ -143,6 +158,8 @@ paths:
               $ref: '#/components/schemas/snippet'
         description: The new snippet object.
         required: true
+      operationId: postSnippets
+      x-operation-id-source: derived
   /snippets/{workspace}:
     parameters:
     - name: workspace
@@ -158,7 +175,7 @@ paths:
     get:
       tags:
       - Snippets
-      description: 'Identical to [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-get), except that the result is further filtered
+      description: 'Identical to `/snippets`, except that the result is further filtered
 
         by the snippet owner and only those that are owned by `{workspace}` are
 
@@ -200,10 +217,12 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspace
+      x-operation-id-source: derived
     post:
       tags:
       - Snippets
-      description: 'Identical to [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-post), except that the new snippet will be
+      description: 'Identical to `/snippets`, except that the new snippet will be
 
         created under the workspace specified in the path parameter
 
@@ -253,6 +272,8 @@ paths:
               $ref: '#/components/schemas/snippet'
         description: The new snippet object.
         required: true
+      operationId: postSnippetsByWorkspace
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}:
     parameters:
     - name: encoded_id
@@ -309,10 +330,12 @@ paths:
         - delete:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteSnippetsByWorkspaceByEncodedId
+      x-operation-id-source: derived
     get:
       tags:
       - Snippets
-      description: "Retrieves a single snippet.\n\nSnippets support multiple content types:\n\n* application/json\n* multipart/related\n* multipart/form-data\n\n\napplication/json\n----------------\n\nThe default content type of the response is `application/json`.\nSince JSON is always `utf-8`, it cannot reliably contain file contents\nfor files that are not text. Therefore, JSON snippet documents only\ncontain the filename and links to the file contents.\n\nThis means that in order to retrieve all parts of a snippet, N+1\nrequests need to be made (where N is the number of files in the\nsnippet).\n\n\nmultipart/related\n-----------------\n\nTo retrieve an entire snippet in a single response, use the\n`Accept: multipart/related` HTTP request header.\n\n    $ curl -H \"Accept: multipart/related\" https://api.bitbucket.org/2.0/snippets/evzijst/1\n\nResponse:\n\n    HTTP/1.1 200 OK\n    Content-Length: 2214\n    Content-Type: multipart/related; start=\"snippet\"; boundary=\"===============1438169132528273974==\"\n    MIME-Version: 1.0\n\n    --===============1438169132528273974==\n    Content-Type: application/json; charset=\"utf-8\"\n    MIME-Version: 1.0\n    Content-ID: snippet\n\n    {\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj\"\n        },\n        \"html\": {\n          \"href\": \"https://bitbucket.org/snippets/evzijst/kypj\"\n        },\n        \"comments\": {\n          \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj/comments\"\n        },\n        \"watchers\": {\n          \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj/watchers\"\n        },\n        \"commits\": {\n          \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj/commits\"\n        }\n      },\n      \"id\": kypj,\n      \"title\": \"My snippet\",\n      \"created_on\": \"2014-12-29T22:22:04.790331+00:00\",\n      \"updated_on\": \"2014-12-29T22:22:04.790331+00:00\",\n      \"is_private\": false,\n      \"files\": {\n        \"foo.txt\": {\n          \"links\": {\n            \"self\": {\n              \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj/files/367ab19/foo.txt\"\n            },\n            \"html\": {\n              \"href\": \"https://bitbucket.org/snippets/evzijst/kypj#file-foo.txt\"\n            }\n          }\n        },\n        \"image.png\": {\n          \"links\": {\n            \"self\": {\n              \"href\": \"https://api.bitbucket.org/2.0/snippets/evzijst/kypj/files/367ab19/image.png\"\n            },\n            \"html\": {\n              \"href\": \"https://bitbucket.org/snippets/evzijst/kypj#file-image.png\"\n            }\n          }\n        }\n      ],\n      \"owner\": {\n        \"username\": \"evzijst\",\n        \"nickname\": \"evzijst\",\n        \"display_name\": \"Erik van Zijst\",\n        \"uuid\": \"{d301aafa-d676-4ee0-88be-962be7417567}\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/users/evzijst\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/evzijst\"\n          },\n          \"avatar\": {\n            \"href\": \"https://bitbucket-staging-assetroot.s3.amazonaws.com/c/photos/2013/Jul/31/erik-avatar-725122544-0_avatar.png\"\n          }\n        }\n      },\n      \"creator\": {\n        \"username\": \"evzijst\",\n        \"nickname\": \"evzijst\",\n        \"display_name\": \"Erik van Zijst\",\n        \"uuid\": \"{d301aafa-d676-4ee0-88be-962be7417567}\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/users/evzijst\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/evzijst\"\n          },\n          \"avatar\": {\n            \"href\": \"https://bitbucket-staging-assetroot.s3.amazonaws.com/c/photos/2013/Jul/31/erik-avatar-725122544-0_avatar.png\"\n          }\n        }\n      }\n    }\n\n    --===============1438169132528273974==\n    Content-Type: text/plain; charset=\"us-ascii\"\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: 7bit\n    Content-ID: \"foo.txt\"\n    Content-Disposition: attachment; filename=\"foo.txt\"\n\n    foo\n\n    --===============1438169132528273974==\n    Content-Type: image/png\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: base64\n    Content-ID: \"image.png\"\n    Content-Disposition: attachment; filename=\"image.png\"\n\n    iVBORw0KGgoAAAANSUhEUgAAABQAAAAoCAYAAAD+MdrbAAABD0lEQVR4Ae3VMUoDQRTG8ccUaW2m\n    TKONFxArJYJamCvkCnZTaa+VnQdJSBFl2SMsLFrEWNjZBZs0JgiL/+KrhhVmJRbCLPx4O+/DT2TB\n    cbblJxf+UWFVVRNsEGAtgvJxnLm2H+A5RQ93uIl+3632PZyl/skjfOn9Gvdwmlcw5aPUwimG+NT5\n    EnNN036IaZePUuIcK533NVfal7/5yjWeot2z9ta1cAczHEf7I+3J0ws9Cgx0fsOFpmlfwKcWPuBQ\n    73Oc4FHzBaZ8llq4q1mr5B2mOUCt815qYR8eB1hG2VJ7j35q4RofaH7IG+Xrf/PfJhfmwtfFYoIN\n    AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==\n    --===============1438169132528273974==--\n\nmultipart/form-data\n-------------------\n\nAs with creating new snippets, `multipart/form-data` can be used as an\nalternative to `multipart/related`. However, the inherently flat\nstructure of form-data means that only basic, root-level properties\ncan be returned, while nested elements like `links` are omitted:\n\n    $ curl -H \"Accept: multipart/form-data\" https://api.bitbucket.org/2.0/snippets/evzijst/kypj\n\nResponse:\n\n    HTTP/1.1 200 OK\n    Content-Length: 951\n    Content-Type: multipart/form-data; boundary=----------------------------63a4b224c59f\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"title\"\n    Content-Type: text/plain; charset=\"utf-8\"\n\n    My snippet\n    ------------------------------63a4b224c59f--\n    Content-Disposition: attachment; name=\"file\"; filename=\"foo.txt\"\n    Content-Type: text/plain\n\n    foo\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: attachment; name=\"file\"; filename=\"image.png\"\n    Content-Transfer-Encoding: base64\n    Content-Type: application/octet-stream\n\n    iVBORw0KGgoAAAANSUhEUgAAABQAAAAoCAYAAAD+MdrbAAABD0lEQVR4Ae3VMUoDQRTG8ccUaW2m\n    TKONFxArJYJamCvkCnZTaa+VnQdJSBFl2SMsLFrEWNjZBZs0JgiL/+KrhhVmJRbCLPx4O+/DT2TB\n    cbblJxf+UWFVVRNsEGAtgvJxnLm2H+A5RQ93uIl+3632PZyl/skjfOn9Gvdwmlcw5aPUwimG+NT5\n    EnNN036IaZePUuIcK533NVfal7/5yjWeot2z9ta1cAczHEf7I+3J0ws9Cgx0fsOFpmlfwKcWPuBQ\n    73Oc4FHzBaZ8llq4q1mr5B2mOUCt815qYR8eB1hG2VJ7j35q4RofaH7IG+Xrf/PfJhfmwtfFYoIN\n    AqxFUD6OMxcvkO+UfKfkOyXfKdsv/AYCHMLVkHAFWgAAAABJRU5ErkJggg==\n    ------------------------------5957323a6b76--"
+      description: Retrieves a single snippet.
       summary: Get a snippet
       responses:
         '200':
@@ -387,10 +410,12 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedId
+      x-operation-id-source: derived
     put:
       tags:
       - Snippets
-      description: "Used to update a snippet. Use this to add and delete files and to\nchange a snippet's title.\n\nTo update a snippet, one can either PUT a full snapshot, or only the\nparts that need to be changed.\n\nThe contract for PUT on this API is that properties missing from the\nrequest remain untouched so that snippets can be efficiently\nmanipulated with differential payloads.\n\nTo delete a property (e.g. the title, or a file), include its name in\nthe request, but omit its value (use `null`).\n\nAs in Git, explicit renaming of files is not supported. Instead, to\nrename a file, delete it and add it again under another name. This can\nbe done atomically in a single request. Rename detection is left to\nthe SCM.\n\nPUT supports three different content types for both request and\nresponse bodies:\n\n* `application/json`\n* `multipart/related`\n* `multipart/form-data`\n\nThe content type used for the request body can be different than that\nused for the response. Content types are specified using standard HTTP\nheaders.\n\nUse the `Content-Type` and `Accept` headers to select the desired\nrequest and response format.\n\n\napplication/json\n----------------\n\nAs with creation and retrieval, the content type determines what\nproperties can be manipulated. `application/json` does not support\nfile contents and is therefore limited to a snippet's meta data.\n\nTo update the title, without changing any of its files:\n\n    $ curl -X POST -H \"Content-Type: application/json\" https://api.bitbucket.org/2.0/snippets/evzijst/kypj             -d '{\"title\": \"Updated title\"}'\n\n\nTo delete the title:\n\n    $ curl -X POST -H \"Content-Type: application/json\" https://api.bitbucket.org/2.0/snippets/evzijst/kypj             -d '{\"title\": null}'\n\nNot all parts of a snippet can be manipulated. The owner and creator\nfor instance are immutable.\n\n\nmultipart/related\n-----------------\n\n`multipart/related` can be used to manipulate all of a snippet's\nproperties. The body is identical to a POST. properties omitted from\nthe request are left unchanged. Since the `start` part contains JSON,\nthe mechanism for manipulating the snippet's meta data is identical\nto `application/json` requests.\n\nTo update one of a snippet's file contents, while also changing its\ntitle:\n\n    PUT /2.0/snippets/evzijst/kypj HTTP/1.1\n    Content-Length: 288\n    Content-Type: multipart/related; start=\"snippet\"; boundary=\"===============1438169132528273974==\"\n    MIME-Version: 1.0\n\n    --===============1438169132528273974==\n    Content-Type: application/json; charset=\"utf-8\"\n    MIME-Version: 1.0\n    Content-ID: snippet\n\n    {\n      \"title\": \"My updated snippet\",\n      \"files\": {\n          \"foo.txt\": {}\n        }\n    }\n\n    --===============1438169132528273974==\n    Content-Type: text/plain; charset=\"us-ascii\"\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: 7bit\n    Content-ID: \"foo.txt\"\n    Content-Disposition: attachment; filename=\"foo.txt\"\n\n    Updated file contents.\n\n    --===============1438169132528273974==--\n\nHere only the parts that are changed are included in the body. The\nother files remain untouched.\n\nNote the use of the `files` list in the JSON part. This list contains\nthe files that are being manipulated. This list should have\ncorresponding multiparts in the request that contain the new contents\nof these files.\n\nIf a filename in the `files` list does not have a corresponding part,\nit will be deleted from the snippet, as shown below:\n\n    PUT /2.0/snippets/evzijst/kypj HTTP/1.1\n    Content-Length: 188\n    Content-Type: multipart/related; start=\"snippet\"; boundary=\"===============1438169132528273974==\"\n    MIME-Version: 1.0\n\n    --===============1438169132528273974==\n    Content-Type: application/json; charset=\"utf-8\"\n    MIME-Version: 1.0\n    Content-ID: snippet\n\n    {\n      \"files\": {\n        \"image.png\": {}\n      }\n    }\n\n    --===============1438169132528273974==--\n\nTo simulate a rename, delete a file and add the same file under\nanother name:\n\n    PUT /2.0/snippets/evzijst/kypj HTTP/1.1\n    Content-Length: 212\n    Content-Type: multipart/related; start=\"snippet\"; boundary=\"===============1438169132528273974==\"\n    MIME-Version: 1.0\n\n    --===============1438169132528273974==\n    Content-Type: application/json; charset=\"utf-8\"\n    MIME-Version: 1.0\n    Content-ID: snippet\n\n    {\n        \"files\": {\n          \"foo.txt\": {},\n          \"bar.txt\": {}\n        }\n    }\n\n    --===============1438169132528273974==\n    Content-Type: text/plain; charset=\"us-ascii\"\n    MIME-Version: 1.0\n    Content-Transfer-Encoding: 7bit\n    Content-ID: \"bar.txt\"\n    Content-Disposition: attachment; filename=\"bar.txt\"\n\n    foo\n\n    --===============1438169132528273974==--\n\n\nmultipart/form-data\n-----------------\n\nAgain, one can also use `multipart/form-data` to manipulate file\ncontents and meta data atomically.\n\n    $ curl -X PUT http://localhost:12345/2.0/snippets/evzijst/kypj             -F title=\"My updated snippet\" -F file=@foo.txt\n\n    PUT /2.0/snippets/evzijst/kypj HTTP/1.1\n    Content-Length: 351\n    Content-Type: multipart/form-data; boundary=----------------------------63a4b224c59f\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"file\"; filename=\"foo.txt\"\n    Content-Type: text/plain\n\n    foo\n\n    ------------------------------63a4b224c59f\n    Content-Disposition: form-data; name=\"title\"\n\n    My updated snippet\n    ------------------------------63a4b224c59f\n\nTo delete a file, omit its contents while including its name in the\n`files` field:\n\n    $ curl -X PUT https://api.bitbucket.org/2.0/snippets/evzijst/kypj -F files=image.png\n\n    PUT /2.0/snippets/evzijst/kypj HTTP/1.1\n    Content-Length: 149\n    Content-Type: multipart/form-data; boundary=----------------------------ef8871065a86\n\n    ------------------------------ef8871065a86\n    Content-Disposition: form-data; name=\"files\"\n\n    image.png\n    ------------------------------ef8871065a86--\n\nThe explicit use of the `files` element in `multipart/related` and\n`multipart/form-data` is only required when deleting files.\nThe default mode of operation is for file parts to be processed,\nregardless of whether or not they are listed in `files`, as a\nconvenience to the client."
+      description: Used to update a snippet.
       summary: Update a snippet
       responses:
         '200':
@@ -454,6 +479,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: putSnippetsByWorkspaceByEncodedId
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/comments:
     parameters:
     - name: encoded_id
@@ -518,6 +545,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdComments
+      x-operation-id-source: derived
     post:
       tags:
       - Snippets
@@ -573,6 +602,8 @@ paths:
               $ref: '#/components/schemas/snippet_comment'
         description: The contents of the new comment.
         required: true
+      operationId: postSnippetsByWorkspaceByEncodedIdComments
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/comments/{comment_id}:
     parameters:
     - name: comment_id
@@ -633,6 +664,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+      x-operation-id-source: derived
     get:
       tags:
       - Snippets
@@ -669,6 +702,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+      x-operation-id-source: derived
     put:
       tags:
       - Snippets
@@ -719,6 +754,8 @@ paths:
               $ref: '#/components/schemas/snippet_comment'
         description: The contents to update the comment to.
         required: true
+      operationId: putSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/commits:
     parameters:
     - name: encoded_id
@@ -773,6 +810,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdCommits
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/commits/{revision}:
     parameters:
     - name: encoded_id
@@ -833,6 +872,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdCommitsByRevision
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/files/{path}:
     parameters:
     - name: encoded_id
@@ -898,6 +939,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdFilesByPath
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/watch:
     parameters:
     - name: encoded_id
@@ -950,6 +993,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteSnippetsByWorkspaceByEncodedIdWatch
+      x-operation-id-source: derived
     get:
       tags:
       - Snippets
@@ -984,6 +1029,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdWatch
+      x-operation-id-source: derived
     put:
       tags:
       - Snippets
@@ -1016,6 +1063,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: putSnippetsByWorkspaceByEncodedIdWatch
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/watchers:
     parameters:
     - name: encoded_id
@@ -1058,6 +1107,8 @@ paths:
       - basic: []
       - api_key: []
       deprecated: true
+      operationId: getSnippetsByWorkspaceByEncodedIdWatchers
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/{node_id}:
     parameters:
     - name: encoded_id
@@ -1138,6 +1189,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: deleteSnippetsByWorkspaceByEncodedIdByNodeId
+      x-operation-id-source: derived
     get:
       tags:
       - Snippets
@@ -1218,6 +1271,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdByNodeId
+      x-operation-id-source: derived
     put:
       tags:
       - Snippets
@@ -1320,6 +1375,8 @@ paths:
         - write:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: putSnippetsByWorkspaceByEncodedIdByNodeId
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/{node_id}/files/{path}:
     parameters:
     - name: encoded_id
@@ -1405,6 +1462,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdByNodeIdFilesByPath
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/{revision}/diff:
     parameters:
     - name: encoded_id
@@ -1432,7 +1491,39 @@ paths:
     get:
       tags:
       - Snippets
-      description: "Returns the diff of the specified commit against its first parent.\n\nNote that this resource is different in functionality from the `patch`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical to how PRs work), while patch returns a\n  response containing separate patches for each commit on the second\n  parent's ancestry, up to the oldest common ancestor (identical to\n  its reachability).\n\nNote that the character encoding of the contents of the diff is\nunspecified as Git does not track this, making it hard for\nBitbucket to reliably determine this."
+      description: 'Returns the diff of the specified commit against its first parent.
+
+
+        Note that this resource is different in functionality from the `patch`
+
+        resource.
+
+
+        The differences between a diff and a patch are:
+
+
+        * patches have a commit header with the username, message, etc
+
+        * diffs support the optional `path=foo/bar.py` query param to filter the
+
+        diff to just that one file diff (not supported for patches)
+
+        * for a merge, the diff will show the diff between the merge commit and
+
+        its first parent (identical to how PRs work), while patch returns a
+
+        response containing separate patches for each commit on the second
+
+        parent''s ancestry, up to the oldest common ancestor (identical to
+
+        its reachability).
+
+
+        Note that the character encoding of the contents of the diff is
+
+        unspecified as Git does not track this, making it hard for
+
+        Bitbucket to reliably determine this.'
       summary: Get snippet changes between versions
       responses:
         '200':
@@ -1467,6 +1558,8 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdByRevisionDiff
+      x-operation-id-source: derived
   /snippets/{workspace}/{encoded_id}/{revision}/patch:
     parameters:
     - name: encoded_id
@@ -1494,7 +1587,41 @@ paths:
     get:
       tags:
       - Snippets
-      description: "Returns the patch of the specified commit against its first\nparent.\n\nNote that this resource is different in functionality from the `diff`\nresource.\n\nThe differences between a diff and a patch are:\n\n* patches have a commit header with the username, message, etc\n* diffs support the optional `path=foo/bar.py` query param to filter the\n  diff to just that one file diff (not supported for patches)\n* for a merge, the diff will show the diff between the merge commit and\n  its first parent (identical to how PRs work), while patch returns a\n  response containing separate patches for each commit on the second\n  parent's ancestry, up to the oldest common ancestor (identical to\n  its reachability).\n\nNote that the character encoding of the contents of the patch is\nunspecified as Git does not track this, making it hard for\nBitbucket to reliably determine this."
+      description: 'Returns the patch of the specified commit against its first
+
+        parent.
+
+
+        Note that this resource is different in functionality from the `diff`
+
+        resource.
+
+
+        The differences between a diff and a patch are:
+
+
+        * patches have a commit header with the username, message, etc
+
+        * diffs support the optional `path=foo/bar.py` query param to filter the
+
+        diff to just that one file diff (not supported for patches)
+
+        * for a merge, the diff will show the diff between the merge commit and
+
+        its first parent (identical to how PRs work), while patch returns a
+
+        response containing separate patches for each commit on the second
+
+        parent''s ancestry, up to the oldest common ancestor (identical to
+
+        its reachability).
+
+
+        Note that the character encoding of the contents of the patch is
+
+        unspecified as Git does not track this, making it hard for
+
+        Bitbucket to reliably determine this.'
       summary: Get snippet patch between versions
       responses:
         '200':
@@ -1523,151 +1650,26 @@ paths:
         - read:snippet:bitbucket
       x-atlassian-auth-types:
       - api-token
+      operationId: getSnippetsByWorkspaceByEncodedIdByRevisionPatch
+      x-operation-id-source: derived
 components:
   schemas:
-    link:
-      type: object
-      title: Link
-      description: A link to a resource related to this object.
-      properties:
-        href:
-          type: string
-          format: uri
-        name:
-          type: string
-      additionalProperties: false
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    base_commit:
+    account:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Base Commit
-        description: The common base type for both repository and snippet commits.
+        title: Account
+        description: An account object.
         properties:
-          hash:
-            type: string
-            pattern: '[0-9a-f]{7,}?'
-          date:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
             type: string
             format: date-time
-          author:
-            $ref: '#/components/schemas/author'
-          committer:
-            $ref: '#/components/schemas/committer'
-          message:
+          display_name:
             type: string
-          summary:
-            type: object
-            properties:
-              raw:
-                type: string
-                description: The text as it was typed by a user.
-              markup:
-                type: string
-                description: The type of markup language the raw content is to be interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-              html:
-                type: string
-                description: The user's content rendered as HTML.
-            additionalProperties: false
-          parents:
-            type: array
-            items:
-              $ref: '#/components/schemas/base_commit'
-            minItems: 0
-        additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
+          uuid:
             type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    paginated_accounts:
-      type: object
-      title: Paginated Accounts
-      description: A paginated list of accounts.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/account'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
-    committer:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Committer
-        description: The committer of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
         additionalProperties: true
     object:
       type: object
@@ -1680,6 +1682,36 @@ components:
       additionalProperties: true
       discriminator:
         propertyName: type
+    snippet:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Snippet
+        description: A snippet object.
+        properties:
+          id:
+            type: integer
+            minimum: 0
+          title:
+            type: string
+          scm:
+            type: string
+            description: The DVCS used to store the snippet.
+            enum:
+            - git
+          created_on:
+            type: string
+            format: date-time
+          updated_on:
+            type: string
+            format: date-time
+          owner:
+            $ref: '#/components/schemas/account'
+          creator:
+            $ref: '#/components/schemas/account'
+          is_private:
+            type: boolean
+        additionalProperties: true
     snippet_commit:
       allOf:
       - $ref: '#/components/schemas/base_commit'
@@ -1727,6 +1759,245 @@ components:
           snippet:
             $ref: '#/components/schemas/snippet'
         additionalProperties: true
+    author:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Author
+        description: The author of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    paginated_snippets:
+      type: object
+      title: Paginated Snippets
+      description: A paginated list of snippets.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    committer:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Committer
+        description: The committer of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    paginated_snippet_comments:
+      type: object
+      title: Paginated Snippet Comments
+      description: A paginated list of snippet comments.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet_comment'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    base_commit:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Base Commit
+        description: The common base type for both repository and snippet commits.
+        properties:
+          hash:
+            type: string
+            pattern: '[0-9a-f]{7,}?'
+          date:
+            type: string
+            format: date-time
+          author:
+            $ref: '#/components/schemas/author'
+          committer:
+            $ref: '#/components/schemas/committer'
+          message:
+            type: string
+          summary:
+            type: object
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          parents:
+            type: array
+            items:
+              $ref: '#/components/schemas/base_commit'
+            minItems: 0
+        additionalProperties: true
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
+      properties:
+        href:
+          type: string
+          format: uri
+        name:
+          type: string
+      additionalProperties: false
+    paginated_snippet_commit:
+      type: object
+      title: Paginated Snippet Commits
+      description: A paginated list of snippet commits.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/snippet_commit'
+          minItems: 0
+      additionalProperties: false
+    paginated_accounts:
+      type: object
+      title: Paginated Accounts
+      description: A paginated list of accounts.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/account'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
     snippet_comment:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -1762,148 +2033,6 @@ components:
             additionalProperties: false
           snippet:
             $ref: '#/components/schemas/snippet'
-        additionalProperties: true
-    paginated_snippet_comments:
-      type: object
-      title: Paginated Snippet Comments
-      description: A paginated list of snippet comments.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/snippet_comment'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    paginated_snippets:
-      type: object
-      title: Paginated Snippets
-      description: A paginated list of snippets.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/snippet'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    paginated_snippet_commit:
-      type: object
-      title: Paginated Snippet Commits
-      description: A paginated list of snippet commits.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/snippet_commit'
-          minItems: 0
-      additionalProperties: false
-    snippet:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Snippet
-        description: A snippet object.
-        properties:
-          id:
-            type: integer
-            minimum: 0
-          title:
-            type: string
-          scm:
-            type: string
-            description: The DVCS used to store the snippet.
-            enum:
-            - git
-          created_on:
-            type: string
-            format: date-time
-          updated_on:
-            type: string
-            format: date-time
-          owner:
-            $ref: '#/components/schemas/account'
-          creator:
-            $ref: '#/components/schemas/account'
-          is_private:
-            type: boolean
-        additionalProperties: true
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
         additionalProperties: true
   securitySchemes:
     basic:

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Source API
+  title: Bitbucket Source API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -12,7 +12,9 @@ servers:
 - url: https://api.bitbucket.org/2.0
 tags:
 - name: Source
-  description: "Browse the source code in the repository and\n                              create new commits by uploading."
+  description: 'Browse the source code in the repository and
+
+    create new commits by uploading.'
 paths:
   /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}:
     parameters:
@@ -51,7 +53,52 @@ paths:
     get:
       tags:
       - Source
-      description: "Returns a paginated list of commits that modified the specified file.\n\nCommits are returned in reverse chronological order. This is roughly\nequivalent to the following commands:\n\n    $ git log --follow --date-order <sha> <path>\n\nBy default, Bitbucket will follow renames and the path name in the\nreturned entries reflects that. This can be turned off using the\n`?renames=false` query parameter.\n\nResults are returned in descending chronological order by default, and\nlike most endpoints you can\n[filter and sort](/cloud/bitbucket/rest/intro/#filtering) the response to\nonly provide exactly the data you want.\n\nThe example response returns commits made before 2011-05-18 against a file\nnamed `README.rst`. The results are filtered to only return the path and\ndate. This request can be made using:\n\n```\n$ curl 'https://api.bitbucket.org/2.0/repositories/evzijst/dogslow/filehistory/master/README.rst'\\\n  '?fields=values.next,values.path,values.commit.date&q=commit.date<=2011-05-18'\n```\n\nIn the response you can see that the file was renamed to `README.rst`\nby the commit made on 2011-05-16, and was previously named `README.txt`."
+      description: 'Returns a paginated list of commits that modified the specified file.
+
+
+        Commits are returned in reverse chronological order. This is roughly
+
+        equivalent to the following commands:
+
+
+        $ git log --follow --date-order
+
+
+        By default, Bitbucket will follow renames and the path name in the
+
+        returned entries reflects that. This can be turned off using the
+
+        `?renames=false` query parameter.
+
+
+        Results are returned in descending chronological order by default, and
+
+        like most endpoints you can
+
+        filter and sort the response to
+
+        only provide exactly the data you want.
+
+
+        The example response returns commits made before 2011-05-18 against a file
+
+        named `README.rst`. The results are filtered to only return the path and
+
+        date. This request can be made using:
+
+
+        ```
+
+        $ curl ''https://api.bitbucket.org/2.0/repositories/evzijst/dogslow/filehistory/master/README.rst''\
+
+        ''?fields=values.next,values.path,values.commit.date&q=commit.date<=2011-05-18''
+
+        ```
+
+
+        In the response you can see that the file was renamed to `README.rst`
+
+        by the commit made on 2011-05-16, and was previously named `README.txt`.'
       summary: List commits that modified a file
       responses:
         '200':
@@ -125,6 +172,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugFilehistoryByCommitByPath
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/src:
     parameters:
     - name: repo_slug
@@ -157,12 +206,12 @@ paths:
 
         This is equivalent to directly hitting
 
-        [/2.0/repositories/{username}/{repo_slug}/src/{commit}/{path}](src/%7Bcommit%7D/%7Bpath%7D)
+        /2.0/repositories/{username}/{repo_slug}/src/{commit}/{path}
 
         without having to know the name or SHA1 of the repo''s main branch.
 
 
-        To create new commits, [POST to this endpoint](#post)'
+        To create new commits, POST to this endpoint'
       summary: Get the root directory of the main branch
       responses:
         '200':
@@ -213,10 +262,14 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugSrc
+      x-operation-id-source: derived
     post:
       tags:
       - Source
-      description: "This endpoint is used to create new commits in the repository by\nuploading files.\n\nTo add a new file to a repository:\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/username/slug/src \\\n  -F /repo/path/to/image.png=@image.png\n```\n\nThis will create a new commit on top of the main branch, inheriting the\ncontents of the main branch, but adding (or overwriting) the\n`image.png` file to the repository in the `/repo/path/to` directory.\n\nTo create a commit that deletes files, use the `files` parameter:\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/username/slug/src \\\n  -F files=/file/to/delete/1.txt \\\n  -F files=/file/to/delete/2.txt\n```\n\nYou can add/modify/delete multiple files in a request. Rename/move a\nfile by deleting the old path and adding the content at the new path.\n\nThis endpoint accepts `multipart/form-data` (as in the examples above),\nas well as `application/x-www-form-urlencoded`.\n\nNote: `multipart/form-data` is currently not supported by Forge apps\nfor this API.\n\n#### multipart/form-data\n\nA `multipart/form-data` post contains a series of \"form fields\" that\nidentify both the individual files that are being uploaded, as well as\nadditional, optional meta data.\n\nFiles are uploaded in file form fields (those that have a\n`Content-Disposition` parameter) whose field names point to the remote\npath in the repository where the file should be stored. Path field\nnames are always interpreted to be absolute from the root of the\nrepository, regardless whether the client uses a leading slash (as the\nabove `curl` example did).\n\nFile contents are treated as bytes and are not decoded as text.\n\nThe commit message, as well as other non-file meta data for the\nrequest, is sent along as normal form field elements. Meta data fields\nshare the same namespace as the file objects. For `multipart/form-data`\nbodies that should not lead to any ambiguity, as the\n`Content-Disposition` header will contain the `filename` parameter to\ndistinguish between a file named \"message\" and the commit message field.\n\n#### application/x-www-form-urlencoded\n\nIt is also possible to upload new files using a simple\n`application/x-www-form-urlencoded` POST. This can be convenient when\nuploading pure text files:\n\n```\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src \\\n  --data-urlencode \"/path/to/me.txt=Lorem ipsum.\" \\\n  --data-urlencode \"message=Initial commit\" \\\n  --data-urlencode \"author=Erik van Zijst <erik.van.zijst@gmail.com>\"\n```\n\nThere could be a field name clash if a client were to upload a file\nnamed \"message\", as this filename clashes with the meta data property\nfor the commit message. To avoid this and to upload files whose names\nclash with the meta data properties, use a leading slash for the files,\ne.g. `curl --data-urlencode \"/message=file contents\"`.\n\nWhen an explicit slash is omitted for a file whose path matches that of\na meta data parameter, then it is interpreted as meta data, not as a\nfile.\n\n#### Executables and links\n\nWhile this API aims to facilitate the most common use cases, it is\npossible to perform some more advanced operations like creating a new\nsymlink in the repository, or creating an executable file.\n\nFiles can be supplied with a `x-attributes` value in the\n`Content-Disposition` header. For example, to upload an executable\nfile, as well as create a symlink from `README.txt` to `README`:\n\n```\n--===============1438169132528273974==\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-ID: \"bin/shutdown.sh\"\nContent-Disposition: attachment; filename=\"shutdown.sh\"; x-attributes:\"executable\"\n\n#!/bin/sh\nhalt\n\n--===============1438169132528273974==\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-ID: \"/README.txt\"\nContent-Disposition: attachment; filename=\"README.txt\"; x-attributes:\"link\"\n\nREADME\n--===============1438169132528273974==--\n```\n\nLinks are files that contain the target path and have\n`x-attributes:\"link\"` set.\n\nWhen overwriting links with files, or vice versa, the newly uploaded\nfile determines both the new contents, as well as the attributes. That\nmeans uploading a file without specifying `x-attributes=\"link\"` will\ncreate a regular file, even if the parent commit hosted a symlink at\nthe same path.\n\nThe same applies to executables. When modifying an existing executable\nfile, the form-data file element must include\n`x-attributes=\"executable\"` in order to preserve the executable status\nof the file.\n\nNote that this API does not support the creation or manipulation of\nsubrepos / submodules."
+      description: 'This endpoint is used to create new commits in the repository by
+
+        uploading files.'
       summary: Create a commit by uploading a file
       responses:
         '201':
@@ -427,6 +480,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugSrc
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/src/{commit}/{path}:
     parameters:
     - name: commit
@@ -464,7 +519,9 @@ paths:
     get:
       tags:
       - Source
-      description: "This endpoints is used to retrieve the contents of a single file,\nor the contents of a directory at a specified revision.\n\n#### Raw file contents\n\nWhen `path` points to a file, this endpoint returns the raw contents.\nThe response's Content-Type is derived from the filename\nextension (not from the contents). The file contents are not processed\nand no character encoding/recoding is performed and as a result no\ncharacter encoding is included as part of the Content-Type.\n\nThe `Content-Disposition` header will be \"attachment\" to prevent\nbrowsers from running executable files.\n\nIf the file is managed by LFS, then a 301 redirect pointing to\nAtlassian's media services platform is returned.\n\nThe response includes an ETag that is based on the contents of the file\nand its attributes. This means that an empty `__init__.py` always\nreturns the same ETag, regardless on the directory it lives in, or the\ncommit it is on.\n\n#### File meta data\n\nWhen the request for a file path includes the query parameter\n`?format=meta`, instead of returning the file's raw contents, Bitbucket\ninstead returns the JSON object describing the file's properties:\n\n```javascript\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef/tests/__init__.py?format=meta\n{\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/__init__.py\"\n    },\n    \"meta\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/__init__.py?format=meta\"\n    }\n  },\n  \"path\": \"tests/__init__.py\",\n  \"commit\": {\n    \"type\": \"commit\",\n    \"hash\": \"eefd5ef5d3df01aed629f650959d6706d54cd335\",\n    \"links\": {\n      \"self\": {\n        \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/commit/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n      },\n      \"html\": {\n        \"href\": \"https://bitbucket.org/atlassian/bbql/commits/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n      }\n    }\n  },\n  \"attributes\": [],\n  \"type\": \"commit_file\",\n  \"size\": 0\n}\n```\n\nFile objects contain an `attributes` element that contains a list of\npossible modifiers. Currently defined values are:\n\n* `link` -- indicates that the entry is a symbolic link. The contents\n    of the file represent the path the link points to.\n* `executable` -- indicates that the file has the executable bit set.\n* `subrepository` -- indicates that the entry points to a submodule or\n    subrepo. The contents of the file is the SHA1 of the repository\n    pointed to.\n* `binary` -- indicates whether Bitbucket thinks the file is binary.\n\nThis endpoint can provide an alternative to how a HEAD request can be\nused to check for the existence of a file, or a file's size without\nincurring the overhead of receiving its full contents.\n\n\n#### Directory listings\n\nWhen `path` points to a directory instead of a file, the response is a\npaginated list of directory and file objects in the same order as the\nunderlying SCM system would return them.\n\nFor example:\n\n```javascript\n$ curl https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef/tests\n{\n  \"pagelen\": 10,\n  \"values\": [\n    {\n      \"path\": \"tests/test_project\",\n      \"type\": \"commit_directory\",\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/test_project/\"\n        },\n        \"meta\": {\n          \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/test_project/?format=meta\"\n        }\n      },\n      \"commit\": {\n        \"type\": \"commit\",\n        \"hash\": \"eefd5ef5d3df01aed629f650959d6706d54cd335\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/commit/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/atlassian/bbql/commits/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n          }\n        }\n      }\n    },\n    {\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/__init__.py\"\n        },\n        \"meta\": {\n          \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/__init__.py?format=meta\"\n        }\n      },\n      \"path\": \"tests/__init__.py\",\n      \"commit\": {\n        \"type\": \"commit\",\n        \"hash\": \"eefd5ef5d3df01aed629f650959d6706d54cd335\",\n        \"links\": {\n          \"self\": {\n            \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/commit/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n          },\n          \"html\": {\n            \"href\": \"https://bitbucket.org/atlassian/bbql/commits/eefd5ef5d3df01aed629f650959d6706d54cd335\"\n          }\n        }\n      },\n      \"attributes\": [],\n      \"type\": \"commit_file\",\n      \"size\": 0\n    }\n  ],\n  \"page\": 1,\n  \"size\": 2\n}\n```\n\nWhen listing the contents of the repo's root directory, the use of a\ntrailing slash at the end of the URL is required.\n\nThe response by default is not recursive, meaning that only the direct contents of\na path are returned. The response does not recurse down into\nsubdirectories. In order to \"walk\" the entire directory tree, the\nclient can either parse each response and follow the `self` links of each\n`commit_directory` object, or can specify a `max_depth` to recurse to.\n\nThe max_depth parameter will do a breadth-first search to return the contents of the subdirectories\nup to the depth specified. Breadth-first search was chosen as it leads to the least amount of\nfile system operations for git. If the `max_depth` parameter is specified to be too\nlarge, the call will time out and return a 555.\n\nEach returned object is either a `commit_file`, or a `commit_directory`,\nboth of which contain a `path` element. This path is the absolute path\nfrom the root of the repository. Each object also contains a `commit`\nobject which embeds the commit the file is on. Note that this is merely\nthe commit that was used in the URL. It is *not* the commit that last\nmodified the file.\n\nDirectory objects have 2 representations. Their `self` link returns the\npaginated contents of the directory. The `meta` link on the other hand\nreturns the actual `directory` object itself, e.g.:\n\n```javascript\n{\n  \"path\": \"tests/test_project\",\n  \"type\": \"commit_directory\",\n  \"links\": {\n    \"self\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/test_project/\"\n    },\n    \"meta\": {\n      \"href\": \"https://api.bitbucket.org/2.0/repositories/atlassian/bbql/src/eefd5ef5d3df01aed629f650959d6706d54cd335/tests/test_project/?format=meta\"\n    }\n  },\n  \"commit\": { ... }\n}\n```\n\n#### Querying, filtering and sorting\n\nLike most API endpoints, this API supports the Bitbucket\nquerying/filtering syntax and so you could filter a directory listing\nto only include entries that match certain criteria. For instance, to\nlist all binary files over 1kb use the expression:\n\n`size > 1024 and attributes = \"binary\"`\n\nwhich after urlencoding yields the query string:\n\n`?q=size%3E1024+and+attributes%3D%22binary%22`\n\nTo change the ordering of the response, use the `?sort` parameter:\n\n`.../src/eefd5ef/?sort=-size`\n\nSee [filtering and sorting](/cloud/bitbucket/rest/intro/#filtering) for more\ndetails."
+      description: 'This endpoints is used to retrieve the contents of a single file,
+
+        or the contents of a directory at a specified revision.'
       summary: Get file or directory contents
       responses:
         '200':
@@ -544,6 +601,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugSrcByCommitByPath
+      x-operation-id-source: derived
 components:
   schemas:
     ref:
@@ -598,81 +657,19 @@ components:
       required:
       - type
       additionalProperties: true
-    commit:
+    author:
       allOf:
-      - $ref: '#/components/schemas/base_commit'
+      - $ref: '#/components/schemas/object'
       - type: object
-        title: Commit
-        description: A repository commit object.
+        title: Author
+        description: The author of a change in a repository
         properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
         additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
-    commit_file:
-      type: object
-      title: Commit File
-      description: A file object, representing a file at a commit in a repository
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-          description: The path in the repository
-        commit:
-          $ref: '#/components/schemas/commit'
-        attributes:
-          type: string
-          enum:
-          - link
-          - executable
-          - subrepository
-          - binary
-          - lfs
-        escaped_path:
-          type: string
-          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
-      required:
-      - type
-      additionalProperties: true
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    treeentry:
-      type: object
-      title: Tree Entry
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-          description: The path in the repository
-        commit:
-          $ref: '#/components/schemas/commit'
-      required:
-      - type
-      additionalProperties: true
     repository:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -860,23 +857,42 @@ components:
           mainbranch:
             $ref: '#/components/schemas/branch'
         additionalProperties: true
-    team_links:
+    team:
       allOf:
-      - $ref: '#/components/schemas/account_links'
+      - $ref: '#/components/schemas/account'
       - type: object
-        title: Team Links
-        description: Links related to a Team.
+        title: Team
+        description: A team object.
         properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
+          links:
+            $ref: '#/components/schemas/team_links'
+        additionalProperties: true
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
         additionalProperties: true
     project:
       allOf:
@@ -947,65 +963,6 @@ components:
 
               Note that private projects cannot contain public repositories.'
         additionalProperties: true
-    team:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: Team
-        description: A team object.
-        properties:
-          links:
-            $ref: '#/components/schemas/team_links'
-        additionalProperties: true
-    paginated_files:
-      type: object
-      title: Paginated Files
-      description: A paginated list of commit_file objects.
-      properties:
-        size:
-          type: integer
-          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
-          minimum: 0
-        page:
-          type: integer
-          description: Page number of the current results. This is an optional element that is not provided in all responses.
-          minimum: 1
-        pagelen:
-          type: integer
-          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
-          minimum: 1
-        next:
-          type: string
-          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        previous:
-          type: string
-          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
-          format: uri
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/commit_file'
-          minItems: 0
-          uniqueItems: true
-      additionalProperties: false
-    account:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Account
-        description: An account object.
-        properties:
-          links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
     link:
       type: object
       title: Link
@@ -1059,57 +1016,32 @@ components:
               $ref: '#/components/schemas/base_commit'
             minItems: 0
         additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    error:
+    commit_file:
       type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      title: Commit File
+      description: A file object, representing a file at a commit in a repository
       properties:
         type:
           type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
+        path:
+          type: string
+          description: The path in the repository
+        commit:
+          $ref: '#/components/schemas/commit'
+        attributes:
+          type: string
+          enum:
+          - link
+          - executable
+          - subrepository
+          - binary
+          - lfs
+        escaped_path:
+          type: string
+          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
       required:
       - type
       additionalProperties: true
-    committer:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Committer
-        description: The committer of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
     paginated_treeentries:
       type: object
       title: Paginated Tree Entry
@@ -1142,6 +1074,132 @@ components:
           minItems: 0
           uniqueItems: true
       additionalProperties: false
+    treeentry:
+      type: object
+      title: Tree Entry
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        path:
+          type: string
+          description: The path in the repository
+        commit:
+          $ref: '#/components/schemas/commit'
+      required:
+      - type
+      additionalProperties: true
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    paginated_files:
+      type: object
+      title: Paginated Files
+      description: A paginated list of commit_file objects.
+      properties:
+        size:
+          type: integer
+          description: Total number of objects in the response. This is an optional element that is not provided in all responses, as it can be expensive to compute.
+          minimum: 0
+        page:
+          type: integer
+          description: Page number of the current results. This is an optional element that is not provided in all responses.
+          minimum: 1
+        pagelen:
+          type: integer
+          description: Current number of objects on the existing page. The default value is 10 with 100 being the maximum allowed value. Individual APIs may enforce different values.
+          minimum: 1
+        next:
+          type: string
+          description: Link to the next page if it exists. The last page of a collection does not have this value. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        previous:
+          type: string
+          description: Link to previous page if it exists. A collections first page does not have this value. This is an optional element that is not provided in all responses. Some result sets strictly support forward navigation and never provide previous links. Clients must anticipate that backwards navigation is not always available. Use this link to navigate the result set and refrain from constructing your own URLs.
+          format: uri
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/commit_file'
+          minItems: 0
+          uniqueItems: true
+      additionalProperties: false
+    team_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: Team Links
+        description: Links related to a Team.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
     branch:
       allOf:
       - $ref: '#/components/schemas/ref'
@@ -1165,32 +1223,33 @@ components:
             type: string
             description: The default merge strategy for pull requests targeting this branch.
         additionalProperties: true
-    participant:
+    committer:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
+        title: Committer
+        description: The committer of a change in a repository
         properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
         additionalProperties: true
   securitySchemes:
     basic:

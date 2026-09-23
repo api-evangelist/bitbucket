@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Branching model API
+  title: Bitbucket Branching model API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -11,7 +11,7 @@ info:
 servers:
 - url: https://api.bitbucket.org/2.0
 tags:
-- name: Branching model
+- name: Branching Model
   description: 'The branching model resource is used to modify the branching model
 
     for a repository.
@@ -23,9 +23,7 @@ tags:
 
     you can ensure that branches are named consistently by configuring
 
-    which branch types to make available.
-
-    '
+    which branch types to make available.'
 paths:
   /repositories/{workspace}/{repo_slug}/branching-model:
     parameters:
@@ -51,8 +49,38 @@ paths:
         type: string
     get:
       tags:
-      - Branching model
-      description: "Return the branching model as applied to the repository. This view is\nread-only. The branching model settings can be changed using the\n[settings](#api-repositories-workspace-repo-slug-branching-model-settings-get) API.\n\nThe returned object:\n\n1. Always has a `development` property. `development.branch` contains\n   the actual repository branch object that is considered to be the\n   `development` branch. `development.branch` will not be present\n   if it does not exist.\n2. Might have a `production` property. `production` will not\n   be present when `production` is disabled.\n   `production.branch` contains the actual branch object that is\n   considered to be the `production` branch. `production.branch` will\n   not be present if it does not exist.\n3. Always has a `branch_types` array which contains all enabled branch\n   types."
+      - Branching Model
+      description: 'Return the branching model as applied to the repository. This view is
+
+        read-only. The branching model settings can be changed using the
+
+        settings API.
+
+
+        The returned object:
+
+
+        1. Always has a `development` property. `development.branch` contains
+
+        the actual repository branch object that is considered to be the
+
+        `development` branch. `development.branch` will not be present
+
+        if it does not exist.
+
+        2. Might have a `production` property. `production` will not
+
+        be present when `production` is disabled.
+
+        `production.branch` contains the actual branch object that is
+
+        considered to be the `production` branch. `production.branch` will
+
+        not be present if it does not exist.
+
+        3. Always has a `branch_types` array which contains all enabled branch
+
+        types.'
       summary: Get the branching model for a repository
       responses:
         '200':
@@ -122,6 +150,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugBranchingModel
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/branching-model/settings:
     parameters:
     - name: repo_slug
@@ -146,8 +176,30 @@ paths:
         type: string
     get:
       tags:
-      - Branching model
-      description: "Return the branching model configuration for a repository. The returned\nobject:\n\n1. Always has a `development` property for the development branch.\n2. Always a `production` property for the production branch. The\n   production branch can be disabled.\n3. The `branch_types` contains all the branch types.\n4. `default_branch_deletion` indicates whether branches will be\n    deleted by default on merge.\n\nThis is the raw configuration for the branching model. A client\nwishing to see the branching model with its actual current branches may\nfind the [active model API](/cloud/bitbucket/rest/api-group-branching-model/#api-repositories-workspace-repo-slug-branching-model-get) more useful."
+      - Branching Model
+      description: 'Return the branching model configuration for a repository. The returned
+
+        object:
+
+
+        1. Always has a `development` property for the development branch.
+
+        2. Always a `production` property for the production branch. The
+
+        production branch can be disabled.
+
+        3. The `branch_types` contains all the branch types.
+
+        4. `default_branch_deletion` indicates whether branches will be
+
+        deleted by default on merge.
+
+
+        This is the raw configuration for the branching model. A client
+
+        wishing to see the branching model with its actual current branches may
+
+        find the active model API more useful.'
       summary: Get the branching model config for a repository
       responses:
         '200':
@@ -215,10 +267,114 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugBranchingModelSettings
+      x-operation-id-source: derived
     put:
       tags:
-      - Branching model
-      description: "Update the branching model configuration for a repository.\n\nThe `development` branch can be configured to a specific branch or to\ntrack the main branch. When set to a specific branch it must\ncurrently exist. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`development` property will leave the development branch unchanged.\n\nIt is possible for the `development` branch to be invalid. This\nhappens when it points at a specific branch that has been\ndeleted. This is indicated in the `is_valid` field for the branch. It is\nnot possible to update the settings for `development` if that\nwould leave the branch in an invalid state. Such a request will be\nrejected.\n\nThe `production` branch can be a specific branch, the main\nbranch or disabled. When set to a specific branch it must currently\nexist. The `enabled` property can be used to enable (`true`) or\ndisable (`false`) it. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`production` property will leave the production branch unchanged.\n\nIt is possible for the `production` branch to be invalid. This\nhappens when it points at a specific branch that has been\ndeleted. This is indicated in the `is_valid` field for the branch. A\nrequest that would leave `production` enabled and invalid will be\nrejected. It is possible to update `production` and make it invalid if\nit would also be left disabled.\n\nThe `branch_types` property contains the branch types to be updated.\nOnly the branch types passed will be updated. All updates will be\nrejected if it would leave the branching model in an invalid state.\nFor branch types this means that:\n\n1. The prefixes for all enabled branch types are valid. For example,\n   it is not possible to use '*' inside a Git prefix.\n2. A prefix of an enabled branch type must not be a prefix of another\n   enabled branch type. This is to ensure that a branch can be easily\n   classified by its prefix unambiguously.\n\nIt is possible to store an invalid prefix if that branch type would be\nleft disabled. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. Each branch type must\nhave a `kind` property to identify it.\n\nThe `default_branch_deletion` property is a string. The value of `true`\nindicates to delete branches by default. The value of `false` indicates\nthat branches will not be deleted by default. A request without a\n`default_branch_deletion` property will leave it unchanged. Other values\nwould be ignored.\n\nThere is currently a side effect when using this API endpoint. If the\nrepository is inheriting branching model settings from its project,\nupdating the branching model for this repository will disable the\nproject setting inheritance.\n\n\nWe have deprecated this side effect and will remove it on 1 August 2022."
+      - Branching Model
+      description: 'Update the branching model configuration for a repository.
+
+
+        The `development` branch can be configured to a specific branch or to
+
+        track the main branch. When set to a specific branch it must
+
+        currently exist. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. A request without a
+
+        `development` property will leave the development branch unchanged.
+
+
+        It is possible for the `development` branch to be invalid. This
+
+        happens when it points at a specific branch that has been
+
+        deleted. This is indicated in the `is_valid` field for the branch. It is
+
+        not possible to update the settings for `development` if that
+
+        would leave the branch in an invalid state. Such a request will be
+
+        rejected.
+
+
+        The `production` branch can be a specific branch, the main
+
+        branch or disabled. When set to a specific branch it must currently
+
+        exist. The `enabled` property can be used to enable (`true`) or
+
+        disable (`false`) it. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. A request without a
+
+        `production` property will leave the production branch unchanged.
+
+
+        It is possible for the `production` branch to be invalid. This
+
+        happens when it points at a specific branch that has been
+
+        deleted. This is indicated in the `is_valid` field for the branch. A
+
+        request that would leave `production` enabled and invalid will be
+
+        rejected. It is possible to update `production` and make it invalid if
+
+        it would also be left disabled.
+
+
+        The `branch_types` property contains the branch types to be updated.
+
+        Only the branch types passed will be updated. All updates will be
+
+        rejected if it would leave the branching model in an invalid state.
+
+        For branch types this means that:
+
+
+        1. The prefixes for all enabled branch types are valid. For example,
+
+        it is not possible to use ''*'' inside a Git prefix.
+
+        2. A prefix of an enabled branch type must not be a prefix of another
+
+        enabled branch type. This is to ensure that a branch can be easily
+
+        classified by its prefix unambiguously.
+
+
+        It is possible to store an invalid prefix if that branch type would be
+
+        left disabled. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. Each branch type must
+
+        have a `kind` property to identify it.
+
+
+        The `default_branch_deletion` property is a string. The value of `true`
+
+        indicates to delete branches by default. The value of `false` indicates
+
+        that branches will not be deleted by default. A request without a
+
+        `default_branch_deletion` property will leave it unchanged. Other values
+
+        would be ignored.
+
+
+        There is currently a side effect when using this API endpoint. If the
+
+        repository is inheriting branching model settings from its project,
+
+        updating the branching model for this repository will disable the
+
+        project setting inheritance.
+
+
+        We have deprecated this side effect and will remove it on 1 August 2022.'
       summary: Update the branching model config for a repository
       responses:
         '200':
@@ -283,6 +439,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: putRepositoriesByWorkspaceByRepoSlugBranchingModelSettings
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/effective-branching-model:
     parameters:
     - name: repo_slug
@@ -307,7 +465,7 @@ paths:
         type: string
     get:
       tags:
-      - Branching model
+      - Branching Model
       description: ''
       summary: Get the effective, or currently applied, branching model for a repository
       responses:
@@ -348,6 +506,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugEffectiveBranchingModel
+      x-operation-id-source: derived
   /workspaces/{workspace}/projects/{project_key}/branching-model:
     parameters:
     - name: project_key
@@ -372,8 +532,36 @@ paths:
         type: string
     get:
       tags:
-      - Branching model
-      description: "Return the branching model set at the project level. This view is\nread-only. The branching model settings can be changed using the\n[settings](#api-workspaces-workspace-projects-project-key-branching-model-settings-get)\nAPI.\n\nThe returned object:\n\n1. Always has a `development` property. `development.name` is\n   the user-specified branch that can be inherited by an individual repository's\n   branching model.\n2. Might have a `production` property. `production` will not\n   be present when `production` is disabled.\n   `production.name` is the user-specified branch that can be\n   inherited by an individual repository's branching model.\n3. Always has a `branch_types` array which contains all enabled branch\n   types."
+      - Branching Model
+      description: 'Return the branching model set at the project level. This view is
+
+        read-only. The branching model settings can be changed using the
+
+        settings
+
+        API.
+
+
+        The returned object:
+
+
+        1. Always has a `development` property. `development.name` is
+
+        the user-specified branch that can be inherited by an individual repository''s
+
+        branching model.
+
+        2. Might have a `production` property. `production` will not
+
+        be present when `production` is disabled.
+
+        `production.name` is the user-specified branch that can be
+
+        inherited by an individual repository''s branching model.
+
+        3. Always has a `branch_types` array which contains all enabled branch
+
+        types.'
       summary: Get the branching model for a project
       responses:
         '200':
@@ -433,6 +621,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getWorkspacesByWorkspaceProjectsByProjectKeyBranchingModel
+      x-operation-id-source: derived
   /workspaces/{workspace}/projects/{project_key}/branching-model/settings:
     parameters:
     - name: project_key
@@ -457,8 +647,32 @@ paths:
         type: string
     get:
       tags:
-      - Branching model
-      description: "Return the branching model configuration for a project. The returned\nobject:\n\n1. Always has a `development` property for the development branch.\n2. Always a `production` property for the production branch. The\n   production branch can be disabled.\n3. The `branch_types` contains all the branch types.\n4. `default_branch_deletion` indicates whether branches will be\n    deleted by default on merge.\n\n\nThis is the raw configuration for the branching model. A client\nwishing to see the branching model with its actual current branches may find the\n[active model API](#api-workspaces-workspace-projects-project-key-branching-model-get)\nmore useful."
+      - Branching Model
+      description: 'Return the branching model configuration for a project. The returned
+
+        object:
+
+
+        1. Always has a `development` property for the development branch.
+
+        2. Always a `production` property for the production branch. The
+
+        production branch can be disabled.
+
+        3. The `branch_types` contains all the branch types.
+
+        4. `default_branch_deletion` indicates whether branches will be
+
+        deleted by default on merge.
+
+
+        This is the raw configuration for the branching model. A client
+
+        wishing to see the branching model with its actual current branches may find the
+
+        active model API
+
+        more useful.'
       summary: Get the branching model config for a project
       responses:
         '200':
@@ -524,10 +738,80 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getWorkspacesByWorkspaceProjectsByProjectKeyBranchingModelSettings
+      x-operation-id-source: derived
     put:
       tags:
-      - Branching model
-      description: "Update the branching model configuration for a project.\n\nThe `development` branch can be configured to a specific branch or to\ntrack the main branch. Any branch name can be supplied, but will only\nsuccessfully be applied to a repository via inheritance if that branch\nexists for that repository. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`development` property will leave the development branch unchanged.\n\nThe `production` branch can be a specific branch, the main\nbranch or disabled. Any branch name can be supplied, but will only\nsuccessfully be applied to a repository via inheritance if that branch\nexists for that repository. The `enabled` property can be used to enable (`true`)\nor disable (`false`) it. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. A request without a\n`production` property will leave the production branch unchanged.\n\nThe `branch_types` property contains the branch types to be updated.\nOnly the branch types passed will be updated. All updates will be\nrejected if it would leave the branching model in an invalid state.\nFor branch types this means that:\n\n1. The prefixes for all enabled branch types are valid. For example,\n   it is not possible to use '*' inside a Git prefix.\n2. A prefix of an enabled branch type must not be a prefix of another\n   enabled branch type. This is to ensure that a branch can be easily\n   classified by its prefix unambiguously.\n\nIt is possible to store an invalid prefix if that branch type would be\nleft disabled. Only the passed properties will be updated. The\nproperties not passed will be left unchanged. Each branch type must\nhave a `kind` property to identify it.\n\nThe `default_branch_deletion` property is a string. The value of `true`\nindicates to delete branches by default. The value of `false` indicates\nthat branches will not be deleted by default. A request without a\n`default_branch_deletion` property will leave it unchanged. Other values\nwould be ignored."
+      - Branching Model
+      description: 'Update the branching model configuration for a project.
+
+
+        The `development` branch can be configured to a specific branch or to
+
+        track the main branch. Any branch name can be supplied, but will only
+
+        successfully be applied to a repository via inheritance if that branch
+
+        exists for that repository. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. A request without a
+
+        `development` property will leave the development branch unchanged.
+
+
+        The `production` branch can be a specific branch, the main
+
+        branch or disabled. Any branch name can be supplied, but will only
+
+        successfully be applied to a repository via inheritance if that branch
+
+        exists for that repository. The `enabled` property can be used to enable (`true`)
+
+        or disable (`false`) it. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. A request without a
+
+        `production` property will leave the production branch unchanged.
+
+
+        The `branch_types` property contains the branch types to be updated.
+
+        Only the branch types passed will be updated. All updates will be
+
+        rejected if it would leave the branching model in an invalid state.
+
+        For branch types this means that:
+
+
+        1. The prefixes for all enabled branch types are valid. For example,
+
+        it is not possible to use ''*'' inside a Git prefix.
+
+        2. A prefix of an enabled branch type must not be a prefix of another
+
+        enabled branch type. This is to ensure that a branch can be easily
+
+        classified by its prefix unambiguously.
+
+
+        It is possible to store an invalid prefix if that branch type would be
+
+        left disabled. Only the passed properties will be updated. The
+
+        properties not passed will be left unchanged. Each branch type must
+
+        have a `kind` property to identify it.
+
+
+        The `default_branch_deletion` property is a string. The value of `true`
+
+        indicates to delete branches by default. The value of `false` indicates
+
+        that branches will not be deleted by default. A request without a
+
+        `default_branch_deletion` property will leave it unchanged. Other values
+
+        would be ignored.'
       summary: Update the branching model config for a project
       responses:
         '200':
@@ -592,6 +876,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: putWorkspacesByWorkspaceProjectsByProjectKeyBranchingModelSettings
+      x-operation-id-source: derived
 components:
   schemas:
     ref:
@@ -646,237 +932,19 @@ components:
       required:
       - type
       additionalProperties: true
-    commit:
-      allOf:
-      - $ref: '#/components/schemas/base_commit'
-      - type: object
-        title: Commit
-        description: A repository commit object.
-        properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
-        additionalProperties: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
-    project_branching_model:
+    author:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Project Branching Model
-        description: A project's branching model
+        title: Author
+        description: The author of a change in a repository
         properties:
-          branch_types:
-            type: array
-            description: The active branch types.
-            items:
-              type: object
-              properties:
-                kind:
-                  type: string
-                  description: The kind of branch.
-                  enum:
-                  - feature
-                  - bugfix
-                  - release
-                  - hotfix
-                prefix:
-                  type: string
-                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The prefix must be a valid prefix for a branch and must always exist. It cannot be blank, empty or `null`.
-              required:
-              - kind
-              - prefix
-              additionalProperties: false
-            minItems: 0
-            maxItems: 4
-            uniqueItems: true
-          development:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the target branch. If inherited by a repository, it will default to the main branch if the specified branch does not exist.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
-            required:
-            - name
-            - use_mainbranch
-            additionalProperties: false
-          production:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name of the target branch. If inherited by a repository, it will default to the main branch if the specified branch does not exist.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
-            required:
-            - name
-            - use_mainbranch
-            additionalProperties: false
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
         additionalProperties: true
-    branching_model_settings:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Branching Model Settings
-        description: A repository's branching model settings
-        properties:
-          links:
-            type: object
-            properties:
-              self:
-                type: object
-                title: Link
-                description: A link to a resource related to this object.
-                properties:
-                  href:
-                    type: string
-                    format: uri
-                  name:
-                    type: string
-                additionalProperties: false
-            additionalProperties: false
-          branch_types:
-            type: array
-            items:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether the branch type is enabled or not. A disabled branch type may contain an invalid `prefix`.
-                kind:
-                  type: string
-                  description: The kind of the branch type.
-                  enum:
-                  - feature
-                  - bugfix
-                  - release
-                  - hotfix
-                prefix:
-                  type: string
-                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The `prefix` of an enabled branch type must be a valid branch prefix.Additionally, it cannot be blank, empty or `null`. The `prefix` for a disabled branch type can be empty or invalid.
-              required:
-              - kind
-              additionalProperties: false
-            minItems: 0
-            maxItems: 4
-            uniqueItems: true
-          development:
-            type: object
-            properties:
-              is_valid:
-                type: boolean
-                description: Indicates if the configured branch is valid, that is, if the configured branch actually exists currently. Is always `true` when `use_mainbranch` is `true` (even if the main branch does not exist). This field is read-only. This field is ignored when updating/creating settings.
-              name:
-                type: string
-                description: The configured branch. It must be `null` when `use_mainbranch` is `true`. Otherwise it must be a non-empty value. It is possible for the configured branch to not exist (e.g. it was deleted after the settings are set). In this case `is_valid` will be `false`. The branch must exist when updating/setting the `name` or an error will occur.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`). When `true` the `name` must be `null` or not provided. When `false` the `name` must contain a non-empty branch name.
-            additionalProperties: false
-          production:
-            type: object
-            properties:
-              is_valid:
-                type: boolean
-                description: Indicates if the configured branch is valid, that is, if the configured branch actually exists currently. Is always `true` when `use_mainbranch` is `true` (even if the main branch does not exist). This field is read-only. This field is ignored when updating/creating settings.
-              name:
-                type: string
-                description: The configured branch. It must be `null` when `use_mainbranch` is `true`. Otherwise it must be a non-empty value. It is possible for the configured branch to not exist (e.g. it was deleted after the settings are set). In this case `is_valid` will be `false`. The branch must exist when updating/setting the `name` or an error will occur.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`). When `true` the `name` must be `null` or not provided. When `false` the `name` must contain a non-empty branch name.
-              enabled:
-                type: boolean
-                description: Indicates if branch is enabled or not.
-            additionalProperties: false
-        additionalProperties: true
-    effective_repo_branching_model:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Effective Repository Branching Model
-        description: A repository's effective branching model
-        properties:
-          branch_types:
-            type: array
-            description: The active branch types.
-            items:
-              type: object
-              properties:
-                kind:
-                  type: string
-                  description: The kind of branch.
-                  enum:
-                  - feature
-                  - bugfix
-                  - release
-                  - hotfix
-                prefix:
-                  type: string
-                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The prefix must be a valid prefix for a branch and must always exist. It cannot be blank, empty or `null`.
-              required:
-              - kind
-              - prefix
-              additionalProperties: false
-            minItems: 0
-            maxItems: 4
-            uniqueItems: true
-          development:
-            type: object
-            properties:
-              branch:
-                $ref: '#/components/schemas/branch'
-              name:
-                type: string
-                description: Name of the target branch. Will be listed here even when the target branch does not exist. Will be `null` if targeting the main branch and the repository is empty.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
-            required:
-            - name
-            - use_mainbranch
-            additionalProperties: false
-          production:
-            type: object
-            properties:
-              branch:
-                $ref: '#/components/schemas/branch'
-              name:
-                type: string
-                description: Name of the target branch. Will be listed here even when the target branch does not exist. Will be `null` if targeting the main branch and the repository is empty.
-              use_mainbranch:
-                type: boolean
-                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
-            required:
-            - name
-            - use_mainbranch
-            additionalProperties: false
-        additionalProperties: true
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
     repository:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -1064,23 +1132,42 @@ components:
           mainbranch:
             $ref: '#/components/schemas/branch'
         additionalProperties: true
-    team_links:
+    team:
       allOf:
-      - $ref: '#/components/schemas/account_links'
+      - $ref: '#/components/schemas/account'
       - type: object
-        title: Team Links
-        description: Links related to a Team.
+        title: Team
+        description: A team object.
         properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
+          links:
+            $ref: '#/components/schemas/team_links'
+        additionalProperties: true
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
         additionalProperties: true
     project:
       allOf:
@@ -1151,15 +1238,116 @@ components:
 
               Note that private projects cannot contain public repositories.'
         additionalProperties: true
-    team:
+    link:
+      type: object
+      title: Link
+      description: A link to a resource related to this object.
+      properties:
+        href:
+          type: string
+          format: uri
+        name:
+          type: string
+      additionalProperties: false
+    base_commit:
       allOf:
-      - $ref: '#/components/schemas/account'
+      - $ref: '#/components/schemas/object'
       - type: object
-        title: Team
-        description: A team object.
+        title: Base Commit
+        description: The common base type for both repository and snippet commits.
         properties:
-          links:
-            $ref: '#/components/schemas/team_links'
+          hash:
+            type: string
+            pattern: '[0-9a-f]{7,}?'
+          date:
+            type: string
+            format: date-time
+          author:
+            $ref: '#/components/schemas/author'
+          committer:
+            $ref: '#/components/schemas/committer'
+          message:
+            type: string
+          summary:
+            type: object
+            properties:
+              raw:
+                type: string
+                description: The text as it was typed by a user.
+              markup:
+                type: string
+                description: The type of markup language the raw content is to be interpreted in.
+                enum:
+                - markdown
+                - creole
+                - plaintext
+              html:
+                type: string
+                description: The user's content rendered as HTML.
+            additionalProperties: false
+          parents:
+            type: array
+            items:
+              $ref: '#/components/schemas/base_commit'
+            minItems: 0
+        additionalProperties: true
+    project_branching_model:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Project Branching Model
+        description: A project's branching model
+        properties:
+          branch_types:
+            type: array
+            description: The active branch types.
+            items:
+              type: object
+              properties:
+                kind:
+                  type: string
+                  description: The kind of branch.
+                  enum:
+                  - feature
+                  - bugfix
+                  - release
+                  - hotfix
+                prefix:
+                  type: string
+                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The prefix must be a valid prefix for a branch and must always exist. It cannot be blank, empty or `null`.
+              required:
+              - kind
+              - prefix
+              additionalProperties: false
+            minItems: 0
+            maxItems: 4
+            uniqueItems: true
+          development:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the target branch. If inherited by a repository, it will default to the main branch if the specified branch does not exist.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
+            required:
+            - name
+            - use_mainbranch
+            additionalProperties: false
+          production:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the target branch. If inherited by a repository, it will default to the main branch if the specified branch does not exist.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
+            required:
+            - name
+            - use_mainbranch
+            additionalProperties: false
         additionalProperties: true
     branching_model:
       allOf:
@@ -1223,6 +1411,91 @@ components:
             - use_mainbranch
             additionalProperties: false
         additionalProperties: true
+    branching_model_settings:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Branching Model Settings
+        description: A repository's branching model settings
+        properties:
+          links:
+            type: object
+            properties:
+              self:
+                type: object
+                title: Link
+                description: A link to a resource related to this object.
+                properties:
+                  href:
+                    type: string
+                    format: uri
+                  name:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+          branch_types:
+            type: array
+            items:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether the branch type is enabled or not. A disabled branch type may contain an invalid `prefix`.
+                kind:
+                  type: string
+                  description: The kind of the branch type.
+                  enum:
+                  - feature
+                  - bugfix
+                  - release
+                  - hotfix
+                prefix:
+                  type: string
+                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The `prefix` of an enabled branch type must be a valid branch prefix.Additionally, it cannot be blank, empty or `null`. The `prefix` for a disabled branch type can be empty or invalid.
+              required:
+              - kind
+              additionalProperties: false
+            minItems: 0
+            maxItems: 4
+            uniqueItems: true
+          development:
+            type: object
+            properties:
+              is_valid:
+                type: boolean
+                description: Indicates if the configured branch is valid, that is, if the configured branch actually exists currently. Is always `true` when `use_mainbranch` is `true` (even if the main branch does not exist). This field is read-only. This field is ignored when updating/creating settings.
+              name:
+                type: string
+                description: The configured branch. It must be `null` when `use_mainbranch` is `true`. Otherwise it must be a non-empty value. It is possible for the configured branch to not exist (e.g. it was deleted after the settings are set). In this case `is_valid` will be `false`. The branch must exist when updating/setting the `name` or an error will occur.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`). When `true` the `name` must be `null` or not provided. When `false` the `name` must contain a non-empty branch name.
+            additionalProperties: false
+          production:
+            type: object
+            properties:
+              is_valid:
+                type: boolean
+                description: Indicates if the configured branch is valid, that is, if the configured branch actually exists currently. Is always `true` when `use_mainbranch` is `true` (even if the main branch does not exist). This field is read-only. This field is ignored when updating/creating settings.
+              name:
+                type: string
+                description: The configured branch. It must be `null` when `use_mainbranch` is `true`. Otherwise it must be a non-empty value. It is possible for the configured branch to not exist (e.g. it was deleted after the settings are set). In this case `is_valid` will be `false`. The branch must exist when updating/setting the `name` or an error will occur.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`). When `true` the `name` must be `null` or not provided. When `false` the `name` must contain a non-empty branch name.
+              enabled:
+                type: boolean
+                description: Indicates if branch is enabled or not.
+            additionalProperties: false
+        additionalProperties: true
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
+      additionalProperties: true
     account:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -1240,72 +1513,17 @@ components:
           uuid:
             type: string
         additionalProperties: true
-    link:
+    object:
       type: object
-      title: Link
-      description: A link to a resource related to this object.
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
       properties:
-        href:
+        type:
           type: string
-          format: uri
-        name:
-          type: string
-      additionalProperties: false
-    base_commit:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Base Commit
-        description: The common base type for both repository and snippet commits.
-        properties:
-          hash:
-            type: string
-            pattern: '[0-9a-f]{7,}?'
-          date:
-            type: string
-            format: date-time
-          author:
-            $ref: '#/components/schemas/author'
-          committer:
-            $ref: '#/components/schemas/committer'
-          message:
-            type: string
-          summary:
-            type: object
-            properties:
-              raw:
-                type: string
-                description: The text as it was typed by a user.
-              markup:
-                type: string
-                description: The type of markup language the raw content is to be interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-              html:
-                type: string
-                description: The user's content rendered as HTML.
-            additionalProperties: false
-          parents:
-            type: array
-            items:
-              $ref: '#/components/schemas/base_commit'
-            minItems: 0
-        additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
     error:
       type: object
       title: Error
@@ -1331,18 +1549,23 @@ components:
       required:
       - type
       additionalProperties: true
-    committer:
+    team_links:
       allOf:
-      - $ref: '#/components/schemas/object'
+      - $ref: '#/components/schemas/account_links'
       - type: object
-        title: Committer
-        description: The committer of a change in a repository
+        title: Team Links
+        description: Links related to a Team.
         properties:
-          raw:
-            type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
         additionalProperties: true
     branch:
       allOf:
@@ -1367,32 +1590,95 @@ components:
             type: string
             description: The default merge strategy for pull requests targeting this branch.
         additionalProperties: true
-    participant:
+    effective_repo_branching_model:
       allOf:
       - $ref: '#/components/schemas/object'
       - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
+        title: Effective Repository Branching Model
+        description: A repository's effective branching model
         properties:
+          branch_types:
+            type: array
+            description: The active branch types.
+            items:
+              type: object
+              properties:
+                kind:
+                  type: string
+                  description: The kind of branch.
+                  enum:
+                  - feature
+                  - bugfix
+                  - release
+                  - hotfix
+                prefix:
+                  type: string
+                  description: The prefix for this branch type. A branch with this prefix will be classified as per `kind`. The prefix must be a valid prefix for a branch and must always exist. It cannot be blank, empty or `null`.
+              required:
+              - kind
+              - prefix
+              additionalProperties: false
+            minItems: 0
+            maxItems: 4
+            uniqueItems: true
+          development:
+            type: object
+            properties:
+              branch:
+                $ref: '#/components/schemas/branch'
+              name:
+                type: string
+                description: Name of the target branch. Will be listed here even when the target branch does not exist. Will be `null` if targeting the main branch and the repository is empty.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
+            required:
+            - name
+            - use_mainbranch
+            additionalProperties: false
+          production:
+            type: object
+            properties:
+              branch:
+                $ref: '#/components/schemas/branch'
+              name:
+                type: string
+                description: Name of the target branch. Will be listed here even when the target branch does not exist. Will be `null` if targeting the main branch and the repository is empty.
+              use_mainbranch:
+                type: boolean
+                description: Indicates if the setting points at an explicit branch (`false`) or tracks the main branch (`true`).
+            required:
+            - name
+            - use_mainbranch
+            additionalProperties: false
+        additionalProperties: true
+    committer:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Committer
+        description: The committer of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
           user:
             $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
         additionalProperties: true
   securitySchemes:
     basic:

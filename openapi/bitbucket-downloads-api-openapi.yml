@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bitbucket Addon Downloads API
+  title: Bitbucket Downloads API
   description: Code against the Bitbucket API to automate simple tasks, embed Bitbucket data into your own site, build mobile or desktop apps, or even add custom UI add-ons into Bitbucket itself using the Connect framework.
   version: '2.0'
   termsOfService: https://www.atlassian.com/legal/customer-agreement
@@ -63,10 +63,27 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDownloads
+      x-operation-id-source: derived
     post:
       tags:
       - Downloads
-      description: "Upload new download artifacts.\n\nTo upload files, perform a `multipart/form-data` POST containing one\nor more `files` fields:\n\n    $ echo Hello World > hello.txt\n    $ curl -s -u evzijst -X POST https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads -F files=@hello.txt\n\nWhen a file is uploaded with the same name as an existing artifact,\nthen the existing file will be replaced."
+      description: 'Upload new download artifacts.
+
+
+        To upload files, perform a `multipart/form-data` POST containing one
+
+        or more `files` fields:
+
+
+        $ echo Hello World > hello.txt
+
+        $ curl -s -u evzijst -X POST https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads -F files=@hello.txt
+
+
+        When a file is uploaded with the same name as an existing artifact,
+
+        then the existing file will be replaced.'
       summary: Upload a download artifact
       responses:
         '201':
@@ -102,6 +119,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: postRepositoriesByWorkspaceByRepoSlugDownloads
+      x-operation-id-source: derived
   /repositories/{workspace}/{repo_slug}/downloads/{filename}:
     parameters:
     - name: filename
@@ -163,10 +182,22 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: deleteRepositoriesByWorkspaceByRepoSlugDownloadsByFilename
+      x-operation-id-source: derived
     get:
       tags:
       - Downloads
-      description: "Return a redirect to the contents of a download artifact.\n\nThis endpoint returns the actual file contents and not the artifact's\nmetadata.\n\n    $ curl -s -L https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads/hello.txt\n    Hello World"
+      description: 'Return a redirect to the contents of a download artifact.
+
+
+        This endpoint returns the actual file contents and not the artifact''s
+
+        metadata.
+
+
+        $ curl -s -L https://api.bitbucket.org/2.0/repositories/evzijst/git-tests/downloads/hello.txt
+
+        Hello World'
       summary: Get a download artifact link
       responses:
         '302':
@@ -196,6 +227,8 @@ paths:
       x-atlassian-auth-types:
       - forge-oauth2
       - api-token
+      operationId: getRepositoriesByWorkspaceByRepoSlugDownloadsByFilename
+      x-operation-id-source: derived
 components:
   schemas:
     error:
