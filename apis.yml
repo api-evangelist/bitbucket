@@ -560,7 +560,7 @@ apis:
   - type: AsyncAPI
     url: asyncapi/bitbucket-cloud-webhooks-asyncapi.yml
 - aid: bitbucket:bitbucket-properties-api
-  name: Bitbucket properties API
+  name: Bitbucket Properties API
   description: The properties API from Bitbucket — 4 operation(s) for properties.
   humanURL: https://developer.atlassian.com/bitbucket/api/2/reference/
   baseURL: https://api.bitbucket.org/2.0
