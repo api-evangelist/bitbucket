@@ -462,69 +462,6 @@ paths:
       - api-token
 components:
   schemas:
-    error:
-      type: object
-      title: Error
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            detail:
-              type: string
-            data:
-              type: object
-              description: Optional structured data that is endpoint-specific.
-              properties: {}
-              additionalProperties: true
-          required:
-          - message
-          additionalProperties: false
-      required:
-      - type
-      additionalProperties: true
-    team_links:
-      allOf:
-      - $ref: '#/components/schemas/account_links'
-      - type: object
-        title: Team Links
-        description: Links related to a Team.
-        properties:
-          self:
-            $ref: '#/components/schemas/link'
-          html:
-            $ref: '#/components/schemas/link'
-          members:
-            $ref: '#/components/schemas/link'
-          projects:
-            $ref: '#/components/schemas/link'
-          repositories:
-            $ref: '#/components/schemas/link'
-        additionalProperties: true
-    search_segment:
-      type: object
-      properties:
-        text:
-          type: string
-          readOnly: true
-        match:
-          type: boolean
-          readOnly: true
-    object:
-      type: object
-      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
-      properties:
-        type:
-          type: string
-      required:
-      - type
-      additionalProperties: true
-      discriminator:
-        propertyName: type
     link:
       type: object
       title: Link
@@ -536,114 +473,96 @@ components:
         name:
           type: string
       additionalProperties: false
-    branch:
+    committer:
       allOf:
-      - $ref: '#/components/schemas/ref'
+      - $ref: '#/components/schemas/object'
       - type: object
-        title: Branch
-        description: A branch object, representing a branch in a repository.
+        title: Committer
+        description: The committer of a change in a repository
         properties:
-          merge_strategies:
-            type: array
-            description: Available merge strategies for pull requests targeting this branch.
-            items:
-              type: string
-              enum:
-              - merge_commit
-              - squash
-              - fast_forward
-              - squash_fast_forward
-              - rebase_fast_forward
-              - rebase_merge
-          default_merge_strategy:
+          raw:
             type: string
-            description: The default merge strategy for pull requests targeting this branch.
+            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
         additionalProperties: true
-    account_links:
-      type: object
-      title: Account Links
-      description: Links related to an Account.
-      properties:
-        avatar:
-          $ref: '#/components/schemas/link'
-      additionalProperties: true
-    commit_file:
-      type: object
-      title: Commit File
-      description: A file object, representing a file at a commit in a repository
-      properties:
-        type:
-          type: string
-        path:
-          type: string
-          description: The path in the repository
-        commit:
-          $ref: '#/components/schemas/commit'
-        attributes:
-          type: string
-          enum:
-          - link
-          - executable
-          - subrepository
-          - binary
-          - lfs
-        escaped_path:
-          type: string
-          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
-      required:
-      - type
-      additionalProperties: true
-    search_content_match:
+    search_segment:
       type: object
       properties:
-        lines:
+        text:
+          type: string
+          readOnly: true
+        match:
+          type: boolean
+          readOnly: true
+    author:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Author
+        description: The author of a change in a repository
+        properties:
+          raw:
+            type: string
+            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
+          user:
+            $ref: '#/components/schemas/account'
+        additionalProperties: true
+    commit:
+      allOf:
+      - $ref: '#/components/schemas/base_commit'
+      - type: object
+        title: Commit
+        description: A repository commit object.
+        properties:
+          repository:
+            $ref: '#/components/schemas/repository'
+          participants:
+            type: array
+            items:
+              $ref: '#/components/schemas/participant'
+            minItems: 0
+        additionalProperties: true
+    search_result_page:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int64
+          readOnly: true
+        page:
+          type: integer
+          format: int32
+          readOnly: true
+        pagelen:
+          type: integer
+          format: int32
+          readOnly: true
+        query_substituted:
+          type: boolean
+          readOnly: true
+        next:
+          type: string
+          format: uri
+          readOnly: true
+        previous:
+          type: string
+          format: uri
+          readOnly: true
+        values:
           type: array
           readOnly: true
           items:
-            $ref: '#/components/schemas/search_line'
-    account:
+            $ref: '#/components/schemas/search_code_search_result'
+    team:
       allOf:
-      - $ref: '#/components/schemas/object'
+      - $ref: '#/components/schemas/account'
       - type: object
-        title: Account
-        description: An account object.
+        title: Team
+        description: A team object.
         properties:
           links:
-            $ref: '#/components/schemas/account_links'
-          created_on:
-            type: string
-            format: date-time
-          display_name:
-            type: string
-          uuid:
-            type: string
-        additionalProperties: true
-    participant:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Participant
-        description: Object describing a user's role on resources like commits or pull requests.
-        properties:
-          user:
-            $ref: '#/components/schemas/account'
-          role:
-            type: string
-            enum:
-            - PARTICIPANT
-            - REVIEWER
-          approved:
-            type: boolean
-          state:
-            type: string
-            enum:
-            - approved
-            - changes_requested
-            - null
-          participated_on:
-            type: string
-            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
-            format: date-time
+            $ref: '#/components/schemas/team_links'
         additionalProperties: true
     base_commit:
       allOf:
@@ -687,18 +606,28 @@ components:
               $ref: '#/components/schemas/base_commit'
             minItems: 0
         additionalProperties: true
-    committer:
+    branch:
       allOf:
-      - $ref: '#/components/schemas/object'
+      - $ref: '#/components/schemas/ref'
       - type: object
-        title: Committer
-        description: The committer of a change in a repository
+        title: Branch
+        description: A branch object, representing a branch in a repository.
         properties:
-          raw:
+          merge_strategies:
+            type: array
+            description: Available merge strategies for pull requests targeting this branch.
+            items:
+              type: string
+              enum:
+              - merge_commit
+              - squash
+              - fast_forward
+              - squash_fast_forward
+              - rebase_fast_forward
+              - rebase_merge
+          default_merge_strategy:
             type: string
-            description: The raw committer value from the repository. This may be the only value available if the committer does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
+            description: The default merge strategy for pull requests targeting this branch.
         additionalProperties: true
     repository:
       allOf:
@@ -887,37 +816,95 @@ components:
           mainbranch:
             $ref: '#/components/schemas/branch'
         additionalProperties: true
-    search_result_page:
+    participant:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Participant
+        description: Object describing a user's role on resources like commits or pull requests.
+        properties:
+          user:
+            $ref: '#/components/schemas/account'
+          role:
+            type: string
+            enum:
+            - PARTICIPANT
+            - REVIEWER
+          approved:
+            type: boolean
+          state:
+            type: string
+            enum:
+            - approved
+            - changes_requested
+            - null
+          participated_on:
+            type: string
+            description: The ISO8601 timestamp of the participant's action. For approvers, this is the time of their approval. For commenters and pull request reviewers who are not approvers, this is the time they last commented, or null if they have not commented.
+            format: date-time
+        additionalProperties: true
+    search_content_match:
       type: object
       properties:
-        size:
-          type: integer
-          format: int64
-          readOnly: true
-        page:
-          type: integer
-          format: int32
-          readOnly: true
-        pagelen:
-          type: integer
-          format: int32
-          readOnly: true
-        query_substituted:
-          type: boolean
-          readOnly: true
-        next:
-          type: string
-          format: uri
-          readOnly: true
-        previous:
-          type: string
-          format: uri
-          readOnly: true
-        values:
+        lines:
           type: array
           readOnly: true
           items:
-            $ref: '#/components/schemas/search_code_search_result'
+            $ref: '#/components/schemas/search_line'
+    account:
+      allOf:
+      - $ref: '#/components/schemas/object'
+      - type: object
+        title: Account
+        description: An account object.
+        properties:
+          links:
+            $ref: '#/components/schemas/account_links'
+          created_on:
+            type: string
+            format: date-time
+          display_name:
+            type: string
+          uuid:
+            type: string
+        additionalProperties: true
+    error:
+      type: object
+      title: Error
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            detail:
+              type: string
+            data:
+              type: object
+              description: Optional structured data that is endpoint-specific.
+              properties: {}
+              additionalProperties: true
+          required:
+          - message
+          additionalProperties: false
+      required:
+      - type
+      additionalProperties: true
+    search_line:
+      type: object
+      properties:
+        line:
+          type: integer
+          format: int32
+          readOnly: true
+        segments:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/search_segment'
     search_code_search_result:
       type: object
       properties:
@@ -941,6 +928,35 @@ components:
         file:
           readOnly: true
           $ref: '#/components/schemas/commit_file'
+    object:
+      type: object
+      description: Base type for most resource objects. It defines the common `type` element that identifies an object's type. It also identifies the element as Swagger's `discriminator`.
+      properties:
+        type:
+          type: string
+      required:
+      - type
+      additionalProperties: true
+      discriminator:
+        propertyName: type
+    team_links:
+      allOf:
+      - $ref: '#/components/schemas/account_links'
+      - type: object
+        title: Team Links
+        description: Links related to a Team.
+        properties:
+          self:
+            $ref: '#/components/schemas/link'
+          html:
+            $ref: '#/components/schemas/link'
+          members:
+            $ref: '#/components/schemas/link'
+          projects:
+            $ref: '#/components/schemas/link'
+          repositories:
+            $ref: '#/components/schemas/link'
+        additionalProperties: true
     project:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -1010,56 +1026,32 @@ components:
 
               Note that private projects cannot contain public repositories.'
         additionalProperties: true
-    commit:
-      allOf:
-      - $ref: '#/components/schemas/base_commit'
-      - type: object
-        title: Commit
-        description: A repository commit object.
-        properties:
-          repository:
-            $ref: '#/components/schemas/repository'
-          participants:
-            type: array
-            items:
-              $ref: '#/components/schemas/participant'
-            minItems: 0
-        additionalProperties: true
-    author:
-      allOf:
-      - $ref: '#/components/schemas/object'
-      - type: object
-        title: Author
-        description: The author of a change in a repository
-        properties:
-          raw:
-            type: string
-            description: The raw author value from the repository. This may be the only value available if the author does not match a user in Bitbucket.
-          user:
-            $ref: '#/components/schemas/account'
-        additionalProperties: true
-    team:
-      allOf:
-      - $ref: '#/components/schemas/account'
-      - type: object
-        title: Team
-        description: A team object.
-        properties:
-          links:
-            $ref: '#/components/schemas/team_links'
-        additionalProperties: true
-    search_line:
+    commit_file:
       type: object
+      title: Commit File
+      description: A file object, representing a file at a commit in a repository
       properties:
-        line:
-          type: integer
-          format: int32
-          readOnly: true
-        segments:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/search_segment'
+        type:
+          type: string
+        path:
+          type: string
+          description: The path in the repository
+        commit:
+          $ref: '#/components/schemas/commit'
+        attributes:
+          type: string
+          enum:
+          - link
+          - executable
+          - subrepository
+          - binary
+          - lfs
+        escaped_path:
+          type: string
+          description: The escaped version of the path as it appears in a diff. If the path does not require escaping this will be the same as path.
+      required:
+      - type
+      additionalProperties: true
     ref:
       type: object
       title: Ref
@@ -1111,6 +1103,14 @@ components:
           $ref: '#/components/schemas/commit'
       required:
       - type
+      additionalProperties: true
+    account_links:
+      type: object
+      title: Account Links
+      description: Links related to an Account.
+      properties:
+        avatar:
+          $ref: '#/components/schemas/link'
       additionalProperties: true
   securitySchemes:
     basic:
