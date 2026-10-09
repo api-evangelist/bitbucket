@@ -1,23 +1,32 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/bitbucket-cloud-rest-api-openapi.json
+source: openapi/bitbucket-addon-api-openapi.yml, openapi/bitbucket-branch-restrictions-api-openapi.yml,
+  openapi/bitbucket-branching-model-api-openapi.yml, openapi/bitbucket-commit-statuses-api-openapi.yml,
+  openapi/bitbucket-commits-api-openapi.yml, openapi/bitbucket-deployments-api-openapi.yml,
+  openapi/bitbucket-downloads-api-openapi.yml, openapi/bitbucket-gpg-api-openapi.yml, openapi/bitbucket-issue-tracker-api-openapi.yml,
+  openapi/bitbucket-pipelines-api-openapi.yml, openapi/bitbucket-projects-api-openapi.yml, openapi/bitbucket-properties-api-openapi.yml,
+  openapi/bitbucket-pull-requests-api-openapi.yml, openapi/bitbucket-refs-api-openapi.yml, openapi/bitbucket-reports-api-openapi.yml,
+  openapi/bitbucket-repositories-api-openapi.yml, openapi/bitbucket-search-api-openapi.yml,
+  openapi/bitbucket-snippets-api-openapi.yml, openapi/bitbucket-source-api-openapi.yml, openapi/bitbucket-ssh-api-openapi.yml,
+  openapi/bitbucket-users-api-openapi.yml, openapi/bitbucket-webhooks-api-openapi.yml, openapi/bitbucket-workspaces-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 335
+  operations: 361
   by_action_class:
-    acting: 156
-    connected: 179
+    acting: 166
+    connected: 195
   by_consequence:
-    write: 141
-    read: 179
+    write: 151
+    read: 195
     physical: 11
     safety-critical: 4
   human_in_the_loop_required: 4
 operations:
 - path: /addon
   method: delete
+  operationId: deleteAddon
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -33,6 +42,7 @@ operations:
     audit: required
 - path: /addon
   method: put
+  operationId: putAddon
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -48,6 +58,7 @@ operations:
     audit: required
 - path: /addon/linkers
   method: get
+  operationId: getAddonLinkers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -57,6 +68,7 @@ operations:
     audit: none
 - path: /addon/linkers/{linker_key}
   method: get
+  operationId: getAddonLinkersByLinkerKey
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -66,6 +78,7 @@ operations:
     audit: none
 - path: /addon/linkers/{linker_key}/values
   method: delete
+  operationId: deleteAddonLinkersByLinkerKeyValues
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -81,6 +94,7 @@ operations:
     audit: required
 - path: /addon/linkers/{linker_key}/values
   method: get
+  operationId: getAddonLinkersByLinkerKeyValues
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -90,6 +104,7 @@ operations:
     audit: none
 - path: /addon/linkers/{linker_key}/values
   method: post
+  operationId: postAddonLinkersByLinkerKeyValues
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -105,6 +120,7 @@ operations:
     audit: required
 - path: /addon/linkers/{linker_key}/values
   method: put
+  operationId: putAddonLinkersByLinkerKeyValues
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -120,6 +136,7 @@ operations:
     audit: required
 - path: /addon/linkers/{linker_key}/values/{value_id}
   method: delete
+  operationId: deleteAddonLinkersByLinkerKeyValuesByValueId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -135,6 +152,7 @@ operations:
     audit: required
 - path: /addon/linkers/{linker_key}/values/{value_id}
   method: get
+  operationId: getAddonLinkersByLinkerKeyValuesByValueId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -142,110 +160,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /hook_events
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /hook_events/{subject_type}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:delete
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /repositories/{workspace}/{repo_slug}/branch-restrictions
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugBranchRestrictions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -257,6 +174,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/branch-restrictions
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugBranchRestrictions
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -274,6 +192,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -291,6 +210,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -302,6 +222,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugBranchRestrictionsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -319,6 +240,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/branching-model
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugBranchingModel
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -330,6 +252,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/branching-model/settings
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugBranchingModelSettings
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -341,6 +264,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/branching-model/settings
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugBranchingModelSettings
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -356,8 +280,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}
+- path: /repositories/{workspace}/{repo_slug}/effective-branching-model
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugEffectiveBranchingModel
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -367,98 +292,63 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/approve
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/approve
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments
+- path: /workspaces/{workspace}/projects/{project_key}/branching-model
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyBranchingModel
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - repository
+    - project:admin
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
+- path: /workspaces/{workspace}/projects/{project_key}/branching-model/settings
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyBranchingModelSettings
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - repository
+    - project:admin
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
+- path: /workspaces/{workspace}/projects/{project_key}/branching-model/settings
   method: put
+  operationId: putWorkspacesByWorkspaceProjectsByProjectKeyBranchingModelSettings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - project:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuild
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -474,51 +364,39 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
-  method: put
-  operationId: updateCommitHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
-  method: delete
-  operationId: deleteCommitHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}
   method: get
-  operationId: getCommitHostedPropertyValue
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuildByKey
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
+    scope:
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugCommitByCommitStatusesBuildByKey
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses
   method: get
-  operationId: getPullrequestsForCommit
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdStatuses
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -528,6 +406,132 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/approve
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugCommitByCommitApprove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/approve
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitApprove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitComments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugCommitByCommitComments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugCommitByCommitCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports
   method: get
   operationId: getReportsForCommit
@@ -666,64 +670,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /repositories/{workspace}/{repo_slug}/commits
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommits
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -735,23 +684,19 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/commits
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugCommits
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - repository
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /repositories/{workspace}/{repo_slug}/commits/{revision}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugCommitsByRevision
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -763,101 +708,67 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/commits/{revision}
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugCommitsByRevision
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
+    action-class: connected
+    consequence: read
+    subject: optional
     scope:
     - repository
-    audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/components
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/diff/{spec}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDiffBySpec
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - issue
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/components/{component_id}
+- path: /repositories/{workspace}/{repo_slug}/diffstat/{spec}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDiffstatBySpec
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - issue
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/default-reviewers
+- path: /repositories/{workspace}/{repo_slug}/merge-base/{revspec}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugMergeBaseByRevspec
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - pullrequest
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
+- path: /repositories/{workspace}/{repo_slug}/patch/{spec}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPatchBySpec
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - pullrequest
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /repositories/{workspace}/{repo_slug}/deploy-keys
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDeployKeys
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -870,6 +781,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/deploy-keys
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugDeployKeys
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -890,6 +802,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugDeployKeysByKeyId
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -910,6 +823,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDeployKeysByKeyId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -922,6 +836,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugDeployKeysByKeyId
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -961,178 +876,6 @@ operations:
     subject: optional
     scope:
     - pipeline
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables
-  method: get
-  operationId: getDeploymentVariables
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pipeline
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables
-  method: post
-  operationId: createDeploymentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    scope:
-    - pipeline:variable
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}
-  method: put
-  operationId: updateDeploymentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    scope:
-    - pipeline:variable
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}
-  method: delete
-  operationId: deleteDeploymentVariable
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    scope:
-    - pipeline:variable
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/diff/{spec}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/diffstat/{spec}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/downloads
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/downloads
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/downloads/{filename}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/downloads/{filename}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/effective-branching-model
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/effective-default-reviewers
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
     token:
       max-ttl: 3600
     audit: none
@@ -1220,30 +963,89 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}
+- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyDeployKeys
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - repository
+    - project
+    - project:admin
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/forks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/forks
+- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys
   method: post
+  operationId: postWorkspacesByWorkspaceProjectsByProjectKeyDeployKeys
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - project
+    - project:admin
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}
+  method: delete
+  operationId: deleteWorkspacesByWorkspaceProjectsByProjectKeyDeployKeysByKeyId
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - project
+    - project:admin
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}
+  method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyDeployKeysByKeyId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - project
+    - project:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/downloads
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDownloads
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/downloads
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugDownloads
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1259,42 +1061,15 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/hooks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - webhook
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/hooks
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - webhook
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+- path: /repositories/{workspace}/{repo_slug}/downloads/{filename}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugDownloadsByFilename
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - webhook
+    - repository:write
     audience: null
     token:
       max-ttl: 900
@@ -1304,25 +1079,39 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+- path: /repositories/{workspace}/{repo_slug}/downloads/{filename}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDownloadsByFilename
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - webhook
+    - repository
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
-  method: put
+- path: /users/{selected_user}/gpg-keys
+  method: get
+  operationId: getUsersBySelectedUserGpgKeys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/gpg-keys
+  method: post
+  operationId: postUsersBySelectedUserGpgKeys
   x-agentic-access:
     action-class: acting
     consequence: write
     subject: required
     scope:
-    - webhook
+    - account:write
     audience: null
     token:
       max-ttl: 900
@@ -1332,8 +1121,63 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /users/{selected_user}/gpg-keys/{fingerprint}
+  method: delete
+  operationId: deleteUsersBySelectedUserGpgKeysByFingerprint
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{selected_user}/gpg-keys/{fingerprint}
+  method: get
+  operationId: getUsersBySelectedUserGpgKeysByFingerprint
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/components
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugComponents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - issue
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/components/{component_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugComponentsByComponentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - issue
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssues
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1345,6 +1189,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssues
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1362,6 +1207,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/export
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssuesExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1380,6 +1226,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesExport{repoName}Issues{taskId}Zip
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1392,6 +1239,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/import
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesImport
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1404,6 +1252,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/import
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssuesImport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1422,6 +1271,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugIssuesByIssueId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1439,6 +1289,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1450,6 +1301,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugIssuesByIssueId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1467,6 +1319,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdAttachments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1478,6 +1331,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdAttachments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1495,6 +1349,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdAttachmentsByPath
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1512,6 +1367,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdAttachmentsByPath
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1523,6 +1379,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdChanges
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1534,6 +1391,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdChanges
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1551,6 +1409,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes/{change_id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdChangesByChangeId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1562,6 +1421,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdComments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1573,6 +1433,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments
   method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdComments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1590,6 +1451,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdCommentsByCommentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1607,6 +1469,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdCommentsByCommentId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1618,6 +1481,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdCommentsByCommentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1635,6 +1499,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdVote
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1653,6 +1518,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdVote
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1665,6 +1531,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdVote
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1683,6 +1550,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch
   method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdWatch
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -1701,6 +1569,7 @@ operations:
     audit: required
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdWatch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1713,6 +1582,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch
   method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugIssuesByIssueIdWatch
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1729,19 +1599,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/merge-base/{revspec}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /repositories/{workspace}/{repo_slug}/milestones
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugMilestones
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1753,6 +1613,7 @@ operations:
     audit: none
 - path: /repositories/{workspace}/{repo_slug}/milestones/{milestone_id}
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugMilestonesByMilestoneId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1762,151 +1623,96 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/override-settings
+- path: /repositories/{workspace}/{repo_slug}/versions
   method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugVersions
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
-    - repository:admin
+    - issue
     token:
       max-ttl: 3600
     audit: none
-- path: /repositories/{workspace}/{repo_slug}/override-settings
-  method: put
+- path: /repositories/{workspace}/{repo_slug}/versions/{version_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugVersionsByVersionId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - issue
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables
+  method: get
+  operationId: getDeploymentVariables
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pipeline
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables
+  method: post
+  operationId: createDeploymentVariable
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: physical
     subject: required
     scope:
-    - repository:admin
+    - pipeline:variable
     audience: null
     token:
-      max-ttl: 120
+      max-ttl: 300
       exchange: true
       purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/patch/{spec}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
+- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}
   method: put
+  operationId: updateDeploymentVariable
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     scope:
-    - repository:admin
+    - pipeline:variable
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/users
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
+- path: /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}
   method: delete
+  operationId: deleteDeploymentVariable
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     scope:
-    - repository:admin
+    - pipeline:variable
     audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:admin
-    audience: null
-    token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -2537,1052 +2343,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
-  method: put
-  operationId: updateRepositoryHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
-  method: delete
-  operationId: deleteRepositoryHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
-  method: get
-  operationId: getRepositoryHostedPropertyValue
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/activity
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge/task-status/{task_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - pullrequest
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - pullrequest
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
-  method: put
-  operationId: updatePullRequestHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
-  method: delete
-  operationId: deletePullRequestHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
-  method: get
-  operationId: getPullRequestHostedPropertyValue
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/refs
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/refs/branches
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/refs/branches
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/refs/branches/{name}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/refs/branches/{name}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/refs/tags
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/refs/tags
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/refs/tags/{name}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/refs/tags/{name}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/src
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/src
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - repository:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /repositories/{workspace}/{repo_slug}/src/{commit}/{path}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/versions
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - issue
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/versions/{version_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - issue
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /repositories/{workspace}/{repo_slug}/watchers
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/comments
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/comments
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/commits
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/commits/{revision}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/files/{path}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/watch
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/watch
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/watch
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/watchers
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/{node_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/{node_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/{node_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - snippet:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /snippets/{workspace}/{encoded_id}/{node_id}/files/{path}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/{revision}/diff
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /snippets/{workspace}/{encoded_id}/{revision}/patch
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - snippet
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /teams/{username}/pipelines_config/variables
   method: get
   operationId: getPipelineVariablesForTeam
@@ -3661,173 +2421,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /teams/{username}/search/code
-  method: get
-  operationId: searchTeam
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/emails
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - email
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/emails/{email}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - email
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/permissions/repositories
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/permissions/workspaces
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/workspaces
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/workspaces/{workspace}/permission
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user/workspaces/{workspace}/permissions/repositories
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/gpg-keys
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/gpg-keys
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - account:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/gpg-keys/{fingerprint}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - account:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/gpg-keys/{fingerprint}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /users/{selected_user}/pipelines_config/variables
   method: get
   operationId: getPipelineVariablesForUser
@@ -3906,281 +2499,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /users/{selected_user}/properties/{app_key}/{property_name}
-  method: put
-  operationId: updateUserHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/properties/{app_key}/{property_name}
-  method: delete
-  operationId: deleteUserHostedPropertyValue
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/properties/{app_key}/{property_name}
-  method: get
-  operationId: retrieveUserHostedPropertyValue
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/search/code
-  method: get
-  operationId: searchAccount
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/ssh-keys
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/ssh-keys
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - account:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/ssh-keys/{key_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - account:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /users/{selected_user}/ssh-keys/{key_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /users/{selected_user}/ssh-keys/{key_id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - account:write
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/hooks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - webhook
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/hooks
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - webhook
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/hooks/{uid}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - webhook
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/hooks/{uid}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - webhook
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/hooks/{uid}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - webhook
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/members
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/members/{member}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/permissions
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/permissions/repositories
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - account
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/permissions/repositories/{repo_slug}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - repository
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /workspaces/{workspace}/pipelines-config/identity/oidc/.well-known/openid-configuration
   method: get
   operationId: getOIDCConfiguration
@@ -4358,18 +2676,8 @@ operations:
       - high-value
     audit: required
 - path: /workspaces/{workspace}/projects
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - project
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/projects
   method: post
+  operationId: postWorkspacesByWorkspaceProjects
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4387,6 +2695,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}
   method: delete
+  operationId: deleteWorkspacesByWorkspaceProjectsByProjectKey
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4404,6 +2713,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKey
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4415,45 +2725,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}
   method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    scope:
-    - project:admin
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/projects/{project_key}/branching-model
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - project:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/projects/{project_key}/branching-model/settings
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - project:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/projects/{project_key}/branching-model/settings
-  method: put
+  operationId: putWorkspacesByWorkspaceProjectsByProjectKey
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4471,6 +2743,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}/default-reviewers
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyDefaultReviewers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4482,6 +2755,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/default-reviewers/{selected_user}
   method: delete
+  operationId: deleteWorkspacesByWorkspaceProjectsByProjectKeyDefaultReviewersBySelectedUser
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4499,6 +2773,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}/default-reviewers/{selected_user}
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyDefaultReviewersBySelectedUser
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4510,6 +2785,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/default-reviewers/{selected_user}
   method: put
+  operationId: putWorkspacesByWorkspaceProjectsByProjectKeyDefaultReviewersBySelectedUser
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4525,72 +2801,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - project
-    - project:admin
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    scope:
-    - project
-    - project:admin
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    scope:
-    - project
-    - project:admin
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    scope:
-    - project
-    - project:admin
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/groups
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigGroups
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4602,6 +2815,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/groups/{group_slug}
   method: delete
+  operationId: deleteWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigGroupsByGroupSlug
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4619,6 +2833,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/groups/{group_slug}
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigGroupsByGroupSlug
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4630,6 +2845,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/groups/{group_slug}
   method: put
+  operationId: putWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigGroupsByGroupSlug
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4647,6 +2863,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/users
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigUsers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4658,6 +2875,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/users/{selected_user_id}
   method: delete
+  operationId: deleteWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigUsersBySelectedUserId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4675,6 +2893,7 @@ operations:
     audit: required
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/users/{selected_user_id}
   method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigUsersBySelectedUserId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -4686,6 +2905,7 @@ operations:
     audit: none
 - path: /workspaces/{workspace}/projects/{project_key}/permissions-config/users/{selected_user_id}
   method: put
+  operationId: putWorkspacesByWorkspaceProjectsByProjectKeyPermissionsConfigUsersBySelectedUserId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -4701,14 +2921,1457 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspaces/{workspace}/pullrequests/{selected_user}
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
+  method: put
+  operationId: updateCommitHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
+  method: delete
+  operationId: deleteCommitHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}
   method: get
+  operationId: getCommitHostedPropertyValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
+  method: put
+  operationId: updateRepositoryHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
+  method: delete
+  operationId: deleteRepositoryHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}
+  method: get
+  operationId: getRepositoryHostedPropertyValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
+  method: put
+  operationId: updatePullRequestHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
+  method: delete
+  operationId: deletePullRequestHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}
+  method: get
+  operationId: getPullRequestHostedPropertyValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/properties/{app_key}/{property_name}
+  method: put
+  operationId: updateUserHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{selected_user}/properties/{app_key}/{property_name}
+  method: delete
+  operationId: deleteUserHostedPropertyValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{selected_user}/properties/{app_key}/{property_name}
+  method: get
+  operationId: retrieveUserHostedPropertyValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests
+  method: get
+  operationId: getPullrequestsForCommit
   x-agentic-access:
     action-class: connected
     consequence: read
     subject: optional
     scope:
     - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/default-reviewers
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDefaultReviewers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugDefaultReviewersByTargetUsername
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/effective-default-reviewers
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugEffectiveDefaultReviewers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequests
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequests
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/activity
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsActivity
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdActivity
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdApprove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdApprove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdComments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdComments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentIdResolve
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommentsByCommentIdResolve
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdCommits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDecline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDiff
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdDiffstat
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdMerge
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge/task-status/{task_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdMergeTaskStatusByTaskId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdPatch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdRequestChanges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdRequestChanges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugPullrequestsByPullRequestIdTasksByTaskId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - pullrequest
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/pullrequests/{selected_user}
+  method: get
+  operationId: getWorkspacesByWorkspacePullrequestsBySelectedUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/refs
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugRefs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/refs/branches
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugRefsBranches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/refs/branches
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugRefsBranches
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/refs/branches/{name}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugRefsBranchesByName
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/refs/branches/{name}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugRefsBranchesByName
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/refs/tags
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugRefsTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/refs/tags
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugRefsTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/refs/tags/{name}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugRefsTagsByName
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/refs/tags/{name}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugRefsTagsByName
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports
+  method: get
+  operationId: getReportsForCommit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}
+  method: put
+  operationId: createOrUpdateReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}
+  method: get
+  operationId: getReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}
+  method: delete
+  operationId: deleteReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations
+  method: get
+  operationId: getAnnotationsForReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations
+  method: post
+  operationId: bulkCreateOrUpdateAnnotations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations/{annotationId}
+  method: get
+  operationId: getAnnotation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations/{annotationId}
+  method: put
+  operationId: createOrUpdateAnnotation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations/{annotationId}
+  method: delete
+  operationId: deleteAnnotation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories
+  method: get
+  operationId: getRepositories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}
+  method: get
+  operationId: getRepositoriesByWorkspace
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlug
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:delete
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlug
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlug
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlug
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugFilehistoryByCommitByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/forks
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugForks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/forks
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugForks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/hooks
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugHooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/hooks
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugHooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/override-settings
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugOverrideSettings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/override-settings
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugOverrideSettings
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPermissionsConfigGroups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPermissionsConfigGroupsByGroupSlug
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPermissionsConfigGroupsByGroupSlug
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugPermissionsConfigGroupsByGroupSlug
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/users
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPermissionsConfigUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugPermissionsConfigUsersBySelectedUserId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugPermissionsConfigUsersBySelectedUserId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository:admin
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugPermissionsConfigUsersBySelectedUserId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:admin
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/src
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugSrc
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/src
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugSrc
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/src/{commit}/{path}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugSrcByCommitByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/watchers
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugWatchers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/permissions/repositories
+  method: get
+  operationId: getUserPermissionsRepositories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/workspaces/{workspace}/permissions/repositories
+  method: get
+  operationId: getUserWorkspacesByWorkspacePermissionsRepositories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /teams/{username}/search/code
+  method: get
+  operationId: searchTeam
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/search/code
+  method: get
+  operationId: searchAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
     token:
       max-ttl: 3600
     audit: none
@@ -4721,6 +4384,958 @@ operations:
     subject: optional
     scope:
     - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets
+  method: get
+  operationId: getSnippets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets
+  method: post
+  operationId: postSnippets
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}
+  method: get
+  operationId: getSnippetsByWorkspace
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}
+  method: post
+  operationId: postSnippetsByWorkspace
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}
+  method: delete
+  operationId: deleteSnippetsByWorkspaceByEncodedId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}
+  method: put
+  operationId: putSnippetsByWorkspaceByEncodedId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/comments
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdComments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/comments
+  method: post
+  operationId: postSnippetsByWorkspaceByEncodedIdComments
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
+  method: delete
+  operationId: deleteSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/comments/{comment_id}
+  method: put
+  operationId: putSnippetsByWorkspaceByEncodedIdCommentsByCommentId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/commits
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdCommits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/commits/{revision}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdCommitsByRevision
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/files/{path}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdFilesByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/watch
+  method: delete
+  operationId: deleteSnippetsByWorkspaceByEncodedIdWatch
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/watch
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdWatch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/watch
+  method: put
+  operationId: putSnippetsByWorkspaceByEncodedIdWatch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/watchers
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdWatchers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/{node_id}
+  method: delete
+  operationId: deleteSnippetsByWorkspaceByEncodedIdByNodeId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/{node_id}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdByNodeId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/{node_id}
+  method: put
+  operationId: putSnippetsByWorkspaceByEncodedIdByNodeId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - snippet:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /snippets/{workspace}/{encoded_id}/{node_id}/files/{path}
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdByNodeIdFilesByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/{revision}/diff
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdByRevisionDiff
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /snippets/{workspace}/{encoded_id}/{revision}/patch
+  method: get
+  operationId: getSnippetsByWorkspaceByEncodedIdByRevisionPatch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - snippet
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugFilehistoryByCommitByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/src
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugSrc
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/src
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugSrc
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - repository:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/src/{commit}/{path}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugSrcByCommitByPath
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/ssh-keys
+  method: get
+  operationId: getUsersBySelectedUserSshKeys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/ssh-keys
+  method: post
+  operationId: postUsersBySelectedUserSshKeys
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{selected_user}/ssh-keys/{key_id}
+  method: delete
+  operationId: deleteUsersBySelectedUserSshKeysByKeyId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{selected_user}/ssh-keys/{key_id}
+  method: get
+  operationId: getUsersBySelectedUserSshKeysByKeyId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}/ssh-keys/{key_id}
+  method: put
+  operationId: putUsersBySelectedUserSshKeysByKeyId
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - account:write
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /user
+  method: get
+  operationId: getUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/emails
+  method: get
+  operationId: getUserEmails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - email
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/emails/{email}
+  method: get
+  operationId: getUserEmailsByEmail
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - email
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{selected_user}
+  method: get
+  operationId: getUsersBySelectedUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /hook_events
+  method: get
+  operationId: getHookEvents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /hook_events/{subject_type}
+  method: get
+  operationId: getHookEventsBySubjectType
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/hooks
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugHooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/hooks
+  method: post
+  operationId: postRepositoriesByWorkspaceByRepoSlugHooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: delete
+  operationId: deleteRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: get
+  operationId: getRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /repositories/{workspace}/{repo_slug}/hooks/{uid}
+  method: put
+  operationId: putRepositoriesByWorkspaceByRepoSlugHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/hooks
+  method: get
+  operationId: getWorkspacesByWorkspaceHooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/hooks
+  method: post
+  operationId: postWorkspacesByWorkspaceHooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: delete
+  operationId: deleteWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: get
+  operationId: getWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: put
+  operationId: putWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /user/permissions/workspaces
+  method: get
+  operationId: getUserPermissionsWorkspaces
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/workspaces
+  method: get
+  operationId: getUserWorkspaces
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user/workspaces/{workspace}/permission
+  method: get
+  operationId: getUserWorkspacesByWorkspacePermission
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces
+  method: get
+  operationId: getWorkspaces
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}
+  method: get
+  operationId: getWorkspacesByWorkspace
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/hooks
+  method: get
+  operationId: getWorkspacesByWorkspaceHooks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/hooks
+  method: post
+  operationId: postWorkspacesByWorkspaceHooks
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: delete
+  operationId: deleteWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: get
+  operationId: getWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - webhook
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/hooks/{uid}
+  method: put
+  operationId: putWorkspacesByWorkspaceHooksByUid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - webhook
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /workspaces/{workspace}/members
+  method: get
+  operationId: getWorkspacesByWorkspaceMembers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/members/{member}
+  method: get
+  operationId: getWorkspacesByWorkspaceMembersByMember
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/permissions
+  method: get
+  operationId: getWorkspacesByWorkspacePermissions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/permissions/repositories
+  method: get
+  operationId: getWorkspacesByWorkspacePermissionsRepositories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - account
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/permissions/repositories/{repo_slug}
+  method: get
+  operationId: getWorkspacesByWorkspacePermissionsRepositoriesByRepoSlug
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - repository
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/projects
+  method: get
+  operationId: getWorkspacesByWorkspaceProjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - project
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/projects/{project_key}
+  method: get
+  operationId: getWorkspacesByWorkspaceProjectsByProjectKey
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - project
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspaces/{workspace}/pullrequests/{selected_user}
+  method: get
+  operationId: getWorkspacesByWorkspacePullrequestsBySelectedUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - pullrequest
     token:
       max-ttl: 3600
     audit: none
